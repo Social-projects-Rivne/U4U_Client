@@ -1,8 +1,12 @@
 
 // Encapsulation all work with api
 class TouristService {
-    getUser(id) {
-        return Promise.resolve({ name: 'Bob', surname: 'Brown', age: 20 });
+    login(email, password) {
+        //return Promise.resolve({ token: 'basdasd', expiresIn: 3600 });
+    }
+
+    register(name, email, password) {
+        // return
     }
 };
 
