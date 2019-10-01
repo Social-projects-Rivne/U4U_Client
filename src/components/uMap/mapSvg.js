@@ -1,30 +1,30 @@
-import React from 'react';
-import InlineSVG from 'svg-inline-react';
-import cherkasy from './../../img/cherkasy-region.jpg';
-import chernihiv from './../../img/chernihiv-region.jpg';
-import chernivtsi from './../../img/chernivtsi-region.jpg';
-import crimea from './../../img/crimea-region.jpg';
-import dnipro from './../../img/dnipro-region.jpg';
-import donetsk from './../../img/donetsk-region.jpg';
-import ivanoFrankivsk from './../../img/ivano-frankivsk-region.jpg';
-import kharkiv from './../../img/kharkiv-region.jpg';
-import kherson from './../../img/kherson-region.jpg';
-import khmelnytsky from './../../img/khmelnytsky-region.jpg';
-import kropyvnytskyi from './../../img/kropyvnytskyi-region.jpg';
-import kyiv from './../../img/kyiv-region.jpg';
-import luhansk from './../../img/luhansk-region.jpg';
-import lutsk from './../../img/lutsk-region.jpg';
-import lviv from './../../img/lviv-region.jpg';
-import mykolayiv from './../../img/mykolayiv-region.jpg';
-import odesa from './../../img/odesa-region.jpg';
-import poltava from './../../img/poltava-region.jpg';
-import rivne from './../../img/rivne-region.jpg';
-import sumy from './../../img/sumy-region.jpg';
-import ternopil from './../../img/ternopil-region.jpg';
-import uzhgorod from './../../img/uzhgorod-region.jpg';
-import vinnytsya from './../../img/vinnytsya-region.jpg';
-import zaporizhzhya from './../../img/zaporizhzhya-region.jpg';
-import zhytomyr from './../../img/zhytomyr-region.jpg';
+import React from "react";
+import InlineSVG from "svg-inline-react";
+import cherkasy from "./../../img/cherkasy-region.jpg";
+import chernihiv from "./../../img/chernihiv-region.jpg";
+import chernivtsi from "./../../img/chernivtsi-region.jpg";
+import crimea from "./../../img/crimea-region.jpg";
+import dnipro from "./../../img/dnipro-region.jpg";
+import donetsk from "./../../img/donetsk-region.jpg";
+import ivanoFrankivsk from "./../../img/ivano-frankivsk-region.jpg";
+import kharkiv from "./../../img/kharkiv-region.jpg";
+import kherson from "./../../img/kherson-region.jpg";
+import khmelnytsky from "./../../img/khmelnytsky-region.jpg";
+import kropyvnytskyi from "./../../img/kropyvnytskyi-region.jpg";
+import kyiv from "./../../img/kyiv-region.jpg";
+import luhansk from "./../../img/luhansk-region.jpg";
+import lutsk from "./../../img/lutsk-region.jpg";
+import lviv from "./../../img/lviv-region.jpg";
+import mykolayiv from "./../../img/mykolayiv-region.jpg";
+import odesa from "./../../img/odesa-region.jpg";
+import poltava from "./../../img/poltava-region.jpg";
+import rivne from "./../../img/rivne-region.jpg";
+import sumy from "./../../img/sumy-region.jpg";
+import ternopil from "./../../img/ternopil-region.jpg";
+import uzhgorod from "./../../img/uzhgorod-region.jpg";
+import vinnytsya from "./../../img/vinnytsya-region.jpg";
+import zaporizhzhya from "./../../img/zaporizhzhya-region.jpg";
+import zhytomyr from "./../../img/zhytomyr-region.jpg";
 
 const svgSource = `
 <?xml version="1.0" encoding="utf-8"?>
@@ -1109,11 +1109,11 @@ const svgSource = `
 `;
 
 const MapSvg = () => {
-    return (
-			<div>				
-				<InlineSVG src={svgSource} />
-			</div>
-		)
+  return (
+    <div>
+      <InlineSVG src={svgSource} />
+    </div>
+  );
 };
 
 export default MapSvg;
