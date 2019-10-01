@@ -5,7 +5,7 @@ import UMap from '../uMap/uMap';
 const Container = () => {
     return (
         <main className="content">
-            <UMap/>
+            <UMap />
         </main>
     )
 };

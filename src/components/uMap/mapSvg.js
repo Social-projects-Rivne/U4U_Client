@@ -1,11 +1,35 @@
 import React from 'react';
 import InlineSVG from 'svg-inline-react';
-// import './mapSvg.scss';
+import cherkasy from './../../img/cherkasy-region.jpg';
+import chernihiv from './../../img/chernihiv-region.jpg';
+import chernivtsi from './../../img/chernivtsi-region.jpg';
+import crimea from './../../img/crimea-region.jpg';
+import dnipro from './../../img/dnipro-region.jpg';
+import donetsk from './../../img/donetsk-region.jpg';
+import ivanoFrankivsk from './../../img/ivano-frankivsk-region.jpg';
+import kharkiv from './../../img/kharkiv-region.jpg';
+import kherson from './../../img/kherson-region.jpg';
+import khmelnytsky from './../../img/khmelnytsky-region.jpg';
+import kropyvnytskyi from './../../img/kropyvnytskyi-region.jpg';
+import kyiv from './../../img/kyiv-region.jpg';
+import luhansk from './../../img/luhansk-region.jpg';
+import lutsk from './../../img/lutsk-region.jpg';
+import lviv from './../../img/lviv-region.jpg';
+import mykolayiv from './../../img/mykolayiv-region.jpg';
+import odesa from './../../img/odesa-region.jpg';
+import poltava from './../../img/poltava-region.jpg';
+import rivne from './../../img/rivne-region.jpg';
+import sumy from './../../img/sumy-region.jpg';
+import ternopil from './../../img/ternopil-region.jpg';
+import uzhgorod from './../../img/uzhgorod-region.jpg';
+import vinnytsya from './../../img/vinnytsya-region.jpg';
+import zaporizhzhya from './../../img/zaporizhzhya-region.jpg';
+import zhytomyr from './../../img/zhytomyr-region.jpg';
 
 const svgSource = `
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="svgMap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1200 800" style="enable-background:new 0 0 1200 800;" xml:space="preserve">
 	 <linearGradient id="gradient" x2="0" y2="1">		    
 		<stop offset="0%" stop-color="blue" />
@@ -44,10 +68,10 @@ const svgSource = `
 	<g>
 		<rect x="218" y="-600" class="st0" width="718" height="600"/>
 		
-			<image style="overflow:visible;" width="718" height="600" xlink:href="./img/cherkasy-region.jpg"  transform="matrix(0.3482 0 0 0.3482 718 -600)">
+			<image style="overflow:visible;" width="718" height="600" xlink:href=${cherkasy}  transform="matrix(0.3482 0 0 0.3482 718 -600)">
 		</image>
 		
-			<image style="overflow:visible;" width="718" height="600" xlink:href="./img/cherkasy-region.jpg"  transform="matrix(0.3482 0 0 0.3482 0 -600)">
+			<image style="overflow:visible;" width="718" height="600" xlink:href=${cherkasy}  transform="matrix(0.3482 0 0 0.3482 0 -600)">
 		</image>
 	</g>
 </pattern>
@@ -55,16 +79,16 @@ const svgSource = `
 	<g>
 		<rect x="351" y="-819" class="st0" width="660" height="439"/>
 		
-			<image style="overflow:visible;" width="660" height="439" xlink:href="./img/chernihiv-region.jpg"  transform="matrix(1 0 0 1 660 -439)">
+			<image style="overflow:visible;" width="660" height="439" xlink:href=${chernihiv}  transform="matrix(1 0 0 1 660 -439)">
 		</image>
 		
-			<image style="overflow:visible;" width="660" height="439" xlink:href="./img/chernihiv-region.jpg"  transform="matrix(1 0 0 1 0 -439)">
+			<image style="overflow:visible;" width="660" height="439" xlink:href=${chernihiv}  transform="matrix(1 0 0 1 0 -439)">
 		</image>
 		
-			<image style="overflow:visible;" width="660" height="439" xlink:href="./img/chernihiv-region.jpg"  transform="matrix(1 0 0 1 660 -878)">
+			<image style="overflow:visible;" width="660" height="439" xlink:href=${chernihiv}  transform="matrix(1 0 0 1 660 -878)">
 		</image>
 		
-			<image style="overflow:visible;" width="660" height="439" xlink:href="./img/chernihiv-region.jpg"  transform="matrix(1 0 0 1 0 -878)">
+			<image style="overflow:visible;" width="660" height="439" xlink:href=${chernihiv}  transform="matrix(1 0 0 1 0 -878)">
 		</image>
 	</g>
 </pattern>
@@ -72,10 +96,10 @@ const svgSource = `
 	<g>
 		<rect y="-369.9" class="st0" width="502.5" height="337.5"/>
 		
-			<image style="overflow:visible;" width="670" height="450" xlink:href="./img/chernivtsi-region.jpg"  transform="matrix(0.2985 0 0 0.2985 159 -134.3284)">
+			<image style="overflow:visible;" width="670" height="450" xlink:href=${chernivtsi}  transform="matrix(0.2985 0 0 0.2985 159 -134.3284)">
 		</image>
 		
-			<image style="overflow:visible;" width="670" height="450" xlink:href="./img/chernivtsi-region.jpg"  transform="matrix(0.2985 0 0 0.2985 159 -471.8284)">
+			<image style="overflow:visible;" width="670" height="450" xlink:href=${chernivtsi}  transform="matrix(0.2985 0 0 0.2985 159 -471.8284)">
 		</image>
 	</g>
 </pattern>
@@ -83,10 +107,10 @@ const svgSource = `
 	<g>
 		<rect x="206" y="-456" class="st0" width="810" height="456"/>
 		
-			<image style="overflow:visible;" width="1080" height="608" xlink:href="./img/crimea-region.jpg"  transform="matrix(0.3704 0 0 0.3704 810 -225.1852)">
+			<image style="overflow:visible;" width="1080" height="608" xlink:href=${crimea}  transform="matrix(0.3704 0 0 0.3704 810 -225.1852)">
 		</image>
 		
-			<image style="overflow:visible;" width="1080" height="608" xlink:href="./img/crimea-region.jpg"  transform="matrix(0.3704 0 0 0.3704 0 -225.1852)">
+			<image style="overflow:visible;" width="1080" height="608" xlink:href=${crimea}  transform="matrix(0.3704 0 0 0.3704 0 -225.1852)">
 		</image>
 	</g>
 </pattern>
@@ -94,10 +118,10 @@ const svgSource = `
 	<g>
 		<rect x="142" y="-581" class="st0" width="800" height="581"/>
 		
-			<image style="overflow:visible;" width="800" height="581" xlink:href="./img/dnipro-region.jpg"  transform="matrix(0.5 0 0 0.5 800 -552)">
+			<image style="overflow:visible;" width="800" height="581" xlink:href=${dnipro}  transform="matrix(0.5 0 0 0.5 800 -552)">
 		</image>
 		
-			<image style="overflow:visible;" width="800" height="581" xlink:href="./img/dnipro-region.jpg"  transform="matrix(0.5 0 0 0.5 0 -552)">
+			<image style="overflow:visible;" width="800" height="581" xlink:href=${dnipro}  transform="matrix(0.5 0 0 0.5 0 -552)">
 		</image>
 	</g>
 </pattern>
@@ -105,10 +129,10 @@ const svgSource = `
 	<g>
 		<rect x="100" y="-675" class="st0" width="900" height="675"/>
 		
-			<image style="overflow:visible;" width="900" height="675" xlink:href="./img/donetsk-region.jpg"  transform="matrix(0.4444 0 0 0.4444 900 -473.5)">
+			<image style="overflow:visible;" width="900" height="675" xlink:href=${donetsk}  transform="matrix(0.4444 0 0 0.4444 900 -473.5)">
 		</image>
 		
-			<image style="overflow:visible;" width="900" height="675" xlink:href="./img/donetsk-region.jpg"  transform="matrix(0.4444 0 0 0.4444 0 -473.5)">
+			<image style="overflow:visible;" width="900" height="675" xlink:href=${donetsk}  transform="matrix(0.4444 0 0 0.4444 0 -473.5)">
 		</image>
 	</g>
 </pattern>
@@ -116,16 +140,16 @@ const svgSource = `
 	<g>
 		<rect x="28" y="-675" class="st0" width="760" height="486"/>
 		
-			<image style="overflow:visible;" width="760" height="486" xlink:href="./img/ivano-frankivsk-region.jpg"  transform="matrix(0.5263 0 0 0.5263 760 -255.7895)">
+			<image style="overflow:visible;" width="760" height="486" xlink:href=${ivanoFrankivsk}  transform="matrix(0.5263 0 0 0.5263 760 -255.7895)">
 		</image>
 		
-			<image style="overflow:visible;" width="760" height="486" xlink:href="./img/ivano-frankivsk-region.jpg"  transform="matrix(0.5263 0 0 0.5263 0 -255.7895)">
+			<image style="overflow:visible;" width="760" height="486" xlink:href=${ivanoFrankivsk}  transform="matrix(0.5263 0 0 0.5263 0 -255.7895)">
 		</image>
 		
-			<image style="overflow:visible;" width="760" height="486" xlink:href="./img/ivano-frankivsk-region.jpg"  transform="matrix(0.5263 0 0 0.5263 760 -741.7895)">
+			<image style="overflow:visible;" width="760" height="486" xlink:href=${ivanoFrankivsk}  transform="matrix(0.5263 0 0 0.5263 760 -741.7895)">
 		</image>
 		
-			<image style="overflow:visible;" width="760" height="486" xlink:href="./img/ivano-frankivsk-region.jpg"  transform="matrix(0.5263 0 0 0.5263 0 -741.7895)">
+			<image style="overflow:visible;" width="760" height="486" xlink:href=${ivanoFrankivsk}  transform="matrix(0.5263 0 0 0.5263 0 -741.7895)">
 		</image>
 	</g>
 </pattern>
@@ -133,7 +157,7 @@ const svgSource = `
 	<g>
 		<rect y="-803" class="st0" width="1200" height="803"/>
 		
-			<image style="overflow:visible;" width="1200" height="803" xlink:href="./img/kharkiv-region.jpg"  transform="matrix(0.25 0 0 0.25 815 -602.25)">
+			<image style="overflow:visible;" width="1200" height="803" xlink:href=${kharkiv}  transform="matrix(0.25 0 0 0.25 815 -602.25)">
 		</image>
 	</g>
 </pattern>
@@ -141,10 +165,10 @@ const svgSource = `
 	<g>
 		<rect x="230" y="-533" class="st0" width="800" height="533"/>
 		
-			<image style="overflow:visible;" width="800" height="533" xlink:href="./img/kherson-region.jpg"  transform="matrix(0.5 0 0 0.5 800 -308.75)">
+			<image style="overflow:visible;" width="800" height="533" xlink:href=${kherson}  transform="matrix(0.5 0 0 0.5 800 -308.75)">
 		</image>
 		
-			<image style="overflow:visible;" width="800" height="533" xlink:href="./img/kherson-region.jpg"  transform="matrix(0.5 0 0 0.5 0 -308.75)">
+			<image style="overflow:visible;" width="800" height="533" xlink:href=${kherson}  transform="matrix(0.5 0 0 0.5 0 -308.75)">
 		</image>
 	</g>
 </pattern>
@@ -152,10 +176,10 @@ const svgSource = `
 	<g>
 		<rect y="-810" class="st0" width="800" height="600"/>
 		
-			<image style="overflow:visible;" width="800" height="600" xlink:href="./img/khmelnytsky-region.jpg"  transform="matrix(0.375 0 0 0.375 187 -225)">
+			<image style="overflow:visible;" width="800" height="600" xlink:href=${khmelnytsky}  transform="matrix(0.375 0 0 0.375 187 -225)">
 		</image>
 		
-			<image style="overflow:visible;" width="800" height="600" xlink:href="./img/khmelnytsky-region.jpg"  transform="matrix(0.375 0 0 0.375 187 -825)">
+			<image style="overflow:visible;" width="800" height="600" xlink:href=${khmelnytsky}  transform="matrix(0.375 0 0 0.375 187 -825)">
 		</image>
 	</g>
 </pattern>
@@ -163,7 +187,7 @@ const svgSource = `
 	<g>
 		<rect y="-851" class="st0" width="1275.8" height="851"/>
 		
-			<image style="overflow:visible;" width="1772" height="1182" xlink:href="./img/kirovograd-region.jpg"  transform="matrix(0.1975 0 0 0.1975 494.92 -490.2525)">
+			<image style="overflow:visible;" width="1772" height="1182" xlink:href=${kropyvnytskyi}  transform="matrix(0.1975 0 0 0.1975 494.92 -490.2525)">
 		</image>
 	</g>
 </pattern>
@@ -171,16 +195,16 @@ const svgSource = `
 	<g>
 		<rect x="237" y="-478.9" class="st0" width="600" height="446.3"/>
 		
-			<image style="overflow:visible;" width="800" height="595" xlink:href="./img/kyiv-region.jpg"  transform="matrix(0.5 0 0 0.5 600 -297.5)">
+			<image style="overflow:visible;" width="800" height="595" xlink:href=${kyiv}  transform="matrix(0.5 0 0 0.5 600 -297.5)">
 		</image>
 		
-			<image style="overflow:visible;" width="800" height="595" xlink:href="./img/kyiv-region.jpg"  transform="matrix(0.5 0 0 0.5 0 -297.5)">
+			<image style="overflow:visible;" width="800" height="595" xlink:href=${kyiv}  transform="matrix(0.5 0 0 0.5 0 -297.5)">
 		</image>
 		
-			<image style="overflow:visible;" width="800" height="595" xlink:href="./img/kyiv-region.jpg"  transform="matrix(0.5 0 0 0.5 600 -743.75)">
+			<image style="overflow:visible;" width="800" height="595" xlink:href=${kyiv}  transform="matrix(0.5 0 0 0.5 600 -743.75)">
 		</image>
 		
-			<image style="overflow:visible;" width="800" height="595" xlink:href="./img/kyiv-region.jpg"  transform="matrix(0.5 0 0 0.5 0 -743.75)">
+			<image style="overflow:visible;" width="800" height="595" xlink:href=${kyiv}  transform="matrix(0.5 0 0 0.5 0 -743.75)">
 		</image>
 	</g>
 </pattern>
@@ -188,7 +212,7 @@ const svgSource = `
 	<g>
 		<rect y="-640" class="st0" width="480" height="640"/>
 		
-			<image style="overflow:visible;" width="480" height="640" xlink:href="./img/luhansk-region.jpg"  transform="matrix(0.625 0 0 0.625 0 -563)">
+			<image style="overflow:visible;" width="480" height="640" xlink:href=${luhansk}  transform="matrix(0.625 0 0 0.625 0 -563)">
 		</image>
 	</g>
 </pattern>
@@ -196,7 +220,7 @@ const svgSource = `
 	<g>
 		<rect y="-266" class="st0" width="400" height="266"/>
 		
-			<image style="overflow:visible;" width="800" height="532" id="lutsk_3_" xlink:href="./img/lutsk-region.jpg"  transform="matrix(0.5 0 0 0.5 9.574340e-06 -266)">
+			<image style="overflow:visible;" width="800" height="532" id="lutsk_3_" xlink:href=${lutsk}  transform="matrix(0.5 0 0 0.5 9.574340e-06 -266)">
 		</image>
 	</g>
 </pattern>
@@ -204,16 +228,16 @@ const svgSource = `
 	<g>
 		<rect x="28.5" y="-646" class="st0" width="555" height="512.3"/>
 		
-			<image style="overflow:visible;" width="740" height="683" xlink:href="./img/lviv-region.jpg"  transform="matrix(0.5405 0 0 0.5405 555 -369.1892)">
+			<image style="overflow:visible;" width="740" height="683" xlink:href=${lviv}  transform="matrix(0.5405 0 0 0.5405 555 -369.1892)">
 		</image>
 		
-			<image style="overflow:visible;" width="740" height="683" xlink:href="./img/lviv-region.jpg"  transform="matrix(0.5405 0 0 0.5405 0 -369.1892)">
+			<image style="overflow:visible;" width="740" height="683" xlink:href=${lviv}  transform="matrix(0.5405 0 0 0.5405 0 -369.1892)">
 		</image>
 		
-			<image style="overflow:visible;" width="740" height="683" xlink:href="./img/lviv-region.jpg"  transform="matrix(0.5405 0 0 0.5405 555 -881.4392)">
+			<image style="overflow:visible;" width="740" height="683" xlink:href=${lviv}  transform="matrix(0.5405 0 0 0.5405 555 -881.4392)">
 		</image>
 		
-			<image style="overflow:visible;" width="740" height="683" xlink:href="./img/lviv-region.jpg"  transform="matrix(0.5405 0 0 0.5405 0 -881.4392)">
+			<image style="overflow:visible;" width="740" height="683" xlink:href=${lviv}  transform="matrix(0.5405 0 0 0.5405 0 -881.4392)">
 		</image>
 	</g>
 </pattern>
@@ -221,7 +245,7 @@ const svgSource = `
 	<g>
 		<rect y="-870" class="st0" width="1140" height="870"/>
 		
-			<image style="overflow:visible;" width="1140" height="870" xlink:href="./img/mykolayiv-region.jpg"  transform="matrix(0.2632 0 0 0.2632 505 -406.4737)">
+			<image style="overflow:visible;" width="1140" height="870" xlink:href=${mykolayiv}  transform="matrix(0.2632 0 0 0.2632 505 -406.4737)">
 		</image>
 	</g>
 </pattern>
@@ -229,10 +253,10 @@ const svgSource = `
 	<g>
 		<rect y="-802" class="st0" width="900" height="802"/>
 		
-			<image style="overflow:visible;" width="900" height="401" xlink:href="./img/odesa-region.jpg"  transform="matrix(0.7778 0 0 0.7778 180 -381.9445)">
+			<image style="overflow:visible;" width="900" height="401" xlink:href=${odesa}  transform="matrix(0.7778 0 0 0.7778 180 -381.9445)">
 		</image>
 		
-			<image style="overflow:visible;" width="900" height="401" xlink:href="./img/odesa-region.jpg"  transform="matrix(0.7778 0 0 0.7778 180 -782.9445)">
+			<image style="overflow:visible;" width="900" height="401" xlink:href=${odesa}  transform="matrix(0.7778 0 0 0.7778 180 -782.9445)">
 		</image>
 	</g>
 </pattern>
@@ -240,16 +264,16 @@ const svgSource = `
 	<g>
 		<rect x="196" y="-794" class="st0" width="768" height="576"/>
 		
-			<image style="overflow:visible;" width="1024" height="768" xlink:href="./img/poltava-region.jpg"  transform="matrix(0.3906 0 0 0.3906 768 -300)">
+			<image style="overflow:visible;" width="1024" height="768" xlink:href=${poltava}  transform="matrix(0.3906 0 0 0.3906 768 -300)">
 		</image>
 		
-			<image style="overflow:visible;" width="1024" height="768" xlink:href="./img/poltava-region.jpg"  transform="matrix(0.3906 0 0 0.3906 0 -300)">
+			<image style="overflow:visible;" width="1024" height="768" xlink:href=${poltava}  transform="matrix(0.3906 0 0 0.3906 0 -300)">
 		</image>
 		
-			<image style="overflow:visible;" width="1024" height="768" xlink:href="./img/poltava-region.jpg"  transform="matrix(0.3906 0 0 0.3906 768 -876)">
+			<image style="overflow:visible;" width="1024" height="768" xlink:href=${poltava}  transform="matrix(0.3906 0 0 0.3906 768 -876)">
 		</image>
 		
-			<image style="overflow:visible;" width="1024" height="768" xlink:href="./img/poltava-region.jpg"  transform="matrix(0.3906 0 0 0.3906 0 -876)">
+			<image style="overflow:visible;" width="1024" height="768" xlink:href=${poltava}  transform="matrix(0.3906 0 0 0.3906 0 -876)">
 		</image>
 	</g>
 </pattern>
@@ -257,16 +281,16 @@ const svgSource = `
 	<g>
 		<rect x="209" y="-422.6" class="st0" width="329.1" height="247.1"/>
 		
-			<image style="overflow:visible;" width="1600" height="1201" xlink:href="./img/rivne-region.jpg"  transform="matrix(0.2057 0 0 0.2057 329.1429 -247.0629)">
+			<image style="overflow:visible;" width="1600" height="1201" xlink:href=${rivne}  transform="matrix(0.2057 0 0 0.2057 329.1429 -247.0629)">
 		</image>
 		
-			<image style="overflow:visible;" width="1600" height="1201" xlink:href="./img/rivne-region.jpg"  transform="matrix(0.2057 0 0 0.2057 0 -247.0629)">
+			<image style="overflow:visible;" width="1600" height="1201" xlink:href=${rivne}  transform="matrix(0.2057 0 0 0.2057 0 -247.0629)">
 		</image>
 		
-			<image style="overflow:visible;" width="1600" height="1201" xlink:href="./img/rivne-region.jpg"  transform="matrix(0.2057 0 0 0.2057 329.1429 -494.1257)">
+			<image style="overflow:visible;" width="1600" height="1201" xlink:href=${rivne}  transform="matrix(0.2057 0 0 0.2057 329.1429 -494.1257)">
 		</image>
 		
-			<image style="overflow:visible;" width="1600" height="1201" xlink:href="./img/rivne-region.jpg"  transform="matrix(0.2057 0 0 0.2057 0 -494.1257)">
+			<image style="overflow:visible;" width="1600" height="1201" xlink:href=${rivne}  transform="matrix(0.2057 0 0 0.2057 0 -494.1257)">
 		</image>
 	</g>
 </pattern>
@@ -274,10 +298,10 @@ const svgSource = `
 	<g>
 		<rect x="49" y="-479" class="st0" width="640" height="479"/>
 		
-			<image style="overflow:visible;" width="640" height="479" xlink:href="./img/sumy-region.jpg"  transform="matrix(0.5469 0 0 0.5469 640 -338.4766)">
+			<image style="overflow:visible;" width="640" height="479" xlink:href=${sumy}  transform="matrix(0.5469 0 0 0.5469 640 -338.4766)">
 		</image>
 		
-			<image style="overflow:visible;" width="640" height="479" xlink:href="./img/sumy-region.jpg"  transform="matrix(0.5469 0 0 0.5469 0 -338.4766)">
+			<image style="overflow:visible;" width="640" height="479" xlink:href=${sumy}  transform="matrix(0.5469 0 0 0.5469 0 -338.4766)">
 		</image>
 	</g>
 </pattern>
@@ -285,10 +309,10 @@ const svgSource = `
 	<g>
 		<rect y="-419" class="st0" width="620" height="403"/>
 		
-			<image style="overflow:visible;" width="620" height="403" xlink:href="./img/ternopil-region.jpg"  transform="matrix(0.4839 0 0 0.4839 71 -195)">
+			<image style="overflow:visible;" width="620" height="403" xlink:href=${ternopil}  transform="matrix(0.4839 0 0 0.4839 71 -195)">
 		</image>
 		
-			<image style="overflow:visible;" width="620" height="403" xlink:href="./img/ternopil-region.jpg"  transform="matrix(0.4839 0 0 0.4839 71 -598)">
+			<image style="overflow:visible;" width="620" height="403" xlink:href=${ternopil}  transform="matrix(0.4839 0 0 0.4839 71 -598)">
 		</image>
 	</g>
 </pattern>
@@ -296,16 +320,16 @@ const svgSource = `
 	<g>
 		<rect x="80" y="-549.5" class="st0" width="700" height="441"/>
 		
-			<image style="overflow:visible;" width="700" height="441" xlink:href="./img/uzhgorod-region.jpg"  transform="matrix(0.3571 0 0 0.3571 700 -157.5)">
+			<image style="overflow:visible;" width="700" height="441" xlink:href=${uzhgorod}  transform="matrix(0.3571 0 0 0.3571 700 -157.5)">
 		</image>
 		
-			<image style="overflow:visible;" width="700" height="441" xlink:href="./img/uzhgorod-region.jpg"  transform="matrix(0.3571 0 0 0.3571 0 -157.5)">
+			<image style="overflow:visible;" width="700" height="441" xlink:href=${uzhgorod}  transform="matrix(0.3571 0 0 0.3571 0 -157.5)">
 		</image>
 		
-			<image style="overflow:visible;" width="700" height="441" xlink:href="./img/uzhgorod-region.jpg"  transform="matrix(0.3571 0 0 0.3571 700 -598.5)">
+			<image style="overflow:visible;" width="700" height="441" xlink:href=${uzhgorod}  transform="matrix(0.3571 0 0 0.3571 700 -598.5)">
 		</image>
 		
-			<image style="overflow:visible;" width="700" height="441" xlink:href="./img/uzhgorod-region.jpg"  transform="matrix(0.3571 0 0 0.3571 0 -598.5)">
+			<image style="overflow:visible;" width="700" height="441" xlink:href=${uzhgorod}  transform="matrix(0.3571 0 0 0.3571 0 -598.5)">
 		</image>
 	</g>
 </pattern>
@@ -313,10 +337,10 @@ const svgSource = `
 	<g>
 		<rect y="-578.5" class="st0" width="600" height="450"/>
 		
-			<image style="overflow:visible;" width="600" height="450" xlink:href="./img/vinnytsya-region.jpg"  transform="matrix(0.5 0 0 0.5 293 -225)">
+			<image style="overflow:visible;" width="600" height="450" xlink:href=${vinnytsya}  transform="matrix(0.5 0 0 0.5 293 -225)">
 		</image>
 		
-			<image style="overflow:visible;" width="600" height="450" xlink:href="./img/vinnytsya-region.jpg"  transform="matrix(0.5 0 0 0.5 293 -675)">
+			<image style="overflow:visible;" width="600" height="450" xlink:href=${vinnytsya}  transform="matrix(0.5 0 0 0.5 293 -675)">
 		</image>
 	</g>
 </pattern>
@@ -324,10 +348,10 @@ const svgSource = `
 	<g>
 		<rect x="214.8" y="-351.8" class="st0" width="468.8" height="351.8"/>
 		
-			<image style="overflow:visible;" width="625" height="469" xlink:href="./img/zaporizhzhya-region.jpg"  transform="matrix(0.75 0 0 0.75 468.75 -351.75)">
+			<image style="overflow:visible;" width="625" height="469" xlink:href=${zaporizhzhya}  transform="matrix(0.75 0 0 0.75 468.75 -351.75)">
 		</image>
 		
-			<image style="overflow:visible;" width="625" height="469" xlink:href="./img/zaporizhzhya-region.jpg"  transform="matrix(0.75 0 0 0.75 0 -351.75)">
+			<image style="overflow:visible;" width="625" height="469" xlink:href=${zaporizhzhya}  transform="matrix(0.75 0 0 0.75 0 -351.75)">
 		</image>
 	</g>
 </pattern>
@@ -335,10 +359,10 @@ const svgSource = `
 	<g>
 		<rect y="-610.3" class="st0" width="800" height="543"/>
 		
-			<image style="overflow:visible;" width="800" height="543" xlink:href="./img/zhytomyr-region.jpg"  transform="matrix(0.5 0 0 0.5 196 -271.5)">
+			<image style="overflow:visible;" width="800" height="543" xlink:href=${zhytomyr}  transform="matrix(0.5 0 0 0.5 196 -271.5)">
 		</image>
 		
-			<image style="overflow:visible;" width="800" height="543" xlink:href="./img/zhytomyr-region.jpg"  transform="matrix(0.5 0 0 0.5 196 -814.5)">
+			<image style="overflow:visible;" width="800" height="543" xlink:href=${zhytomyr}  transform="matrix(0.5 0 0 0.5 196 -814.5)">
 		</image>
 	</g>
 </pattern>
@@ -1031,59 +1055,55 @@ const svgSource = `
 	l-0.9-2.9h-1.3l-0.1-5.2l2.9-0.5l1.7-2.1l1.3,0.4l-0.4-2l0,0l4.9,4.2l1.5,0.2l2.6-6l2.3-0.3l1-0.8l-1.5-3.6l0.9-3.3l-1.3-1l2.1-1.5
 	l4.1,1.5l0.7,1.3l-0.2,2.9l1.6-0.3l0.8-1.4h1.4l-2.4,3.8l6.4-0.8l2.1-1.4l2,0.2l1.9-3l1.7-0.3l1-1.7l0.3-2.3l5.6-3.8l0.7,0.6
 	L406.2,81.7z"/>
-<image style="display:none;overflow:visible;" width="800" height="532" id="lutsk" xlink:href="./img/lutsk-region.jpg"  transform="matrix(1 0 0 1 180.3 108.1)">
+<image style="display:none;overflow:visible;" width="800" height="532" id="lutsk" xlink:href=${lutsk}  transform="matrix(1 0 0 1 180.3 108.1)">
 </image>
-<image style="display:none;overflow:visible;" width="1600" height="1201" xlink:href="./img/rivne-region.jpg"  transform="matrix(0.2057 0 0 0.2057 325.6287 195.0186)">
+<image style="display:none;overflow:visible;" width="1600" height="1201" xlink:href=${rivne}  transform="matrix(0.2057 0 0 0.2057 325.6287 195.0186)">
 </image>
-<image style="display:none;overflow:visible;" width="800" height="543" xlink:href="./img/zhytomyr-region.jpg"  transform="matrix(1 0 0 1 137.3 132.6)">
+<image style="display:none;overflow:visible;" width="800" height="543" xlink:href=${zhytomyr}  transform="matrix(1 0 0 1 137.3 132.6)">
 </image>
-<image style="display:none;overflow:visible;" width="800" height="595" xlink:href="./img/kyiv-region.jpg"  transform="matrix(0.75 0 0 0.75 294 171)">
+<image style="display:none;overflow:visible;" width="800" height="595" xlink:href=${kyiv}  transform="matrix(0.75 0 0 0.75 294 171)">
 </image>
-<image style="display:none;overflow:visible;" width="660" height="439" xlink:href="./img/chernihiv-region.jpg"  transform="matrix(1 0 0 1 248 194)">
+<image style="display:none;overflow:visible;" width="660" height="439" xlink:href=${chernihiv}  transform="matrix(1 0 0 1 248 194)">
 </image>
-<image style="display:none;overflow:visible;" width="640" height="479" xlink:href="./img/sumy-region.jpg"  transform="matrix(1 0 0 1 460.4001 -86)">
+<image style="display:none;overflow:visible;" width="640" height="479" xlink:href=${sumy}  transform="matrix(1 0 0 1 460.4001 -86)">
 </image>
-<image style="display:none;overflow:visible;" width="718" height="600" xlink:href="./img/cherkasy-region.jpg"  transform="matrix(1 0 0 1 179 53)">
+<image style="display:none;overflow:visible;" width="718" height="600" xlink:href=${cherkasy}  transform="matrix(1 0 0 1 179 53)">
 </image>
-<image style="display:none;overflow:visible;" width="670" height="450" xlink:href="./img/chernivtsi-region.jpg"  transform="matrix(0.75 0 0 0.75 452 180)">
+<image style="display:none;overflow:visible;" width="670" height="450" xlink:href=${chernivtsi}  transform="matrix(0.75 0 0 0.75 452 180)">
 </image>
-<image style="display:none;overflow:visible;" width="1080" height="608" xlink:href="./img/crimea-region.jpg"  transform="matrix(0.75 0 0 0.75 338 229)">
+<image style="display:none;overflow:visible;" width="1080" height="608" xlink:href=${crimea}  transform="matrix(0.75 0 0 0.75 338 229)">
 </image>
-<image style="display:none;overflow:visible;" width="800" height="581" xlink:href="20425720.jpg"  transform="matrix(1 0 0 1 200 28.05)">
+<image style="display:none;overflow:visible;" width="900" height="675" xlink:href=${donetsk}  transform="matrix(1 0 0 1 140.6002 37.3499)">
 </image>
-<image style="display:none;overflow:visible;" width="900" height="675" xlink:href="./img/donetsk-region.jpg"  transform="matrix(1 0 0 1 140.6002 37.3499)">
+<image style="display:none;overflow:visible;" width="760" height="486" xlink:href=${ivanoFrankivsk}  transform="matrix(1 0 0 1 152 122)">
 </image>
-<image style="display:none;overflow:visible;" width="760" height="486" xlink:href="./img/ivano-frankivsk-region.jpg"  transform="matrix(1 0 0 1 152 122)">
+<image style="display:none;overflow:visible;" width="800" height="533" xlink:href=${kherson}  transform="matrix(1 0 0 1 163.1 114.8001)">
 </image>
-<image style="display:none;overflow:visible;" width="3872" height="2592" xlink:href="204257CD.jpg"  transform="matrix(0.3 0 0 0.3 11 14.0999)">
+<image style="display:none;overflow:visible;" width="620" height="403" xlink:href=${ternopil}  transform="matrix(1 0 0 1 301 185)">
 </image>
-<image style="display:none;overflow:visible;" width="800" height="533" xlink:href="./img/kherson-region.jpg"  transform="matrix(1 0 0 1 163.1 114.8001)">
+<image style="display:none;overflow:visible;" width="1024" height="768" xlink:href=${poltava}  transform="matrix(0.75 0 0 0.75 199 89)">
 </image>
-<image style="display:none;overflow:visible;" width="620" height="403" xlink:href="./img/ternopil-region.jpg"  transform="matrix(1 0 0 1 301 185)">
+<image style="display:none;overflow:visible;" width="625" height="469" xlink:href=${zaporizhzhya}  transform="matrix(0.75 0 0 0.75 347 201)">
 </image>
-<image style="display:none;overflow:visible;" width="1024" height="768" xlink:href="./img/poltava-region.jpg"  transform="matrix(0.75 0 0 0.75 199 89)">
+<image style="display:none;overflow:visible;" width="480" height="640" xlink:href=${luhansk}  transform="matrix(1 0 0 1 372 50)">
 </image>
-<image style="display:none;overflow:visible;" width="625" height="469" xlink:href="./img/zaporizhzhya-region.jpg"  transform="matrix(0.75 0 0 0.75 347 201)">
+<image style="display:none;overflow:visible;" width="1140" height="870" xlink:href=${mykolayiv}  transform="matrix(1 0 0 1 8 -111)">
 </image>
-<image style="display:none;overflow:visible;" width="480" height="640" xlink:href="./img/luhansk-region.jpg"  transform="matrix(1 0 0 1 372 50)">
+<image style="display:none;overflow:visible;" width="1772" height="1182" xlink:href=${kropyvnytskyi}  transform="matrix(0.72 0 0 0.72 29 -23)">
 </image>
-<image style="display:none;overflow:visible;" width="1140" height="870" xlink:href="./img/mykolayiv-region.jpg"  transform="matrix(1 0 0 1 8 -111)">
+<image style="display:none;overflow:visible;" width="900" height="401" xlink:href=${odesa}  transform="matrix(1 0 0 1 115 118)">
 </image>
-<image style="display:none;overflow:visible;" width="1772" height="1182" xlink:href="./img/kirovograd-region.jpg"  transform="matrix(0.72 0 0 0.72 29 -23)">
+<image style="display:none;overflow:visible;" width="740" height="683" xlink:href=${lviv}  transform="matrix(0.75 0 0 0.75 288 130)">
 </image>
-<image style="display:none;overflow:visible;" width="900" height="401" xlink:href="./img/odesa-region.jpg"  transform="matrix(1 0 0 1 115 118)">
+<image style="display:none;overflow:visible;" width="700" height="441" xlink:href=${uzhgorod}  transform="matrix(1 0 0 1 243 126)">
 </image>
-<image style="display:none;overflow:visible;" width="740" height="683" xlink:href="./img/lviv-region.jpg"  transform="matrix(0.75 0 0 0.75 288 130)">
+<image style="display:none;overflow:visible;" width="800" height="600" xlink:href=${khmelnytsky}  transform="matrix(1 0 0 1 206 92)">
 </image>
-<image style="display:none;overflow:visible;" width="700" height="441" xlink:href="./img/uzhgorod-region.jpg"  transform="matrix(1 0 0 1 243 126)">
+<image style="display:none;overflow:visible;" width="600" height="450" xlink:href=${vinnytsya}  transform="matrix(1 0 0 1 280 201)">
 </image>
-<image style="display:none;overflow:visible;" width="800" height="600" xlink:href="./img/khmelnytsky-region.jpg"  transform="matrix(1 0 0 1 206 92)">
+<image style="display:none;overflow:visible;" width="800" height="581" xlink:href=${dnipro}  transform="matrix(1 0 0 1 257 92)">
 </image>
-<image style="display:none;overflow:visible;" width="600" height="450" xlink:href="./img/vinnytsya-region.jpg"  transform="matrix(1 0 0 1 280 201)">
-</image>
-<image style="display:none;overflow:visible;" width="800" height="581" xlink:href="./img/dnipro-region.jpg"  transform="matrix(1 0 0 1 257 92)">
-</image>
-<image style="display:none;overflow:visible;" width="1200" height="803" xlink:href="./img/kharkiv-region.jpg"  transform="matrix(1 0 0 1 -27 9)">
+<image style="display:none;overflow:visible;" width="1200" height="803" xlink:href=${kharkiv}  transform="matrix(1 0 0 1 -27 9)">
 </image>
 </svg>
 `;
