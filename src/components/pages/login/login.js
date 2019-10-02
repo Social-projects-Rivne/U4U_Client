@@ -5,9 +5,29 @@ import Input from "../../forms/input";
 import Button from '../../forms/buttons/button';
 import FacebookBtn from "../../forms/buttons/facebook-btn";
 import Register from "../../register/register";
+import touristService from '../../../services/tourist-service';
+import { Notify } from '@i_oleksandr/prcomponents';
 
 const Login = () => {
-    // useState([state, setSate],);
+    const [state, setState] = useState({
+        email: null,
+        password: null,
+    });
+
+    const handleChange = (e) => {
+        setState({ ...state, [e.target.name]: e.target.value });
+        console.log(state);
+    };
+
+    const submit = async () => {
+        try {
+            const { token, user} = await touristService.login();
+            localStorage.setItem('token', token);
+            setState({...state, user})
+        } catch (e) {
+            Notify.error({ message: 'Wrong email or password' })
+        }
+    };
 
     return (
         <>
@@ -17,11 +37,15 @@ const Login = () => {
 
                     <Input
                      label='Email'
-                     type='email'/>
+                     name='email'
+                     type='email'
+                     onChange={handleChange}/>
 
                     <Input
                         label='Password'
-                        type='password'/>
+                        type='password'
+                        name='password'
+                        onChange={handleChange}/>
 
                     <p className="forgot-pass">Forgot password?</p>
 
