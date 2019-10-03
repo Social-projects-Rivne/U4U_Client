@@ -8,7 +8,7 @@
 * profile page
 
 **шлях до папок:**
-        U4U_Client/src/components
+`U4U_Client/src/components`
 
 **що саме вам потрібно:**
 * header: components/header
