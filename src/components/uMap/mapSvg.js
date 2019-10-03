@@ -1,5 +1,5 @@
 import React from "react";
-import MapContainer from './mapContent/mapContainer'
+import MapContainer from "./mapContent/mapContainer";
 import rivneRegion from "./mapContent/regions.json";
 
 const MapSvg = () => {
