@@ -1,16 +1,16 @@
 <h1>Ukraine 4 You</h1>
 
-**Міні гайд, що потрібно взяти собі, для таких сторінок як:**
+**Mini manual, what you need to take, for these pages:**
 * places list page
 * place page
 * my plans page
 * sign in/sign up pages
 * profile page
 
-**шлях до папок:**
+**pages path:**
 `U4U_Client/src/components`
 
-**що саме вам потрібно:**
+**what exactly you need:**
 * header: components/header
 * footer: components/footer
 * container: components/container
@@ -20,6 +20,6 @@
   </main>
   ```
 
-**інші папки:**
+**other folders:**
 * components/app - збирає компоненти
 * components/uMap - відображає на головній нашу карту (в блокові container)
