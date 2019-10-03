@@ -1,6 +1,6 @@
 import React from 'react';
-import './uMap.scss';
-import MapSvg from "./mapSvg.js"
+import './UMap.scss';
+import MapSvg from "./mapContent/mapSvg"
 
 const UMap = () => {
     return (

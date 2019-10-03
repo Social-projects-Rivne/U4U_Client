@@ -1,8 +1,8 @@
 import React from 'react';
-import './app.scss';
-import Header from '../header/header';
-import Container from '../container/container';
-import Footer from '../footer/footer';
+import './App.scss';
+import Header from '../header';
+import Container from '../container';
+import Footer from '../footer';
 
 
 const App = () => {

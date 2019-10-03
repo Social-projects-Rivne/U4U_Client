@@ -1,6 +1,6 @@
 import React from 'react';
-import './container.scss';
-import UMap from '../uMap/uMap';
+import './Container.scss';
+import UMap from './../uMap';
 
 const Container = () => {
     return (

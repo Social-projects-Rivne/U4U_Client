@@ -1,6 +1,6 @@
 import React from "react";
-import MapContainer from "./mapContent/mapContainer";
-import rivneRegion from "./mapContent/regions.json";
+import MapContainer from "./../mapContainer";
+import rivneRegion from "./../regions.json";
 
 const MapSvg = () => {
 	return (
