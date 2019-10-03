@@ -13,6 +13,11 @@ U4U_Client/src/components
 - header: components/header<br />
 - footer: components/footer<br />
 - container: components/container
+  <code>
+    <main className="content">
+        <UMap />
+    </main>
+  </code>
 <br />
 <strong>інші папки:</strong><br />
 - components/app - збирає компоненти<br />
