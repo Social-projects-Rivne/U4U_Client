@@ -8,7 +8,7 @@
 * profile page
 
 **шлях до папок:**
-U4U_Client/src/components
+        U4U_Client/src/components
 
 **що саме вам потрібно:**
 * header: components/header
@@ -16,7 +16,7 @@ U4U_Client/src/components
 * container: components/container
   ```html
   <main className="content">
-      <UMap /> <!-- цей компонент ви міняєте на свій, дял відображення в контейнері -->
+      <UMap /> <!-- цей компонент ви міняєте на свій, для відображення в контейнері вашої сторінки -->
   </main>
   ```
 
