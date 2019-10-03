@@ -13,7 +13,7 @@ const MapSvg = () => {
 						onClick={()=>alert(`redirect to ${region.id}`)
 						}
 					/>
-				);
+				)
 			})}
 		</MapContainer>
 	);
