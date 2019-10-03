@@ -1,12 +1,12 @@
 <h1>Ukraine 4 You</h1>
-<strong>Міні гайд, що потрібно взяти собі, для таких сторінок як:</strong>
+<strong>Міні гайд, що потрібно взяти собі, для таких сторінок як:</strong><br />
 - places list page
 - place page
 - my plans page
 - sign in/sign up pages
 - profile page
 
-<strong>шлях до папок:</strong>
+<strong>шлях до папок:</strong><br />
 U4U_Client/src/components
 
 <strong>що саме вам потрібно:</strong>
