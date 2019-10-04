@@ -16,10 +16,10 @@
 * container: components/container
   ```html
   <main className="content">
-      <UMap /> <!-- цей компонент ви міняєте на свій, для відображення в контейнері вашої сторінки -->
+      <UMap /> <!-- you need to change this component to your, to display it in the container -->
   </main>
   ```
 
 **other folders:**
-* components/app - збирає компоненти
-* components/uMap - відображає на головній нашу карту (в блокові container)
+* components/app - collects components
+* components/uMap - displays on the main page our map (in a block - container)
