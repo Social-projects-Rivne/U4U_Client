@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import SinglePlace from '../singlePage/SinglePlace';
 import './app.scss';
 
-const App = () => {
+
+class App extends Component {
+  render() {
     return (
-        <h1>Hello from App</h1>
-    )
-};
+    <div className ="SinglePlace">
+     < SinglePlace />
+    </div>
+    );
+  }
+}
 
 export default App;

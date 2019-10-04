@@ -1,10 +1,13 @@
+export default class getRegions{
+    baseUrl = 'http://localhost:8080/api/regions/districts';
 
-// Encapsulation all work with api
-class TouristService {
-    getUser(id) {
-        return Promise.resolve({ name: 'Bob', surname: 'Brown', age: 20 });
+    async getResource(url){
+        const res = await fetch(`${this.baseUrl}`);
+
+        
+      if(!res.ok){
+           throw new Error(`Cound not fetch ${url} reseived ${res.status}`);
+       }
+       return await res.json();
     }
-};
-
-
-export default TouristService;
+}
