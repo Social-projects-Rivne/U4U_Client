@@ -7,7 +7,7 @@
 * sign in/sign up pages
 * profile page
 
-**pages path:**
+**components path:**
 `U4U_Client/src/components`
 
 **what exactly you need:**
