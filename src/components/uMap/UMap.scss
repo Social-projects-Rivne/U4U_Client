@@ -1,0 +1,66 @@
+/* map styles */
+.map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+
+  &__slogan {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    text-shadow: .1rem .1rem .5rem #97743a;
+    text-transform: uppercase;
+  }
+}
+
+.map svg {
+  height: 70rem;
+  width: 110rem;
+}
+
+.map path {  
+  cursor: pointer;
+
+  &:hover {
+    fill: url(#gradient);
+    transition: (0.3s);
+  }
+
+  &.blur {
+    fill: url(#gradient);
+  }
+  
+  &.visited {
+    fill: url(#gradient);
+  }
+}
+
+// .map .tooltip:hover {
+//   fill: red;
+//   transition: (0.3s);
+// }
+
+.description {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px #eee;
+  color: #21669e;
+  display: none;
+  font-size: 2rem;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  transform: translate(-50%, -170%);  
+  z-index: 5;
+
+  &.active {
+    display: block;
+  }
+}
