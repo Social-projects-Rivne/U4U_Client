@@ -4,21 +4,21 @@ import rivneRegion from "./../regions.json";
 
 export default class MapSvg extends Component {
 	state = {
-		hover: true,
-		cHover: ''
+		// hover: false,
+		cHover: null
 	}
 
 	mouseEnter = (e) => {
 		this.setState({
-			hover: false,
+			// hover: true,
 			cHover: e.target.id
 		})
 	}
 
 	mouseLeave = (e) => {
 		this.setState({
-			hover: true,
-			cHover: e.target.id
+			// hover: false,
+			cHover: null
 		})
 	}
 
@@ -27,7 +27,7 @@ export default class MapSvg extends Component {
 			<MapContainer>
 				{rivneRegion.map(region => {
 					let hoverEffect = '';
-					if (!this.state.hover) {
+					if (this.state.cHover !== null) {
 						if (this.state.cHover === region.id) hoverEffect = ''
 						else hoverEffect = 'blur'
 					}

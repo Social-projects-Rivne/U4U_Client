@@ -36,8 +36,8 @@ export default class UMap extends Component {
     const active = (this.state.active) ? 'active' : ''
 
     const region = (this.state.region !== 'Kyiv_City' && this.state.region !== 'Sevastopol_City')
-      ? `${this.state.region} region.`
-      : this.state.region.replace("_", " ")   
+      ? `${this.state.region} Region`
+      : this.state.region.replace("_", " ")
 
     return (
       <main className="map" id="map">
