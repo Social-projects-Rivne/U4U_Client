@@ -9,7 +9,7 @@ import api from '../../../services/tourist-service';
 import { Notify } from '../../notify';
 import { Redirect } from "react-router-dom";
 
-const Login = ({ path = '' }) => {
+const Login = () => {
     const [state, setState] = useState({
         email: null,
         password: null,
@@ -33,59 +33,60 @@ const Login = ({ path = '' }) => {
         }
     };
 
-    console.log(path);
+    const prevPath = localStorage.getItem('prevPath') ? localStorage.getItem('prevPath') : '/';
 
-    if(state.redirect) return <Redirect to={path ? path : '/'} />;
+    if(state.redirect) return <Redirect to={prevPath} />;
 
     return (
         <>
-            <div className="cont">
-                <div className="form sign-in">
-                    <h2>Welcome back,</h2>
+                <div className="cont">
 
-                    <Input
-                     label='Email'
-                     name='email'
-                     type='email'
-                     onChange={handleChange}/>
+                    <div className="form sign-in">
+                        <h2>Welcome back,</h2>
 
-                    <Input
-                        label='Password'
-                        type='password'
-                        name='password'
-                        onChange={handleChange}/>
+                        <Input
+                            label='Email'
+                            name='email'
+                            type='email'
+                            onChange={handleChange}/>
 
-                    <p className="forgot-pass">Forgot password?</p>
+                        <Input
+                            label='Password'
+                            type='password'
+                            name='password'
+                            onChange={handleChange}/>
 
-                    <Button className="submit" onClick={() => submit()} > Sign In </Button>
-                    <FacebookBtn />
+                        <p className="forgot-pass">Forgot password?</p>
 
-                </div>
-                <div className="sub-cont">
-                    <div className="img">
+                        <Button className="submit" onClick={() => submit()}> Sign In </Button>
+                        <FacebookBtn/>
 
-                        <div className="img__text m--up">
-                            <h2>New here?</h2>
-                            <p>Sign up and discover great variety of new places!</p>
-                        </div>
-
-                        <div className="img__text m--in">
-                            <h2>One of us?</h2>
-                            <p>If you already has an account, just sign in. We've missed you!</p>
-                        </div>
-
-                        <div className="img__btn" onClick={() => {
-                            document.querySelector('.cont').classList.toggle('s--signup');
-                        }}>
-                            <span className="m--up">Sign Up</span>
-                            <span className="m--in">Sign In</span>
-                        </div>
                     </div>
+                    <div className="sub-cont">
+                        <div className="img">
 
-                   <Register />
+                            <div className="img__text m--up">
+                                <h2>New here?</h2>
+                                <p>Sign up and discover great variety of new places!</p>
+                            </div>
 
+                            <div className="img__text m--in">
+                                <h2>One of us?</h2>
+                                <p>If you already has an account, just sign in. We've missed you!</p>
+                            </div>
+
+                            <div className="img__btn" onClick={() => {
+                                document.querySelector('.cont').classList.toggle('s--signup');
+                            }}>
+                                <span className="m--up">Sign Up</span>
+                                <span className="m--in">Sign In</span>
+                            </div>
+                        </div>
+
+                        <Register/>
+
+                    </div>
                 </div>
-            </div>
         </>
     )
 };

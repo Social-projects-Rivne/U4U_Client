@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import api from '../../services/tourist-service';
 
 const useAuth = () => {
@@ -15,7 +15,7 @@ const useAuth = () => {
            .catch(err => {
                setState({ loading:  false, status: false })
            })
-    });
+    }, []);
 
     return state.status;
 };

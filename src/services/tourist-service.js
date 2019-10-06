@@ -4,7 +4,6 @@ class TouristService {
     login = async (email, password) => {
        try {
            const res = await request.post('login', { email, password });
-           console.log(res);
            localStorage.setItem('token', res.accessToken);
            localStorage.setItem('refreshToken', res.refreshToken);
            return await Promise.resolve();

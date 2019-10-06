@@ -68,7 +68,7 @@ class Request {
         }
         // check status code
         if(!response.ok) {
-            return Promise.reject(response);
+            return await Promise.reject(response);
         }
 
         return response.json()
