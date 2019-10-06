@@ -1,2 +1,2 @@
-import UMap from './UMap';
+import UMap from './uMap';
 export default UMap;

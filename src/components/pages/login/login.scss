@@ -15,6 +15,10 @@ $btnH: 36px;
 
 $diffRatio: ($contW - $imgW) / $contW;
 
+.cont {
+  font-size: 1rem;
+}
+
 .form-group {
   display: flex;
   margin-bottom: 1rem;
@@ -222,6 +226,7 @@ label {
   width: $inputW;
   margin: 25px auto 0;
   text-align: center;
+  font-size: 1.7rem;
 
   span {
     font-size: 12px;
@@ -235,9 +240,10 @@ input {
   width: 100%;
   margin-top: 5px;
   padding-bottom: 5px;
-  font-size: 16px;
+  font-size: 16px !important;
   border-bottom: 1px solid rgba(0,0,0,0.4);
   text-align: center;
+  padding: 2rem;
 }
 
 .forgot-pass {

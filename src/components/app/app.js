@@ -8,16 +8,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import { Notifications } from '../notify'
 
 import PrivateRoute from "../private-route";
-
-
-const Homepage = ({ history }) => {
- return (
-     <ul>
-         <li onClick={() => history.push('/login')}>Login</li>
-         <li onClick={() => history.push('/secret')}>Secret</li>
-     </ul>
- )
-};
+import HomePage from "../pages/home-page";
 
 const App = initialState => {
     const [state, setState] = useState({
@@ -38,9 +29,7 @@ const App = initialState => {
                                    auth={state.isAuth}
                                    Component={() => <h1>Secret Page</h1>} />
 
-                     <Route path='/' exact render={({history}) => {
-                         return <Homepage history={history} />
-                     }}/>
+                     <Route path='/' exact component={HomePage} />
                      <Route path='/login' render={() => {
                         if(isAuth === null) return 'loading';
                         if(isAuth) {
