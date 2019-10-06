@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@i_oleksandr/prcomponents": "1.0.19-beta.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.1.0",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "@i_oleksandr/prcomponents": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,5 +32,6 @@
   },
   "devDependencies": {
     "node-sass": "4.12.0"
-  }
+  },
+  "proxy": "http://localhost:8082"
 }

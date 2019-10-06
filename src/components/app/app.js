@@ -1,59 +1,88 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
+import useAuth from '../hocs/useAuth';
 import './app.scss';
 
 import Login from "../pages/login/login";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
-import { PrNotifications } from '@i_oleksandr/prcomponents';
-import touristService from '../../services/tourist-service';
+import { Notifications } from '../notify'
+import api from '../../services/tourist-service';
 
-const PrivateRoute = ({ Component }) => {
-    const [state, setState] = useState({
-        loading: true,
-        status: null,
-        err: null,
-    });
-    useEffect(async () => {
-        touristService.checkToken()
-            .then(res => {
-                setState({
-                    loading: false,
-                    status: res.status,
-                    err: false,
-                })
-            })
-            .catch(err => {
-                setState({
-                    loading: false,
-                    err
-                })
-            })
-    }, []);
-
-    if(state.loading) return <h1>Loading</h1>;
-    if(state.err) return <h1>err</h1>;
-
-    return <Component />;
+const Homepage = ({ history }) => {
+ return (
+     <ul>
+         <li onClick={() => history.push('/login')}>Login</li>
+         <li onClick={() => history.push('/secret')}>Secret</li>
+     </ul>
+ )
 };
+
+class PrivateRoute extends Component {
+    state = {
+        loading: !this.props.isAuth,
+        status: null
+    };
+
+    checkAuth = () => {
+      this.setState({ loading: true });
+      api.checkAuth()
+          .then(res => {
+              this.setState({ loading: false, status: true });
+              this.props.onAuth(true);
+          })
+          .catch(err => {
+              this.props.onAuth(false);
+              this.setState({ loading: false, status: false });
+          })
+    };
+
+    componentDidMount() {
+        if(!this.props.isAuth) {
+            this.checkAuth();
+        }
+    }
+
+    render() {
+        const { Component, path } = this.props;
+        const { loading, status } = this.state;
+
+        if(loading) return 'loading';
+        if(!status) return <Login path={path} />;
+
+        return <Component />
+    }
+}
 
 const App = initialState => {
     const [state, setState] = useState({
-        user: null
+        isAuth: false,
     });
 
+    const onAuth = (status) => {
+        setState({  ...state, isAuth: status })
+    };
 
     return (
         <>
             <Router>
                 <Switch>
-                     <PrivateRoute path='/secret' Component={() => <h1>Secret Page</h1>} />
-                     <PrivateRoute path='/secret2' Component={() => <h1>Secret Page 2</h1>} />
-                     <Route path='/' exact render={() => <h1>Public route</h1>} />
-                     <Route path='/login' component={Login} />
+                     <PrivateRoute path='/secret' onAuth={onAuth}
+                                   auth={state.isAuth}
+                                   Component={() => <h1>Secret Page</h1>} />
+
+                     <Route path='/' exact render={({history}) => {
+                         return <Homepage history={history} />
+                     }}/>
+                     <Route path='/login' render={() => {
+
+                                 return <Login />
+
+                     }}/>
+                     <Route path='/pub2' render={() => <h1>Pub 2</h1>} />
                 </Switch>
             </Router>
 
-            <PrNotifications />
+            <Notifications />
         </>
     )
 };

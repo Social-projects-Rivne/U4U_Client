@@ -5,29 +5,37 @@ import Input from "../../forms/input";
 import Button from '../../forms/buttons/button';
 import FacebookBtn from "../../forms/buttons/facebook-btn";
 import Register from "../../register/register";
-import touristService from '../../../services/tourist-service';
-import { Notify } from '@i_oleksandr/prcomponents';
+import api from '../../../services/tourist-service';
+import { Notify } from '../../notify';
+import { Redirect } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ path = '' }) => {
     const [state, setState] = useState({
         email: null,
         password: null,
+        redirect: false,
     });
 
     const handleChange = (e) => {
         setState({ ...state, [e.target.name]: e.target.value });
-        console.log(state);
     };
 
     const submit = async () => {
-        try {
-            const { token, user} = await touristService.login();
-            localStorage.setItem('token', token);
-            setState({...state, user})
-        } catch (e) {
-            Notify.error({ message: 'Wrong email or password' })
+        if(!state.email || !state.password) {
+            Notify.error('Please filed all required fields');
+        } else {
+            try {
+                await api.login(state.email, state.password);
+                setState({ redirect: true })
+            } catch (e) {
+                Notify.error('Wrong password or email');
+            }
         }
     };
+
+    console.log(path);
+
+    if(state.redirect) return <Redirect to={path ? path : '/'} />;
 
     return (
         <>
@@ -49,16 +57,18 @@ const Login = () => {
 
                     <p className="forgot-pass">Forgot password?</p>
 
-                    <Button className="submit"> Sign In </Button>
+                    <Button className="submit" onClick={() => submit()} > Sign In </Button>
                     <FacebookBtn />
 
                 </div>
                 <div className="sub-cont">
                     <div className="img">
+
                         <div className="img__text m--up">
                             <h2>New here?</h2>
                             <p>Sign up and discover great variety of new places!</p>
                         </div>
+
                         <div className="img__text m--in">
                             <h2>One of us?</h2>
                             <p>If you already has an account, just sign in. We've missed you!</p>
