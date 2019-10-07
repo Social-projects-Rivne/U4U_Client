@@ -1,8 +1,10 @@
-import { PrNotifications as Notifications, Notify as Not } from '@i_oleksandr/prcomponents';
+import { PrNotifications as Notifications, Notify as Not } from './PrNotification';
+import './notify.scss';
 
 const defaults = {
     anchor: { horizontal: 'left', vertical: 'bottom' },
     behaviour: { type: 'fade', details: 'left' },
+    timeOut: 50000
 };
 
 
