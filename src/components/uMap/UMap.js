@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import classNames from 'classnames';
 import "./UMap.scss";
 import MapSvg from "./mapContent/mapSvg";
-import RegionsName from './mapContent/regionsName.json'
 
 export default class UMap extends Component {
   state = {
@@ -31,33 +29,27 @@ export default class UMap extends Component {
 
   render() {
     const { x, y } = this.state;
-    const clientHeight = document.documentElement.clientHeight
     const style = {
-      top: (y > clientHeight / 2) ? y * .85 : y,
-      left: x
+      top: y, left: x
     }
 
-    const active = classNames({
-      'description': true,
-      'active': this.state.active
-    })
+    const active = (this.state.active) ? 'active' : ''
 
-    let regionName = '';
-    RegionsName.map(name => {
-      if (name.id === this.state.region) regionName = name.regionName
-    })
+    const region = (this.state.region !== 'Kyiv_City' && this.state.region !== 'Sevastopol_City')
+      ? `${this.state.region} Region`
+      : this.state.region.replace("_", " ")
 
     return (
-      <div className="map" id="map">
+      <main className="map" id="map">
         <MapSvg
           mouseMove={this.mouseMove}
           mouseOut={this.mouseOut}
         />
 
-        <div className={active} style={style}>
-          {regionName}
+        <div className={`description ${active}`} style={style}>
+          {region}
         </div>
-      </div>
+      </main>
     );
   }
 }
