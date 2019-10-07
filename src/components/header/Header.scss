@@ -3,7 +3,7 @@
   background-color: rgba(0, 0, 0, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
-  height: 10rem;
+  height: 6rem;
   z-index: 9;
 
   & .container {
@@ -14,10 +14,10 @@
   }
 
   &__logo {
-    height: 6rem;
+    height: 5rem;
 
     & img {
-      height: 6rem;
+      height: 5rem;
     }
   }
 
@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: space-between;
     flex-grow: 1;
-    padding: 0 5rem;
+    padding-left: 5rem;
   }
 
   &__navbar,

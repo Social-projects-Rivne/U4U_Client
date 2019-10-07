@@ -1,13 +1,18 @@
 .test {
   background-color: rgba(0, 0, 0, 0.4);
+  // border-left: 1px solid rgba(255, 255, 255, 0.4);
+  // border-right: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 3rem 2rem;
+  margin: 0 auto;
+  padding: 0rem;
+  width: 90%;
 
   &__content {
-    width: 70%;
+    padding: 5rem 3rem 3rem;
+    width: 75%;
 
     & h3 {
       font-size: 4rem;
@@ -17,28 +22,48 @@
 
   &__block {
     & img {
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 1rem;
+      box-shadow: 0 0 1rem #fff;
+      margin-bottom: 5rem;
       width: 100%;
     }
 
     & p {
-      font-size: 3rem;
+      font-size: 2rem;
+      margin: 0 auto;
+      text-align: justify;
+      width: 90%;
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
     }
   }
 
   &__nearBy {
+    background-color: rgba(255, 255, 255, .5);
+    padding-top: 3rem;
     width: 25%;
 
     &-block {
+      border-bottom: .4rem solid #000;
+      border-radius: 1rem;
+      padding: 2rem 2rem 3rem;
       & img {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 1rem;
+        //box-shadow: 0 0 1rem #000;
         width: 100%;
       }
 
       & h3 {
-        font-size: 2rem;
+        color: #000;
+        font-size: 1.6rem;
       }
 
       &:not(:last-child) {
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
       }
     }
   }
