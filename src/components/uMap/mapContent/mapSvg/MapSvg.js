@@ -1,36 +1,32 @@
 import React, { Component } from "react";
+import classNames from 'classnames';
 import MapContainer from "./../mapContainer";
-import rivneRegion from "./../regions.json";
+import Regions from "./../regions.json";
 
 export default class MapSvg extends Component {
 	state = {
-		// hover: false,
-		cHover: null
+		hover: null
 	}
 
 	mouseEnter = (e) => {
 		this.setState({
-			// hover: true,
-			cHover: e.target.id
+			hover: e.target.id
 		})
 	}
 
 	mouseLeave = (e) => {
 		this.setState({
-			// hover: false,
-			cHover: null
+			hover: null
 		})
 	}
 
 	render() {
 		return (
 			<MapContainer>
-				{rivneRegion.map(region => {
-					let hoverEffect = '';
-					if (this.state.cHover !== null) {
-						if (this.state.cHover === region.id) hoverEffect = ''
-						else hoverEffect = 'blur'
-					}
+				{Regions.map(region => {
+					const hover = classNames({
+						' blur': (this.state.hover !== null) && (this.state.hover !== region.id)
+					})
 
 					return (
 						<path
@@ -39,7 +35,7 @@ export default class MapSvg extends Component {
 							onClick={() => alert(`redirect to ${region.id}`)}
 							onMouseEnter={this.mouseEnter}
 							onMouseLeave={this.mouseLeave}
-							className={`${region.className} ${hoverEffect}`}
+							className={region.className + hover}
 							onMouseMove={this.props.mouseMove}
 							onMouseOut={this.props.mouseOut}
 						/>

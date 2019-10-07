@@ -1,8 +1,14 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import './Guest.scss';
 
 const Guest = () => {
   return (
-    <h1></h1>
+    <div className="header__guest">
+      <Link to="/sign-in">Sign In</Link>
+
+      <Link to="/sign-up">Sign Up</Link>
+    </div>
   )
 }
 
