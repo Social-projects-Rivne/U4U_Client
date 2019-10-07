@@ -1,13 +1,13 @@
 import request from "./request";
 
 class TouristService {
-    login = async (email, password) => {
+    async login(email, password) {
            const res = await request.post('login', { email, password });
            localStorage.setItem('token', res.accessToken);
            localStorage.setItem('refreshToken', res.refreshToken);
     };
 
-    checkAuth = async () => {
+    async checkAuth() {
          if(!localStorage.getItem('token')) {
              return Promise.reject();
          }
