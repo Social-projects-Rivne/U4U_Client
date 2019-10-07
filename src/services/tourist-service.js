@@ -1,10 +1,26 @@
+import request from "./request";
 
-// Encapsulation all work with api
 class TouristService {
-    getUser(id) {
-        return Promise.resolve({ name: 'Bob', surname: 'Brown', age: 20 });
+    async login(email, password) {
+           const res = await request.post('login', { email, password });
+           localStorage.setItem('token', res.accessToken);
+           localStorage.setItem('refreshToken', res.refreshToken);
+    };
+
+    async checkAuth() {
+         if(!localStorage.getItem('token')) {
+             return Promise.reject();
+         }
+
+            return await request.post('check-auth', {
+                 token: localStorage.getItem('token')
+             })
+    };
+
+    register(name, email, password) {
+        // return
     }
 };
 
 
-export default TouristService;
+export default new TouristService();

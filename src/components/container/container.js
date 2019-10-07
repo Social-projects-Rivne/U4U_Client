@@ -1,5 +1,5 @@
 import React from 'react';
-import './Container.scss';
+import './container.scss';
 import UMap from './../uMap';
 
 const Container = () => {

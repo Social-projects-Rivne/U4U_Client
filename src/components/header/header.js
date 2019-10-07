@@ -1,7 +1,8 @@
 import React from 'react';
-import './Header.scss';
+import './header.scss';
 import logo from './../../img/logo.svg';
 import search from './../../img/search.svg';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -28,7 +29,7 @@ const Header = () => {
 						</li>
 
             <li>
-              <a href="#">Sign In</a>
+              <Link to='/login'>Sign In</Link>
             </li>
 
             <li>
