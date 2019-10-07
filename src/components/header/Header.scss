@@ -1,7 +1,6 @@
 /* header styles */
 .header {
   background-color: rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
   height: 10rem;
   z-index: 9;
@@ -28,33 +27,49 @@
     justify-content: space-between;
     flex-grow: 1;
     padding: 0 5rem;
-  }
 
-  &__navbar,
-  &__fields {
-    display: flex;
-    flex-direction: row;
-    align-items: center; 
+    & ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
-    & a {
-      color: #fff;
-      display: block;
-      font-size: 2rem;
-      line-height: 2.5rem;
-      text-decoration: none;
+      & li h5 {
+        color: #fff;
+        font-size: 2.5rem;
+      }
 
-      &:not(:last-child) {
+      & li .header__profile {
+        color: aqua;
+      }
+
+      & li .header__profile ~ a {
+        color: red;
+      }
+
+      & li:last-child {
+        text-align: right;
+      }
+
+      & li:not(:last-child) {
         margin-right: 2rem;
       }
 
-      &:hover,
-      &.header__profile ~ a:hover {
-        background: linear-gradient(aqua, yellow);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        position: relative;
-        transform: scale(1.1);
+      & li a {
+        color: #fff;
+        display: block;
+        font-size: 2rem;
+        line-height: 2.5rem;
+        text-decoration: none;
+
+        &:hover,
+        &.header__profile ~ a:hover {
+          background: linear-gradient(aqua, yellow);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          position: relative;
+          transform: scale(1.1);
+        }
       }
     }
   }
@@ -67,11 +82,6 @@
     cursor: pointer;
     padding: 1rem;
 
-    & a {
-      font-size: inherit;
-      line-height: normal;
-    }
-
     & img {
       height: 2rem;
       width: 2rem;
@@ -80,6 +90,17 @@
     &:hover {
       background: linear-gradient(aqua, yellow);
       transform: scale(1.1);
+    }
+  }
+
+  &__avatar {
+    margin-right: 0 !important;
+    height: 6rem;
+    width: 6rem;
+
+    & img {
+      height: 6rem;
+      width: 6rem;
     }
   }
 }
