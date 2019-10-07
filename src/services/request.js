@@ -1,25 +1,26 @@
-const baseUrl = `/api`;
 
 class Request {
 
-     get = (url) => fetch(`${baseUrl}/${url}`, {
+    baseUrl = `/api`;
+
+    get = (url) => fetch(`${this.baseUrl}/${url}`, {
         method: 'GET',
         headers: this._getHeaders(),
     }).then(this._responseHandler(url, 'get'));
 
-     post = (url, body) => fetch(`${baseUrl}/${url}`, {
+     post = (url, body) => fetch(`${this.baseUrl}/${url}`, {
         method: 'POST',
         headers: this._getHeaders(),
         body: JSON.stringify(body),
     }).then(this._responseHandler(url, 'post', body));
 
-     put = (url, body) => fetch(`${baseUrl}/${url}`, {
+     put = (url, body) => fetch(`${this.baseUrl}/${url}`, {
         method: 'PUT',
         headers: this._getHeaders(),
         body: JSON.stringify(body),
     }).then(this._responseHandler(url, 'put', body));
 
-     delete = (url) => fetch(`${baseUrl}/${url}`, {
+     delete = (url) => fetch(`${this.baseUrl}/${url}`, {
         method: 'DELETE',
         headers: this._getHeaders(),
     }).then(this._responseHandler(url, 'remove'));
@@ -36,7 +37,7 @@ class Request {
             try {
                 // try refresh token
                 // do not use this.put here
-                const res = await fetch(`${baseUrl}/refresh-token`, {
+                const res = await fetch(`${this.baseUrl}/refresh-token`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -52,7 +53,7 @@ class Request {
                     localStorage.setItem('refreshToken', refreshToken);
 
                     // resend request with new access Token
-                    return await fetch(`${baseUrl}/${url}`, { method, body: JSON.stringify(body) });
+                    return await fetch(`${this.baseUrl}/${url}`, { method, body: JSON.stringify(body) });
                 } else {
                     // in the future here also will be store dispatch which will redirect user to login
                     localStorage.removeItem('token');

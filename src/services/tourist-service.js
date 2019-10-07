@@ -6,9 +6,9 @@ class TouristService {
            const res = await request.post('login', { email, password });
            localStorage.setItem('token', res.accessToken);
            localStorage.setItem('refreshToken', res.refreshToken);
-           return await Promise.resolve();
+           return  Promise.resolve();
        } catch (err) {
-           return await Promise.reject(err);
+           return  Promise.reject(err);
        }
     };
 
