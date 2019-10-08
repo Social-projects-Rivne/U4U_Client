@@ -1,11 +1,12 @@
 import React from 'react';
-import './container.scss';
-import UMap from './../uMap';
+import './Container.scss';
 
-const Container = () => {
+const Container = ({ children }) => {
     return (
         <main className="content">
-            <UMap />
+            <div className="container">
+                {children}
+            </div>
         </main>
     )
 };
