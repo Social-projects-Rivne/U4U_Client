@@ -6,7 +6,6 @@ import Button from '../../forms/buttons/button';
 import FacebookBtn from "../../forms/buttons/facebook-btn";
 import Register from "../../register/register";
 import api from '../../../services/tourist-service';
-import { Notify } from '../../notify';
 import { Redirect } from "react-router-dom";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -28,12 +27,15 @@ const Login = () => {
             .required('E-mail is a required field'),
     });
 
-    const submit = async ({ email, password }) => {
+    const submit = async () => {
+        if(!state.email || !state.password) {
+
+        } else {
             try {
                 await api.login(email, password);
                 setState({ redirect: true })
             } catch (e) {
-                Notify.error('Wrong password or email');
+
             }
     };
 
