@@ -6,7 +6,6 @@ import Button from '../../forms/buttons/button';
 import FacebookBtn from "../../forms/buttons/facebook-btn";
 import Register from "../../register/register";
 import api from '../../../services/tourist-service';
-import { Notify } from '../../notify';
 import { Redirect } from "react-router-dom";
 
 const Login = () => {
@@ -22,13 +21,13 @@ const Login = () => {
 
     const submit = async () => {
         if(!state.email || !state.password) {
-            Notify.error('Please filed all required fields');
+
         } else {
             try {
                 await api.login(state.email, state.password);
                 setState({ redirect: true })
             } catch (e) {
-                Notify.error('Wrong password or email');
+
             }
         }
     };
