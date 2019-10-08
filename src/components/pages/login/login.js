@@ -15,6 +15,7 @@ import * as Yup from 'yup';
 const Login = () => {
     const [state, setState] = useState({
         redirect: false,
+        wrongData: false,
     });
 
     const LoginSchema = Yup.object().shape({
@@ -27,48 +28,51 @@ const Login = () => {
             .required('E-mail is a required field'),
     });
 
-    const submit = async () => {
-        if(!state.email || !state.password) {
-
-        } else {
+        const submit = async (values) => {
             try {
-                await api.login(email, password);
-                setState({ redirect: true })
+                await api.login(values);
+                setState({redirect: true})
             } catch (e) {
-
+                setState({...state, wrongData: true } )
             }
-    };
+        };
 
-    const prevPath = localStorage.getItem('prevPath') ? localStorage.getItem('prevPath') : '/';
+        const prevPath = localStorage.getItem('prevPath') ? localStorage.getItem('prevPath') : '/';
 
-    if(state.redirect) return <Redirect to={prevPath} />;
+        if (state.redirect) return <Redirect to={prevPath}/>;
 
-    return (
-        <>
-                <div className="cont s--signup">
+        return (
+            <>
+                <div className="cont">
 
                     <div className="form sign-in">
                         <h2>Welcome back,</h2>
 
                         <p className="forgot-pass">Forgot password?</p>
-                        <Formik
-                            initialValues={{
-                                email: '',
-                                password: ''
-                            }}
-                            validationSchema={LoginSchema}
-                            onSubmit={submit}
-                        >
+                        <div className="form-group">
 
-                            {(params) => (
-                                <Form>
-                                    {Input(params)}
+                            <Formik
+                                initialValues={{
+                                    email: '',
+                                    password: ''
+                                }}
+                                validationSchema={LoginSchema}
+                                onSubmit={submit}
+                            >
 
-                                    <Button type="submit" className="submit"> Sign In </Button>
-                                </Form>
-                            )}
+                                {(params) => (
+                                    <Form>
+                                        {Input(params, setState)}
 
-                        </Formik>
+                                        {state.wrongData ? <p className='text-wrong'>Wrong email or password</p> : null }
+                                        <Button type="submit" className="submit"> Sign In </Button>
+                                    </Form>
+                                )}
+
+                            </Formik>
+
+                        </div>
+
 
                         <FacebookBtn/>
 
@@ -98,8 +102,9 @@ const Login = () => {
 
                     </div>
                 </div>
-        </>
-    )
+            </>
+        )
+
 };
 
 export default Login;

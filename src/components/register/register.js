@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Notify } from "../notify";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import api from '../../services/tourist-service';
@@ -12,16 +11,48 @@ const RegisterSchema = Yup.object().shape({
         .min(2, 'Name is too Short!')
         .max(50, 'Name is too Long!')
         .required('Name is a required filed'),
+    surname: Yup.string()
+        .min(2, 'Name is too Short!')
+        .max(50, 'Name is too Long!')
+        .required('Surname is a required filed'),
+    nickName: Yup.string()
+        .min(2, 'Name is too Short!')
+        .max(50, 'Name is too Long!')
+        .required('Name is a required filed')
+        .test('is-42',
+            "Sorry, that nickname's taken. Try another? ",
+            async (value) => {
+                let errors = {};
+                try {
+                    await api.getNickName(value);
+                    if(Object.keys(errors).length) {
+                        throw errors;
+                    }
+                } catch (e) {
+                    return Promise.resolve('done')
+                }
+            }),
     password: Yup.string()
         .min(4, 'Password is too Short!')
         .max(50, 'Password is too Long!')
         .required('Password is a required filed'),
     email: Yup.string()
         .email('Invalid email')
-        .required('E-mail is a required field'),
+        .required('E-mail is a required field')
+        .test('is-42',
+            "Sorry, that email's taken. Try another? ",
+            async (value) => {
+                let errors = {};
+                try {
+                    await api.getEmail(value);
+                    if(Object.keys(errors).length) {
+                        throw errors;
+                    }
+                } catch (e) {
+                    return Promise.resolve('done')
+                }
+            }),
 });
-
-
 
 const Register = () => {
 
@@ -32,7 +63,6 @@ const Register = () => {
             await api.register(values);
             setRedirect(true);
         } catch (e) {
-            Notify.error(e.message)
         }
     };
 
@@ -42,27 +72,30 @@ const Register = () => {
         <div className="form sign-up">
             <h2>Time to feel like home,</h2>
 
-            <Formik
-                initialValues={{
-                    name: '',
-                    surname: '',
-                    nickName: '',
-                    password: '',
-                    email: '',
-                }}
-                validationSchema={RegisterSchema}
-                onSubmit={submit}
-            >
+            <div className="form-group">
+                <Formik
+                    initialValues={{
+                        name: '',
+                        surname: '',
+                        nickName: '',
+                        password: '',
+                        email: '',
+                    }}
+                    validationSchema={RegisterSchema}
+                    onSubmit={submit}
+                >
 
-                {(params) => (
-                    <Form>
-                        {Input(params)}
+                    {(params) => (
+                        <Form>
+                            {Input(params)}
 
-                        <Button type='submit' className="submit"> Sign In </Button>
-                    </Form>
-                )}
+                            <Button type='submit' className="submit"> Sign In </Button>
+                        </Form>
+                    )}
 
-            </Formik>
+                </Formik>
+            </div>
+
 
             <button type="button" className="fb-btn">Join with <span>facebook</span></button>
         </div>
