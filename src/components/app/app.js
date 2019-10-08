@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import useAuth from '../hocs/useAuth';
-import './app.scss';
+import './App.scss';
 
-import Login from "../pages/login/login";
+import Login from "../login/Login";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-import { Notifications } from '../notify'
-
 import PrivateRoute from "../private-route";
-import HomePage from "../pages/home-page";
+
+import Header from '../header';
+import Container from '../container';
+import Footer from '../footer';
+import UMap from '../uMap';
 
 const App = initialState => {
     const [state, setState] = useState({
@@ -18,32 +20,33 @@ const App = initialState => {
     const isAuth = useAuth();
 
     const onAuth = (status) => {
-        setState({  ...state, isAuth: status })
+        setState({ ...state, isAuth: status })
     };
 
     return (
-        <>
+        <div className="wrapper">
             <Router>
-                <Switch>
-                     <PrivateRoute path='/secret' onAuth={onAuth}
-                                   auth={state.isAuth}
-                                   Component={() => <h1>Secret Page</h1>} />
+                <Header />
+                <Container>
+                    <Switch>
+                        <PrivateRoute path='/secret' onAuth={onAuth}
+                            auth={state.isAuth}
+                            Component={() => <h1>Secret Page</h1>} />
 
-                     <Route path='/' exact component={HomePage} />
-                     <Route path='/login' render={() => {
-                        if(isAuth === null) return 'loading';
-                        if(isAuth) {
-                           return <Redirect to='/' />;
-                        }
+                        <Route path='/' exact component={UMap} />
+                        <Route path='/login' render={() => {
+                            if (isAuth === null) return 'loading';
+                            if (isAuth) {
+                                return <Redirect to='/' />;
+                            }
 
-                       return <Login />
-                     }}/>
-                     <Route path='/pub2' render={() => <h1>Pub 2</h1>} />
-                </Switch>
+                            return <Login />
+                        }} />
+                    </Switch>
+                </Container>
+                <Footer />
             </Router>
-
-            <Notifications />
-        </>
+        </div>
     )
 };
 

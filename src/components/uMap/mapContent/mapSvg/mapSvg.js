@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classNames from 'classnames';
-import MapContainer from "./../mapContainer";
+import MapContainer from "../mapContainer";
 import Regions from "./../regions.json";
 
 export default class MapSvg extends Component {

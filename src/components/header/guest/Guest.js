@@ -5,7 +5,7 @@ import './Guest.scss';
 const Guest = () => {
   return (
     <div className="header__guest">
-      <Link to="/sign-in">Sign In</Link>
+      <Link to="/login">Sign In</Link>
 
       <Link to="/sign-up">Sign Up</Link>
     </div>

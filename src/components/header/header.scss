@@ -28,13 +28,15 @@
     justify-content: space-between;
     flex-grow: 1;
     padding-left: 5rem;
+    height: 100%;
   }
 
   &__navbar,
   &__fields {
     display: flex;
     flex-direction: row;
-    align-items: center; 
+    align-items: center;
+    height: 100%;
 
     & a {
       color: #fff;
@@ -42,6 +44,7 @@
       font-size: 2rem;
       line-height: 2.5rem;
       text-decoration: none;
+      padding: 1rem 0;
 
       &:not(:last-child) {
         margin-right: 2rem;
@@ -70,14 +73,20 @@
     & a {
       font-size: inherit;
       line-height: normal;
+      padding: 0;
     }
 
-    & img {
-      height: 2rem;
-      width: 2rem;
+    & a {
+      height: 1.8rem;
+      width: 1.8rem;
+      & img {
+        height: 1.8rem;
+        width: 1.8rem;
+      }
     }
 
-    &:hover {
+    &:hover,
+    &:hover a {
       background: linear-gradient(aqua, yellow);
       transform: scale(1.1);
     }
