@@ -28,18 +28,25 @@
     box-shadow: 0 0 0 1px #eee;
     color: #21669e;
     display: none;
+    align-items: center;
     font-size: 2rem;
     margin: 0 auto;
     padding: 1rem 2rem;
     pointer-events: none;
     position: absolute;
     text-align: center;
-    transform: translate(-50%, -180%);
+    height: 5rem;
     max-width: 30rem;
     z-index: 999;
 
-    &.active {
-      display: block;
+    &.activeTop {
+      display: flex;
+      transform: translate(-50%, calc(-70%));
+    }
+
+    &.activeBot {
+      display: flex;
+      transform: translate(-50%, calc(-230%));
     }
   }
 }

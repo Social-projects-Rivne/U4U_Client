@@ -5,7 +5,6 @@ import Header from '../header';
 import Container from '../container';
 import Footer from '../footer';
 import UMap from '../uMap';
-import Test from '../test';
 
 const App = () => {
   return (
@@ -26,7 +25,7 @@ const App = () => {
 
           <Route
             path="/places-list"
-            component={Test} />
+            component={UMap} />
         </Container>
         <Footer />
       </Router>

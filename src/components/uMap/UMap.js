@@ -33,13 +33,14 @@ export default class UMap extends Component {
     const { x, y } = this.state;
     const clientHeight = document.documentElement.clientHeight
     const style = {
-      top: (y > clientHeight / 2) ? y * .85 : y,
+      top: y,
       left: x
     }
 
     const active = classNames({
       'description': true,
-      'active': this.state.active
+      'activeTop': this.state.active && (this.state.y < clientHeight / 2),
+      'activeBot': this.state.active && (this.state.y > clientHeight / 2) 
     })
 
     let regionName = '';

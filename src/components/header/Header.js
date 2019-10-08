@@ -28,7 +28,7 @@ const Header = () => {
           </nav>
 
           <div className="header__fields">
-            {false ? <Guest /> : <User />}
+            {true ? <Guest /> : <User />}
 
             <li className="header__search">
               <Link to="/search">
