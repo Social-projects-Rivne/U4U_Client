@@ -8,29 +8,33 @@ import Register from "../../register/register";
 import api from '../../../services/tourist-service';
 import { Notify } from '../../notify';
 import { Redirect } from "react-router-dom";
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+
+
 
 const Login = () => {
     const [state, setState] = useState({
-        email: null,
-        password: null,
         redirect: false,
     });
 
-    const handleChange = (e) => {
-        setState({ ...state, [e.target.name]: e.target.value });
-    };
+    const LoginSchema = Yup.object().shape({
+        password: Yup.string()
+            .min(4, 'Password is too Short!')
+            .max(50, 'Password is too Long!')
+            .required('Password is a required filed'),
+        email: Yup.string()
+            .email('Invalid email')
+            .required('E-mail is a required field'),
+    });
 
-    const submit = async () => {
-        if(!state.email || !state.password) {
-            Notify.error('Please filed all required fields');
-        } else {
+    const submit = async ({ email, password }) => {
             try {
-                await api.login(state.email, state.password);
+                await api.login(email, password);
                 setState({ redirect: true })
             } catch (e) {
                 Notify.error('Wrong password or email');
             }
-        }
     };
 
     const prevPath = localStorage.getItem('prevPath') ? localStorage.getItem('prevPath') : '/';
@@ -39,26 +43,31 @@ const Login = () => {
 
     return (
         <>
-                <div className="cont">
+                <div className="cont s--signup">
 
                     <div className="form sign-in">
                         <h2>Welcome back,</h2>
 
-                        <Input
-                            label='Email'
-                            name='email'
-                            type='email'
-                            onChange={handleChange}/>
-
-                        <Input
-                            label='Password'
-                            type='password'
-                            name='password'
-                            onChange={handleChange}/>
-
                         <p className="forgot-pass">Forgot password?</p>
+                        <Formik
+                            initialValues={{
+                                email: '',
+                                password: ''
+                            }}
+                            validationSchema={LoginSchema}
+                            onSubmit={submit}
+                        >
 
-                        <Button className="submit" onClick={() => submit()}> Sign In </Button>
+                            {(params) => (
+                                <Form>
+                                    {Input(params)}
+
+                                    <Button type="submit" className="submit"> Sign In </Button>
+                                </Form>
+                            )}
+
+                        </Formik>
+
                         <FacebookBtn/>
 
                     </div>

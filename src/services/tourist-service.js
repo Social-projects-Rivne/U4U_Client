@@ -17,8 +17,8 @@ class TouristService {
              })
     };
 
-    register(name, email, password) {
-        // return
+    async register({ nickName: nickname, ...other }) {
+           return  await request.post('register', {nickname, ...other});
     }
 };
 

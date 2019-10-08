@@ -4,7 +4,6 @@ import './notify.scss';
 const defaults = {
     anchor: { horizontal: 'left', vertical: 'bottom' },
     behaviour: { type: 'fade', details: 'left' },
-    timeOut: 50000
 };
 
 
