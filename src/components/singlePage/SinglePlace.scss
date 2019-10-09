@@ -1,0 +1,24 @@
+h4{
+    font-size: 1.2rem;
+    font-weight:100;
+  
+  }
+.SinglePlace{
+    display: flex;
+    flex-wrap: wrap;
+  }
+ 
+  
+.Photos {
+    background-color: #f1f1f1;
+    width: 100%;
+    height: 400px;
+   
+}
+ 
+@media screen and (max-width: 700px) {
+  .SinglePlace {
+    flex-direction: column;
+    
+  }
+}

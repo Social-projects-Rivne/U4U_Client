@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import useAuth from '../hocs/useAuth';
-import './App.scss';
+import './app.scss';
 
-import Login from "../login/Login";
+import Login from "../login/login";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import PrivateRoute from "../private-route";

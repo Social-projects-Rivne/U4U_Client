@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classNames from "classnames";
-import "./UMap.scss";
+import "./uMap.scss";
 import MapSvg from "./mapContent/mapSvg";
 import RegionsName from "./mapContent/regionsName.json";
 
