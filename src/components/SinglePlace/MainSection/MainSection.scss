@@ -1,0 +1,23 @@
+.placename-weather{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-right: 35px;
+  margin-top: 10px;
+}  
+.user-activity-info{
+  display: flex;
+  justify-content: space-around;
+  margin-top:20px;
+}
+
+
+.sub-heading, .article p{
+  text-align: justify;
+  padding: 20px 35px;
+  font-size: 2rem;
+  font-weight: 100;
+  word-spacing: 2px;
+  line-height:25px;
+  color:white;
+}

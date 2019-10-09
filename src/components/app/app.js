@@ -11,6 +11,7 @@ import Header from '../header';
 import Container from '../container';
 import Footer from '../footer';
 import UMap from '../uMap';
+import SinglePlace from '../SinglePlace';
 
 const App = initialState => {
     const [state, setState] = useState({
@@ -42,6 +43,7 @@ const App = initialState => {
 
                             return <Login />
                         }} />
+                        <Route path="/singleplace/:id"  component={SinglePlace} /> 
                     </Switch>
                 </Container>
                 <Footer />

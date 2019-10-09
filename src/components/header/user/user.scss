@@ -1,0 +1,43 @@
+.header__user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 2rem;
+
+  &-avatar {
+    margin-right: 0 !important;
+    height: 5.5rem;
+    width: 5.5rem;
+
+    & img {
+      margin-bottom: 0.5rem;
+      height: 5rem;
+      width: 5rem;
+    }
+  }
+
+  &-data {
+    & h5 {
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    & a {
+      display: inline-block;
+      // margin-right: 0 !important;
+    }
+  }
+
+  & .header__profile {
+    color: rgba(0, 255, 255, 0.7);
+    margin-right: 1rem !important;
+  }
+
+  & .header__profile ~ a {
+    color: rgba(255, 0, 0, 0.7);
+  }
+
+  & li:last-child {
+    text-align: right;
+  }
+}
