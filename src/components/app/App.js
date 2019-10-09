@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import useAuth from '../hocs/useAuth';
 import './app.scss';
 
-
-import Login from "../pages/login";
+import Login from "../pages/login/login";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+
+import { Notifications } from '../notify'
 
 import PrivateRoute from "../private-route";
 import HomePage from "../pages/home-page";
@@ -41,6 +42,7 @@ const App = initialState => {
                 </Switch>
             </Router>
 
+            <Notifications />
         </>
     )
 };

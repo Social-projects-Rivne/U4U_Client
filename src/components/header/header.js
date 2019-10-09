@@ -1,42 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.scss';
+import './header.scss';
 import logo from './../../img/logo.svg';
 import search from './../../img/search.svg';
-import Guest from './guest';
-import User from './user';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header className="header">
       <div className="container">
         <div className="header__logo">
-          <Link to="/">
-            <img src={logo} alt="Ukraine 4 you" />
-          </Link>
-        </div>
+          <img src={logo} alt="Ukraine 4 you" />
+				</div>
 
-        <div className="header__nav">
-          <nav className="header__navbar">
-            <Link to="/my-plans">
-              MyPlans
-            </Link>
-
-            <Link to="/places-list">
-              Places List
-            </Link>
-          </nav>
-
-          <div className="header__fields">
-            {true ? <Guest /> : <User />}
-
-            <li className="header__search">
-              <Link to="/search">
-                <img src={search} alt="search" />
-              </Link>
+        <nav className="header__nav">
+          <ul>
+            <li>
+              <a href="#">MyPlans</a>
             </li>
-          </div>
-        </div>
+
+            <li>
+              <a href="#">Places List</a>
+            </li>
+          </ul>
+
+          <ul>
+            <li className="header__search">
+              <img src={search} alt="search" />
+						</li>
+
+            <li>
+              <Link to='/login'>Sign In</Link>
+            </li>
+
+            <li>
+              <a href="#">Sign Up</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>)
 };

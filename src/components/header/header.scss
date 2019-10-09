@@ -1,9 +1,8 @@
 /* header styles */
 .header {
   background-color: rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
-  height: 6rem;
+  height: 10rem;
   z-index: 9;
 
   & .container {
@@ -14,10 +13,10 @@
   }
 
   &__logo {
-    height: 5rem;
+    height: 6rem;
 
     & img {
-      height: 5rem;
+      height: 6rem;
     }
   }
 
@@ -27,37 +26,50 @@
     align-items: center;
     justify-content: space-between;
     flex-grow: 1;
-    padding-left: 5rem;
-    height: 100%;
-  }
+    padding: 0 5rem;
 
-  &__navbar,
-  &__fields {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 100%;
+    & ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
-    & a {
-      color: #fff;
-      display: block;
-      font-size: 2rem;
-      line-height: 2.5rem;
-      text-decoration: none;
-      padding: 1rem 0;
+      & li h5 {
+        color: #fff;
+        font-size: 2.5rem;
+      }
 
-      &:not(:last-child) {
+      & li .header__profile {
+        color: aqua;
+      }
+
+      & li .header__profile ~ a {
+        color: red;
+      }
+
+      & li:last-child {
+        text-align: right;
+      }
+
+      & li:not(:last-child) {
         margin-right: 2rem;
       }
 
-      &:hover,
-      &.header__profile ~ a:hover {
-        background: linear-gradient(aqua, yellow);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        position: relative;
-        transform: scale(1.1);
+      & li a {
+        color: #fff;
+        display: block;
+        font-size: 2rem;
+        line-height: 2.5rem;
+        text-decoration: none;
+
+        &:hover,
+        &.header__profile ~ a:hover {
+          background: linear-gradient(aqua, yellow);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          position: relative;
+          transform: scale(1.1);
+        }
       }
     }
   }
@@ -70,25 +82,25 @@
     cursor: pointer;
     padding: 1rem;
 
-    & a {
-      font-size: inherit;
-      line-height: normal;
-      padding: 0;
+    & img {
+      height: 2rem;
+      width: 2rem;
     }
 
-    & a {
-      height: 1.8rem;
-      width: 1.8rem;
-      & img {
-        height: 1.8rem;
-        width: 1.8rem;
-      }
-    }
-
-    &:hover,
-    &:hover a {
+    &:hover {
       background: linear-gradient(aqua, yellow);
       transform: scale(1.1);
+    }
+  }
+
+  &__avatar {
+    margin-right: 0 !important;
+    height: 6rem;
+    width: 6rem;
+
+    & img {
+      height: 6rem;
+      width: 6rem;
     }
   }
 }
