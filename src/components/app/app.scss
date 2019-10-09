@@ -137,12 +137,6 @@ body {
   font-weight: 400;
 }
 
-.container {
-  margin: 0 auto;
-  height: 100%;
-  max-width: 120rem;
-}
-
 /* wrapper styles */
 .wrapper {
   background: url(../../img/main-bg.jpg) center no-repeat;
@@ -156,7 +150,22 @@ body {
     bottom: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
   }
+}
+
+/* scrollbar styles */
+::-webkit-scrollbar {
+	width: 1rem;
+}
+::-webkit-scrollbar-track {
+	background-color: rgba(0, 0, 0, 0.4); 
+}
+::-webkit-scrollbar-thumb {
+	background: #fff;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(255, 255, 255, 0.4); 
 }
 
 /* Large desktops and laptops */

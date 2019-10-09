@@ -1,3 +1,3 @@
-import MapSvg from './mapSvg';
+import MapSvg from './MapSvg';
 
 export default MapSvg;
