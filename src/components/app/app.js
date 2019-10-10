@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import useAuth from '../hocs/useAuth';
-import './App.scss';
+import './app.scss';
 
-import Login from "../login/Login";
+import Login from "../login/login";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import PrivateRoute from "../private-route";
@@ -11,6 +11,7 @@ import Header from '../header';
 import Container from '../container';
 import Footer from '../footer';
 import UMap from '../uMap';
+import SinglePlace from '../single-place';
 
 const App = initialState => {
     const [state, setState] = useState({
@@ -42,6 +43,7 @@ const App = initialState => {
 
                             return <Login />
                         }} />
+                        <Route path="/singleplace/:id"  component={SinglePlace} /> 
                     </Switch>
                 </Container>
                 <Footer />

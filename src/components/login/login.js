@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.scss';
+import './login.scss';
 
 import Input from "../forms/input";
 import Button from '../forms/buttons/button';

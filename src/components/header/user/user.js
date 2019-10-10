@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import './User.scss';
+import './user.scss';
 import avatar from '../../../img/avatar.svg';
 
 const User = () => {

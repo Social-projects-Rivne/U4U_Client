@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import './Guest.scss';
+import './guest.scss';
 
 const Guest = () => {
   return (
