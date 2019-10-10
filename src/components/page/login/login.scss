@@ -20,14 +20,12 @@ $diffRatio: ($contW - $imgW) / $contW;
 }
 
 .form-group {
-  display: flex;
-  margin-bottom: 1rem;
-  flex-direction: column;
-  align-items: center;
+  width: 68%;
+  margin: 0 auto;
 }
 
-.form-control {
-  width: 50%
+.main-form {
+
 }
 
 @mixin signUpActive {
@@ -42,20 +40,14 @@ $diffRatio: ($contW - $imgW) / $contW;
   text-align: center;
 }
 
-.login-container {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
-
 .cont {
   overflow: hidden;
   position: relative;
   width: $contW;
-  height: 550px;
-  margin: 0 auto;
+  height: 650px;
+  margin: 0 auto 100px;
   background: #fff;
+  margin-top: 7%;
 }
 
 .form {
@@ -246,7 +238,7 @@ input {
   width: 100%;
   margin-top: 5px;
   padding-bottom: 5px;
-  font-size: 16px;
+  font-size: 16px !important;
   border-bottom: 1px solid rgba(0,0,0,0.4);
   text-align: center;
   padding: 2rem;
@@ -309,4 +301,12 @@ input {
     left: auto;
     right: 5px;
   }
+}
+
+
+.text-wrong {
+  font-size: 2rem;
+  text-align: center;
+  color: chocolate;
+  font-weight: 500;
 }
