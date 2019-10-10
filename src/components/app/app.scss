@@ -159,6 +159,19 @@ body {
   }
 }
 
+/* scrollbar styles */
+::-webkit-scrollbar {
+	width: 1rem;
+}
+::-webkit-scrollbar-track {
+	background-color: rgba(0, 0, 0, 0.4); 
+}
+::-webkit-scrollbar-thumb {
+	background: #fff;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(255, 255, 255, 0.4); 
+}
 
 /* Large desktops and laptops */
 @media (min-width: 1600px) and (max-width: 1919px) {

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import classNames from "classnames";
 import "./uMap.scss";
 import MapSvg from "./mapContent/mapSvg";
 

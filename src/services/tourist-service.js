@@ -1,7 +1,7 @@
 import request from "./request";
 
 class TouristService {
-    async login({email, password}) {
+    async login(email, password) {
            const res = await request.post('login', { email, password });
            localStorage.setItem('token', res.accessToken);
            localStorage.setItem('refreshToken', res.refreshToken);
@@ -17,16 +17,8 @@ class TouristService {
              })
     };
 
-    async register({ nickName: nickname, ...other }) {
-           return  await request.post('register', {nickname, ...other});
-    }
-
-    async getNickName(nickname) {
-        return await request.get(`nickname/${nickname}`);
-    }
-
-    async getEmail(email) {
-        return await request.get(`email/${email}`);
+    register(name, email, password) {
+        // return
     }
 };
 
