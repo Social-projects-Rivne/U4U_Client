@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './header.scss';
 import logo from './../../img/logo.svg';
 import search from './../../img/search.svg';
-import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (

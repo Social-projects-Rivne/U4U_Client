@@ -1,10 +1,12 @@
 import React from 'react';
 import './container.scss';
 
-const Container = () => {
+const Container = ({ children }) => {
     return (
         <main className="content">
-            <UMap />
+            <div className="container">
+                {children}
+            </div>
         </main>
     )
 };

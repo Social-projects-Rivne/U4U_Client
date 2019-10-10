@@ -24,9 +24,7 @@ $diffRatio: ($contW - $imgW) / $contW;
   margin: 0 auto;
 }
 
-.main-form {
 
-}
 
 @mixin signUpActive {
   .cont.s--signup & {
@@ -44,7 +42,7 @@ $diffRatio: ($contW - $imgW) / $contW;
   overflow: hidden;
   position: relative;
   width: $contW;
-  height: 650px;
+  height: 550px;
   margin: 0 auto 100px;
   background: #fff;
   margin-top: 7%;

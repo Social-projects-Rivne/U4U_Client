@@ -1,5 +1,5 @@
 export default class RegionsService {
-    baseUrl = 'http://localhost:8080/api';
+    baseUrl = '/api';
 
     async getResource(url) {
         const res = await fetch(`${this.baseUrl}${url}`);
