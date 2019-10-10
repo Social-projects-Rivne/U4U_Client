@@ -11,7 +11,7 @@ import Header from '../header';
 import Container from '../container';
 import Footer from '../footer';
 import UMap from '../uMap';
-import SinglePlace from '../SinglePlace';
+import SinglePlace from '../single-place';
 
 const App = initialState => {
     const [state, setState] = useState({

@@ -1,0 +1,10 @@
+.all-stars-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+& .star-container{
+ color: white;
+ padding-right: 5px;
+}
+}
