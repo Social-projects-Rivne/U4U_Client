@@ -6,7 +6,7 @@ import Button from '../../forms/buttons/button';
 import FacebookBtn from "../../forms/buttons/facebook-btn";
 import Register from "../../register/register";
 import api from '../../../services/tourist-service';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
@@ -16,6 +16,7 @@ const Login = () => {
     const [state, setState] = useState({
         redirect: false,
         wrongData: false,
+        err: false,
     });
 
     const LoginSchema = Yup.object().shape({
@@ -31,9 +32,13 @@ const Login = () => {
         const submit = async (values) => {
             try {
                 await api.login(values);
-                setState({redirect: true})
-            } catch (e) {
-                setState({...state, wrongData: true } )
+                setState({ redirect: true })
+            } catch (res) {
+                if(res.status >= 400 && res.status < 500) {
+                    setState({ wrongData: true })
+                } else {
+                    setState({ err: true })
+                }
             }
         };
 
@@ -42,15 +47,8 @@ const Login = () => {
         if (state.redirect) return <Redirect to={prevPath}/>;
 
         return (
-            <>
-                <div className="cont">
-
-                    <div className="form sign-in">
-                        <h2>Welcome back,</h2>
-
-                        <p className="forgot-pass">Forgot password?</p>
-                        <div className="form-group">
-
+                <div className="login">
+                    <h1 className='title'>Login</h1>
                             <Formik
                                 initialValues={{
                                     email: '',
@@ -58,6 +56,7 @@ const Login = () => {
                                 }}
                                 validationSchema={LoginSchema}
                                 onSubmit={submit}
+                                onFocu
                             >
 
                                 {(params) => (
@@ -65,44 +64,17 @@ const Login = () => {
                                         {Input(params, setState)}
 
                                         {state.wrongData ? <p className='text-wrong'>Wrong email or password</p> : null }
-                                        <Button type="submit" className="submit"> Sign In </Button>
+                                        {state.err ? <p className='text-wrong'>Server error please try later</p> : null }
+                                        <Link to='/register' className='register-link'>not a member ?</Link>
+
+                                        <div className='submit-wrapper'>
+                                            <Button type="submit" className="submit"> Login </Button>
+                                        </div>
                                     </Form>
                                 )}
 
                             </Formik>
-
                         </div>
-
-
-                        <FacebookBtn/>
-
-                    </div>
-                    <div className="sub-cont">
-                        <div className="img">
-
-                            <div className="img__text m--up">
-                                <h2>New here?</h2>
-                                <p>Sign up and discover great variety of new places!</p>
-                            </div>
-
-                            <div className="img__text m--in">
-                                <h2>One of us?</h2>
-                                <p>If you already has an account, just sign in. We've missed you!</p>
-                            </div>
-
-                            <div className="img__btn" onClick={() => {
-                                document.querySelector('.cont').classList.toggle('s--signup');
-                            }}>
-                                <span className="m--up">Sign Up</span>
-                                <span className="m--in">Sign In</span>
-                            </div>
-                        </div>
-
-                        <Register/>
-
-                    </div>
-                </div>
-            </>
         )
 
 };
