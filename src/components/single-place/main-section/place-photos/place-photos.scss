@@ -12,5 +12,11 @@
         height: 300px;
         //height: auto; Fixed size of img
     }
+
+    .prev, .next{
+        color: #fff;
+        font-size: 40px;
+        cursor: pointer;
+    }
 }
 

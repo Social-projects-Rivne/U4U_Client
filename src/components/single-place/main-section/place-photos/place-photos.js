@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './place-photos.scss';
+import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 export default class PlacePhotos extends Component {
 
@@ -11,8 +13,10 @@ export default class PlacePhotos extends Component {
         const {currentPhoto} = this.state;
         const {photos} = this.props;
 
-        this.setState({
-            currentPhoto: 1 - currentPhoto
+        this.setState(({currentPhoto}) => {
+            return{
+                currentPhoto: 1 - currentPhoto
+            }
         })
 
         if(currentPhoto < 0){
@@ -26,8 +30,10 @@ export default class PlacePhotos extends Component {
         const {currentPhoto} = this.state;
         const {photos} = this.props;
         
-        this.setState({
-            currentPhoto: 1 + currentPhoto
+        this.setState(({currentPhoto}) => {
+            return{
+                currentPhoto: 1 + currentPhoto
+            }
         })
 
         if(currentPhoto >= photos.length - 1){
@@ -43,9 +49,9 @@ export default class PlacePhotos extends Component {
 
         return(
             <div className ='place-photo'>
-                <button onClick={this.prev}>Back</button>
+                <FontAwesomeIcon className="prev" icon={faArrowAltCircleLeft} onClick={this.prev} />
                 <img src = {photos[currentPhoto]} alt = ''/>
-                <button onClick={this.next}>Next</button>
+                <FontAwesomeIcon className="next" icon={faArrowAltCircleRight} onClick={this.next} />
             </div>
         );
     };
