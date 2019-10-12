@@ -6,20 +6,22 @@ import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-s
 export default class PlacePhotos extends Component {
 
     state={
-        currentPhoto: 0
+        currentPhoto: 1
     }
 
     prev = () => {
         const {currentPhoto} = this.state;
         const {photos} = this.props;
 
+
         this.setState(({currentPhoto}) => {
+            console.log('set state on', currentPhoto)
             return{
-                currentPhoto: 1 - currentPhoto
+                currentPhoto: --currentPhoto
             }
         })
 
-        if(currentPhoto < 0){
+        if(currentPhoto <= 0){
             this.setState({
                 currentPhoto: photos.length - 1
             })
@@ -29,10 +31,10 @@ export default class PlacePhotos extends Component {
     next = () => {
         const {currentPhoto} = this.state;
         const {photos} = this.props;
-        
+
         this.setState(({currentPhoto}) => {
             return{
-                currentPhoto: 1 + currentPhoto
+                currentPhoto: ++currentPhoto
             }
         })
 
