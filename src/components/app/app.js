@@ -44,7 +44,7 @@ const App = initialState => {
                                     return <Redirect to='/' />;
                                 }
 
-                                return <Login />
+                                return <Login onAuth={onAuth} />
                             }} />
                             <Route path="/singleplace/:id"  component={SinglePlace} />
                         </Switch>

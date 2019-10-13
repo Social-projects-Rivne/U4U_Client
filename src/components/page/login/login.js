@@ -12,7 +12,7 @@ import * as Yup from 'yup';
 
 
 
-const Login = () => {
+const Login = ({ onAuth }) => {
     const [state, setState] = useState({
         redirect: false,
         wrongData: false,
@@ -32,7 +32,8 @@ const Login = () => {
         const submit = async (values) => {
             try {
                 await api.login(values);
-                setState({ redirect: true })
+                setState({ redirect: true });
+                onAuth(true);
             } catch (res) {
                 if(res.status >= 400 && res.status < 500) {
                     setState({ wrongData: true })
