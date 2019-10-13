@@ -6,20 +6,19 @@ import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-s
 export default class PlacePhotos extends Component {
 
     state={
-       
+       currentSlide: 0
     }
 
     prev = () => {
-        
+    
     }
     
     next = () => {
-       
+        
     }
 
     render(){
         const {photos} = this.props;
-
         return(
             <div className ='place-photo'>
                 <FontAwesomeIcon className="prev" icon={faArrowAltCircleLeft} onClick={this.prev} />
