@@ -1,0 +1,21 @@
+.my-plans-icon{
+    margin-right: 15px;
+  &:hover{
+    color: rgb(173, 173, 228);
+  } 
+}
+#label-style{
+    display: flex;
+    justify-content: space-between;
+} 
+.plans-list-item.done .plans-list-item-label {
+    text-decoration: line-through;
+    color: black;
+    font-weight: bold;
+  }
+  
+.plans-list-item.important .plans-list-item-label {
+    font-weight: bold;
+    color:red;
+    border-bottom: 2px solid red;
+  }

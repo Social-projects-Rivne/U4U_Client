@@ -74,16 +74,16 @@ $diffRatio: ($contW - $imgW) / $contW;
   }
 }
 
-button {
-  display: block;
-  margin: 0 auto;
-  width: $inputW;
-  height: $btnH;
-  border-radius: 30px;
-  color: #fff;
-  font-size: 15px;
-  cursor: pointer;
-}
+// button {
+//   display: block;
+//   margin: 0 auto;
+//   width: $inputW;
+//   height: $btnH;
+//   border-radius: 30px;
+//   color: #fff;
+//   font-size: 15px;
+//   cursor: pointer;
+// }
 
 .img {
   overflow: hidden;
@@ -233,16 +233,16 @@ label {
   }
 }
 
-input {
-  display: block;
-  width: 100%;
-  margin-top: 5px;
-  padding-bottom: 5px;
-  font-size: 16px !important;
-  border-bottom: 1px solid rgba(0,0,0,0.4);
-  text-align: center;
-  padding: 2rem;
-}
+// input {
+//   display: block;
+//   width: 100%;
+//   margin-top: 5px;
+//   padding-bottom: 5px;
+//   font-size: 16px !important;
+//   border-bottom: 1px solid rgba(0,0,0,0.4);
+//   text-align: center;
+//   padding: 2rem;
+// }
 
 .forgot-pass {
   margin-top: 15px;
