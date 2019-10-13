@@ -1,27 +1,57 @@
 import React, {Component} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './place-photos.scss';
-import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 export default class PlacePhotos extends Component {
 
+    state={
+        currentSlide: 0
+    }
+
     prev = () => {
-       
+        const {photos} = this.props;
+        const {currentSlide} = this.state;
+        
+        if(currentSlide <= 0){
+            this.setState({
+                currentSlide: photos.length - 1
+            })
+        }
+        else{
+            this.setState(({currentSlide}) => {
+                return{
+                    currentSlide: --currentSlide
+                }
+            })
+        }
     }
     
     next = () => {
-        
+        const {photos} = this.props;
+        const {currentSlide} = this.state;
+
+        if(currentSlide >= photos.length - 1){
+            this.setState({
+                currentSlide: 0
+            })
+        }
+        else{
+            this.setState(({currentSlide}) => {
+                return{
+                    currentSlide: ++currentSlide
+                }
+            })
+        }
     }
 
     
-
     render(){
         const {photos} = this.props;
+        const {currentSlide} = this.state;
         return(
             <div className ='place-photo'>
-                <FontAwesomeIcon className="prev" icon={faArrowAltCircleLeft} />
-                <img src = {photos[2]} alt = ''/>
-                <FontAwesomeIcon className="next" icon={faArrowAltCircleRight} />
+                <div className="prev" onClick={this.prev}></div>
+                <img src = {photos[currentSlide]} alt = ''/>
+                <div className="next" onClick={this.next}></div>
             </div>
         );
     };
