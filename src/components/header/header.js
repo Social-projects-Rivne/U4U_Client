@@ -8,6 +8,7 @@ import User from './user';
 import isAuth from "../hocs/is-auth";
 
 const Header = ({ isAuth }) => {
+  console.log(isAuth);
   return (
     <header className="header">
       <div className="container">
@@ -29,7 +30,7 @@ const Header = ({ isAuth }) => {
           </nav>
 
           <div className="header__fields">
-            {isAuth ? <Guest /> : <User />}
+            {isAuth ? <User />  : <Guest /> }
 
             <li className="header__search">
               <Link to="/search">

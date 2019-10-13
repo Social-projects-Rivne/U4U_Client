@@ -19,11 +19,12 @@ const App = initialState => {
         isAuth: false,
     });
 
-    const isAuth = useAuth();
-
     const onAuth = (status) => {
         setState({ ...state, isAuth: status })
     };
+
+    const isAuth = useAuth(onAuth);
+
 
     return (
         <div className="wrapper">
