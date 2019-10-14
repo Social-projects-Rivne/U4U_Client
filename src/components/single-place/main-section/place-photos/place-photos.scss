@@ -1,6 +1,6 @@
 .place-photo{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin-top: 10px;
     overflow: hidden;
@@ -14,10 +14,9 @@
     }
 
     .prev, .next{
-        background-color: #fff;
-        height: 50px;
+        background: white;
+        height: 300px;
         width: 50px;
-        border-radius: 30%;
         cursor: pointer;
         font-size: 30px;
         display: flex;
@@ -27,8 +26,16 @@
         &:hover{
             background-color: goldenrod;
             transition: 0.5s ease-in;
-            color: blue;
+            color: wheat;
         }
+    }
+    .prev{
+      border-top-left-radius: 50%;
+      border-bottom-left-radius: 50%;
+    }
+    .next{
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
     }
     .sliderAnimation{
       animation: 0.5s linear sliderMove;
