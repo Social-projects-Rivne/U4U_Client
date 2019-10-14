@@ -3,14 +3,14 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 10px;
+    overflow: hidden;
 
     & img{
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        border-radius: 1rem;
-        box-shadow: 0 0 1rem #fff;
-        width: 70%;
-        height: 300px;
-        //height: auto; Fixed size of img
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 1rem;
+      box-shadow: 0 0 1rem #fff;
+      width: 70%;
+      height: 300px;
     }
 
     .prev, .next{
@@ -30,4 +30,27 @@
             color: blue;
         }
     }
+    .sliderAnimation{
+      animation: 0.5s linear sliderMove;
+  }
+  .sliderAppend{
+    animation: 0.5s linear append;
+  }
+
+  @keyframes sliderMove {
+    from {
+      opacity: 1;
+      }
+    to {
+      opacity: 0;
+    }
+  } 
+  @keyframes append {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }   
 }
