@@ -26,7 +26,7 @@ export default class PlacePhotos extends Component {
                         currentSlide: photos.length - 1
                     }
                 })
-            }, 500);
+            }, 200);
         }
         else{
            setTimeout(() => {
@@ -36,7 +36,7 @@ export default class PlacePhotos extends Component {
                     currentSlide: --currentSlide
                 }
             })
-           }, 500);
+           }, 200);
         }
     }
     
@@ -58,7 +58,7 @@ export default class PlacePhotos extends Component {
                         currentSlide: 0
                     }
                 })
-            }, 500);
+            }, 200);
         }
         else{
             setTimeout(() => {
@@ -68,7 +68,7 @@ export default class PlacePhotos extends Component {
                         currentSlide: ++currentSlide
                     }
                 })
-            }, 500);
+            }, 200);
         }
     }
 
