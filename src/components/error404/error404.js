@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import error404 from '../../img/error404.mp4'
-import './error404.scss'
+import error404 from '../../img/error404.mp4';
+import './error404.scss';
 
 const Error404 = () => {
   return (
     <div className="error404">
-      <div className="error404__search">
-        <input type="search" placeholder="Search" />
-      </div>
-
       <div className="error404__title">
         <div className="error404__subtitle">
-          <span>404</span>
-  
+          <span className="error404__subtitle-404">404</span>
+
           <h1>
-            We are sorry, but the page you requested was not found
-  
+            Oops, <span>banana</span> not found
           </h1>
         </div>
 
         <h2>
-          Come with me to the:
-            <Link to="/">Home page</Link>
+          go <Link to="/">Home</Link> and try to find it
         </h2>
       </div>
 
