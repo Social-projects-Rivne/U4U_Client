@@ -49,9 +49,13 @@ export default class PlacePhotos extends Component {
         const {currentSlide} = this.state;
         return(
             <div className ='place-photo'>
-                <div className="prev" onClick={this.prev}></div>
+                <div className="prev" onClick={this.prev}>
+                    &laquo;
+                </div>
                 <img src = {photos[currentSlide]} alt = ''/>
-                <div className="next" onClick={this.next}></div>
+                <div className="next" onClick={this.next}>
+                    &raquo;
+                </div>
             </div>
         );
     };
