@@ -44,6 +44,7 @@ export default class PlacePhotos extends Component {
         const {photos} = this.props;
         const {currentSlide} = this.state;
 
+<<<<<<< HEAD
         this.setState(({animation}) => {
             return{
                 animation: !animation
@@ -91,3 +92,6 @@ export default class PlacePhotos extends Component {
         );
     };
 };
+=======
+export default PlacePhotos;
+>>>>>>> e239bf906d6ebdd922c517a3054ba88672b8be04
