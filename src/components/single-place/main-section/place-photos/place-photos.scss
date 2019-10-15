@@ -2,22 +2,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    margin: 0 auto;
     overflow: hidden;
-    
+    width: 70%;
+    height: 30rem;
+    .place-photo-container{
+      text-align: center;
+      height: 100%;
+      width: 100%;
+      background-color: #fff;
 
-    & img{
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 1rem;
-      box-shadow: 0 0 1rem #fff;
-      width: 80%;
-      height: 50rem;
+      img{
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 1rem;
+        box-shadow: 0 0 1rem #fff;
+        width: auto;
+        height: 30rem;
+      }
     }
-
     .prev, .next{
         background: white;
-        height: 50rem;
-        width: 7rem;
+        height: 40rem;
+        width: 5rem;
         cursor: pointer;
         font-size: 5rem;
         display: flex;

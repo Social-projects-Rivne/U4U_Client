@@ -83,7 +83,9 @@ export default class PlacePhotos extends Component {
                 <div className="prev" onClick={this.prev}>
                     &laquo;
                 </div>
-                <img src = {photos[currentSlide]} alt ='' className={animationClass}/>
+                <div className='place-photo-container'>
+                    <img src = {photos[currentSlide]} alt ='' className={animationClass}/>
+                </div>
                 <div className="next" onClick={this.next}>
                     &raquo;
                 </div>
