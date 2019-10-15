@@ -2,23 +2,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 1rem;
     overflow: hidden;
+    
 
     & img{
       border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: 1rem;
       box-shadow: 0 0 1rem #fff;
-      width: 70%;
-      height: 300px;
+      width: 85%;
+      height: 50rem;
     }
 
     .prev, .next{
         background: white;
-        height: 300px;
-        width: 50px;
+        height: 50rem;
+        width: 5rem;
         cursor: pointer;
-        font-size: 30px;
+        font-size: 3rem;
         display: flex;
         justify-content: center;
         align-items: center;
