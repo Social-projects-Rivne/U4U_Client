@@ -12,4 +12,3 @@ const PlacePhotos = ({photos}) =>{
     }
 
 export default PlacePhotos;
-
