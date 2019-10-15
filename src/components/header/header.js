@@ -8,7 +8,6 @@ import User from './user';
 import isAuth from "../hocs/is-auth";
 
 const Header = ({ isAuth }) => {
-  console.log(isAuth);
   return (
     <header className="header">
       <div className="container">

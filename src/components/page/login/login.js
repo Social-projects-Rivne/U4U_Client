@@ -19,7 +19,7 @@ const Login = ({ onAuth }) => {
         err: false,
     });
 
-    const LoginSchema = Yup.object().shape({
+        const LoginSchema = Yup.object().shape({
         password: Yup.string()
             .min(4, 'Password is too Short!')
             .max(50, 'Password is too Long!')
@@ -57,7 +57,6 @@ const Login = ({ onAuth }) => {
                                 }}
                                 validationSchema={LoginSchema}
                                 onSubmit={submit}
-                                onFocu
                             >
 
                                 {(params) => (
