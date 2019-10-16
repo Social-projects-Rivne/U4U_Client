@@ -3,16 +3,18 @@ import classNames from "classnames";
 import "./uMap.scss";
 import MapSvg from "./mapContent/mapSvg";
 import RegionsName from "./mapContent/regionsName.json";
+import Spiner from "../utils/spinner";
 
 export default class UMap extends Component {
   state = {
     active: false,
     x: 0,
     y: 0,
-    region: ""
+    region: "",
+    setImageCount: null
   };
 
-  mouseMove = e => {
+  mouseMove = (e) => {
     this.setState({
       active: true,
       x: e.clientX,
@@ -28,6 +30,14 @@ export default class UMap extends Component {
       y: 0
     });
   };
+
+  countHandler = (count) => {
+    this.setState(({ setImageCount }) => {
+      return {
+        setImageCount: count
+      }
+    })
+  }
 
   render() {
     const { x, y } = this.state;
@@ -48,9 +58,21 @@ export default class UMap extends Component {
         return this.state.region === name.id;
       }) || {};
 
+    const onMapLoading = (this.state.setImageCount === 59) ? '' : ' show'
+    const onMapLoaded = (this.state.setImageCount === 59) ? ' show' : ''
+
     return (
       <div className="map" id="map">
-        <MapSvg mouseMove={this.mouseMove} mouseOut={this.mouseOut} />
+        <div className={`map__spiner${onMapLoading}`}>
+          <Spiner />
+        </div>
+
+        <div className={`map__svg${onMapLoaded}`}>
+          <MapSvg
+            mouseMove={this.mouseMove}
+            mouseOut={this.mouseOut}
+            setImageCount={this.countHandler} />
+        </div>
 
         <div className={active} style={style}>
           {regionName}

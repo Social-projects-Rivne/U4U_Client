@@ -1,13 +1,8 @@
 /* map styles */
 .map {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  // position: relative;
+  position: relative;
   height: 100%;
   width: 100%;
-  // z-index: 99;
 
   &__slogan {
     font-size: 3rem;
@@ -49,32 +44,65 @@
       transform: translate(-50%, calc(-230%));
     }
   }
-}
 
-.map svg {
-  height: 70rem;
-  width: 110rem;
+  &__spiner {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 
-  @media (min-width: 1200px) and (max-width: 1439px) {
-    & {
-      height: 65rem;
+    &.show {
+      display: flex;
+    }
+  }
+
+  &__svg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 3s;
+    transform: scale(.9);
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+
+    &.show {      
+      opacity: 1;
+      transform: scale(1);
+      visibility: visible;
+    }
+
+    & svg {
+      height: 70rem;
       width: 110rem;
-    }
-  }
 
-  /* Portrait tablets and medium desktops */
-  @media (min-width: 992px) and (max-width: 1199px) {
-    & {
-      height: 90rem;
-      width: 100%;
-    }
-  }
+      @media (min-width: 1200px) and (max-width: 1439px) {
+        & {
+          height: 65rem;
+          width: 110rem;
+        }
+      }
 
-  /* Portrait tablets and small desktops */
-  @media (min-width: 768px) and (max-width: 991px) {
-    & {
-      height: 80rem;
-      width: 100%;
+      /* Portrait tablets and medium desktops */
+      @media (min-width: 992px) and (max-width: 1199px) {
+        & {
+          height: 90rem;
+          width: 100%;
+        }
+      }
+
+      /* Portrait tablets and small desktops */
+      @media (min-width: 768px) and (max-width: 991px) {
+        & {
+          height: 80rem;
+          width: 100%;
+        }
+      }
     }
   }
 }
