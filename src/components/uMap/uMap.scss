@@ -60,21 +60,28 @@
   }
 
   &__svg {
-    display: flex;
+    animation: mapAnimation 3s;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: all 3s;
-    transform: scale(.9);
-    visibility: hidden;
     height: 100%;
     width: 100%;
 
-    &.show {      
-      opacity: 1;
-      transform: scale(1);
-      visibility: visible;
+    &.show {
+      display: flex;
+    }
+
+    @keyframes mapAnimation {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     & svg {
