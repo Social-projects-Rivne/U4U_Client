@@ -1,0 +1,9 @@
+.single-place{
+  display: flex;
+  flex-wrap: wrap;
+
+& .main-comment-sections{
+flex: 80%;
+background-color: rgba(0, 0, 0, 0.4);
+}
+}

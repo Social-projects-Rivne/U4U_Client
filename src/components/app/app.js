@@ -12,6 +12,7 @@ import Container from '../container';
 import Footer from '../footer';
 import UMap from '../uMap';
 import SinglePlace from '../single-place';
+import Profile from '../profile';
 
 const App = initialState => {
     const [state, setState] = useState({
@@ -44,6 +45,7 @@ const App = initialState => {
                             return <Login />
                         }} />
                         <Route path="/singleplace/:id"  component={SinglePlace} /> 
+                        <Route path="/profile"  component={Profile} /> 
                     </Switch>
                 </Container>
                 <Footer />
