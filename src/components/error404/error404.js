@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import error404 from '../../img/error404.mp4';
 import './error404.scss';
