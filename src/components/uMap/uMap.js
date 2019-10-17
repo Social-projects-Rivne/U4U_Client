@@ -12,7 +12,7 @@ export default class UMap extends Component {
     region: ""
   };
 
-  mouseMove = e => {
+  mouseMove = (e) => {
     this.setState({
       active: true,
       x: e.clientX,
