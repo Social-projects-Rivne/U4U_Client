@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import cherkasy from "./../../../../img/cherkasy-region.jpg";
 import chernihiv from "./../../../../img/chernihiv-region.jpg";
 import chernivtsi from "./../../../../img/chernivtsi-region.jpg";
@@ -25,14 +25,12 @@ import vinnytsya from "./../../../../img/vinnytsya-region.jpg";
 import zaporizhzhya from "./../../../../img/zaporizhzhya-region.jpg";
 import zhytomyr from "./../../../../img/zhytomyr-region.jpg";
 
-const MapContainer = ({ children, setImageCount }) => {
+const MapContainer = ({ children, onImagesLoaded }) => {
   const [count, setCounter] = useState(0)
-  const onAllImagesLoaded = useRef(count)
 
   useEffect(() => {
-    onAllImagesLoaded.current = count;
-    setImageCount(onAllImagesLoaded.current)
-  }, [count, setImageCount])
+    if(count===59) onImagesLoaded(true)
+  }, [count, onImagesLoaded])
 
   return (
     <svg version="1.1" id="svgMap" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

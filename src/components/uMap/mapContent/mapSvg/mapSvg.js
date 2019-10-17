@@ -22,7 +22,7 @@ export default class MapSvg extends Component {
 
 	render() {
 		return (
-			<MapContainer setImageCount={this.props.setImageCount}>
+			<MapContainer onImagesLoaded={this.props.onImagesLoaded}>
 				{Regions.map(region => {
 					const hover = classNames({
 						' blur': (this.state.hover !== null) && (this.state.hover !== region.id)

@@ -11,7 +11,7 @@ export default class UMap extends Component {
     x: 0,
     y: 0,
     region: "",
-    setImageCount: null
+    imagesLoadState: false
   };
 
   mouseMove = (e) => {
@@ -31,16 +31,12 @@ export default class UMap extends Component {
     });
   };
 
-  countHandler = (count) => {
-    this.setState(({ setImageCount }) => {
-      return {
-        setImageCount: count
-      }
-    })
+  setImagesLoadState = (state) => {
+    this.setState({ imagesLoadState: state })
   }
 
   render() {
-    const { x, y } = this.state;
+    const { x, y, imagesLoadState } = this.state;
     const clientHeight = document.documentElement.clientHeight;
     const style = {
       top: y,
@@ -58,20 +54,20 @@ export default class UMap extends Component {
         return this.state.region === name.id;
       }) || {};
 
-    const onMapLoading = (this.state.setImageCount === 59) ? '' : ' show'
-    const onMapLoaded = (this.state.setImageCount === 59) ? ' show' : ''
+    const spinerModifier = (imagesLoadState) ? '' : ' show'
+    const mapModifier = (imagesLoadState) ? ' show' : ''
 
     return (
       <div className="map" id="map">
-        <div className={`map__spiner${onMapLoading}`}>
+        <div className={`map__spiner${spinerModifier}`}>
           <Spiner />
         </div>
 
-        <div className={`map__svg${onMapLoaded}`}>
+        <div className={`map__svg${mapModifier}`}>
           <MapSvg
             mouseMove={this.mouseMove}
             mouseOut={this.mouseOut}
-            setImageCount={this.countHandler} />
+            onImagesLoaded={this.setImagesLoadState} />
         </div>
 
         <div className={active} style={style}>
