@@ -1,5 +1,7 @@
-import useAuth from './useAuth';
+import useAuth from './use-auth';
+import isAuth from "./is-auth";
 
 export default {
-    useAuth
+    useAuth,
+    isAuth
 }

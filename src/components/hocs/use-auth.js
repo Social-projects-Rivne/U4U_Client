@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../../services/tourist-service';
 
-const useAuth = () => {
+const useAuth = (onAuth) => {
     const [state, setState] = useState({
        loading: true,
        status: null
@@ -10,10 +10,12 @@ const useAuth = () => {
     useEffect(() => {
        api.checkAuth()
            .then(res => {
-               setState({ loading: false, status: true })
+               setState({ loading: false, status: true });
+               onAuth(true)
            })
            .catch(err => {
-               setState({ loading:  false, status: false })
+               setState({ loading:  false, status: false });
+               onAuth(false);
            })
     }, []);
 
