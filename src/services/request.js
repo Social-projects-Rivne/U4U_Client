@@ -1,6 +1,6 @@
-
+console.log(process.env.REACT_APP_URL);
 class Request {
-    _baseUrl = `/api`;
+    _baseUrl = `${process.env.REACT_APP_URL}api`;
 
     get = (url) => fetch(`${this._baseUrl}/${url}`, {
         method: 'GET',
