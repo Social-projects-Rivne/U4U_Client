@@ -1,9 +1,58 @@
-.single-place{
-  display: flex;
-  flex-wrap: wrap;
-
-& .main-comment-sections{
-flex: 80%;
-background-color: rgba(0, 0, 0, 0.4);
+.profile{
+  background-color: rgba(0, 0, 0, 0.4);
 }
+.user-name{
+  font-size: 3rem;
+  padding-top: 3rem;
+  padding-left: 4rem; 
+  color: white;
+}  
+.user-info-section{
+  display: flex;
+  justify-content: left;
+  height: 40rem;
+  color: white;
+  font-size: 2.5rem;
+  border-bottom: 2px solid grey;
+}
+.avatar-section{
+  width: 20%;
+  margin: 4rem;
+}
+.avatar{
+  width: 100%;
+  height: auto;
+}
+.user-info-center{
+  display: block;
+  width: 20%;
+  margin: 4rem;
+}
+.user-info-right{
+  display: block;
+  width: 30%;
+  margin: 4rem;
+}
+.user-info-center span{
+  display: block;
+  margin-bottom: 2rem;
+}
+.user-info-right span{
+  display: block;
+  margin-bottom: 2rem;
+}
+.add-place{
+  display: flex;
+  justify-content: left;
+  margin: 4rem;
+  color: white;
+}
+.add-place-header{
+  display: flex;
+  font-size: 3rem;
+}
+.district-selector, .add-place-title, .add-place-description, .add-place-file{
+  display: flex;
+  margin: 2rem 0rem;
+  font-size: 2rem;
 }
