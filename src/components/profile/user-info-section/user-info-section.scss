@@ -1,0 +1,35 @@
+
+.user-info-section{
+  display: flex;
+  justify-content: left;
+  height: 40rem;
+  color: white;
+  font-size: 2.5rem;
+  border-bottom: 2px solid grey;
+}
+.avatar-section{
+  width: 20%;
+  margin: 4rem;
+}
+.avatar{
+  width: 100%;
+  height: auto;
+}
+.user-info-center{
+  display: block;
+  width: 20%;
+  margin: 4rem;
+}
+.user-info-right{
+  display: block;
+  width: 30%;
+  margin: 4rem;
+}
+.user-info-center span{
+  display: block;
+  margin-bottom: 2rem;
+}
+.user-info-right span{
+  display: block;
+  margin-bottom: 2rem;
+}

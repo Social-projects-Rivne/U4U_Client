@@ -1,0 +1,15 @@
+.add-place{
+  display: flex;
+  justify-content: left;
+  margin: 4rem;
+  color: white;
+}
+.add-place-header{
+  display: flex;
+  font-size: 3rem;
+}
+.district-selector, .add-place-title, .add-place-description, .add-place-file{
+  display: flex;
+  margin: 2rem 0rem;
+  font-size: 2rem;
+}
