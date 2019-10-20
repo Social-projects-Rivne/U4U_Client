@@ -19,19 +19,18 @@ class Search extends Component {
 
   render() {
     const { searching } = this.state
-    const find = (searching) ? ' results' : ''
-    const result = (searching) ? ' show' : ''
+    const results = (searching) ? ' results' : ''
 
     return (
       <div className="search" >
-        <div className="search__fields">
-          <div className={`search__find${find}`}>
+        <div className={`search__fields${results}`}>
+          <div className={`search__find`}>
             <input type="text"
               placeholder="Find your favorite place"
               onChange={this.searchHandler} />
           </div>
 
-          <div className={`search__results${result}`}>
+          <div className={`search__results`}>
             <ul>
               <li>
                 <Link to="/singleplace/5" >
