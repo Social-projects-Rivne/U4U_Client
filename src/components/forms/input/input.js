@@ -23,7 +23,7 @@ const Input = ({initialValues: values, errors: errs, touched, isValidating, setS
                 <Field className={inputClass} type={type} name={e} required />
                 <span className="highlight"></span>
                 <span className={barClass}></span>
-                <label>{label}</label>
+                <label className="label">{label}</label>
             {errs[e] && touched[e] ? <div className='text-err'>{errs[e]}</div> : null}
         </div>;
 
