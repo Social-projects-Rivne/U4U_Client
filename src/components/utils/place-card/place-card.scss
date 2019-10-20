@@ -1,24 +1,61 @@
-.place-card {
-    border-radius: 1rem;
-    padding: 2rem;
-    background-color: rgba(255, 255, 255, .5);
+.place-card-container {
+    position: relative;
+    display: block;
+    width: 100%;
     height: 22rem;
-    cursor: pointer;
-    
-    & img{
-        border: 1px solid rgba(0, 0, 0, 0.4);
+
+    .place-card {
         border-radius: 1rem;
-        width: 100%;
-        height: 13.5rem;
-    }  
-    & h2{
-        height: 5rem;
-        font-size: 1.8rem;
-        text-align: center;
         padding: 2rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-weight: 500;
+        background-color: rgba(255, 255, 255, .5);
+        cursor: pointer;
+        height: 100%;
+        animation: cardAnimation 3s;
+        display: none;
+        
+        & img{
+            border: 1px solid rgba(0, 0, 0, 0.4);
+            border-radius: 1rem;
+            width: 100%;
+            height: 13.5rem;
+        }  
+        & h2{
+            height: 5rem;
+            font-size: 1.8rem;
+            text-align: center;
+            padding: 2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 500;
+        }
+
+        &.place-card-show {
+            display: block;
+        }
+
+        @keyframes cardAnimation {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+
+    .place-card-spiner {
+        position: absolute;
+        display: none;
+        height: 100%;
+        width:  100%;
+        align-items: center;
+    }
+
+    .place-card-spinner-show {
+        display: flex;
     }
 }

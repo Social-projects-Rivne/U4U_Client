@@ -3,25 +3,14 @@ import Api from './../../../services/api.service';
 import FIlter from './filter/filter';
 import PlaceCard from './../../utils/place-card';
 import ButtonLoadingMore from './../../utils/button-loading-more';
-import RegionsNames from "./../../../global-data/regions-names";
+import RegionsNames from  './../../../global-data/regions-names';
+import Spiner from './../../utils/spinner';
 import './places-list.scss';
 
 export default class PlacesList extends Component {
   state = {
-    places: null
-  };
-
-  async componentDidMount() {
-    try {
-      const places = await Api.getAllPlaces();
-      this.setState({places: places});
-    } catch (error) {
-      console.log("Handle loading all places error: ", error);
-    }
-  }
-
-  render() {
-    const sortRetingData = [
+    places: null,
+    fIlteRatingData: [
       { 
         id: 1,
         title: "Top places" 
@@ -38,8 +27,22 @@ export default class PlacesList extends Component {
         id: 4,
         title: "Count reviews" 
       }
-    ];
+    ]
+  };
 
+  async componentDidMount() {
+    try {
+      const places = await Api.getAllPlaces();
+      this.setState({places: places});
+    } catch (error) {
+      console.log("Handle loading all places error: ", error);
+    }
+  }
+
+  render() {
+    const spinerModifier = (this.state.places) ? '' : ' places-list-content-spinner-show'
+    const contentModifier = (this.state.places) ? ' places-list-content-grid-show' : ''
+      
     return (
       <div className='places-list'>
         <div className='places-list-header'>
@@ -47,7 +50,7 @@ export default class PlacesList extends Component {
             <div className='places-list-header-filtres'>
               <FIlter 
                 name='rating' 
-                data={sortRetingData}
+                data={this.fIlteRatingData}
               />
               <FIlter 
                 name='regions' 
@@ -56,18 +59,24 @@ export default class PlacesList extends Component {
             </div>
         </div>
         <div className='places-list-content'>
-        {
-          this.state.places &&
-            this.state.places.map(place => {
-              return (
-                <PlaceCard 
-                  key={place._id} 
-                  photo={place.photos[0]} 
-                  title={place.name} 
-                />
-              )
-            })
-				}
+          <div className={`places-list-content-spiner ${spinerModifier}`}>
+              <Spiner />
+          </div>
+
+          <div className={`places-list-content-grid ${contentModifier}`}>
+          {
+            this.state.places &&
+              this.state.places.map(place => {
+                return (
+                  <PlaceCard 
+                    key={place._id} 
+                    photo={place.photos[0]} //TODO: resolve, now hardcoded first one
+                    title={place.name} 
+                  />
+                )
+              })
+          }
+          </div>
         </div>
         <div className='places-list-pagination'>
           <ButtonLoadingMore/>

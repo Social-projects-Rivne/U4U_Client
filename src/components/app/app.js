@@ -13,6 +13,7 @@ import Container from '../container';
 import Footer from '../footer';
 import UMap from '../uMap';
 import SinglePlace from '../single-place';
+import PlacesList from '../pages/places-list';
 import Error404 from '../error404';
 
 const App = initialState => {
@@ -54,6 +55,7 @@ const App = initialState => {
               <Route path="/singleplace/:id"
                 component={SinglePlace} />
 
+              <Route component={PlacesList} />
               <Route component={Error404} />
             </Switch>
           </Container>

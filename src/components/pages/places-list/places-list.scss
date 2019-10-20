@@ -40,12 +40,29 @@
     }
 
     &-content {
-        height: auto;
-        display: grid;
-        padding: 2rem;
-        grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
-        position: relative;
-        grid-gap: 2rem;
+        width: 100%;
+        
+        &-spiner {
+            display: none;
+        }
+
+        &-spinner-show {
+            display: block;
+        }
+
+        &-grid {
+            height: auto;
+            display: none;
+            padding: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+            position: relative;
+            grid-gap: 2rem;
+            width: 100%;
+        }
+
+        &-grid-show {
+            display: grid;
+        }
     }
 
     &-pagination {
