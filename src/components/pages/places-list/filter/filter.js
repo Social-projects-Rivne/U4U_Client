@@ -20,51 +20,53 @@ export default class Filter extends Component {
     this.setState({isActive: false, value: value, title: title});
   }
 
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick = (e) => {
+    if(!this.node) {
+      return;
+    }
+    
+    if(this.node.contains(e.target)) {
+      return;
+    }
+
+    this.closeDropDown(null, this.props.name);
+  }
+
   render() {
     return (
-      <div className='filter'>
-        <div className="filter-navigation">
-            <div className="filter-navigation-sub" onClick={() => {this.toggleDropDown("test")}}>Click me</div>
-        </div>
-        <div className={"filter-navigation-dropdown " + (this.state.isActive ? 'hide' : null)}>
-            <ul>
-                <li>
-                  1
-                </li>
-                <li>
-                  2
-                </li>
-                <li>
-                  3
-                </li>
-                <li>
-                  4
-                </li>
-            </ul>
-        </div>
-          {/* <span className={'filter-dropdown ' + (this.state.isActive ? 'expanded' : null)}>
-            <input className="filter-dropdown-input" type="radio" name="sortType" value="Relevance" checked="checked" id="sort-relevance"/>
-            <label htmlFor="sort-relevance" onClick={() => {this.toggleDropDown(this.state.title)}}>
+      <div ref={node => this.node = node} className='filter'>
+        <ul className={'filter-dropdown ' + (this.state.isActive ? 'filter-dropdown-active' : null)}>
+            <label className='filter-dropdown-label' onClick={() => {this.toggleDropDown(this.state.title)}}>
               {this.state.title}
             </label>
-            <div className='filter-dropdown-items-container'>
-              <label onClick={() => {this.closeDropDown(null, this.props.name)}}>
+            <ul className='filter-dropdown-list'>
+              <li className='filter-dropdown-item' onClick={() => {this.closeDropDown(null, this.props.name)}}>
                 {this.props.name}
-              </label>
+              </li>
               {
                 this.props.data &&
                   this.props.data.map(data => {
                     return (
-                      <label key={data.id} htmlFor="sort-best" onClick={() => {this.closeDropDown(data.id, data.title)}}>{data.title}</label>
-                      // <div>
-                      //   <input type="radio" name="sortType" value="Popularity" id="sort-best"/>
-                      //   <label htmlFor="sort-best">{data.id}</label>
-                      // </div>
+                      <li 
+                        className='filter-dropdown-item'
+                        key={data.id} 
+                        onClick={() => {this.closeDropDown(data.id, data.title)}}
+                      >
+                        {data.title}
+                      </li>
                     )
                   })
               }
-            </div>
-          </span> */}
+            </ul>
+        </ul>
       </div>
     );
   }
