@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./avatar-section";
+import "./avatar-section.scss";
 
 export default class AvatarSection extends Component {
   render() {

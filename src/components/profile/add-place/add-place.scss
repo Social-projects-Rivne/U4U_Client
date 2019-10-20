@@ -1,8 +1,10 @@
 .add-place{
   display: flex;
-  justify-content: left;
   margin: 4rem;
   color: white;
+}
+.add-place form{
+  width: 100%;
 }
 .add-place-header{
   display: flex;
@@ -10,6 +12,22 @@
 }
 .district-selector, .add-place-title, .add-place-description, .add-place-file{
   display: flex;
-  margin: 2rem 0rem;
+  margin: 3rem 0rem;
   font-size: 2rem;
+}
+.add-place-title{
+  width: 100%;
+}
+.add-place-description{
+  width: 100%;
+  height: 20rem;
+}
+.add-place-file-submit{
+  display: flex;
+  justify-content: space-between;
+}
+.add-place-submit{
+  font-size: 2rem;
+  height: 50%;
+  margin-top: 2rem;
 }

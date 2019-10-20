@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./user-info-form";
+import "./user-info-form.scss";
 
 export default class UserInfoForm extends Component {
   render() {
@@ -17,14 +17,23 @@ export default class UserInfoForm extends Component {
           <input className="user-info-email" type="text" name="email" />
         </div>
         <div className="user-info-right">
-          <span>Old password</span>
-          <input className="user-info-oldpass" type="text" name="name" />
-          <span>New password</span>
-          <input className="user-info-newpass" type="text" name="name" />
-          <span>Repeat password</span>
-          <input className="user-info-repeatpass" type="text" name="name" />
+          <div className="user-info-oldpass">
+            <span>Old password</span>
+            <input type="password" name="name" />
+          </div>
+          <div className="user-info-newpass">
+            <span>New password</span>
+            <input type="password" name="name" />
+          </div>
+          <div className="user-info-repeatpass">
+            <span>Repeat password</span>
+            <input type="password" name="name" />
+          </div>
+          <div className="user-info-submit">
+            <input className="user-info-submit" type="submit" />
+          </div>
         </div>
-      </form>   
+      </form>
     );
   }
 }

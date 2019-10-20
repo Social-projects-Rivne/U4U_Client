@@ -14,12 +14,17 @@ export default class AddPlace extends Component {
           </select>
           <input className="add-place-title" type="text" name="title" />
           <textarea
-            name="add-place-description"
+            class="add-place-description"
+            name="textarea"
             id=""
             cols="30"
             rows="10"
           ></textarea>
-          <input className="add-place-file" type="file" />
+          <div className="add-place-file-submit">
+            <input className="add-place-file" type="file" />
+            <input className="add-place-submit" type='submit' />
+          </div>
+          
         </form>
       </div>
     );
