@@ -1,3 +1,22 @@
-.weather-icon{
+
+.weather-info {
+  display: flex;
+}
+
+.weather-icon {
   color:rgb(235, 232, 232);
-  }
+}
+
+.weather-temp {
+  display: flex;
+  align-items: center;
+  color:rgb(235, 232, 232);
+}
+
+#weather-temp-icon {
+  margin-right: 1.1rem;
+}
+
+#weather-temp-value {
+  font-size: 4rem;
+}
