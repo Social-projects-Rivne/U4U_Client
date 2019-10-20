@@ -5,7 +5,7 @@ export default class MyPlansHeader extends Component{
     render(){
         return(
             <h1 className = 'my-plans-header'>
-                Welcome user to your plans list
+                Welcome to your plans list
             </h1>
         )
     };

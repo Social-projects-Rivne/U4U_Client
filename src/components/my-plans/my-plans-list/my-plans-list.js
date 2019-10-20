@@ -7,8 +7,8 @@ export default class MyPlansList extends Component {
 
     render() {
         
-        const { todos, onDeleted } = this.props;
-        const elements = todos.map((item) => {
+        const { planLists, onDeleted } = this.props;
+        const elements = planLists.map((item) => {
             const { id, ...itemProps } = item;
             return (
                 <li key={id}>

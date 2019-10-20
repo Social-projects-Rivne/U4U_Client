@@ -2,45 +2,62 @@ import React, {Component } from 'react';
 import './my-plans.scss';
 import MyPlansHeader from './my-plans-header/my-plans-header';
 import MyPlansList from './my-plans-list/my-plans-list';
-import AddingPlaceSection from './adding-place-section/adding-place-section';
+import AddItemButton from './add-item-button/add-item-button';
+import SearchPanel from './search-panel/search-panel';
+//import AddingPlaceSection from './adding-place-section/adding-place-section';
 
 
 
 export default class MyPlans extends Component{
-    state ={
-        todoData:[
-            {label: 'Visit Lviv', important: false, id: 1},
-            {label: 'Visit Rivne', important: false, id: 2},
-            {label: 'Visit Odessa', important: false, id: 3},
-            {label: 'Visit Lviv', important: false, id: 1},
-            {label: 'Visit Rivne', important: false, id: 2},
-            {label: 'Visit Odessa', important: false, id: 3}
+  
+    state = {
+        myPlansList:[
+            {label: 'Visit Lviv', id: 1},
+            {label: 'Visit Rivne', id: 2},
+            {label: 'Visit Odessa', id: 3},
+            {label: 'Visit Lviv', id: 4},
+            {label: 'Visit Rivne', id: 5},
+            {label: 'Visit Odessa', id: 6},
+            {label: 'Visit Lviv', id: 7}
         ]
     }
     deleteItem = (id) =>{
-       this.setState(({todoData}) => {
-       const elementIndex = todoData.findIndex((el) => el.id === id)
-       const newArray = [
-           ...todoData.slice(0, elementIndex), 
-           ...todoData.slice(elementIndex+1)]
+       this.setState(({myPlansList}) => {
+       const elementIndex = myPlansList.filter(function(el){
+           return el.id !== id
+       } )
        return{
-           todoData:newArray
+           myPlansList:elementIndex
        }
        })
     }
+    
     addItem = (text) =>{
-        console.log('Added', text)
+      const newPlan = {
+          label: text,
+          id: 1
+      }
+      this.setState(({myPlansList})=>{
+          const newPlansArray = [...myPlansList, newPlan]
+          return{
+              myPlansList:newPlansArray
+          }
+      })
     }
     render(){
         return(
             <div className = "my-plans" >
                 <div className ='my-plans-adding-header-section'>
                 <MyPlansHeader />
-                <AddingPlaceSection onItemAdded = {this.addItem}/>
+                <div className = 'search-panel'>
+                    {/* <AddingPlaceSection onButtonAddClick = {this.addItem}/> */}
+                 <SearchPanel/>
+                 <AddItemButton onButtonAddClick = {this.addItem}/>
+                </div>
                 </div>
                 <MyPlansList 
-                todos = {this.state.todoData}
-                onDeleted = {(this.deleteItem)} />
+                planLists = {this.state.myPlansList}
+                onDeleted = {this.deleteItem} />
             </div>
         )
     };

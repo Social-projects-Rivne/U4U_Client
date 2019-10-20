@@ -6,12 +6,11 @@ import { text } from '@fortawesome/fontawesome-svg-core';
 
 export default class AddingPlaceSection extends Component{
     render(){
-        const {onItemAdded} = this.props
         return(
             <div className = 'search-panel'>
             <SearchPanel/>
-            <AddItemButton/>
+            <AddItemButton />
             </div>
-        )
+            )
     };
 };

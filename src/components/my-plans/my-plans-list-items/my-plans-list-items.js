@@ -10,7 +10,7 @@ export default class MyPlansListItems extends Component{
         important: false
       };
     
-      onLabelClick = () => {
+      onLabelVisitedClick = () => {
         this.setState(({done}) => {
           return {
             done: !done
@@ -18,7 +18,7 @@ export default class MyPlansListItems extends Component{
         });
       };
     
-      onMarkImportant = () => {
+      onLabelImportant = () => {
         this.setState(({important}) => {
           return {
             important: !important
@@ -50,12 +50,12 @@ export default class MyPlansListItems extends Component{
                 <FontAwesomeIcon icon={faCheckSquare} 
                         className = 'my-plans-icon'
                         size="lg"
-                        onClick = {this.onLabelClick}
+                        onClick = {this.onLabelVisitedClick}
                         />
                 <FontAwesomeIcon icon={faExclamation} 
                          className = 'my-plans-icon'
                          size="lg"
-                         onClick={this.onMarkImportant}
+                         onClick={this.onLabelImportant}
                          />
                 <FontAwesomeIcon icon={faTrashAlt}
                          className = 'my-plans-icon'
