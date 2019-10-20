@@ -3,16 +3,18 @@ import classNames from "classnames";
 import "./uMap.scss";
 import MapSvg from "./mapContent/mapSvg";
 import RegionsName from "./mapContent/regionsName.json";
+import Spiner from "../utils/spinner";
 
 export default class UMap extends Component {
   state = {
     active: false,
     x: 0,
     y: 0,
-    region: ""
+    region: "",
+    imagesLoadState: false
   };
 
-  mouseMove = e => {
+  mouseMove = (e) => {
     this.setState({
       active: true,
       x: e.clientX,
@@ -29,8 +31,12 @@ export default class UMap extends Component {
     });
   };
 
+  setImagesLoadState = (state) => {
+    this.setState({ imagesLoadState: state })
+  }
+
   render() {
-    const { x, y } = this.state;
+    const { x, y, imagesLoadState } = this.state;
     const clientHeight = document.documentElement.clientHeight;
     const style = {
       top: y,
@@ -48,9 +54,21 @@ export default class UMap extends Component {
         return this.state.region === name.id;
       }) || {};
 
+    const spinerModifier = (imagesLoadState) ? '' : ' show'
+    const mapModifier = (imagesLoadState) ? ' show' : ''
+
     return (
       <div className="map" id="map">
-        <MapSvg mouseMove={this.mouseMove} mouseOut={this.mouseOut} />
+        <div className={`map__spiner${spinerModifier}`}>
+          <Spiner />
+        </div>
+
+        <div className={`map__svg${mapModifier}`}>
+          <MapSvg
+            mouseMove={this.mouseMove}
+            mouseOut={this.mouseOut}
+            onImagesLoaded={this.setImagesLoadState} />
+        </div>
 
         <div className={active} style={style}>
           {regionName}
