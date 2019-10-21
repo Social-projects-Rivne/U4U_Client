@@ -20,34 +20,17 @@ export default class Search extends Component {
   }
 
   componentDidMount() {
-    this.searchService
-      .getAllPlaces()
-      .then((places) => {
+    Promise.all([
+      this.searchService.getAllPlaces(),
+      this.searchService.getAllDistricts(),
+      this.searchService.getAllRegions(),
+      this.searchService.getAllReviews()
+    ])
+      .then(([ places, district, region, review ]) => {
         this.setState({
-          placesList: places
-        })
-      })
-
-    this.searchService
-      .getAllDistricts()
-      .then((district) => {
-        this.setState({
-          districtsList: district
-        })
-      })
-
-    this.searchService
-      .getAllRegions()
-      .then((region) => {
-        this.setState({
-          regionsList: region
-        })
-      })
-
-    this.searchService
-      .getAllReviews()
-      .then((review) => {
-        this.setState({
+          placesList: places,
+          districtsList: district,
+          regionsList: region,
           reviewsList: review
         })
       })
@@ -102,17 +85,19 @@ export default class Search extends Component {
 
     return (
       <div className="search" >
-        <div className={`search__fields${results}`}>
-          <div className="search__find">
-            <input type="text"
-              placeholder="Find your favorite place"
-              onChange={this.searchHandler} />
-          </div>
+        <div className="search__wrapper">
+          <div className={`search__fields${results}`}>
+            <div className="search__find">
+              <input type="text"
+                placeholder="Find your favorite place"
+                onChange={this.searchHandler} />
+            </div>
 
-          <div className="search__results">
-            <ul>
-              {places}
-            </ul>
+            <div className="search__results">
+              <ul>
+                {places}
+              </ul>
+            </div>
           </div>
         </div>
 
