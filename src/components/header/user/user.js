@@ -12,7 +12,7 @@ const User = () => {
 
       <div className="header__user-data">
         <h5>Welcome, User</h5>
-        <Link to="/my-profile" className="header__profile">Your profile</Link>
+        <Link to="/profile" className="header__profile">Your profile</Link>
         <Link to="/sign-out">Sign Out</Link>
       </div>
     </div>
