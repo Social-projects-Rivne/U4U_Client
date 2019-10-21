@@ -1,63 +1,61 @@
-import React, {Component } from 'react';
-import './my-plans.scss';
+import React, { Component } from 'react';
 import MyPlansHeader from './my-plans-header/my-plans-header';
 import MyPlansList from './my-plans-list/my-plans-list';
-import AddItemButton from './add-item-button/add-item-button';
 import SearchPanel from './search-panel/search-panel';
-//import AddingPlaceSection from './adding-place-section/adding-place-section';
+import PlansListService from '../../services/plans-list-service';
+import './my-plans.scss';
 
-
-
-export default class MyPlans extends Component{
-  
-    state = {
-        myPlansList:[
-            {label: 'Visit Lviv', id: 1},
-            {label: 'Visit Rivne', id: 2},
-            {label: 'Visit Odessa', id: 3},
-            {label: 'Visit Lviv', id: 4},
-            {label: 'Visit Rivne', id: 5},
-            {label: 'Visit Odessa', id: 6},
-            {label: 'Visit Lviv', id: 7}
-        ]
+export default class MyPlans extends Component {
+    constructor() {
+        super();
+        this.service = new PlansListService();
+        this.state = {
+            myPlansList: []
+        }
     }
-    deleteItem = (id) =>{
-       this.setState(({myPlansList}) => {
-       const elementIndex = myPlansList.filter(function(el){
-           return el.id !== id
-       } )
-       return{
-           myPlansList:elementIndex
-       }
-       })
+    componentDidMount() {
+        this.getPlansList();
     }
-    
-    addItem = (text) =>{
-      const newPlan = {
-          label: text,
-          id: 1
-      }
-      this.setState(({myPlansList})=>{
-          const newPlansArray = [...myPlansList, newPlan]
-          return{
-              myPlansList:newPlansArray
-          }
-      })
+    getPlansList = () => {
+        this.service.getPlansList()
+            .then((plansList) => {
+                this.setState({ myPlansList: plansList })
+            }).catch((error) => {
+                console.log(error)
+            })
     }
-    render(){
-        return(
-            <div className = "my-plans" >
-                <div className ='my-plans-adding-header-section'>
-                <MyPlansHeader />
-                <div className = 'search-panel'>
-                    {/* <AddingPlaceSection onButtonAddClick = {this.addItem}/> */}
-                 <SearchPanel/>
-                 <AddItemButton onButtonAddClick = {this.addItem}/>
+    deleteItem = (_id) => {
+        this.setState(({ myPlansList }) => {
+            const elementIndex = myPlansList.filter(function (el) {
+                return el._id !== _id
+            })
+            return {
+                myPlansList: elementIndex
+            }
+        })
+    }
+    addItem = (text) => {
+        const newPlan = {
+            comment: text,
+        }
+        console.log(this.addItem)
+        this.setState(({ myPlansList }) => {
+            const newPlansArray = [newPlan, ...myPlansList]
+            return {
+                myPlansList: newPlansArray
+            }
+        })
+    }
+    render() {
+        return (
+            <div className="my-plans" >
+                <div className='my-plans-adding-header-section'>
+                    <MyPlansHeader />
+                    <SearchPanel onButtonAddClick={this.addItem} />
                 </div>
-                </div>
-                <MyPlansList 
-                planLists = {this.state.myPlansList}
-                onDeleted = {this.deleteItem} />
+                    <MyPlansList
+                    planLists={this.state.myPlansList}
+                    onDeleted={this.deleteItem}/>
             </div>
         )
     };

@@ -1,7 +1,9 @@
-export default class RegionsService {
+export default class PlansListService{
     baseUrl = `${process.env.REACT_APP_URL}api`;
+    plansList = '/wishList';
 
-    async getResource(url) {
+    constructor(){}
+       async getResource(url) {
         const res = await fetch(`${this.baseUrl}${url}`);
         if (!res.ok) {
             throw new Error(`Cound not fetch ${url} received ${res.status}`);
@@ -9,9 +11,9 @@ export default class RegionsService {
         return await res.json();
     }
 
-    async getPlaces() {
-        const res = await this.getResource(`/regions/5d8a27cdfb4417205498e609/places`);
-        return res;
-    }
-
+      async getPlansList(){
+          const data = await this.getResource(this.plansList);
+          return data;
+      }     
+    
 }

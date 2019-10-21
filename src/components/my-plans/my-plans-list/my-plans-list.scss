@@ -3,8 +3,8 @@ ul {
     padding: 0;
     width: 90%;
     margin: 0 auto;
-  }
-ul li {
+  
+  & li {
   cursor: pointer;
   position: relative;
   padding: 12px 8px 12px 40px;
@@ -19,7 +19,8 @@ ul li {
     background-color:orange;
 }  
 }
-.my-plans-icon{
-  margin-right: 15px;
 }
-
+p{
+  text-align:center;
+  color: orange;
+}

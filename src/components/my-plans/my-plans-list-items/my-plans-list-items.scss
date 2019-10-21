@@ -4,17 +4,17 @@
     color: rgb(173, 173, 228);
   } 
 }
-#label-style{
+#list-item-style{
     display: flex;
     justify-content: space-between;
 } 
-.plans-list-item.done .plans-list-item-label {
+.plans-list-item.done .plans-list-item {
     text-decoration: line-through;
     color: black;
     font-weight: bold;
   }
   
-.plans-list-item.important .plans-list-item-label {
+.plans-list-item.important .plans-list-item {
     font-weight: bold;
     color:red;
     border-bottom: 2px solid red;

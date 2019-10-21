@@ -7,3 +7,22 @@
     float: left;
     font-size: 16px;
 }
+.search-panel{
+    display: flex;
+    justify-content: center;
+}
+#add-item-button{
+    border: none;
+    color: black;
+    padding: 10px 80px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: orange;
+ 
+       &:hover{
+        color: white;
+        
+       }
+ }
