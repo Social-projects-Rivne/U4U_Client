@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import './filter.scss';
 
 export default class Filter extends Component {
-  state = {
-    isActive: false,
-    value: null,
-    title: this.props.name
-  };
+  constructor(props) {
+    super(props);
+ 
+    if(!props.data || !props.getFilterValue || !props.name) {
+      throw Error("This component cant exist without next props:\n data,\n name,\n getFilterValue()\n")
+    }
 
-  toggleDropDown = (title) => {
+    this.state = {
+      isActive: false,
+      selectedItem: null
+    };
+  }
+
+  toggleDropDown = () => {
     if(!this.state.isActive) {
       this.setState({isActive: true});
     } else {
-      this.closeDropDown(null, title)
+      this.closeDropDown()
     }
   }
 
-  closeDropDown = (value, title) => {
-    this.setState({isActive: false, value: value, title: title});
+  closeDropDown = (title) => {
+    if(title) {
+      this.props.getFilterValue({from: this.props.name, value: title});
+      this.setState({selectedItem: title});
+    }
+
+    this.setState({isActive: false})
   }
 
   componentWillMount() {
@@ -37,35 +51,56 @@ export default class Filter extends Component {
       return;
     }
 
-    this.closeDropDown(null, this.props.name);
+    this.closeDropDown();
+  }
+
+  removeSelectedItem = () => {
+    this.props.getFilterValue({from: this.props.name, value: null});
+    this.setState({selectedItem: null});
   }
 
   render() {
+    const labelWidth = {
+      width: this.selectedItem ? "80%" : "100%"
+    };
+
     return (
       <div ref={node => this.node = node} className='filter'>
         <ul className={'filter-dropdown ' + (this.state.isActive ? 'filter-dropdown-active' : null)}>
-            <label className='filter-dropdown-label' onClick={() => {this.toggleDropDown(this.state.title)}}>
-              {this.state.title}
-            </label>
-            <ul className='filter-dropdown-list'>
-              <li className='filter-dropdown-item' onClick={() => {this.closeDropDown(null, this.props.name)}}>
-                {this.props.name}
-              </li>
-              {
-                this.props.data &&
-                  this.props.data.map(data => {
-                    return (
-                      <li 
-                        className='filter-dropdown-item'
-                        key={data.id} 
-                        onClick={() => {this.closeDropDown(data.id, data.title)}}
-                      >
-                        {data.title}
-                      </li>
-                    )
-                  })
-              }
-            </ul>
+          <div className='filter-dropdown-info'>
+            <div 
+              className='filter-dropdown-info-click' 
+              onClick={() => {this.toggleDropDown()}} 
+              style={labelWidth}
+            >
+              <label>
+                {this.state.selectedItem ? this.state.selectedItem : this.props.name}
+              </label>
+            </div>
+            <div 
+              className={'filter-dropdown-info-icon ' + (this.state.selectedItem ? 'filter-dropdown-info-icon-show' : null)}
+              onClick={() => {this.removeSelectedItem()}}
+            >
+              <FontAwesomeIcon icon={faTimes} size='2x'/>
+            </div>
+          </div>
+            
+          <ul className='filter-dropdown-list'>
+          {
+            this.props.data &&
+              this.props.data.map(data => {
+                return (
+                  <li 
+                    className='filter-dropdown-item'
+                    key={data.id} 
+                    onClick={() => {this.closeDropDown(data.title)}}
+                  >
+                    {data.title}
+                  </li>
+                )
+              })
+          }
+          </ul>
         </ul>
       </div>
     );

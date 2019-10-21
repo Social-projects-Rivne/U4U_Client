@@ -10,35 +10,39 @@
         box-shadow:0 -1px rgba(0,0,0,.5) inset;
         position: relative;
         
-        &-label{
-            position:relative;
-            display:flex;
-            cursor:pointer;
+        &-info {
             height: 100%;
+            position:relative;
+            cursor:pointer;
+            display:flex;
             align-items: center;
-            padding-left: 2rem;
-            font-size: 1.7rem;
-        }
-        
-        &-label:after{
-            content:"";
-            position:absolute;
-            display:block;
-            top:43%;
-            right:2rem;
-            width:0;
-            height:0;
-            border-top: 0.8rem solid rgba(0,0,0,1);
-            border-bottom:0 solid rgba(0,0,0,1);
-            border-left: 0.8rem solid transparent;
-            border-right: 0.8rem solid transparent;
-            transition:border-bottom .1s, border-top .1s .1s;
-        }
-        
-        &-active > &-label:after{
-            border-top:0 solid rgba(0,0,0,1);
-            border-bottom:0.8rem solid rgba(0,0,0,1);
-            transition:border-top .1s, border-bottom .1s .1s;
+
+            &-click {
+                display: flex;
+                align-items: center;
+                cursor:pointer;
+                height: 100%;
+            }
+
+            &-click > label{
+                padding-left: 2rem;
+                font-size: 1.7rem;
+                cursor:pointer;
+            }
+
+            &-icon {
+                display: none;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                font-size: 1.3rem;
+                margin-right: 2rem;
+                cursor: pointer;
+            }
+
+            &-icon-show {
+                display: flex;
+            }
         }
 
         &-active > &-list{

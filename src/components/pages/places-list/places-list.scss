@@ -30,17 +30,26 @@
             margin-top: 10px;
     
             &-title {
-                width: 30%;
-                font-size: 3rem;
+                width: 40%;
+                font-size: 2.6rem;
                 color: white;
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
                 padding-left: 3%;
+
+                &-wp {
+                    display: block;
+
+                    &-item {
+                        padding-top: 0.5rem;
+                        padding-bottom: 0.5rem;
+                    }
+                }
             }
     
             &-filtres {
-                width: 70%;
+                width: 60%;
                 display: flex;
                 font-size: 3rem;
                 display: flex;
@@ -80,6 +89,16 @@
                 &-title {
                     width: 100%;
                     margin-top: 1.5rem;
+
+                    &-wp {
+                        display: flex;
+                        
+                        &-item {
+                            padding-top: 0.5rem;
+                            padding-right: 2rem;
+                            padding-bottom: 0.5rem;
+                        }
+                    }
                 }
     
                 &-filtres {

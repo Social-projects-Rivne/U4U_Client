@@ -10,7 +10,7 @@ export default class ButtonLoadingMore extends Component {
             <div className='button-loading-more'>
                 <div className='button-loading-more-container'>
                     <div className='button-loading-more-container-icon'>
-                        <FontAwesomeIcon icon={faSpinner} size='2x'/>
+                        <FontAwesomeIcon icon={faSpinner} size='3x'/>
                     </div>
                     <div className='button-loading-more-container-title'>
                         <label className='button-loading-more-label'>Loading more</label>

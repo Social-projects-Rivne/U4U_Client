@@ -17,18 +17,19 @@ export default class PlacesList extends Component {
       },
       { 
         id: 2,
-        title: "Top region" 
-      },
-      { 
-        id: 3,
         title: "Best reviews" 
       },
       { 
-        id: 4,
+        id: 3,
         title: "Count reviews" 
       }
-    ]
+    ],
+    title: "All Ukrainian palces",
+    ratingFilterValue: null,
+    regionsFIlterValue: null
   };
+
+
 
   async componentDidMount() {
     try {
@@ -36,6 +37,16 @@ export default class PlacesList extends Component {
       this.setState({places: places});
     } catch (error) {
       console.log("Handle loading all places error: ", error);
+    }
+  }
+
+  getFilterValue = (data) => {
+    if(data) {
+      if(data.from === "rating") {
+        this.setState({ratingFilterValue: data.value})
+      } else if (data.from === "regions") {
+        this.setState({regionsFIlterValue: data.value})
+      }
     }
   }
 
@@ -55,15 +66,41 @@ export default class PlacesList extends Component {
 
         <div className={`places-list-container ${contentModifier}`}>
           <div className='places-list-container-header'>
-              <h1 className='places-list-container-header-title'>Top Ukraine places:</h1>
+              <div className='places-list-container-header-title'>
+                <div className='places-list-container-header-title-wp'>
+                  {
+                    this.state.ratingFilterValue 
+                    ? <div className='places-list-container-header-title-wp-item'>
+                        Rating: {this.state.ratingFilterValue}
+                      </div>
+                    : null
+                  }
+                  {
+                    this.state.regionsFIlterValue
+                    ? <div className='places-list-container-header-title-wp-item'>
+                        Region: {this.state.regionsFIlterValue}
+                      </div>
+                    : null
+                  }
+                  {
+                    !this.state.ratingFilterValue && !this.state.regionsFIlterValue
+                    ? <div className='places-list-container-header-title-wp-item'>
+                        {this.state.title}
+                      </div>
+                    : null
+                  }
+                </div>
+              </div>
               <div className='places-list-container-header-filtres'>
                 <FIlter 
                   name='rating' 
-                  data={this.fIlteRatingData}
+                  data={this.state.fIlteRatingData}
+                  getFilterValue={this.getFilterValue}
                 />
                 <FIlter 
                   name='regions' 
                   data={RegionsNames}
+                  getFilterValue={this.getFilterValue}
                 />
               </div>
           </div>
