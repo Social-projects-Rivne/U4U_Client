@@ -2,7 +2,6 @@ export default class PlansListService{
     baseUrl = `${process.env.REACT_APP_URL}api`;
     plansList = '/wishList';
 
-    constructor(){}
        async getResource(url) {
         const res = await fetch(`${this.baseUrl}${url}`);
         if (!res.ok) {

@@ -16,7 +16,7 @@ export default class MyPlansList extends Component {
                 </li>
             )
         })
-        if (planLists.length == 0) {
+        if (planLists.length === 0) {
             return (
                 <p>
                     Your plans list is empty. Add some places and enjoy travelling!

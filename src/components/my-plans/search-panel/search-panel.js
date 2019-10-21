@@ -18,7 +18,7 @@ export default class SearchPanel extends Component {
           maxLength = '50'
           placeholder="Type to add a place"
           onChange={this.onCommentChange}
-           />
+          required/>
         <button id='add-item-button'>Add</button>
       </form>
 

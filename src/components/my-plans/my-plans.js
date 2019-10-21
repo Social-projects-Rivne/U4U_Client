@@ -34,9 +34,9 @@ export default class MyPlans extends Component {
             }
         })
     }
-    addItem = (text) => {
+    addItem = (comment) => {
         const newPlan = {
-            comment: text,
+            comment: comment
         }
         console.log(this.addItem)
         this.setState(({ myPlansList }) => {
@@ -53,9 +53,9 @@ export default class MyPlans extends Component {
                     <MyPlansHeader />
                     <SearchPanel onButtonAddClick={this.addItem} />
                 </div>
-                    <MyPlansList
+                <MyPlansList
                     planLists={this.state.myPlansList}
-                    onDeleted={this.deleteItem}/>
+                    onDeleted={this.deleteItem} />
             </div>
         )
     };
