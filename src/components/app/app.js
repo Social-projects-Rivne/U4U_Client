@@ -54,9 +54,9 @@ const App = initialState => {
 
               <Route path="/singleplace/:id"
                 component={SinglePlace} />
+                <Route path="/profile"  component={Profile} /> 
 
               <Route component={Error404} />
-              <Route path="/profile"  component={Profile} /> 
             </Switch>
           </Container>
           <Footer />
