@@ -7,47 +7,39 @@ import PlaceName from './place-name/place-name';
 import PlacePhotos from './place-photos/place-photos';
 import SubHeading from './sub-heading/sub-heading';
 import Weather from './weather/weather'
-import RegionsService from '../../../services/regions-service';
 import './main-section.scss';
 
 
 export default class MainSection extends React.Component {
-  constructor(prop) {
-    super(prop);
-    this.service = new RegionsService();
+  constructor(props) {
+    super(props);
+
     this.state = {
-      place: null
+      place: props.place
     };
   }
 
-  componentDidMount() {
-    this.getPlace();
-  }
-
-  getPlace = () => {
-    this.service.getPlaces()
-      .then((place) => {
-        console.log(place);
-        this.setState({ place });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
   render() {
     if (this.state.place === null) {
       return <h1>Not found</h1>
     }
+
     const { name, photos, description } = this.state.place;
-    const { latitude, longitude } = this.state.place.coordinates;
-    console.log(this.state.place);
 
     return (
 
       <div className='main-section'>
         <div className='placename-weather'>
           <PlaceName placeName={name} />
-          <Weather latitude={latitude} longitude={longitude} />
+          {
+            this.state.place.coordinates
+            ? 
+              <Weather 
+                latitude={this.state.place.coordinates.latitude} 
+                longitude={this.state.place.coordinates.longitude} //TODO: change this workaround when all places will have coodinates
+              />
+            : null
+          }
         </div>
           <SubHeading />
           <PlacePhotos photos={photos} />
