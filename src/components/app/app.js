@@ -57,7 +57,7 @@ const App = initialState => {
                 component={SinglePlace} />
                 <Route path="/profile"  component={Profile} /> 
 
-              <Route path="/dev-places-list/" component={PlacesList} />
+              <Route path="/places-list/" component={PlacesList} />
               <Route component={Error404} />
             </Switch>
           </Container>
