@@ -1,26 +1,28 @@
-ul {
-    margin: 0;
-    padding: 0;
-    width: 90%;
-    margin: 0 auto;
-  
-  & li {
-  cursor: pointer;
-  position: relative;
-  padding: 12px 8px 12px 40px;
-  background: rgba(119, 116, 109, 0.4);
-  font-size: 18px;
-  transition: 0.2s;  
-  
-  &:nth-child(odd) {
-    background:  rgba(230, 170, 43, 0.4);;
-  }
-  &:hover {
-    background-color:orange;
-}  
-}
-}
 p{
   text-align:center;
   color: orange;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  margin: 0 auto;
+  
+  & li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: rgba(119, 116, 109, 0.4);
+    font-size: 18px;
+    transition: 0.2s;  
+    
+    &:nth-child(odd) {
+      background:  rgba(230, 170, 43, 0.4);;
+    }
+    &:hover {
+      background-color:orange;
+    }  
+  }
+}
+

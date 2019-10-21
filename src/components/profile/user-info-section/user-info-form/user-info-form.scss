@@ -1,0 +1,30 @@
+.user-info-form{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.user-info-form span{
+  display: flex;
+  margin-bottom: 1rem;
+}
+.user-info-form input{
+  display: flex;
+  margin-bottom: 2rem;
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 2.3rem;
+}
+.user-info-center{
+  display: flex;
+  flex-direction: column;
+}
+.user-info-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 65%;
+}
+.user-info-submit{
+  margin-top: 1.5rem;
+  font-size: 2.2rem;
+}

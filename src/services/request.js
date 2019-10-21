@@ -1,4 +1,3 @@
-console.log(process.env.REACT_APP_URL);
 class Request {
     _baseUrl = `${process.env.REACT_APP_URL}api`;
 

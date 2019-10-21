@@ -33,7 +33,7 @@ const User = ({ onAuth }) => {
 
       <div className="header__user-data">
         <h5>Welcome, User</h5>
-        <Link to="/my-profile" className="header__profile">Your profile</Link>
+        <Link to="/profile" className="header__profile">Your profile</Link>
         <span className='log-out-btn' onClick={handleLogOut}>Sign Out</span>
       </div>
     </div>

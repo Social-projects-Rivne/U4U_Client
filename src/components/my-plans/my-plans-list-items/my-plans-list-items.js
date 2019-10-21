@@ -10,7 +10,6 @@ export default class MyPlansListItems extends Component {
     done: false,
     important: false
   };
-
   onLabelVisitedClick = () => {
     this.setState(({ done }) => {
       return {
@@ -18,7 +17,6 @@ export default class MyPlansListItems extends Component {
       };
     });
   };
-
   onLabelImportant = () => {
     this.setState(({ important }) => {
       return {
