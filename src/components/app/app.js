@@ -14,6 +14,7 @@ import Footer from '../footer';
 import UMap from '../uMap';
 import SinglePlace from '../single-place';
 import Error404 from '../error404';
+import Profile from '../profile';
 
 const App = initialState => {
   const [state, setState] = useState({
@@ -53,6 +54,7 @@ const App = initialState => {
 
               <Route path="/singleplace/:id"
                 component={SinglePlace} />
+                <Route path="/profile"  component={Profile} /> 
 
               <Route component={Error404} />
             </Switch>
