@@ -22,18 +22,26 @@
       font-size: 2rem;
     }
 
-    & a {
+    & a, .log-out-btn {
       display: inline-block;
 
       &.header__profile {
         color: rgba(0, 255, 255, 0.7);
         margin-right: 1rem;
 
-        & ~ a {
+        & ~ a, .log-out-btn {
           color: rgba(255, 0, 0, 0.7);
         }
       }
     }
+  }
+
+  .log-out-btn {
+    color: rgba(255, 0, 0, 0.7);
+    font-size: 2rem;
+      &:hover {
+        cursor: pointer;
+      }
   }
 
   & li:last-child {
