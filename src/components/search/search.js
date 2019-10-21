@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './search.scss';
-// import search from '../../img/search.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRandom } from '@fortawesome/free-solid-svg-icons';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
@@ -23,63 +22,65 @@ class Search extends Component {
 
     return (
       <div className="search" >
-        <div className={`search__fields${results}`}>
-          <div className={`search__find`}>
-            <input type="text"
-              placeholder="Find your favorite place"
-              onChange={this.searchHandler} />
-          </div>
+        <div className="search__wrapper">
+          <div className={`search__fields${results}`}>
+            <div className={`search__find`}>
+              <input type="text"
+                placeholder="Find your favorite place"
+                onChange={this.searchHandler} />
+            </div>
 
-          <div className={`search__results`}>
-            <ul>
-              <li>
-                <Link to="/singleplace/5" >
-                  <span>Place name</span>
-                  Where is this place
-              </Link>
-              </li>
-              <li>
-                <Link to="/singleplace/5" >
-                  <span>Place name</span>
-                  Where is this place
-              </Link>
-              </li>
-              <li>
-                <Link to="/singleplace/5" >
-                  <span>Place name</span>
-                  Where is this place
-              </Link>
-              </li>
-              <li>
-                <Link to="/singleplace/5" >
-                  <span>Place name</span>
-                  Where is this place
-              </Link>
-              </li>
-              <li>
-                <Link to="/singleplace/5" >
-                  <span>Place name</span>
-                  Where is this place
-              </Link>
-              </li>
+            <div className={`search__results`}>
+              <ul>
+                <li>
+                  <Link to="/singleplace/5" >
+                    <span>Place name</span>
+                    Where is this place
+                </Link>
+                </li>
+                <li>
+                  <Link to="/singleplace/5" >
+                    <span>Place name</span>
+                    Where is this place
+                </Link>
+                </li>
+                <li>
+                  <Link to="/singleplace/5" >
+                    <span>Place name</span>
+                    Where is this place
+                </Link>
+                </li>
+                <li>
+                  <Link to="/singleplace/5" >
+                    <span>Place name</span>
+                    Where is this place
+                </Link>
+                </li>
+                <li>
+                  <Link to="/singleplace/5" >
+                    <span>Place name</span>
+                    Where is this place
+                </Link>
+                </li>
 
-              <li>
-                <Link to="/singleplace/5" >
-                  <span>Place name</span>
-                  Where is this place
-              </Link>
-              </li>
+                <li>
+                  <Link to="/singleplace/5" >
+                    <span>Place name</span>
+                    Where is this place
+                </Link>
+                </li>
 
-              <li>
-                <Link to="/singleplace/5" >
-                  <span>Place name</span>
-                  Where is this place
-              </Link>
-              </li>
-            </ul>
+                <li>
+                  <Link to="/singleplace/5" >
+                    <span>Place name</span>
+                    Where is this place
+                </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-
+        
         <div className="search__more">
           <div className="search__random">
             <FontAwesomeIcon icon={faRandom} />
