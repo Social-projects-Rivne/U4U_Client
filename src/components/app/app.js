@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useAuth from '../hocs/use-auth';
 import './app.scss';
 
-import Login from "../page/login";
+import Login from "../pages/login";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { AuthProvider } from "../contexts";
 
@@ -31,7 +31,7 @@ const App = initialState => {
     <div className="wrapper">
       <AuthProvider value={state.isAuth}>
         <Router>
-          <Header />
+          <Header onAuth={onAuth} />
           <Container>
             <Switch>
               <PrivateRoute path='/secret'

@@ -3,8 +3,6 @@ import './login.scss';
 
 import Input from "../../forms/input";
 import Button from '../../forms/buttons/button';
-import FacebookBtn from "../../forms/buttons/facebook-btn";
-import Register from "../../register/register";
 import api from '../../../services/tourist-service';
 import { Redirect, Link } from "react-router-dom";
 import { Formik, Form } from 'formik';
