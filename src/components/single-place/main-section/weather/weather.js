@@ -3,16 +3,22 @@ import './weather.scss';
 import React from 'react';
 import Temperature from "./Temperature";
 import WeatherIcon from "./WeatherIcon";
-import WeatherService from "../../../../services/weather-service"
+import WeatherService from "../../../../services/weather-service";
 
 class Weather extends React.Component {
-    weather = WeatherService;
-    state = {};
+    constructor(props) {
+        super(props);
+        this.state = {
+            latitude: props.latitude,
+            longitude: props.longitude
+        };
+        this.weather = WeatherService;
+    }
 
     componentWillMount() {
         const options = {
-            latitude: 50.4547,
-            longitude: 30.5238
+            latitude: this.state.latitude,
+            longitude: this.state.longitude
         };
         this.weather.getCurrent(options).then((res) => {
             this.setState({
@@ -34,7 +40,3 @@ class Weather extends React.Component {
 }
 
 export default Weather;
-
-
-
-
