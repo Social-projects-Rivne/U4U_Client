@@ -14,12 +14,12 @@
     }
 
     &-spinner-show {
-        display: flex;
+        display: none; //flex
     }
 
     &-container {
         width: 100%;
-        display: none;
+        display: block; //none
 
         &-header {
             width: 100%;
@@ -70,6 +70,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        @media screen and (max-width: 700px) {
+            &-header {
+                flex-wrap: unset;
+                flex-direction: column-reverse;
+    
+                &-title {
+                    width: 100%;
+                    margin-top: 1.5rem;
+                }
+    
+                &-filtres {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
         }
     }
 
