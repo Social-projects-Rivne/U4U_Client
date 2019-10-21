@@ -1,6 +1,6 @@
 
-import request from "./request"
-import { stringify } from "querystring"
+import request from "./request";
+import { stringify } from "querystring";
 
 class WeatherService {
     baseUrl = `${request._baseUrl}/weather`;

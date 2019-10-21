@@ -29,7 +29,6 @@ const WeatherIcon = (props) => {
             ? props.iconId
             : icons.default
     );
-    console.log("WeatherIcon render", props.iconId);
     return (
         <div className="weather-icon">
             <Icon size={50} color="#FFFF" />
