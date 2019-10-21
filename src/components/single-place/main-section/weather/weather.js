@@ -10,7 +10,8 @@ class Weather extends React.Component {
         super(props);
         this.state = {
             latitude: props.latitude,
-            longitude: props.longitude
+            longitude: props.longitude,
+            hideElements: true
         };
         this.weather = WeatherService;
     }
@@ -21,17 +22,32 @@ class Weather extends React.Component {
             longitude: this.state.longitude
         };
         this.weather.getCurrent(options).then((res) => {
+            if (res.ok) {
+                this.setState({
+                    weatherIcon: res.currently.icon,
+                    temperature: res.currently.temperature,
+                    hideElements: false
+                });
+            } else {
+                throw res
+            }
+        }).catch((err) => {
+            console.error(err);
             this.setState({
-                weatherIcon: res.currently.icon,
-                temperature: res.currently.temperature
+                hideElements: true
             });
-        }).catch(console.error);
+        });
     }
 
     render() {
         const { weatherIcon, temperature } = this.state;
+        const style = (
+            this.state.hideElements
+            ? { visibility: "hidden" }
+            : {}
+        );
         return (
-            <div className="weather-info">
+            <div className="weather-info" style={style}>
                 <WeatherIcon iconId={weatherIcon} />
                 <Temperature value={temperature} size="4x" />
             </div>
