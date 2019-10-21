@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Spiner from '../spinner';
-import { Redirect } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import './place-card.scss';
 
 export default class PlaceCard extends Component {
@@ -12,8 +12,7 @@ export default class PlaceCard extends Component {
         }
     
         this.state = {
-            photoLoadState: false,
-            redirectToPlace: null
+            photoLoadState: false
         };
       }
 
@@ -21,15 +20,9 @@ export default class PlaceCard extends Component {
         this.setState({photoLoadState: true})
     }
 
-    clickCard = () => {
-        this.setState({redirectToPlace: true})
-    }
-
     render() {
         const spinerModifier = (this.state.photoLoadState) ? '' : ' place-card-spinner-show'
         const cardModifier = (this.state.photoLoadState) ? ' place-card-show' : ''
-
-        if (this.state.redirectToPlace) return <Redirect to={`singleplace/${this.props.id}`}/>
 
         return (
             <div className='place-card-container'>
@@ -37,14 +30,16 @@ export default class PlaceCard extends Component {
                     <Spiner />
                 </div>
 
-                <div className ={`place-card ${cardModifier}`} onClick={() => {this.clickCard()}}>
-                    <img 
-                        src={this.props.photo} 
-                        alt={this.props.title} 
-                        onLoad={() => { this.onImageLoaded()} }
-                    />
-                    <h2>{this.props.title}</h2>
-                </div>
+                <Link to={`singleplace/${this.props.id}`} style={{ textDecoration: 'none' }}>
+                    <div className ={`place-card ${cardModifier}`}>
+                        <img 
+                            src={this.props.photo} 
+                            alt={this.props.title} 
+                            onLoad={() => { this.onImageLoaded()} }
+                        />
+                        <h2>{this.props.title}</h2>
+                    </div>
+                </Link>
             </div>
         )
     }
