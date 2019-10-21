@@ -25,7 +25,7 @@ class Weather extends React.Component {
             if (res.ok) {
                 this.setState({
                     weatherIcon: res.currently.icon,
-                    temperature: res.currently.temperature,
+                    temperature: Math.round(res.currently.temperature),
                     hideElements: false
                 });
             } else {
