@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Api from './../../../services/api.service';
+import Api from '../../../services/places.service';
 import FIlter from './filter/filter';
 import PlaceCard from './../../utils/place-card';
 import ButtonLoadingMore from './../../utils/button-loading-more';
@@ -40,30 +40,35 @@ export default class PlacesList extends Component {
   }
 
   render() {
-    const spinerModifier = (this.state.places) ? '' : ' places-list-content-spinner-show'
-    const contentModifier = (this.state.places) ? ' places-list-content-grid-show' : ''
+    const changeHeight = {
+      height: (this.state.places) ? 'auto' : '100%'
+    };
+
+    const spinerModifier = (this.state.places) ? '' : ' places-list-spinner-show'
+    const contentModifier = (this.state.places) ? ' places-list-container-show' : ''
       
     return (
-      <div className='places-list'>
-        <div className='places-list-header'>
-            <h1 className='places-list-header-title'>Top Ukraine places:</h1>
-            <div className='places-list-header-filtres'>
-              <FIlter 
-                name='rating' 
-                data={this.fIlteRatingData}
-              />
-              <FIlter 
-                name='regions' 
-                data={RegionsNames}
-              />
-            </div>
+      <div className='places-list' style={changeHeight}>
+        <div className={`places-list-spiner ${spinerModifier}`}>
+          <Spiner />
         </div>
-        <div className='places-list-content'>
-          <div className={`places-list-content-spiner ${spinerModifier}`}>
-              <Spiner />
+
+        <div className={`places-list-container ${contentModifier}`}>
+          <div className='places-list-container-header'>
+              <h1 className='places-list-container-header-title'>Top Ukraine places:</h1>
+              <div className='places-list-container-header-filtres'>
+                <FIlter 
+                  name='rating' 
+                  data={this.fIlteRatingData}
+                />
+                <FIlter 
+                  name='regions' 
+                  data={RegionsNames}
+                />
+              </div>
           </div>
 
-          <div className={`places-list-content-grid ${contentModifier}`}>
+          <div className='places-list-container-content'>
           {
             this.state.places &&
               this.state.places.map(place => {
@@ -77,9 +82,10 @@ export default class PlacesList extends Component {
               })
           }
           </div>
-        </div>
-        <div className='places-list-pagination'>
-          <ButtonLoadingMore/>
+
+          <div className='places-list-container-load-more'>
+            <ButtonLoadingMore/>
+          </div>
         </div>
       </div>
     );
