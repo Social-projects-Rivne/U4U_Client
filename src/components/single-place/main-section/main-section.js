@@ -27,8 +27,8 @@ export default class MainSection extends React.Component {
   getPlace = () => {
     this.service.getPlaces()
       .then((place) => {
-        console.log(place[2])
-        this.setState({ place: place[2] })
+        console.log(place);
+        this.setState({ place });
       })
       .catch((err) => {
         console.log(err);
