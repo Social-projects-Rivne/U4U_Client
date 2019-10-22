@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import { AuthProvider } from "../contexts";
 
 import PrivateRoute from "../private-route";
-
+import MyPlans from '../my-plans/my-plans';
 import Header from '../header';
 import Container from '../container';
 import Footer from '../footer';
@@ -56,6 +56,9 @@ const App = initialState => {
 
               <Route path="/singleplace/:id"
                 component={SinglePlace} />
+              <Route path="/myplans/:id"
+                component={MyPlans} />
+                <Route path="/profile"  component={Profile} /> 
 
               <Route path="/my-profile"
                 component={Profile} />

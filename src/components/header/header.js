@@ -19,7 +19,7 @@ const Header = ({ isAuth, onAuth }) => {
 
         <div className="header__nav">
           <nav className="header__navbar">
-            <Link to="/my-plans">
+            <Link to="/myplans/:id">
               MyPlans
             </Link>
 
