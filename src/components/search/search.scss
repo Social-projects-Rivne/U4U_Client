@@ -160,12 +160,17 @@
           height: 100%;
 
           & span {
-            text-align: center;
+            text-align: right;
             width: 8rem;
 
-            & svg {
-              color: #FF4500;
+            & svg {              
+              color: #ffff00;
               width: 2rem;
+
+              & path {
+                stroke-width: 2rem;
+                stroke: #FF4500;
+              }
             }
           }
         }
