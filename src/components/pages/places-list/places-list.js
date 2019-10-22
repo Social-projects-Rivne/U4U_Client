@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Api from '../../../services/places.service';
+import Api from '../../../services/places-service';
 import FIlter from './filter/filter';
 import PlaceCard from './../../utils/place-card';
 import ButtonLoadingMore from './../../utils/button-loading-more';
@@ -111,7 +111,8 @@ export default class PlacesList extends Component {
               this.state.places.map(place => {
                 return (
                   <PlaceCard 
-                    key={place._id} 
+                    key={place._id}
+                    id={place._id}
                     photo={place.photos[0]} //TODO: resolve, now hardcoded first one
                     title={place.name} 
                   />
