@@ -4,6 +4,7 @@ import './search.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRandom } from '@fortawesome/free-solid-svg-icons';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 class Search extends Component {
   state = {
@@ -96,27 +97,27 @@ class Search extends Component {
             <ul>
               <li>
                 <Link to="singleplaces/5">
-                  - Popular place <span>5 stars</span>
+                  - Popular place <span>5 <FontAwesomeIcon icon={faStar} /></span>
                 </Link>
               </li>
               <li>
                 <Link to="singleplaces/5">
-                  - Popular place <span>4.9 stars</span>
+                  - Popular place <span>4.9 <FontAwesomeIcon icon={faStar} /></span>
                 </Link>
               </li>
               <li>
                 <Link to="singleplaces/5">
-                  - Popular place <span>4.6 stars</span>
+                  - Popular place <span>4.6 <FontAwesomeIcon icon={faStar} /></span>
                 </Link>
               </li>
               <li>
                 <Link to="singleplaces/5">
-                  - Popular place <span>4.3 stars</span>
+                  - Popular place <span>4.3 <FontAwesomeIcon icon={faStar} /></span>
                 </Link>
               </li>
               <li>
                 <Link to="singleplaces/5">
-                  - Popular place <span>4.2 stars</span>
+                  - Popular place <span>4.2 <FontAwesomeIcon icon={faStar} /></span>
                 </Link>
               </li>
             </ul>
