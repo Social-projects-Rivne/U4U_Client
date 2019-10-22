@@ -15,6 +15,7 @@ import UMap from '../uMap';
 import SinglePlace from '../single-place';
 import PlacesList from '../pages/places-list';
 import Error404 from '../error404';
+import Search from '../search';
 import Profile from '../profile';
 
 const App = initialState => {
@@ -55,9 +56,16 @@ const App = initialState => {
 
               <Route path="/singleplace/:id"
                 component={SinglePlace} />
-                <Route path="/profile"  component={Profile} /> 
 
-              <Route path="/places-list/" component={PlacesList} />
+              <Route path="/my-profile"
+                component={Profile} />
+
+              <Route path="/search"
+                component={Search} />
+
+              <Route path="/places-list/"
+                component={PlacesList} />
+
               <Route component={Error404} />
             </Switch>
           </Container>
