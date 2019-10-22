@@ -27,8 +27,8 @@ export default class MainSection extends React.Component {
   getPlace = () => {
     this.service.getPlaces()
       .then((place) => {
-        console.log(place[2])
-        this.setState({ place: place[2] })
+        console.log(place);
+        this.setState({ place });
       })
       .catch((err) => {
         console.log(err);
@@ -39,6 +39,7 @@ export default class MainSection extends React.Component {
       return <h1>Not found</h1>
     }
     const { name, photos, description } = this.state.place;
+    const { latitude, longitude } = this.state.place.coordinates;
     console.log(this.state.place);
 
     return (
@@ -46,7 +47,7 @@ export default class MainSection extends React.Component {
       <div className='main-section'>
         <div className='placename-weather'>
           <PlaceName placeName={name} />
-          <Weather />
+          <Weather latitude={latitude} longitude={longitude} />
         </div>
           <SubHeading />
           <PlacePhotos photos={photos} />

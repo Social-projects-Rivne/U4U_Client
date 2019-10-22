@@ -25,4 +25,5 @@ yarn-error.log*
 
 # Idea
 /.idea
-
+.archive
+yarn.lock

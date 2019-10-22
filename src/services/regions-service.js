@@ -10,7 +10,8 @@ export default class RegionsService {
     }
 
     async getPlaces() {
-        const res = await this.getResource(`/regions/5d8a27cdfb4417205498e609/places`);
+        const url = "/regions/districts/places/5d8f8c7f0b43e2050ca9d448";
+        const res = await this.getResource(url);
         return res;
     }
 

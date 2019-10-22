@@ -17,6 +17,11 @@ class TouristService {
              })
     };
 
+    async logOut() {
+        const token = localStorage.getItem('token');
+        return await request.post('log-out', { token })
+    }
+
     register(name, email, password) {
         // return
     }

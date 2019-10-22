@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useAuth from '../hocs/use-auth';
 import './app.scss';
 
-import Login from "../page/login";
+import Login from "../pages/login";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { AuthProvider } from "../contexts";
 
@@ -13,8 +13,10 @@ import Container from '../container';
 import Footer from '../footer';
 import UMap from '../uMap';
 import SinglePlace from '../single-place';
+import PlacesList from '../pages/places-list';
 import Error404 from '../error404';
 import Search from '../search';
+import Profile from '../profile';
 
 const App = initialState => {
   const [state, setState] = useState({
@@ -31,7 +33,7 @@ const App = initialState => {
     <div className="wrapper">
       <AuthProvider value={state.isAuth}>
         <Router>
-          <Header />
+          <Header onAuth={onAuth} />
           <Container>
             <Switch>
               <PrivateRoute path='/secret'
@@ -55,8 +57,14 @@ const App = initialState => {
               <Route path="/singleplace/:id"
                 component={SinglePlace} />
 
+              <Route path="/my-profile"
+                component={Profile} />
+
               <Route path="/search"
                 component={Search} />
+
+              <Route path="/places-list/"
+                component={PlacesList} />
 
               <Route component={Error404} />
             </Switch>

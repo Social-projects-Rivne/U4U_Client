@@ -1,0 +1,115 @@
+.places-list {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    align-content: flex-start;
+
+    &-spiner {
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-spinner-show {
+        display: none; //flex
+    }
+
+    &-container {
+        width: 100%;
+        display: block; //none
+
+        &-header {
+            width: 100%;
+            height: 10rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 10px;
+    
+            &-title {
+                width: 40%;
+                font-size: 2.6rem;
+                color: white;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-left: 3%;
+
+                &-wp {
+                    display: block;
+
+                    &-item {
+                        padding-top: 0.5rem;
+                        padding-bottom: 0.5rem;
+                    }
+                }
+            }
+    
+            &-filtres {
+                width: 60%;
+                display: flex;
+                font-size: 3rem;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                padding-right: 3%;
+    
+                & .filter {
+                    margin-left: 2%;
+                }
+            }
+        }
+    
+        &-content {
+            height: auto;
+            display: grid;
+            padding: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+            position: relative;
+            grid-gap: 2rem;
+            width: 100%;
+        }
+    
+        &-load-more {
+            width: 100%;
+            height: 10rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 700px) {
+            &-header {
+                flex-wrap: unset;
+                flex-direction: column-reverse;
+    
+                &-title {
+                    width: 100%;
+                    margin-top: 1.5rem;
+
+                    &-wp {
+                        display: flex;
+                        
+                        &-item {
+                            padding-top: 0.5rem;
+                            padding-right: 2rem;
+                            padding-bottom: 0.5rem;
+                        }
+                    }
+                }
+    
+                &-filtres {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
+    &-container-show {
+        display: block;
+    }
+}

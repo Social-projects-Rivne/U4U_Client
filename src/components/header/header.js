@@ -7,7 +7,7 @@ import Guest from './guest';
 import User from './user';
 import isAuth from "../hocs/is-auth";
 
-const Header = ({ isAuth }) => {
+const Header = ({ isAuth, onAuth }) => {
   return (
     <header className="header">
       <div className="container">
@@ -29,7 +29,7 @@ const Header = ({ isAuth }) => {
           </nav>
 
           <div className="header__fields">
-            {isAuth ? <User />  : <Guest /> }
+            {isAuth ? <User onAuth={onAuth}  />  : <Guest /> }
 
             <li className="header__search">
               <Link to="/search">

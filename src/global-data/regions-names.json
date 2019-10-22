@@ -1,110 +1,137 @@
 [
   {
     "id": "Rivne",
+    "title": "Rivne",
     "regionName": "Rivne Region"
   },
   {
     "id": "Zhytomyr",
+    "title": "Zhytomyr",
     "regionName": "Zhytomyr Region"
   },
   {
     "id": "Zaporizhzhya",
+    "title": "Zaporizhzhya",
     "regionName": "Zaporizhzhya Region"
   },
   {
     "id": "Lutsk",
+    "title": "Lutsk",
     "regionName": "Lutsk Region"
   },
   {
     "id": "Vinnytsa",
+    "title": "Vinnytsa",
     "regionName": "Vinnytsa Region"
   },
   {
     "id": "Uzhgorod",
+    "title": "Uzhgorod",
     "regionName": "Uzhgorod Region"
   },
   {
     "id": "Ternopil",
+    "title": "Ternopil",
     "regionName": "Ternopil Region"
   },
   {
     "id": "Sumy",
+    "title": "Sumy",
     "regionName": "Sumy Region"
   },
   {
     "id": "Poltava",
+    "title": "Poltava",
     "regionName": "Poltava Region"
   },
   {
     "id": "Odesa",
+    "title": "Odesa",
     "regionName": "Odesa Region"
   },
   {
     "id": "Mykolaiv",
+    "title": "Mykolaiv",
     "regionName": "Mykolaiv Region"
   },
   {
     "id": "Lviv",
+    "title": "Lviv",
     "regionName": "Lviv Region"
   },
   {
     "id": "Luhansk",
+    "title": "Luhansk",
     "regionName": "Luhansk Region"
   },
   {
     "id": "Kropyvnytskyi",
+    "title": "Kropyvnytskyi",
     "regionName": "Kropyvnytskyi Region"
   },
   {
     "id": "Kyiv",
+    "title": "Kyiv",
     "regionName": "Kyiv Region"
   },
   {
     "id": "Kyiv_City",
+    "title": "Kyiv City",
     "regionName": "Kyiv City"
   },
   {
     "id": "Khmelnytsky",
+    "title": "Khmelnytsky",
     "regionName": "Khmelnytsky Region"
   },
   {
     "id": "Kherson",
+    "title": "Kherson",
     "regionName": "Kherson Region"
   },
   {
     "id": "Kharkiv",
+    "title": "Kharkiv",
     "regionName": "Kharkiv Region"
   },
   {
     "id": "Ivano-Frankivsk",
+    "title": "Ivano-Frankivsk",
     "regionName": "Ivano-Frankivsk Region"
   },
   {
     "id": "Donetsk",
+    "title": "Donetsk",
     "regionName": "Donetsk Region"
   },
   {
     "id": "Dnipro",
+    "title": "Dnipro",
     "regionName": "Dnipro Region"
   },
   {
     "id": "Chernivtsi",
+    "title": "Chernivtsi",
     "regionName": "Chernivtsi Region"
   },
   {
     "id": "Chernihiv",
+    "title": "Chernihiv",
     "regionName": "Chernihiv Region"
   },
   {
     "id": "Cherkasy",
+    "title": "Cherkasy",
     "regionName": "Cherkasy Region"
   },
   {
     "id": "Crimea",
+    "title": "Crimea",
     "regionName": "Crimea Region"
   },
   {
     "id": "Sevastopol_City",
+    "title": "Sevastopol City",
     "regionName": "Sevastopol City"
   }
 ]
