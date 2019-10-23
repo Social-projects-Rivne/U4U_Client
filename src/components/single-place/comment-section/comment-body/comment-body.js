@@ -13,17 +13,17 @@ export default class CommentBody extends Component {
   }
 
   mark = (value) => {
-    this.setState({ mark: value, selected: true });
+    this.setState({ mark: value, selected: true, commentError: false });
   }
 
   onChange = () => {
-    this.setState({selected: false})
+    this.setState({selected: false, mark: null})
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    const {comment} = this.state;
-    if(comment.length <= 2){
+    const {comment, mark} = this.state;
+    if(comment.length <= 2 || mark === null){
       this.setState({commentError: true})
     }
     else{
@@ -53,7 +53,7 @@ export default class CommentBody extends Component {
     const rating = selected ? 'd-none' : 'rating-container';
     const message = selected ? 'thanks_message' : 'd-none';
 
-    const error = commentError ? 'Comment length must be bigger then 2' : '';
+    const error = commentError ? 'Pleace enter comment and mark' : '';
     return (
       <div className='comment-body'>
         <p className='comment-sharing'>Share your advantures about this place...</p>
