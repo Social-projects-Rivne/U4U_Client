@@ -19,9 +19,10 @@ export default class CommentBody extends Component {
       this.setState({commentError: false})
 
       const jwt = localStorage.getItem('token');
+      const { placeId } = this.props;
 
-      //place Id is hardcode becouse we have not place ID from main page, Rating is hardCode becouse we havenot rating stars component
-      api.comment({userJwt: jwt, comment: comment, placeId:'5d8f77580b43e2050ca9d43f', rating: 5}) // --- hardcode
+      // Rating is hardCode becouse we havenot rating stars component
+      api.comment({userJwt: jwt, comment: comment, placeId: placeId, rating: 5}) // --- hardcode
       .then(() => {
           console.log('Success');
       })

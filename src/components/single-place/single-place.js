@@ -25,6 +25,9 @@ export default class SinglePlace extends Component {
 
   render() {
     const loading = (!this.state.place ? false : true);
+
+    const { match: { params } } = this.props;
+    const placeId = params.id;
     return (
       <div className='single-place'>
         <div className= 'main-comment-sections'> 
@@ -32,7 +35,7 @@ export default class SinglePlace extends Component {
           loading
           ? <div>
               <MainSection place={this.state.place}/>
-              <CommentSection />
+              <CommentSection placeId={placeId} />
             </div>
           : <Spinner/>
         }
