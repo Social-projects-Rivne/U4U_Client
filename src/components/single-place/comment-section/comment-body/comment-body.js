@@ -54,7 +54,7 @@ export default class CommentBody extends Component {
       <div className='comment-body'>
         <p className='comment-sharing'>Share your advantures about this place...</p>
         <form onSubmit={this.onSubmit}>
-          <textarea name='comment' placeholder='Tell something about this place, please :)' className='comment' onChange={this.onComment}></textarea>
+          <textarea required name='comment' placeholder='Tell something about this place, please :)' className='comment' onChange={this.onComment}></textarea>
           <p className='message'>{error}</p>
           <div className={rating}>
             <Rating value={1} onStar={this.mark} />
