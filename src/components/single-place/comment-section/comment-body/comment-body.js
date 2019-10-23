@@ -8,11 +8,12 @@ export default class CommentBody extends Component {
   state = {
     comment: null,
     commentError: false,
-    mark: null
+    mark: null,
+    selected: false
   }
 
   mark = (value) => {
-    this.setState({ mark: value });
+    this.setState({ mark: value, selected: true });
   }
 
   onSubmit = (e) => {
@@ -43,7 +44,10 @@ export default class CommentBody extends Component {
   }
 
   render() {
-    const {commentError} = this.state;
+    const {commentError, selected, mark} = this.state;
+
+    const rating = selected ? 'd-none' : 'rating-container';
+    const message = selected ? 'thanks_message' : 'd-none';
 
     const error = commentError ? 'Comment length must be bigger then 2' : '';
     return (
@@ -52,12 +56,15 @@ export default class CommentBody extends Component {
         <form onSubmit={this.onSubmit}>
           <textarea name='comment' placeholder='Tell something about this place, please :)' className='comment' onChange={this.onComment}></textarea>
           <p className='message'>{error}</p>
-          <div className='rating-container'>
+          <div className={rating}>
             <Rating value={1} onStar={this.mark} />
             <Rating value={2} onStar={this.mark} />
             <Rating value={3} onStar={this.mark} />
             <Rating value={4} onStar={this.mark}/>
             <Rating value={5} onStar={this.mark}/>
+          </div>
+          <div className={message}>
+            <p className='message_thanks'>Thanks for your mark " {mark} " ;)</p>
           </div>
           <input type='submit' id='comment-button' value='Send'></input> 
         </form>

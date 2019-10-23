@@ -62,6 +62,19 @@
         margin: 10px 0px;
         width: 25%;
     }
-
+    .d-none{
+        display: none;
+    }
+    .thanks_message{
+        display: flex;
+        justify-content: flex-start;
+        margin: 10px 0px;
+        width: 30%;
+        .message_thanks{
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+    }
 }
 
