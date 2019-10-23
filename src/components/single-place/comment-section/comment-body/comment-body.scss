@@ -19,6 +19,7 @@
         padding: .5rem 1rem;
         border-radius: 5px;
         border: none;
+        outline: none;
     }
     & #comment-button {
         margin: 0 auto;
@@ -69,11 +70,15 @@
         display: flex;
         justify-content: flex-start;
         margin: 10px 0px;
-        width: 30%;
+        width: 35%;
         .message_thanks{
             font-size: 18px;
             color: #ffffff;
             font-weight: bold;
+        }
+        .revert{
+            cursor: pointer;
+            color: goldenrod;
         }
     }
 }

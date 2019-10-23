@@ -16,6 +16,10 @@ export default class CommentBody extends Component {
     this.setState({ mark: value, selected: true });
   }
 
+  onChange = () => {
+    this.setState({selected: false})
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     const {comment} = this.state;
@@ -64,7 +68,7 @@ export default class CommentBody extends Component {
             <Rating value={5} onStar={this.mark}/>
           </div>
           <div className={message}>
-            <p className='message_thanks'>Thanks for your mark " {mark} " ;)</p>
+            <p className='message_thanks'>Thanks for your mark " {mark} " <i onClick={this.onChange} className='revert'>&#8634;</i></p>
           </div>
           <input type='submit' id='comment-button' value='Send'></input> 
         </form>
