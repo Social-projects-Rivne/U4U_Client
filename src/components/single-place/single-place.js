@@ -35,10 +35,10 @@ export default class SinglePlace extends Component {
           loading
           ? <div>
               <MainSection place={this.state.place}/>
-              <CommentSection placeId={placeId} />
             </div>
           : <Spinner/>
         }
+        <CommentSection placeId={placeId} />
         </div>
         < AsideSection />
       </div>
