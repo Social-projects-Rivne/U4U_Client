@@ -22,21 +22,46 @@
                 align-items: center;
                 cursor:pointer;
                 height: 100%;
+                position: relative;
+
+                &-arrow {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    font-size: 1.3rem;
+                    margin-right: 0rem;
+                    cursor: pointer;
+                    position: absolute;
+                    right: 0;
+                    width: 4.5rem;
+                    transform: rotate(0);
+                    transition-duration: $timing;
+                }
+
+                &-arrow-toggle {
+                    transform: rotate(180deg);
+                    transition-duration: $timing;
+                }
+
+                &-arrow-hide {
+                    display: none;
+                }
             }
 
             &-click > label{
-                padding-left: 2rem;
+                padding-left: 1.5rem;
                 font-size: 1.7rem;
                 cursor:pointer;
             }
 
             &-icon {
+                width: 5.5rem;
                 display: none;
                 justify-content: center;
                 align-items: center;
                 height: 100%;
-                font-size: 1.3rem;
-                margin-right: 2rem;
+                font-size: 1rem;
                 cursor: pointer;
             }
 
