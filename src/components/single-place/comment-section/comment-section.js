@@ -8,9 +8,10 @@ import './comment-section.scss';
 
 export default class CommentSection extends Component {
   render() {
+    const { placeId } = this.props;
     return (
       <div className = 'comment-section'>
-        <CommentBody />
+        <CommentBody placeId={ placeId } />
         {/* <CommentDate /> 
         <CommentAuthorMark />
        <CommentAuthorName />

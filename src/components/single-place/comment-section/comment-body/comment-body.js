@@ -30,12 +30,16 @@ export default class CommentBody extends Component {
       this.setState({commentError: false})
 
       const jwt = localStorage.getItem('token');
+      const { placeId } = this.props;
       const { mark } = this.state;
 
-      //place Id is hardcode becouse we have not place ID from main page, Rating is hardCode becouse we havenot rating stars component
-      api.comment({userJwt: jwt, comment: comment, placeId:'5d8f77580b43e2050ca9d43f', rating: mark}) // --- hardcode
+      api.comment({userJwt: jwt, comment: comment, placeId: placeId, rating: mark})
       .then(() => {
           console.log('Success');
+          this.setState({comment: '',
+            commentError: false,
+            mark: null,
+            selected: false})
       })
       .catch((err) => {
         console.log(err);
@@ -48,7 +52,7 @@ export default class CommentBody extends Component {
   }
 
   render() {
-    const {commentError, selected, mark} = this.state;
+    const {commentError, selected, mark, comment} = this.state;
 
     const rating = selected ? 'd-none' : 'rating-container';
     const message = selected ? 'thanks_message' : 'd-none';
@@ -58,7 +62,7 @@ export default class CommentBody extends Component {
       <div className='comment-body'>
         <p className='comment-sharing'>Share your advantures about this place...</p>
         <form onSubmit={this.onSubmit}>
-          <textarea required name='comment' placeholder='Tell something about this place, please :)' className='comment' onChange={this.onComment}></textarea>
+          <textarea required name='comment' value={comment} placeholder='Tell something about this place, please :)' className='comment' onChange={this.onComment}></textarea>
           <p className='message'>{error}</p>
           <div className={rating}>
             <Rating value={1} onStar={this.mark} />
