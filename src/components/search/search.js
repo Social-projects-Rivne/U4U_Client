@@ -6,82 +6,102 @@ import { faRandom } from '@fortawesome/free-solid-svg-icons';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-class Search extends Component {
+import SearchService from '../../services/search-services'
+
+export default class Search extends Component {
+  searchService = new SearchService()
+
   state = {
-    searching: false
+    placesList: [],
+    districtsList: [],
+    regionsList: [],
+    reviewsList: [],
+    searchStatus: false,
+    looking: ''
+  }
+
+  componentDidMount() {
+    Promise.all([
+      this.searchService.getAllPlaces(),
+      this.searchService.getAllDistricts(),
+      this.searchService.getAllRegions(),
+      this.searchService.getAllReviews()
+    ])
+      .then(([ places, district, region, review ]) => {
+        this.setState({
+          placesList: places,
+          districtsList: district,
+          regionsList: region,
+          reviewsList: review
+        })
+      })
   }
 
   searchHandler = (e) => {
     this.setState({
-      searching: (e.target.value !== '') ? true : false
+      searchStatus: (e.target.value !== '') ? true : false,
+      looking: e.target.value
     })
   }
 
+  renderPlaces(arr) {
+    return arr
+      .filter((place) => place.name
+        .toLowerCase()
+        .match(this.state.looking.toLowerCase()))
+      .map((p) => {
+        const district = (this.state.districtsList.filter(({ id }) => id === p.districtId))[0].name
+        const region = (this.state.regionsList.filter(({ id }) => id === p.regionId))[0].name
+
+        return (
+          <li key={p.id}>
+            <Link to="/singleplace/5" >
+              <span>{p.name}</span>
+              {region} Region, {district} District.
+            </Link>
+          </li>
+        )
+      })
+  }
+
+  renderPopular(arr) {
+    return arr
+      .slice(0, 5)
+      .map((p) => {
+        return (
+          <li key={p.id}>
+            <Link to="singleplaces/5">
+              - {p.name}<span>4.2 stars</span>
+            </Link>
+          </li>
+        )
+      })
+  }
+
   render() {
-    const { searching } = this.state
-    const results = (searching) ? ' results' : ''
+    const { searchStatus, placesList } = this.state
+    const results = (searchStatus) ? ' results' : ''
+    const places = this.renderPlaces(placesList)
+    const popular = this.renderPopular(placesList)
 
     return (
       <div className="search" >
         <div className="search__wrapper">
           <div className={`search__fields${results}`}>
-            <div className={`search__find`}>
+            <div className="search__find">
               <input type="text"
                 placeholder="Find your favorite place"
                 onChange={this.searchHandler} />
             </div>
 
-            <div className={`search__results`}>
+            <div className="search__results">
               <ul>
-                <li>
-                  <Link to="/singleplace/5" >
-                    <span>Place name</span>
-                    Where is this place
-                </Link>
-                </li>
-                <li>
-                  <Link to="/singleplace/5" >
-                    <span>Place name</span>
-                    Where is this place
-                </Link>
-                </li>
-                <li>
-                  <Link to="/singleplace/5" >
-                    <span>Place name</span>
-                    Where is this place
-                </Link>
-                </li>
-                <li>
-                  <Link to="/singleplace/5" >
-                    <span>Place name</span>
-                    Where is this place
-                </Link>
-                </li>
-                <li>
-                  <Link to="/singleplace/5" >
-                    <span>Place name</span>
-                    Where is this place
-                </Link>
-                </li>
-
-                <li>
-                  <Link to="/singleplace/5" >
-                    <span>Place name</span>
-                    Where is this place
-                </Link>
-                </li>
-
-                <li>
-                  <Link to="/singleplace/5" >
-                    <span>Place name</span>
-                    Where is this place
-                </Link>
-                </li>
+                {places}
               </ul>
             </div>
           </div>
         </div>
-        
+
         <div className="search__more">
           <div className="search__random">
             <FontAwesomeIcon icon={faRandom} />
@@ -95,31 +115,12 @@ class Search extends Component {
             </h2>
 
             <ul>
-              <li>
-                <Link to="singleplaces/5">
-                  - Popular place <span>5 <FontAwesomeIcon icon={faStar} /></span>
-                </Link>
-              </li>
-              <li>
-                <Link to="singleplaces/5">
-                  - Popular place <span>4.9 <FontAwesomeIcon icon={faStar} /></span>
-                </Link>
-              </li>
-              <li>
-                <Link to="singleplaces/5">
-                  - Popular place <span>4.6 <FontAwesomeIcon icon={faStar} /></span>
-                </Link>
-              </li>
-              <li>
-                <Link to="singleplaces/5">
-                  - Popular place <span>4.3 <FontAwesomeIcon icon={faStar} /></span>
-                </Link>
-              </li>
-              <li>
+              {popular}
+              {/* <li>
                 <Link to="singleplaces/5">
                   - Popular place <span>4.2 <FontAwesomeIcon icon={faStar} /></span>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -127,5 +128,3 @@ class Search extends Component {
     )
   }
 }
-
-export default Search
