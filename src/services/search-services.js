@@ -11,48 +11,27 @@ export default class SearchService {
     return body
   }
 
-  async getAllPlaces() {
-    const res = await this.getResourse('/regions/districts/places/')
-    return res.map(this._transformPlaces)
+  async getSearchData() {
+    const res = await this.getResourse('/search/')
+    return res.map(this._transformSearchData)
   }
-  async getAllDistricts() {
-    const res = await this.getResourse(`/regions/districts/`)
-    return res.map(this._transformDistricts)
-  }
-  async getAllRegions() {
-    const res = await this.getResourse(`/regions/`)
-    return res.map(this._transformRegions)
-  }
-  async getAllReviews() {
-    const res = await this.getResourse(`/reviews/`)
-    return res.map(this._transformReviews)
+  async getSearchStar() {
+    const res = await this.getResourse('/search/stars/')
+    return res.map(this._transformSearchStar)
   }
 
-  _transformPlaces = (place) => {
+  _transformSearchData = (place) => {
     return {
       id: place._id,
       name: place.name,
-      districtId: place.districtId,
-      regionId: place.regionId,
-      reviewsId: place.reviewsId
+      districtId: place.districtId.name,
+      regionId: place.regionId.name,
     }
   }
-  _transformDistricts = (district) => {
+  _transformSearchStar = (star) => {
     return {
-      id: district._id,
-      name: district.name
-    }
-  }
-  _transformRegions = (region) => {
-    return {
-      id: region._id,
-      name: region.name
-    }
-  }
-  _transformReviews = (review) => {
-    return {
-      id: review._id,
-      stars: review.rating
+      id: star._id,
+      stars: star.stars,
     }
   }
 }

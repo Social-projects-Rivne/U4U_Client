@@ -14,7 +14,7 @@
     &.results {
       & .search__find {
         padding: 1rem 1rem 0;
-  
+
         & input {
           border-radius: 1rem 1rem 0 0;
         }
@@ -23,12 +23,12 @@
       & .search__results {
         display: block;
       }
-  
+
       @keyframes resultsShow {
         from {
           transform: translateY(-100%);
         }
-  
+
         to {
           transform: translateY(0);
         }
@@ -139,18 +139,23 @@
   &__random {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 1rem;
-    cursor: pointer;
-    font-size: 2.5rem;
-    padding: 2rem;
 
-    &:hover {
-      background-color: rgba(153, 173, 74, 0.4);
-    }
-
-    & svg {
-      color: #FF4500;
+    & a {
+      color: rgba(0, 0, 0, 0.9);
+      display: block;
       font-size: 2.5rem;
-      margin-right: 1rem;
+      padding: 2rem;
+      text-decoration: none;
+
+      &:hover {
+        background-color: rgba(153, 173, 74, 0.4);
+      }
+
+      & svg {
+        color: #ff4500;
+        font-size: 2.5rem;
+        margin-right: 1rem;
+      }
     }
   }
 
@@ -160,7 +165,7 @@
       padding: 1rem 2rem;
 
       & svg {
-        color: #FF4500;
+        color: #ff4500;
         font-size: 2.5rem;
         margin-right: 1rem;
       }
@@ -187,13 +192,13 @@
             text-align: right;
             width: 8rem;
 
-            & svg {              
+            & svg {
               color: #ffff00;
               width: 2rem;
 
               & path {
                 stroke-width: 2rem;
-                stroke: #FF4500;
+                stroke: #ff4500;
               }
             }
           }

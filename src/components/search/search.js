@@ -12,36 +12,36 @@ export default class Search extends Component {
   searchService = new SearchService()
 
   state = {
-    placesList: [],
-    districtsList: [],
-    regionsList: [],
-    reviewsList: [],
+    searchData: [],
     searchStatus: false,
-    looking: ''
+    looking: '',
+    delay: ''
   }
 
   componentDidMount() {
     Promise.all([
-      this.searchService.getAllPlaces(),
-      this.searchService.getAllDistricts(),
-      this.searchService.getAllRegions(),
-      this.searchService.getAllReviews()
+      this.searchService.getSearchData()
     ])
-      .then(([ places, district, region, review ]) => {
+      .then(([search]) => {
         this.setState({
-          placesList: places,
-          districtsList: district,
-          regionsList: region,
-          reviewsList: review
+          searchData: search,
         })
       })
   }
 
   searchHandler = (e) => {
-    this.setState({
-      searchStatus: (e.target.value !== '') ? true : false,
-      looking: e.target.value
-    })
+    e.persist()
+
+    clearTimeout(this.timeout)
+
+    const inputData = e.target.value
+
+    this.timeout = setTimeout(() => {
+      this.setState({
+        searchStatus: (inputData !== '') ? true : false,
+        looking: inputData
+      })
+    }, 1000)
   }
 
   renderPlaces(arr) {
@@ -50,14 +50,11 @@ export default class Search extends Component {
         .toLowerCase()
         .match(this.state.looking.toLowerCase()))
       .map((p) => {
-        const district = (this.state.districtsList.filter(({ id }) => id === p.districtId))[0].name
-        const region = (this.state.regionsList.filter(({ id }) => id === p.regionId))[0].name
-
         return (
           <li key={p.id}>
-            <Link to="/singleplace/5" >
+            <Link to={`/singleplace/${p.id}`} >
               <span>{p.name}</span>
-              {region} Region, {district} District.
+              {p.regionId} Region, {p.districtId} District.
             </Link>
           </li>
         )
@@ -66,23 +63,36 @@ export default class Search extends Component {
 
   renderPopular(arr) {
     return arr
+      .sort((a, b) => {
+        return b.reviewsId - a.reviewsId
+      })
       .slice(0, 5)
       .map((p) => {
         return (
           <li key={p.id}>
-            <Link to="singleplaces/5">
-              - {p.name}<span>4.2 stars</span>
+            <Link to={`singleplace/${p.id}`}>
+              - {p.name}<span>{} <FontAwesomeIcon icon={faStar} /></span>
             </Link>
           </li>
         )
       })
   }
 
+  renderRandomPlace(arr) {
+    let newArr = []
+    arr.map((place) => {
+      return newArr.push(place.id)
+    })
+    return newArr
+  }
+
   render() {
-    const { searchStatus, placesList } = this.state
+    const { searchStatus, searchData } = this.state
     const results = (searchStatus) ? ' results' : ''
-    const places = this.renderPlaces(placesList)
-    const popular = this.renderPopular(placesList)
+    const places = this.renderPlaces(searchData)
+    const popular = this.renderPopular(searchData)
+    
+    const randomPlace = this.renderRandomPlace(searchData)[Math.floor(Math.random() * (Math.floor(searchData.length) - 1)) + 1]
 
     return (
       <div className="search" >
@@ -104,8 +114,10 @@ export default class Search extends Component {
 
         <div className="search__more">
           <div className="search__random">
-            <FontAwesomeIcon icon={faRandom} />
-            Press and see an interesting random place
+            <Link to={`/singleplace/${randomPlace}`}>
+              <FontAwesomeIcon icon={faRandom} />
+              Press and see an interesting random place
+            </Link>
           </div>
 
           <div className="search__popular">
@@ -116,11 +128,6 @@ export default class Search extends Component {
 
             <ul>
               {popular}
-              {/* <li>
-                <Link to="singleplaces/5">
-                  - Popular place <span>4.2 <FontAwesomeIcon icon={faStar} /></span>
-                </Link>
-              </li> */}
             </ul>
           </div>
         </div>
