@@ -1,7 +1,7 @@
 export default class SearchService {
   _apiBase = 'http://localhost:8080/api'
 
-  async  getResourse(url) {
+  async getResourse(url) {
     const res = await fetch(`${this._apiBase}${url}`)
 
     if (!res.ok) {
@@ -11,13 +11,17 @@ export default class SearchService {
     return body
   }
 
-  async getSearchData() {
-    const res = await this.getResourse('/search/')
+  async getSearchData(data) {
+    const res = await this.getResourse(`/search?q=${data}`)
     return res.map(this._transformSearchData)
   }
   async getSearchStar() {
     const res = await this.getResourse('/search/stars/')
     return res.map(this._transformSearchStar)
+  }
+  async getRandomPlace() {
+    const res = await this.getResourse('/search/random/')
+    return res
   }
 
   _transformSearchData = (place) => {
@@ -32,6 +36,7 @@ export default class SearchService {
     return {
       id: star._id,
       stars: star.stars,
+      name: star.name
     }
   }
 }

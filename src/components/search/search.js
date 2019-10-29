@@ -13,25 +13,25 @@ export default class Search extends Component {
 
   state = {
     searchData: [],
+    popularData: [],
+    randomId: [],
     searchStatus: false,
-    looking: '',
-    delay: ''
   }
 
   componentDidMount() {
     Promise.all([
-      this.searchService.getSearchData()
+      this.searchService.getSearchStar(),
+      this.searchService.getRandomPlace(),
     ])
-      .then(([search]) => {
+      .then(([star, random]) => {
         this.setState({
-          searchData: search,
+          popularData: star,
+          randomId: random[0].id,
         })
       })
   }
 
   searchHandler = (e) => {
-    e.persist()
-
     clearTimeout(this.timeout)
 
     const inputData = e.target.value
@@ -39,16 +39,19 @@ export default class Search extends Component {
     this.timeout = setTimeout(() => {
       this.setState({
         searchStatus: (inputData !== '') ? true : false,
-        looking: inputData
       })
+      this.searchService.getSearchData(inputData)
+        .then((search) => {
+          this.setState({
+            searchData: search,
+          })
+        })
     }, 1000)
+
   }
 
   renderPlaces(arr) {
     return arr
-      .filter((place) => place.name
-        .toLowerCase()
-        .match(this.state.looking.toLowerCase()))
       .map((p) => {
         return (
           <li key={p.id}>
@@ -63,15 +66,11 @@ export default class Search extends Component {
 
   renderPopular(arr) {
     return arr
-      .sort((a, b) => {
-        return b.reviewsId - a.reviewsId
-      })
-      .slice(0, 5)
       .map((p) => {
         return (
           <li key={p.id}>
             <Link to={`singleplace/${p.id}`}>
-              - {p.name}<span>{} <FontAwesomeIcon icon={faStar} /></span>
+              - {p.name}<span>{p.stars} <FontAwesomeIcon icon={faStar} /></span>
             </Link>
           </li>
         )
@@ -87,13 +86,11 @@ export default class Search extends Component {
   }
 
   render() {
-    const { searchStatus, searchData } = this.state
+    const { searchStatus, searchData, popularData, randomId } = this.state
     const results = (searchStatus) ? ' results' : ''
     const places = this.renderPlaces(searchData)
-    const popular = this.renderPopular(searchData)
+    const popular = this.renderPopular(popularData)
     
-    const randomPlace = this.renderRandomPlace(searchData)[Math.floor(Math.random() * (Math.floor(searchData.length) - 1)) + 1]
-
     return (
       <div className="search" >
         <div className="search__wrapper">
@@ -114,7 +111,7 @@ export default class Search extends Component {
 
         <div className="search__more">
           <div className="search__random">
-            <Link to={`/singleplace/${randomPlace}`}>
+            <Link to={`/singleplace/${randomId}`}>
               <FontAwesomeIcon icon={faRandom} />
               Press and see an interesting random place
             </Link>
