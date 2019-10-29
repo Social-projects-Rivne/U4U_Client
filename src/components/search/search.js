@@ -35,19 +35,23 @@ export default class Search extends Component {
     clearTimeout(this.timeout)
 
     const inputData = e.target.value
-
-    this.timeout = setTimeout(() => {
-      this.setState({
-        searchStatus: (inputData !== '') ? true : false,
-      })
-      this.searchService.getSearchData(inputData)
-        .then((search) => {
-          this.setState({
-            searchData: search,
-          })
+    if (inputData !== '') {
+      this.timeout = setTimeout(() => {
+        this.setState({
+          searchStatus: true,
         })
-    }, 1000)
-
+        this.searchService.getSearchData(inputData)
+          .then((search) => {
+            this.setState({
+              searchData: search,
+            })
+          })
+      }, 1000)
+    } else {
+      this.setState({
+        searchStatus: false,
+      })
+    }
   }
 
   renderPlaces(arr) {
@@ -90,7 +94,7 @@ export default class Search extends Component {
     const results = (searchStatus) ? ' results' : ''
     const places = this.renderPlaces(searchData)
     const popular = this.renderPopular(popularData)
-    
+
     return (
       <div className="search" >
         <div className="search__wrapper">
