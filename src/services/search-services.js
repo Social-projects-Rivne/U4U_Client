@@ -35,7 +35,7 @@ export default class SearchService {
   _transformSearchStar = (star) => {
     return {
       id: star._id,
-      stars: star.stars,
+      rating: star.ratingAvg,
       name: star.name
     }
   }

@@ -74,7 +74,7 @@ export default class Search extends Component {
         return (
           <li key={p.id}>
             <Link to={`singleplace/${p.id}`}>
-              - {p.name}<span>{p.stars} <FontAwesomeIcon icon={faStar} /></span>
+              - {p.name}<span>{p.rating} <FontAwesomeIcon icon={faStar} /></span>
             </Link>
           </li>
         )
