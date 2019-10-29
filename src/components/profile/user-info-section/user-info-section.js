@@ -6,15 +6,14 @@ import UserInfo from "./user-info";
 import "./user-info-section.scss";
 
 export default class UserInfoSection extends Component {
-
   state = {
     editState: false
   };
-  
+
   editProfile = () => {
     this.setState(({ editState }) => {
       const newEditState = !editState;
-  
+
       return {
         editState: newEditState
       };
@@ -22,15 +21,15 @@ export default class UserInfoSection extends Component {
   };
 
   render() {
-    const {editState} = this.state;
+    const { editState } = this.state;
 
     return (
       <div className="user-info-section">
         <AvatarSection />
         {editState === false ? (
-          <UserInfoForm editProfile={this.editProfile} />
-        ) : (
           <UserInfo editProfile={this.editProfile} />
+        ) : (
+          <UserInfoForm editProfile={this.editProfile} />
         )}
       </div>
     );

@@ -4,41 +4,51 @@ import "./user-info-form.scss";
 
 export default class UserInfoForm extends Component {
   render() {
-    const {
-      editProfile
-    } = this.props;
-    
+    const { editProfile } = this.props;
+
     return (
       <form className="user-info-form" action="">
         <div className="user-info-center">
-          <span>Name</span>
-          <input className="user-info-name" type="text" name="name" />
-          <span>Surname</span>
-          <input className="user-info-surname" type="text" name="surname" />
-          <span>Nickname</span>
-          <input className="user-info-nickname" type="text" name="nickname" />
-          <span>Email</span>
-          <input className="user-info-email" type="text" name="email" />
+          <div className="user-info-center-group">
+            <span>Name</span>
+            <input className="user-info-name" type="text" name="name" />
+          </div>
+          <div className="user-info-center-group">
+            <span>Surname</span>
+            <input className="user-info-surname" type="text" name="surname" />
+          </div>
+          <div className="user-info-center-group">
+            <span>Nickname</span>
+            <input className="user-info-nickname" type="text" name="nickname" />
+          </div>
+          <div className="user-info-center-group">
+            <span>Email</span>
+            <input className="user-info-email" type="text" name="email" />
+          </div>
         </div>
         <div className="user-info-right">
-          <div className="user-info-oldpass">
+          <div className="user-info-center-group">
             <span>Old password</span>
             <input type="password" name="name" />
           </div>
-          <div className="user-info-newpass">
+          <div className="user-info-center-group">
             <span>New password</span>
             <input type="password" name="name" />
           </div>
-          <div className="user-info-repeatpass">
+          <div className="user-info-center-group">
             <span>Repeat password</span>
             <input type="password" name="name" />
           </div>
-          <div className="user-info-submit">
-            <input className="user-info-submit" type="submit" />
+          <div className="user-info-center-group buttons">
+            <div className="user-info-submit">
+              <input type="submit" />
+            </div>
+            <div className="user-info-view">
+              <button className="user-info-edit" onClick={editProfile}>
+                View profile
+              </button>
+            </div>
           </div>
-          <button className="user-info-edit" onClick={editProfile}>
-              View profile
-            </button>
         </div>
       </form>
     );
