@@ -214,3 +214,144 @@ body {
     font-size: 4px;
   }
 }
+
+body {
+  & .wrapper {
+    background: url(https://images7.alphacoders.com/316/thumb-1920-316707.jpg) center / cover no-repeat;
+  }
+
+  & .header,
+  & .footer {
+    background-color: #000000;
+  }
+
+  & .header__navbar a:hover, 
+  & .header__navbar a.header__profile ~ a:hover,
+  & .header__fields a:hover,
+  & .header__fields a.header__profile ~ a:hover {
+    color: orangered;
+  }
+
+  .header__search:hover,
+  .header__search:hover a {
+    background: orangered;
+  }
+
+  & .map path.blur {
+    fill: orangered;
+  }
+
+  // &.hover {
+  //   fill: inherit;
+  // }
+
+  & .map path.visited {
+    fill: orangered;
+  }
+
+  & .map .description {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0 0 .1rem #eee;
+    color: #333;
+    display: none;
+    align-items: center;
+    font-size: 2rem;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    height: 4rem;
+    max-width: 30rem;
+    z-index: 999;
+
+    &.activeTop {
+      display: flex;
+      transform: translate(-50%, calc(-0%));
+    }
+
+    &.activeBot {
+      display: flex;
+      transform: translate(-50%, calc(-350%));
+    }
+  }
+
+  & .single-place .main-comment-sections {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  & .aside-section {
+    background-color: rgba(255, 255, 255, .6);
+    border-radius: 0 0 1rem 1rem;
+    height: 100%;
+  }
+
+  & .place-photo .prev:hover,
+  & .place-photo .next:hover {
+    background-color: orangered;
+    color: #f2f2f2;
+  }
+
+  & .stars:hover {
+    color: orangered;
+  }
+
+  & .comment-body #comment-button {
+    background-color: #fff;
+    color: #000;
+    padding: 1rem 3rem;
+  }
+
+  & .comment-body #comment-button:hover {
+    background-color: orangered;
+    color: #ffffff;
+    font-size: 14px;
+    margin: 10px 0 0;
+    transform: scale(1);
+    transition: .3s all;
+  }
+
+  & .place-card-container .place-card.place-card-show {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  & .place-card-container .place-card h2 {
+    padding: 1rem 2rem;
+    height: auto;
+  }
+
+  & .place-card-container {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  & .place-card-container .place-card {
+    border-radius: 0;
+  }
+
+  & .place-card-container a {
+    display: block;
+    // border-radius: 1rem;
+    height: 100%;
+  }
+
+  & .place-card-container:hover {
+    // box-shadow: 0 0 .5rem .2rem #fff;
+    border: 2px solid #fff;
+    // border-radius: 1rem;
+  }
+
+  & .filter-dropdown-item:hover {
+    background-color: orangered;
+    color: #ffffff;
+  }
+
+  & ::-webkit-scrollbar-thumb {
+    background: orangered;
+  }
+
+  & ::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.4); 
+  }
+}
