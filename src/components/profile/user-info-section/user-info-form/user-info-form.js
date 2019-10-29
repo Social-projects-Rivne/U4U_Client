@@ -4,6 +4,10 @@ import "./user-info-form.scss";
 
 export default class UserInfoForm extends Component {
   render() {
+    const {
+      editProfile
+    } = this.props;
+    
     return (
       <form className="user-info-form" action="">
         <div className="user-info-center">
@@ -32,6 +36,9 @@ export default class UserInfoForm extends Component {
           <div className="user-info-submit">
             <input className="user-info-submit" type="submit" />
           </div>
+          <button className="user-info-edit" onClick={editProfile}>
+              View profile
+            </button>
         </div>
       </form>
     );
