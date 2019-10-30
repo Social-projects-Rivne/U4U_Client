@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import './filter.scss';
 
 export default class Filter extends Component {
@@ -76,6 +77,18 @@ export default class Filter extends Component {
               <label>
                 {this.state.selectedItem ? this.state.selectedItem : this.props.name}
               </label>
+              <div className={
+                'filter-dropdown-info-click-arrow ' + 
+                (
+                  this.state.isActive && !this.state.selectedItem
+                  ? 'filter-dropdown-info-click-arrow-toggle' 
+                  : this.state.selectedItem
+                    ? 'filter-dropdown-info-click-arrow-hide' 
+                    : null
+                )
+              }>
+                <FontAwesomeIcon icon={faCaretDown} size='2x'/>
+              </div>
             </div>
             <div 
               className={'filter-dropdown-info-icon ' + (this.state.selectedItem ? 'filter-dropdown-info-icon-show' : null)}

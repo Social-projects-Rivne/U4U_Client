@@ -19,6 +19,7 @@
         padding: .5rem 1rem;
         border-radius: 5px;
         border: none;
+        outline: none;
     }
     & #comment-button {
         margin: 0 auto;
@@ -56,6 +57,29 @@
         width: 100%;
         height: 15px;
     }
-
+    .rating-container{
+        display: flex;
+        justify-content: flex-start;
+        margin: 10px 0px;
+        width: 25%;
+    }
+    .d-none{
+        display: none;
+    }
+    .thanks_message{
+        display: flex;
+        justify-content: flex-start;
+        margin: 10px 0px;
+        width: 40%;
+        .message_thanks{
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .revert{
+            cursor: pointer;
+            color: goldenrod;
+        }
+    }
 }
 
