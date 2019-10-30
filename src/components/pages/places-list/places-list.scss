@@ -14,12 +14,12 @@
     }
 
     &-spinner-show {
-        display: none; //flex
+        display: flex;
     }
 
     &-container {
         width: 100%;
-        display: block; //none
+        display: none;
 
         &-header {
             width: 100%;
