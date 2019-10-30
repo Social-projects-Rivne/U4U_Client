@@ -33,18 +33,22 @@ export default class MyPlans extends Component {
                 myPlansList: elementIndex
             }
         })
+        this.service.deleteWish(_id)
     }
     addItem = (comment) => {
-        const newPlan = {
-            comment: comment
+        const newComment = {
+            comment
         }
-        console.log(this.addItem)
         this.setState(({ myPlansList }) => {
-            const newPlansArray = [newPlan, ...myPlansList]
+            const newPlansArray = [newComment, ...myPlansList]
             return {
                 myPlansList: newPlansArray
             }
         })
+  
+        this.service.postWish(newComment);
+        
+    
     }
     render() {
         return (

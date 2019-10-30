@@ -25,7 +25,7 @@ export default class MyPlansList extends Component {
         }
         else {
             return (
-                <ul>
+                <ul className = 'search-items-list'>
                     {elements}
                 </ul>
             )
