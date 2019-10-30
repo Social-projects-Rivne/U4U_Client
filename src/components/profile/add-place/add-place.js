@@ -8,17 +8,23 @@ export default class AddPlace extends Component {
         <form className="add-place-form">
           <h1 className="add-place-header">Add your place</h1>
           <select className="district-selector">
-            <option>Choose district</option>
-            <option>Rivnenska</option>
-            <option>Kyivska</option>
+            <option>Choose region</option>
+            <option>Rivnenskyi</option>
+            <option>Kyivskyi</option>
+            <option>Lvivskyi</option>
+            <option>Chernigivskyi</option>
           </select>
-          <input className="add-place-title" type="text" name="title" />
+          <input 
+          className="add-place-title" 
+          type="text" 
+          name="title" 
+          placeholder="Назва місця"
+          />
           <textarea
             class="add-place-description"
             name="textarea"
             id=""
-            cols="30"
-            rows="10"
+            placeholder="Опис..."
           ></textarea>
           <div className="add-place-file-submit">
             <input className="add-place-file" type="file" />

@@ -41,10 +41,10 @@ export default class UserInfoForm extends Component {
           </div>
           <div className="user-info-center-group buttons">
             <div className="user-info-submit">
-              <input type="submit" />
+              <input className="user-info-button" type="submit" />
             </div>
             <div className="user-info-view">
-              <button className="user-info-edit" onClick={editProfile}>
+              <button className="user-info-button" onClick={editProfile}>
                 View profile
               </button>
             </div>
