@@ -218,6 +218,10 @@ body {
 body {
   & .wrapper {
     background: url(https://images7.alphacoders.com/316/thumb-1920-316707.jpg) center / cover no-repeat;
+
+    &:before {
+      background-color: rgba(0, 0, 0, .2);
+    }
   }
 
   & .header,
@@ -229,24 +233,22 @@ body {
   & .header__navbar a.header__profile ~ a:hover,
   & .header__fields a:hover,
   & .header__fields a.header__profile ~ a:hover {
-    color: orangered;
+    color: #0087d6;
   }
 
   .header__search:hover,
   .header__search:hover a {
-    background: orangered;
+    background: #0087d6;
   }
 
   & .map path.blur {
-    fill: orangered;
+    fill: #0087d6;
+    fill: #b6b6b6;
   }
 
-  // &.hover {
-  //   fill: inherit;
-  // }
-
   & .map path.visited {
-    fill: orangered;
+    fill: #0087d6;
+    fill: #b6b6b6;
   }
 
   & .map .description {
@@ -277,19 +279,20 @@ body {
     }
   }
 
-  & .single-place .main-comment-sections {
-    background-color: rgba(0, 0, 0, 0.5);
+  & .single-place .main-comment-sections,
+  & .places-list {
+    background-color: rgba(0, 0, 0, 0.7);
   }
 
   & .aside-section {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 0 0 1rem 1rem;
     height: 100%;
   }
 
   & .place-photo .prev:hover,
   & .place-photo .next:hover {
-    background-color: orangered;
+    background-color: #0087d6;
     color: #f2f2f2;
   }
 
@@ -304,7 +307,7 @@ body {
   }
 
   & .comment-body #comment-button:hover {
-    background-color: orangered;
+    background-color: #0087d6;
     color: #ffffff;
     font-size: 14px;
     margin: 10px 0 0;
@@ -338,17 +341,17 @@ body {
 
   & .place-card-container:hover {
     // box-shadow: 0 0 .5rem .2rem #fff;
-    border: 2px solid #fff;
+    border: 2px solid #0087d6;
     // border-radius: 1rem;
   }
 
   & .filter-dropdown-item:hover {
-    background-color: orangered;
+    background-color: #0087d6;
     color: #ffffff;
   }
 
   & ::-webkit-scrollbar-thumb {
-    background: orangered;
+    background: #0087d6;
   }
 
   & ::-webkit-scrollbar-track {
