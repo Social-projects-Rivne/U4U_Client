@@ -1,10 +1,10 @@
 import request from "./request";
 
-export default class PlansListService{
+export default class PlansListService {
     baseUrl = `${process.env.REACT_APP_URL}api`;
     plansList = '/wishList';
 
-       async getResource(url) {
+    async getResource(url) {
         const res = await fetch(`${this.baseUrl}${url}`);
         if (!res.ok) {
             throw new Error(`Cound not fetch ${url} received ${res.status}`);
@@ -12,39 +12,40 @@ export default class PlansListService{
         return await res.json();
     }
 
-    async getPlansList(){
+    async getPlansList() {
         const data = await this.getResource(this.plansList);
-            return data;
+        return data;
     }
-    
-    async postWish(newComment){
+
+    async postWish(newComment) {
         try {
             await request.post(this.plansList, newComment);
             console.log(newComment)
         }
         catch (error) {
-            console.log(error);     
+            console.log(error);
         }
     }
 
-    async deleteWish(_id){
+    async deleteWish(_id) {
+        debugger
         console.log(_id)
-        try{
-            await request.delete(this.plansList, _id);
+        try {
+            await request.delete(`${this.plansList}/${_id}`);
         }
-        catch (error){
+        catch (error) {
             console.log(error)
         }
     }
 
-    async markWishAsDone(doneState){
-        try{
+    async markWishAsDone(doneState) {
+        try {
             await request.put(this.plansList, doneState);
             console.log(doneState)
         }
-        catch (error){
+        catch (error) {
             console.log(error)
         }
     }
-    
+
 }

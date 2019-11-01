@@ -38,15 +38,7 @@ export default class MyPlansListItems extends Component {
     let classNames = 'plans-list-item';
     if (done) {
       classNames += ' done';
-      const doneState = {
-        done
-      }
-      
-      this.service.markWishAsDone(doneState)
-       console.log(doneState)
-       
-       
-    }
+   }
     if (important) {
       classNames += ' important';
       

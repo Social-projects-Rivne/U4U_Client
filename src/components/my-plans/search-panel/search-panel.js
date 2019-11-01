@@ -5,42 +5,73 @@ import Suggestions from '../suggestions/suggestions';
 
 export default class SearchPanel extends Component {
   state = {
-    comment:'',
-    query:[]
+    query: [],
+    inputValue: ''
   }
-  
+
   onCommentChange = (e) => {
-    const comment = e.target.value;
-    if (comment.length >= 2){
-        Api.getSearchParameters().then((query) => {
-          this.setState({query})
-        });
-   }
+    const  inputValue  = e.target.value;
+    clearTimeout(this.timeout)
+    this.setState({
+      inputValue: e.target.value
+    })
+    if (inputValue.length >= 1 && inputValue.trim()) {
+      this.timeout = setTimeout(() => {
+        Api.getSearchParameters(inputValue).then((query) => {
+          if (query.length > 0) {
+            this.setState({ query })
+          }
+          else {
+            query.push({ name: 'There is no such a place' });
+            this.setState({ query })
+          }
+        }
+        );
+      }, 400)
+    
+
+    }
+    else {
+      this.setState({ query: [] })
+    }
   };
+
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.onButtonAddClick(this.state.comment)
+    this.props.onButtonAddClick(this.state.inputValue)
     this.setState({
-      comment:''
+      inputValue: ''
     })
   };
-  render() {
+
+   render() {
+    const options = this.state.query.map(place => (
+      <li key={place._id}
+        onClick={() => {
+          this.setState({
+            inputValue: place.name
+          })
+          this.setState({ query: [] })
+        }}>
+        {place.name}
+      </li>
+    ))
     return (
-      <div className = 'search-bar'>
-      <form className='search-panel'
-        onSubmit={this.onSubmit}>
-        <input type="text"
-          className=" search-input"
-          maxLength='50'
-          placeholder="Type to add a place"
-          onChange={this.onCommentChange}
-          required 
-          // value = {this.state.comment}
+      <div className='search-bar'>
+        <form className='search-panel'
+          onSubmit={this.onSubmit}>
+          <input type="text"
+            className=" search-input"
+            maxLength='50'
+            placeholder="Type to add a place"
+            onChange={this.onCommentChange}
+            required
+            value={this.state.inputValue}
           />
-        <button type='submit' id='add-item-button'>Add</button>
-      </form>
-        <Suggestions query = {this.state.query} />
-       </div>
+          <button type='submit' id='add-item-button'>Add</button>
+        </form>
+        <ul>{options}</ul>
+      </div>
 
     );
   };

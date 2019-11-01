@@ -1,6 +1,6 @@
 import Request from './request';
 const PLACES_URL = 'regions/districts/places';
-const SEARCH_PARAM = 'places/search';
+const SEARCH_PARAM_URL = 'places/search';
 
 class Api {
     getAllPlaces = async () => {
@@ -19,9 +19,9 @@ class Api {
         }
     }
 
-    getSearchParameters = async () => {
+    getSearchParameters = async (searchInput) => {
         try {
-             return await Request.get(SEARCH_PARAM)
+            return await Request.get(`${SEARCH_PARAM_URL}/${searchInput}`)
             
         } catch (error) {
             throw new Error(error.message)

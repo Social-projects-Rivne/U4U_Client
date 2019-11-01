@@ -26,6 +26,7 @@ export default class MyPlans extends Component {
     }
     deleteItem = (_id) => {
         this.setState(({ myPlansList }) => {
+           
             const elementIndex = myPlansList.filter(function (el) {
                 return el._id !== _id
             })
@@ -37,7 +38,7 @@ export default class MyPlans extends Component {
     }
     addItem = (comment) => {
         const newComment = {
-            comment
+            comment:comment
         }
         this.setState(({ myPlansList }) => {
             const newPlansArray = [newComment, ...myPlansList]
@@ -57,7 +58,7 @@ export default class MyPlans extends Component {
                     <MyPlansHeader />
                     <SearchPanel onButtonAddClick={this.addItem} />
                 </div>
-                <MyPlansList
+                <MyPlansList 
                     planLists={this.state.myPlansList}
                     onDeleted={this.deleteItem} />
             </div>
