@@ -14,6 +14,8 @@ class TokenService {
             };
 
             console.log("Error handle get access token:", JSON.stringify(errorsObj));
+
+            return false;
         }
     };
 
@@ -38,6 +40,8 @@ class TokenService {
             };
 
             console.log("Error handle get refresh token:", JSON.stringify(errorsObj));
+
+            return false;
         }
     };
 

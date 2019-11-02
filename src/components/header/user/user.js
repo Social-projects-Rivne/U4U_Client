@@ -4,7 +4,7 @@ import './user.scss';
 import avatar from '../../../img/avatar.svg';
 import api from '../../../services/tourist-service';
 
-const User = ({ onAuth }) => {
+const User = ({ user, onAuth }) => {
 
     const [logOut, setLogOut] = useState(null);
 
@@ -32,7 +32,7 @@ const User = ({ onAuth }) => {
 			</div>
 
       <div className="header__user-data">
-        <h5>Welcome, User</h5>
+        <h5>Welcome, {user ? user.nickname : ''}</h5>
         <Link to="/profile" className="header__profile">Your profile</Link>
         <span className='log-out-btn' onClick={handleLogOut}>Sign Out</span>
       </div>

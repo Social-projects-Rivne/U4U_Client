@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import useAuth from '../hocs/use-auth';
+import React, { useState, useEffect } from 'react';
 import './app.scss';
 
 import Login from "../pages/login";
@@ -17,23 +16,45 @@ import PlacesList from '../pages/places-list';
 import Error404 from '../error404';
 import Search from '../search';
 import Profile from '../profile';
+import TokenService from "../../services/token-service";
+import UserService from "../../services/user-service";
 
 const App = initialState => {
   const [state, setState] = useState({
     isAuth: false,
+    user: null,
+  });
+
+  useEffect(() => {
+    async function getUser() {
+      try {
+       const user = await UserService.getUserData();
+
+        if(user) {
+          setState({ ...state, user: user })
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getUser();
   });
 
   const onAuth = (status) => {
     setState({ ...state, isAuth: status })
   };
 
-  const isAuth = useAuth(onAuth);
+  if(!state.isAuth) {
+    if (TokenService.getToken()) {
+      setState({ ...state, isAuth: true })
+    }
+  }
 
   return (
     <div className="wrapper">
       <AuthProvider value={state.isAuth}>
         <Router>
-          <Header onAuth={onAuth} />
+          <Header user={state.user} isAuth={state.isAuth} onAuth={onAuth} />
           <Container>
             <Switch>
               <PrivateRoute path='/secret'
@@ -46,8 +67,8 @@ const App = initialState => {
 
               <Route path='/login'
                 render={() => {
-                  if (isAuth === null) return 'loading';
-                  if (isAuth) {
+                  if (state.isAuth === null) return 'loading';
+                  if (state.isAuth) {
                     return <Redirect to='/' />;
                   }
 
