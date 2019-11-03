@@ -217,11 +217,15 @@ body {
 
 body {
   & .wrapper {
-    background: url(https://images7.alphacoders.com/316/thumb-1920-316707.jpg) center / cover no-repeat;
+    background: url(../../img/background.jpg) center bottom / cover no-repeat ;
 
     &:before {
-      background-color: rgba(0, 0, 0, .2);
+      background-color: rgba(0, 0, 0, 0);
     }
+  }
+
+  & .map__svg svg {
+    filter: drop-shadow(0 -20px 10px black);
   }
 
   & .header,
@@ -233,12 +237,12 @@ body {
   & .header__navbar a.header__profile ~ a:hover,
   & .header__fields a:hover,
   & .header__fields a.header__profile ~ a:hover {
-    color: #0087d6;
+    color: orangered;
   }
 
   .header__search:hover,
   .header__search:hover a {
-    background: #0087d6;
+    background: orangered;
   }
 
   & .map path.blur {
