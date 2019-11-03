@@ -97,6 +97,18 @@
     width: calc(100%);
     z-index: 8;
 
+    &_nothing {
+      color: rgba(0, 0, 0, 0.9);
+      font-size: 2.5rem;
+      line-height: 3rem;
+      padding: 1rem 2rem;
+
+      &:hover {
+        background-color: #0087d6;
+        color: #ffffff;
+      }
+    }
+
     & ul {
       height: 100%;
       width: 100%;
@@ -123,7 +135,12 @@
         }
 
         &:hover {
-          background-color: rgba(153, 173, 74, 0.4);
+          background-color: #0087d6;
+
+          & a,
+          & span {
+            color: #ffffff;
+          }
         }
       }
     }
@@ -134,6 +151,7 @@
     border: none;
     border-radius: 1rem;
     box-shadow: 0 0 1rem #f2f2f2;
+    overflow: hidden;
   }
 
   &__random {
@@ -148,7 +166,8 @@
       text-decoration: none;
 
       &:hover {
-        background-color: rgba(153, 173, 74, 0.4);
+        background-color: #0087d6;
+        color: #ffffff;
       }
 
       & svg {
@@ -176,7 +195,10 @@
 
       & li {
         &:hover {
-          background-color: rgba(0, 0, 0, 0.2);
+          background-color: #0087d6;
+          & a {
+            color: #ffffff;
+          }
         }
 
         & a {
