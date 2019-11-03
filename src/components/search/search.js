@@ -37,13 +37,12 @@ export default class Search extends Component {
     const inputData = e.target.value
     if (inputData !== '') {
       this.timeout = setTimeout(() => {
-        this.setState({
-          searchStatus: true,
-        })
         this.searchService.getSearchData(inputData)
           .then((search) => {
+            console.log(search)
             this.setState({
               searchData: search,
+              searchStatus: true,
             })
           })
       }, 1000)
@@ -55,17 +54,26 @@ export default class Search extends Component {
   }
 
   renderPlaces(arr) {
-    return arr
-      .map((p) => {
-        return (
-          <li key={p.id}>
-            <Link to={`/singleplace/${p.id}`} >
-              <span>{p.name}</span>
-              {p.regionId} Region, {p.districtId} District.
+    const { searchStatus, searchData } = this.state
+    if (searchStatus === true && searchData.length === 0) {
+      return (
+        <li className="search__results_nothing">
+          We didn't find anything...
+        </li>
+      )
+    } else {
+      return arr
+        .map((p) => {
+          return (
+            <li key={p.id}>
+              <Link to={`/singleplace/${p.id}`} >
+                <span>{p.name}</span>
+                {p.regionId} Region, {p.districtId} District.
             </Link>
-          </li>
-        )
-      })
+            </li>
+          )
+        })
+    }
   }
 
   renderPopular(arr) {
