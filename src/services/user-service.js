@@ -7,12 +7,11 @@ class UserService {
             const token = TokenService.getToken();
 
             if(token) {
-                return await Request.post('/user', {"token": token});
+                return await Request.post('user', {"token": token});
             } else {
                 return Promise.reject("Invalid access token");
             }
         } catch (error) {
-            console.log(error)
             throw new Error(error.message);
         }
     };

@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import './user.scss';
 import avatar from '../../../img/avatar.svg';
 import api from '../../../services/tourist-service';
+import TokenService from '../../../services/token-service';
 
 const User = ({ user, onAuth }) => {
 
@@ -11,9 +12,8 @@ const User = ({ user, onAuth }) => {
     const handleLogOut = () => {
         api.logOut()
             .then(res => {
-                localStorage.removeItem('token');
-                localStorage.removeItem('refreshToken');
-                localStorage.removeItem('prevPath');
+                TokenService.removeToken();
+                TokenService.removeRefreshToken();
                 setLogOut(true);
                 onAuth('');
             })
