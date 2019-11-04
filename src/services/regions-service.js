@@ -8,11 +8,4 @@ export default class RegionsService {
         }
         return await res.json();
     }
-
-    async getPlaces() {
-        const url = "/regions/districts/places/5d8f8c7f0b43e2050ca9d448";
-        const res = await this.getResource(url);
-        return res;
-    }
-
 }
