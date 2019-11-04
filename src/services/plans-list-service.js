@@ -13,14 +13,14 @@ export default class PlansListService {
     }
 
     async getPlansList() {
-        const data = await this.getResource(this.plansList);
-        return data;
+        return await this.getResource(this.plansList);
+
     }
 
     async postWish(newComment) {
         try {
-            await request.post(this.plansList, newComment);
-            console.log(newComment)
+            return await request.post(this.plansList, newComment);
+
         }
         catch (error) {
             console.log(error);
@@ -28,24 +28,21 @@ export default class PlansListService {
     }
 
     async deleteWish(_id) {
-        debugger
-        console.log(_id)
+
         try {
-            await request.delete(`${this.plansList}/${_id}`);
+            return await request.delete(`${this.plansList}/${_id}`);
         }
         catch (error) {
             console.log(error)
         }
     }
 
-    async markWishAsDone(doneState) {
+    async markWish(marker) {
         try {
-            await request.put(this.plansList, doneState);
-            console.log(doneState)
+            await request.put(this.plansList, marker);
         }
         catch (error) {
             console.log(error)
         }
     }
-
 }

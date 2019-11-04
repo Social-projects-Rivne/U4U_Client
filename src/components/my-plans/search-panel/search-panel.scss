@@ -6,14 +6,10 @@
     padding: 10px;
     float: left;
     font-size: 16px;
-
-  
 }
-
 .search-panel{
     display: flex;
     justify-content: center;
-    
 }
 
 #add-item-button{
@@ -28,6 +24,29 @@
  
        &:hover{
         color: white;
-        
        }
+ }
+ #search-autocomplete-items-style{
+        ul {
+            margin: 0;
+            padding: 0;
+            width:78%;
+            margin: 0 auto;
+            
+            & li {
+                cursor: pointer;
+                position: relative;
+                padding: 13px 6px 13px 38px;
+                background: rgba(119, 116, 109, 0.4);
+                font-size: 14px;
+                transition: 0.2s;
+                border-bottom: 1px solid black;
+                
+                
+                &:hover {
+                background-color:rgb(109, 107, 99);
+                color: orange;
+                }
+              }
+     }
  }

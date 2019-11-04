@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import Api from '../../../services/places-service';
 import './search-panel.scss';
-import Suggestions from '../suggestions/suggestions';
 
 export default class SearchPanel extends Component {
   state = {
     query: [],
     inputValue: ''
   }
-
   onCommentChange = (e) => {
-    const  inputValue  = e.target.value;
+    const inputValue = e.target.value;
     clearTimeout(this.timeout)
     this.setState({
       inputValue: e.target.value
@@ -28,8 +26,6 @@ export default class SearchPanel extends Component {
         }
         );
       }, 400)
-    
-
     }
     else {
       this.setState({ query: [] })
@@ -44,7 +40,7 @@ export default class SearchPanel extends Component {
     })
   };
 
-   render() {
+  render() {
     const options = this.state.query.map(place => (
       <li key={place._id}
         onClick={() => {
@@ -63,16 +59,18 @@ export default class SearchPanel extends Component {
           <input type="text"
             className=" search-input"
             maxLength='50'
-            placeholder="Type to add a place"
+            placeholder="Search name of the place and add it to your wish list"
             onChange={this.onCommentChange}
             required
+            pattern="[A-Za-z\s]+"
             value={this.state.inputValue}
           />
           <button type='submit' id='add-item-button'>Add</button>
         </form>
-        <ul>{options}</ul>
+        <div id='search-autocomplete-items-style'>
+          <ul>{options}</ul>
+        </div>
       </div>
-
     );
   };
 };

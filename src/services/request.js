@@ -6,19 +6,19 @@ class Request {
         headers: this._getHeaders(),
     }).then(this._responseHandler(url, 'get'));
 
-     post = (url, body) => fetch(`${this._baseUrl}/${url}`, {
+    post = (url, body) => fetch(`${this._baseUrl}/${url}`, {
         method: 'POST',
         headers: this._getHeaders(),
         body: JSON.stringify(body),
     }).then(this._responseHandler(url, 'post', body));
 
-     put = (url, body) => fetch(`${this._baseUrl}/${url}`, {
+    put = (url, body) => fetch(`${this._baseUrl}/${url}`, {
         method: 'PUT',
         headers: this._getHeaders(),
         body: JSON.stringify(body),
     }).then(this._responseHandler(url, 'put', body));
 
-     delete = (url) => fetch(`${this._baseUrl}/${url}`, {
+    delete = (url) => fetch(`${this._baseUrl}/${url}`, {
         method: 'DELETE',
         headers: this._getHeaders(),
     }).then(this._responseHandler(url, 'remove'));
@@ -30,7 +30,7 @@ class Request {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
     _responseHandler = (url, method, body = {}) => async (response) => {
-        if(response.status === 401 && localStorage.getItem('refreshToken')) {
+        if (response.status === 401 && localStorage.getItem('refreshToken')) {
             const refreshToken = localStorage.getItem('refreshToken');
             try {
                 // try refresh token
@@ -43,7 +43,7 @@ class Request {
                     body: JSON.stringify({ refreshToken })
                 });
 
-                if(res.ok) {
+                if (res.ok) {
                     const { accessToken, refreshToken } = await res.json();
 
                     // set new tokens
@@ -66,13 +66,13 @@ class Request {
             }
         }
         // check status code
-        if(!response.ok) {
+        if (!response.ok) {
             return await Promise.reject(response);
         }
 
         return response.json()
             .then(res => {
-               return res;
+                return res;
             })
             .catch(err => {
                 return response;
