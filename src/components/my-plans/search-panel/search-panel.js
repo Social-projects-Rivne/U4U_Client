@@ -45,9 +45,9 @@ export default class SearchPanel extends Component {
       <li key={place._id}
         onClick={() => {
           this.setState({
-            inputValue: place.name
+            inputValue: place.name,
+            query: []
           })
-          this.setState({ query: [] })
         }}>
         {place.name}
       </li>
