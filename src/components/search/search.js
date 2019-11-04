@@ -39,7 +39,6 @@ export default class Search extends Component {
       this.timeout = setTimeout(() => {
         this.searchService.getSearchData(inputData)
           .then((search) => {
-            console.log(search)
             this.setState({
               searchData: search,
               searchStatus: true,
@@ -55,7 +54,7 @@ export default class Search extends Component {
 
   renderPlaces(arr) {
     const { searchStatus, searchData } = this.state
-    if (searchStatus === true && searchData.length === 0) {
+    if (searchStatus && !searchData.length) {
       return (
         <li className="search__results_nothing">
           We didn't find anything...

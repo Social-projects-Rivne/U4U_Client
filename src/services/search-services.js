@@ -1,42 +1,46 @@
+import Request from "./request";
+
 export default class SearchService {
-  _apiBase = 'http://localhost:8080/api'
-
-  async getResourse(url) {
-    const res = await fetch(`${this._apiBase}${url}`)
-
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, received ${res.status}`)
+  getSearchData = async data => {
+    try {
+      const res = await Request.get(`/search?q=${data}`);
+      return res.map(this._transformSearchData);
+    } catch (error) {
+      throw new Error(error.message);
     }
-    const body = await res.json()
-    return body
   }
 
-  async getSearchData(data) {
-    const res = await this.getResourse(`/search?q=${data}`)
-    return res.map(this._transformSearchData)
-  }
-  async getSearchStar() {
-    const res = await this.getResourse('/search/stars/')
-    return res.map(this._transformSearchStar)
-  }
-  async getRandomPlace() {
-    const res = await this.getResourse('/search/random/')
-    return res
+  getSearchStar = async () => {
+    try {
+      const res = await Request.get("/search/stars/");
+      return res.map(this._transformSearchStar);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
-  _transformSearchData = (place) => {
+  getRandomPlace = async () => {
+    try {
+      const res = await Request.get("/search/random/");
+      return res;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  _transformSearchData = place => {
     return {
       id: place._id,
       name: place.name,
       districtId: place.districtId.name,
-      regionId: place.regionId.name,
-    }
-  }
-  _transformSearchStar = (star) => {
+      regionId: place.regionId.name
+    };
+  };
+  _transformSearchStar = star => {
     return {
       id: star._id,
       rating: star.ratingAvg,
       name: star.name
-    }
-  }
+    };
+  };
 }
