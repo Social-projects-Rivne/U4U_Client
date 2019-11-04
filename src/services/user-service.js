@@ -1,14 +1,20 @@
 import Request from './request';
+import TokenService from './token-service';
 
-class Api {
-  getUserData = async () => {
-    try {
-      const userData = await Request.post('user');
-      return userData;
-    } catch(err) {
-      console.log(err);
-    }
-  }
+class UserService {
+    getUserData = async () => {
+        try {
+            const token = TokenService.getToken();
+
+            if(token) {
+                return await Request.post('user', {"token": token});
+            } else {
+                return Promise.reject("Invalid access token");
+            }
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    };
 }
 
-export default new Api();
+export default new UserService();

@@ -24,7 +24,7 @@ export default class PlacesList extends Component {
         title: "Count reviews" 
       }
     ],
-    title: "All Ukrainian palces",
+    title: "All Ukrainian places",
     ratingFilterValue: null,
     regionsFIlterValue: null
   };
