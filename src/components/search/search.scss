@@ -10,6 +10,30 @@
     box-shadow: 0 0 1rem #f2f2f2;
     margin-bottom: 5rem;
     overflow: hidden;
+
+    &.results {
+      & .search__find {
+        padding: 1rem 1rem 0;
+
+        & input {
+          border-radius: 1rem 1rem 0 0;
+        }
+      }
+
+      & .search__results {
+        display: block;
+      }
+
+      @keyframes resultsShow {
+        from {
+          transform: translateY(-100%);
+        }
+
+        to {
+          transform: translateY(0);
+        }
+      }
+    }
   }
 
   &__fields {
@@ -73,6 +97,19 @@
     width: calc(100%);
     z-index: 8;
 
+    &_nothing {
+      color: rgba(0, 0, 0, 0.9);
+      cursor: pointer;
+      font-size: 2.5rem;
+      line-height: 3rem;
+      padding: 1rem 2rem;
+
+      &:hover {
+        background-color: #0087d6;
+        color: #ffffff;
+      }
+    }
+
     & ul {
       height: 100%;
       width: 100%;
@@ -99,7 +136,12 @@
         }
 
         &:hover {
-          background-color: rgba(153, 173, 74, 0.4);
+          background-color: #0087d6;
+
+          & a,
+          & span {
+            color: #ffffff;
+          }
         }
       }
     }
@@ -110,23 +152,30 @@
     border: none;
     border-radius: 1rem;
     box-shadow: 0 0 1rem #f2f2f2;
+    overflow: hidden;
   }
 
   &__random {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 1rem;
-    cursor: pointer;
-    font-size: 2.5rem;
-    padding: 2rem;
 
-    &:hover {
-      background-color: rgba(153, 173, 74, 0.4);
-    }
-
-    & svg {
-      color: #FF4500;
+    & a {
+      color: rgba(0, 0, 0, 0.9);
+      display: block;
       font-size: 2.5rem;
-      margin-right: 1rem;
+      padding: 2rem;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #0087d6;
+        color: #ffffff;
+      }
+
+      & svg {
+        color: #ff4500;
+        font-size: 2.5rem;
+        margin-right: 1rem;
+      }
     }
   }
 
@@ -136,7 +185,7 @@
       padding: 1rem 2rem;
 
       & svg {
-        color: #FF4500;
+        color: #ff4500;
         font-size: 2.5rem;
         margin-right: 1rem;
       }
@@ -147,7 +196,10 @@
 
       & li {
         &:hover {
-          background-color: rgba(0, 0, 0, 0.2);
+          background-color: #0087d6;
+          & a {
+            color: #ffffff;
+          }
         }
 
         & a {
@@ -163,13 +215,13 @@
             text-align: right;
             width: 8rem;
 
-            & svg {              
+            & svg {
               color: #ffff00;
               width: 2rem;
 
               & path {
                 stroke-width: 2rem;
-                stroke: #FF4500;
+                stroke: #ff4500;
               }
             }
           }
