@@ -81,7 +81,11 @@ export default class App extends Component {
                   component={SinglePlace} />
                 <Route path="/myplans/:id"
                   component={MyPlans} />
-                  <Route path="/profile"  component={Profile} /> 
+                  <Route path="/profile"
+                  onAuth={this.onAuth}
+                  user={this.state.user}   
+                  component={Profile}
+                   />
 
                 <Route path="/my-profile"
                   component={Profile} />

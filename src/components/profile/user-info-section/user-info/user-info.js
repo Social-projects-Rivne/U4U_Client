@@ -4,19 +4,6 @@ import Api from "../../../../services/user-service";
 import "./user-info.scss";
 
 export default class UserInfo extends Component {
-  state = {
-    user: null
-  };
-  async componentDidMount() {
-    try {
-      console.log(Api.getUserData());
-      const user = await Api.getUserData();
-      this.setState({ user: user });
-    } catch (error) {
-      console.log("User search error: ", error);
-    }
-  }
-
   render() {
     return (
       <div className="user-info">
@@ -24,7 +11,7 @@ export default class UserInfo extends Component {
           <div className="user-info_center-group">
             <label>Name</label>
             <span className="user-info-name">
-              {console.log(this.state.user)}
+              {console.log(this.props)}
             </span>
           </div>
           <div className="user-info_center-group">
