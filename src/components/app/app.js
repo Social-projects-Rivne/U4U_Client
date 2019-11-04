@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import useAuth from '../hocs/use-auth';
+import React, { Component } from 'react';
 import './app.scss';
 
 import Login from "../pages/login";
@@ -17,66 +16,89 @@ import PlacesList from '../pages/places-list';
 import Error404 from '../error404';
 import Search from '../search';
 import Profile from '../profile';
+import UserService from "../../services/user-service";
 
-const App = initialState => {
-  const [state, setState] = useState({
-    isAuth: false,
-  });
+export default class App extends Component {
+  constructor(props) {
+      super(props);
 
-  const onAuth = (status) => {
-    setState({ ...state, isAuth: status })
+      this.state = {
+        isAuth: false,
+        user: null,
+        startAuth: false
+      }
+  }
+
+  async componentDidMount() {
+    await this.getUserData();
   };
 
-  const isAuth = useAuth(onAuth);
+  getUserData = async () => {
+      try {
+        this.setState({ startAuth: true });
+        const user = await UserService.getUserData();
 
-  return (
-    <div className="wrapper">
-      <AuthProvider value={state.isAuth}>
-        <Router>
-          <Header onAuth={onAuth} />
-          <Container>
-            <Switch>
-              <PrivateRoute path='/secret'
-                onAuth={onAuth}
-                auth={state.isAuth}
-                Component={() => <h1>Secret Page</h1>} />
+        this.setState({ isAuth: true, startAuth: false, user: user });
+      } catch (error) {
+        this.setState({ isAuth: false, startAuth: false, user: null });
+      }
+  }
 
-              <Route path='/'
-                exact component={UMap} />
+  onAuth = async (status) => {
+    await this.getUserData();
+  };
 
-              <Route path='/login'
-                render={() => {
-                  if (isAuth === null) return 'loading';
-                  if (isAuth) {
-                    return <Redirect to='/' />;
-                  }
+  render() {
+    return (
+      <div className="wrapper">
+        <AuthProvider value={this.state.isAuth}>
+          <Router>
+            <Header 
+              startAuth={this.state.startAuth} 
+              user={this.state.user} 
+              onAuth={this.onAuth} />
+            <Container>
+              <Switch>
+                <PrivateRoute path='/secret'
+                  onAuth={this.onAuth}
+                  auth={this.state.isAuth}
+                  Component={() => <h1>Secret Page</h1>} />
 
-                  return <Login onAuth={onAuth} />
-                }} />
+                <Route path='/'
+                  exact component={UMap} />
 
-              <Route path="/singleplace/:id"
-                component={SinglePlace} />
-              <Route path="/myplans/:id"
-                component={MyPlans} />
-                <Route path="/profile"  component={Profile} /> 
+                <Route path='/login'
+                  render={() => {
+                    if (this.state.isAuth === null) return 'loading';
+                    if (this.state.isAuth) {
+                      return <Redirect to='/' />;
+                    }
 
-              <Route path="/my-profile"
-                component={Profile} />
+                    return <Login onAuth={this.onAuth} />
+                  }} />
 
-              <Route path="/search"
-                component={Search} />
+                <Route path="/singleplace/:id"
+                  component={SinglePlace} />
+                <Route path="/myplans/:id"
+                  component={MyPlans} />
+                  <Route path="/profile"  component={Profile} /> 
 
-              <Route path="/places-list/"
-                component={PlacesList} />
+                <Route path="/my-profile"
+                  component={Profile} />
 
-              <Route component={Error404} />
-            </Switch>
-          </Container>
-          <Footer />
-        </Router>
-      </AuthProvider>
-    </div>
-  )
+                <Route path="/search"
+                  component={Search} />
+
+                <Route path="/places-list/"
+                  component={PlacesList} />
+
+                <Route component={Error404} />
+              </Switch>
+            </Container>
+            <Footer />
+          </Router>
+        </AuthProvider>
+      </div>
+    )
+  };
 };
-
-export default App;
