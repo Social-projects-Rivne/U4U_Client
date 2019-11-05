@@ -1,9 +1,4 @@
-.my-plans {
-  p {
-    text-align: center;
-    color: orange;
-  }
-
+#search-items-list{
   ul {
     margin: 0;
     padding: 0;
@@ -26,4 +21,8 @@
       }
     }
   }
+}
+#empty-list-message{
+  text-align: center;
+  color: orange;
 }

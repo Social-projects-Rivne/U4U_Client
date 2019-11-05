@@ -3,31 +3,31 @@ import MyPlansListItems from '../my-plans-list-items/my-plans-list-items';
 import './my-plans-list.scss';
 
 export default class MyPlansList extends Component {
-
     render() {
         const { planLists, onDeleted } = this.props;
         const elements = planLists.map((item) => {
-            const { _id, ...itemProps } = item;
             return (
-                <li key={_id}>
+                <li key={item._id}>
                     <MyPlansListItems
-                        {...itemProps}
-                        onDeleted={() => onDeleted(_id)} />
+                        {...item}
+                        onDeleted={() => { onDeleted(item._id) }} />
                 </li>
             )
         })
         if (planLists.length === 0) {
             return (
-                <p>
+                <p id='empty-list-message'>
                     Your plans list is empty. Add some places and enjoy travelling!
                 </p>
             )
         }
         else {
             return (
-                <ul>
-                    {elements}
-                </ul>
+                <div id='search-items-list'>
+                    <ul>
+                        {elements}
+                    </ul>
+                </div>
             )
         }
     };

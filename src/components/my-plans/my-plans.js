@@ -3,6 +3,7 @@ import MyPlansHeader from './my-plans-header/my-plans-header';
 import MyPlansList from './my-plans-list/my-plans-list';
 import SearchPanel from './search-panel/search-panel';
 import PlansListService from '../../services/plans-list-service';
+import Redirect from 'react-router-dom/es/Redirect';
 import './my-plans.scss';
 
 export default class MyPlans extends Component {
@@ -24,39 +25,57 @@ export default class MyPlans extends Component {
                 console.log(error)
             })
     }
-    deleteItem = (_id) => {
-        this.setState(({ myPlansList }) => {
-            const elementIndex = myPlansList.filter(function (el) {
-                return el._id !== _id
+    deleteItem = (id) => {
+        this.service.deleteWish(id).then((res) => {
+            this.setState(({ myPlansList }) => {
+                const elementIndex = myPlansList.filter(function (el) {
+                    return el._id !== id
+                })
+                return {
+                    myPlansList: elementIndex
+                }
             })
-            return {
-                myPlansList: elementIndex
-            }
         })
     }
+
     addItem = (comment) => {
-        const newPlan = {
-            comment: comment
-        }
-        console.log(this.addItem)
-        this.setState(({ myPlansList }) => {
-            const newPlansArray = [newPlan, ...myPlansList]
-            return {
-                myPlansList: newPlansArray
+        if ((comment) && (comment.trim() != '') && comment !== 'There is no such a place') {
+            const newComment = {
+                comment,
+                done: false,
+                inProgress: false
             }
-        })
+            this.service.postWish(newComment).then((res) => {
+                if (res.id) {
+                    newComment._id = res.id;
+                    this.setState(({ myPlansList }) => {
+                        const newPlansArray = [newComment, ...myPlansList]
+                        return {
+                            myPlansList: newPlansArray
+                        }
+                    })
+                }
+            })
+        }
+        else return;
     }
     render() {
-        return (
-            <div className="my-plans" >
-                <div className='my-plans-adding-header-section'>
-                    <MyPlansHeader />
-                    <SearchPanel onButtonAddClick={this.addItem} />
+        const jwt = localStorage.getItem('token');
+        if (!jwt) {
+            return <Redirect to='/login' />
+        }
+        else {
+            return (
+                <div className="my-plans" >
+                    <div className='my-plans-adding-header-section'>
+                        <MyPlansHeader />
+                        <SearchPanel onButtonAddClick={this.addItem} />
+                    </div>
+                    <MyPlansList
+                        planLists={this.state.myPlansList}
+                        onDeleted={this.deleteItem} />
                 </div>
-                <MyPlansList
-                    planLists={this.state.myPlansList}
-                    onDeleted={this.deleteItem} />
-            </div>
-        )
+            )
+        };
     };
-};
+}
