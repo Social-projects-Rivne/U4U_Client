@@ -4,7 +4,8 @@ import './comment-view-list.scss';
 
 export default class CommentViewList extends Component {
   render() {
-    const { commentList } = this.props;
+    const { commentList, placeId } = this.props;
+    console.log(placeId);
     const elements = commentList.map(item => {
       const { ...itemProps } = item;
       return (

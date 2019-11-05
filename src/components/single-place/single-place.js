@@ -35,6 +35,7 @@ export default class SinglePlace extends Component {
       match: { params }
     } = this.props;
     const placeId = params.id;
+
     return (
       <div className="single-place">
         <div className="main-comment-sections">

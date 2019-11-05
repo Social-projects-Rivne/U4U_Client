@@ -10,9 +10,9 @@ class reviewServise {
     });
   }
 
-  getAllComments = async () => {
+  getAllComments = async (commentId) => {
     try {
-      const reviews = await request.get('reviews');
+      const reviews = await request.get(`reviews/${commentId}`);
       return reviews;
     } catch (error) {
       throw new Error(error.message);

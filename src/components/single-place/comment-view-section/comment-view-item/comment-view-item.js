@@ -5,7 +5,6 @@ import './comment-view-item.scss';
 export default class CommentViewItem extends Component {
   render() {
     const { userId, rating, createdBy, comment } = this.props;
-    console.log(this.props);
     return (
       <div className="grid-container">
         <div className="user">{userId}</div>

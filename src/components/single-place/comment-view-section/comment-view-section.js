@@ -16,7 +16,8 @@ export default class CommentViewSection extends Component {
   }
   async componentDidMount() {
     try {
-      const comments = await reviewService.getAllComments();
+      const { placeId } = this.props;
+      const comments = await reviewService.getAllComments(placeId);
       this.setState({ CommentViewList: comments });
     } catch (error) {
       console.log('Handle loading all comments error: ', error);
