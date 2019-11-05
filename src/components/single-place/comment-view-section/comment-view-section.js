@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import CommentViewList from './comment-view-list/comment-view-list';
-//import CommentViewUser from './comment-view-user/comment-view-user';
-//import CommentViewRating from './comment-view-rating/comment-view-rating';
-//import CommentViewDate from './comment-view-date/comment-view-date';
-//import CommentViewBody from './comment-view-body/comment-view-body';
 import reviewService from '../../../services/review-service';
 import './comment-view-section.scss';
 

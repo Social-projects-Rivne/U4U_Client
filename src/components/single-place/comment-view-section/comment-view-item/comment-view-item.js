@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './comment-view-item.scss';
-//import api from '../../../../services/review-service';
 
 export default class CommentViewItem extends Component {
   render() {

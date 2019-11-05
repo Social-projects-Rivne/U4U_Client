@@ -14,7 +14,6 @@ export default class SinglePlace extends Component {
   };
 
   async componentDidMount() {
-    console.log(await reviewService.getAllComments());
     try {
       const {
         match: { params }
