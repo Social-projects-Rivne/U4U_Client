@@ -1,32 +1,40 @@
 .grid-container {
-  height: 100%;
-}
-
-.grid-container {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   grid-template-rows: 1fr 1.5fr;
   grid-template-areas: 'user rating date' 'body body body';
-  background-color: white;
+  background-color: #8080808e;
   font-size: 2rem;
+  text-align: center;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  height: 100%;
+  width: 60rem;
 }
 
 .user {
   grid-area: user;
+  padding: 5px;
 }
 
 .rating {
   grid-area: rating;
+  padding: 5px;
 }
 
 .date {
   grid-area: date;
+  padding: 5px;
 }
 
 .body {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: '. . .';
   grid-area: body;
+  text-align: left;
+  padding: 5px;
 }
