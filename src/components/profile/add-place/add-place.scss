@@ -2,6 +2,7 @@
   display: flex;
   margin: 4rem;
   color: white;
+  font-weight: bold;
 }
 .add-place form{
   width: 100%;
@@ -9,7 +10,7 @@
 .add-place input, textarea, select{
   border: none;
   border-radius: 0.7rem;
-  font-size: 2.3rem;
+  font-size: 2rem;
 }
 .add-place-header{
   display: flex;
@@ -30,9 +31,11 @@
 .add-place-file-submit{
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 .add-place-submit{
   font-size: 2rem;
   height: 50%;
   margin-top: 2rem;
+  width: 13%;
 }

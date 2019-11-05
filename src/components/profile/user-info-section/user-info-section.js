@@ -24,7 +24,7 @@ export default class UserInfoSection extends Component {
     const { editState } = this.state;
 
     return (
-      <div className="user-info-section">
+      <div className="user-info__section">
         <AvatarSection />
         {editState === false ? (
           <UserInfo editProfile={this.editProfile} />

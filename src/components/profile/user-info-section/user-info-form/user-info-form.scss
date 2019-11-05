@@ -11,19 +11,7 @@
   display: flex;
   border: none;
   border-radius: 0.7rem;
-  font-size: 2.3rem;
-}
-.user-info-center{
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-}
-.user-info-right{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 45%;
-  padding-right: 2rem;
+  font-size: 2rem;
 }
 .user-info-buttons{
   display: flex;
@@ -40,23 +28,27 @@
   width: 40%;
 }
 .user-info-button{
+  background-color: #fff;
   border: none;
   border-radius: 0.7rem;
-  font-size: 2.3rem;
+  font-size: 2rem;
 }
-.user-info-center-group{
+.user-info_center-group{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: calc(100% / 4);
 }
-.user-info-center-group.buttons{
+.user-info_center-group.buttons{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-direction: row;
   align-items: flex-end;
 }
-.user-info-center-group:not(:last-child){
+.user-info-button{
+  text-align: center;
+}
+.user-info_center-group:not(:last-child){
   margin-bottom: 2rem;
 }

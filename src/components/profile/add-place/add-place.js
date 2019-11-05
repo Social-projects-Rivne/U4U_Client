@@ -18,13 +18,13 @@ export default class AddPlace extends Component {
           className="add-place-title" 
           type="text" 
           name="title" 
-          placeholder="Назва місця"
+          placeholder="Title"
           />
           <textarea
             class="add-place-description"
             name="textarea"
             id=""
-            placeholder="Опис..."
+            placeholder="Description..."
           ></textarea>
           <div className="add-place-file-submit">
             <input className="add-place-file" type="file" />

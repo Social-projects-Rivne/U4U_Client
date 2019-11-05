@@ -5,9 +5,9 @@ import logo from './../../img/logo.svg';
 import search from './../../img/search.svg';
 import Guest from './guest';
 import User from './user';
-import isAuth from "../hocs/is-auth";
+import UserAvatarSmallSkeleton from '../utils/user-avatar-small-skeleton';
 
-const Header = ({ isAuth, onAuth }) => {
+const Header = ({ startAuth, user, onAuth }) => {
   return (
     <header className="header">
       <div className="container">
@@ -29,7 +29,13 @@ const Header = ({ isAuth, onAuth }) => {
           </nav>
 
           <div className="header__fields">
-            {isAuth ? <User onAuth={onAuth}  />  : <Guest /> }
+            {
+              startAuth 
+                ? <UserAvatarSmallSkeleton /> 
+                : user 
+                  ? <User user={user} onAuth={onAuth}  /> 
+                  : <Guest /> 
+            }
 
             <li className="header__search">
               <Link to="/search">
@@ -42,4 +48,4 @@ const Header = ({ isAuth, onAuth }) => {
     </header>)
 };
 
-export default isAuth(Header);
+export default Header;

@@ -13,7 +13,7 @@ class TokenService {
                 errors : [{ mgs: "Can`t find access token" }]
             };
 
-            console.log("Error handle get access token:", JSON.stringify(errorsObj));
+            throw new Error(JSON.stringify(errorsObj));
         }
     };
 
@@ -37,7 +37,7 @@ class TokenService {
                 errors : [{ mgs: "Can`t find refresh token" }]
             };
 
-            console.log("Error handle get refresh token:", JSON.stringify(errorsObj));
+            throw new Error(JSON.stringify(errorsObj));
         }
     };
 
