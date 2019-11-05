@@ -1,0 +1,32 @@
+.grid-container {
+  height: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1.5fr;
+  grid-template-areas: 'user rating date' 'body body body';
+  background-color: white;
+  font-size: 2rem;
+}
+
+.user {
+  grid-area: user;
+}
+
+.rating {
+  grid-area: rating;
+}
+
+.date {
+  grid-area: date;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: '. . .';
+  grid-area: body;
+}
