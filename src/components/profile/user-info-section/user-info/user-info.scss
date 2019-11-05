@@ -1,4 +1,5 @@
 .user-info{
+  // animation: userInfoForm 1s;
   display: flex;
   height: 100%;
   width: 80%;
@@ -17,11 +18,14 @@
 .user-info_center-group label{
   color: rgb(218, 218, 218);
   font-size: 1.8rem;
+  margin-bottom: 1rem;
+  min-height: 2rem;
 }
 .user-info .user-info_center-group span{
   padding-left: 1.5rem;
   font-weight: bold;
   font-size: 2rem;
+  min-height: 2rem;
 }
 .user-info__edit-button{
   background-color: #fff;
@@ -29,4 +33,18 @@
   border: none;
   border-radius: 0.7rem;
   font-size: 2rem;
+}
+.user-info_edit{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  height: 100%;
+}
+@keyframes userInfoForm {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

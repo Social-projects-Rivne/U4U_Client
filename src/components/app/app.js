@@ -82,13 +82,12 @@ export default class App extends Component {
                 <Route path="/myplans/:id"
                   component={MyPlans} />
                   <Route path="/profile"
-                  onAuth={this.onAuth}
-                  user={this.state.user}   
-                  component={Profile}
+                    render={(props) => <Profile user={this.state.user} /> }
                    />
 
-                <Route path="/my-profile"
-                  component={Profile} />
+                {/* <Route path="/my-profile"
+                  user={this.state.user}   
+                  component={Profile} /> */}
 
                 <Route path="/search"
                   component={Search} />

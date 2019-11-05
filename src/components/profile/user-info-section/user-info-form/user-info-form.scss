@@ -1,4 +1,5 @@
 .user-info-form{
+  // animation: userInfoForm 1s;
   display: flex;
   justify-content: space-around;
   width: 80%;
@@ -9,9 +10,13 @@
 }
 .user-info-form input{
   display: flex;
+  justify-content: center;
   border: none;
   border-radius: 0.7rem;
   font-size: 2rem;
+  &:focus{
+    outline: none;
+  }
 }
 .user-info-buttons{
   display: flex;
@@ -22,6 +27,9 @@
 .user-info-submit input,
 .user-info-view button{
   width: 100%;
+  &:focus{
+    outline: none;
+  }
 }
 .user-info-submit,
 .user-info-view{
@@ -37,18 +45,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100% / 4);
+  // height: calc(100% / 4);
 }
 .user-info_center-group.buttons{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   flex-direction: row;
   align-items: flex-end;
+  height: 100%;
 }
 .user-info-button{
   text-align: center;
 }
 .user-info_center-group:not(:last-child){
   margin-bottom: 2rem;
+}
+@keyframes userInfoForm {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

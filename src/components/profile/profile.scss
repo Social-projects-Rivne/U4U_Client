@@ -1,6 +1,8 @@
 .profile{
   background-color: rgba(0, 0, 0, 0.4);
 }
-.profile input:not(.add-place-file), select, textarea{
+.profile input:not(.add-place-file),
+.profile select,
+.profile textarea{
   background-color: rgb(241, 239, 239);
 }

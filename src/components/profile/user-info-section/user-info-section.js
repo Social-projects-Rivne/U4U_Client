@@ -6,6 +6,7 @@ import UserInfo from "./user-info";
 import "./user-info-section.scss";
 
 export default class UserInfoSection extends Component {
+
   state = {
     editState: false
   };
@@ -27,9 +28,9 @@ export default class UserInfoSection extends Component {
       <div className="user-info__section">
         <AvatarSection />
         {editState === false ? (
-          <UserInfo editProfile={this.editProfile} />
+          <UserInfo user={this.props.user} editProfile={this.editProfile} />
         ) : (
-          <UserInfoForm editProfile={this.editProfile} />
+          <UserInfoForm user={this.props.user} editProfile={this.editProfile} />
         )}
       </div>
     );

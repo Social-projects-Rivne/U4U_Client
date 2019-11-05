@@ -1,24 +1,33 @@
 .add-place{
   display: flex;
-  margin: 4rem;
+  padding: 5rem 4rem 0;
   color: white;
   font-weight: bold;
 }
 .add-place form{
   width: 100%;
 }
-.add-place input, textarea, select{
+.add-place input, 
+.add-place textarea, 
+.add-place select{
   border: none;
   border-radius: 0.7rem;
   font-size: 2rem;
+  padding: .5rem 1rem;
+  &:focus{
+    outline: none;
+  }
 }
 .add-place-header{
   display: flex;
   font-size: 3rem;
 }
-.district-selector, .add-place-title, .add-place-description, .add-place-file{
+.district-selector, 
+.add-place-title, 
+.add-place-description, 
+.add-place-file{
   display: flex;
-  margin: 3rem 0rem;
+  margin: 2rem 0rem;
   font-size: 2rem;
 }
 .add-place-title{
