@@ -1,4 +1,5 @@
 .avatar-section{
+  animation: userInfoForm 1s;
   width: 30%;
   padding: 0 3.5rem;
 }
@@ -7,4 +8,12 @@
   height: auto;
   border: none;
   border-radius: 0.7rem;
+}
+@keyframes userInfoForm {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
