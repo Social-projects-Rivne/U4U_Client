@@ -8,8 +8,8 @@ export default class CommentViewItem extends Component {
     return (
       <div className="grid-container">
         <div className="user">{userId}</div>
-        <div className="rating">{rating}</div>
-        <div className="date"> {createdAt} </div>
+        <div className="rating">{rating}☆</div>
+        <div className="date"> {createdAt}</div>
         <div className="body">{comment}</div>
       </div>
     );
