@@ -4,6 +4,7 @@ import MyPlansList from './my-plans-list/my-plans-list';
 import SearchPanel from './search-panel/search-panel';
 import PlansListService from '../../services/plans-list-service';
 import Redirect from 'react-router-dom/es/Redirect';
+import TokenService from './../../services/token-service';
 import './my-plans.scss';
 
 export default class MyPlans extends Component {
@@ -60,11 +61,8 @@ export default class MyPlans extends Component {
         else return;
     }
     render() {
-        const jwt = localStorage.getItem('token');
-        if (!jwt) {
-            return <Redirect to='/login' />
-        }
-        else {
+        try {
+            const jwt = TokenService.getToken();
             return (
                 <div className="my-plans" >
                     <div className='my-plans-adding-header-section'>
@@ -76,6 +74,9 @@ export default class MyPlans extends Component {
                         onDeleted={this.deleteItem} />
                 </div>
             )
-        };
+        }
+        catch (e) {
+            return <Redirect to='/login' />
+        }
     };
-}
+};

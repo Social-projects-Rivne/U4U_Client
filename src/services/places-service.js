@@ -13,7 +13,7 @@ class Api {
 
     getPlace = async (id) => {
         try {
-            return await Request.get(`${PLACES_URL}${id}`);
+            return await Request.get(`${PLACES_URL}/${id}`);
         } catch (error) {
             throw new Error(error.message)
         }
