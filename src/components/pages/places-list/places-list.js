@@ -3,7 +3,7 @@ import Api from '../../../services/places-service';
 import FIlter from './filter/filter';
 import PlaceCard from './../../utils/place-card';
 import ButtonLoadingMore from './../../utils/button-loading-more';
-import RegionsNames from  './../../../global-data/regions-names';
+import RegionsNames from  './../../../global/regions-names';
 import Spiner from './../../utils/spinner';
 import './places-list.scss';
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import "./uMap.scss";
 import MapSvg from "./mapContent/mapSvg";
-import RegionsName from "./../../global-data/regions-names.json";
+import RegionsName from "./../../global/regions-names.json";
 import Spiner from "../utils/spinner";
 
 export default class UMap extends Component {
