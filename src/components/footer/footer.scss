@@ -1,7 +1,9 @@
+@import './../../global/global.scss';
+
 /* footer style */
 .footer {
-  background-color: rgba(0, 0, 0, 0.4);
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: -2px -1px 7px 5px rgba(0,0,0,0.75);
+  background-color: $primary-color;
   position: relative;
   height: 4rem;
   width: 100%;

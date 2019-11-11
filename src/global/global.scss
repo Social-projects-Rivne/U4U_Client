@@ -1,0 +1,20 @@
+$layout-color: #e0e0e0; //#53b19f //#1b624f; $primary-color: #53b19f;
+$primary-color: #1b624f;//#e5a3ff;//#1b624f;
+$secondary-color: #ffeab4;//#ffd1f3;//#ffeab4;//#f9ffcf;//#a1ff95;//#a8ffae; //#fded82;
+$map-hover-color: #fded82;
+
+$layout-color: #e0e0e0; //#53b19f //#1b624f; $primary-color: #53b19f;
+$primary-color: #1b624f;//#e5a3ff;//#1b624f;
+$secondary-color: #ffeab4;//#ffd1f3;//#ffeab4;//#f9ffcf;//#a1ff95;//#a8ffae; //#fded82;
+$map-hover-color: #fded82;
+
+body {
+  & .header__logo {
+    display: none;
+  }
+
+  & .header__navbar a:first-child {
+    font-weight:bold;
+    border-bottom: 2px solid white;
+  }
+}

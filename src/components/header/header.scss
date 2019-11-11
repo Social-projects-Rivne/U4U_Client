@@ -1,7 +1,9 @@
+@import './../../global/global.scss';
+
 /* header styles */
 .header {
-  background-color: rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: $primary-color;
+  box-shadow: -2px 1px 7px 5px rgba(0,0,0,0.75);
   position: relative;
   height: 6rem;
   z-index: 9;
@@ -56,10 +58,8 @@
 
       &:hover,
       &.header__profile ~ a:hover {
-        background: linear-gradient(aqua, yellow);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        color: white;
+        font-weight:bold;
         position: relative;
         transform: scale(1.05);
       }
@@ -67,7 +67,6 @@
   }
 
   &__search {
-    background-color: #fff;
     display: block;
     border: none;
     border-radius: 0.5rem;
@@ -79,6 +78,7 @@
       font-size: inherit;
       line-height: normal;
       padding: 0;
+      color: white;
     }
 
     & a {
@@ -92,7 +92,6 @@
 
     &:hover,
     &:hover a {
-      background: linear-gradient(aqua, yellow);
       transform: scale(1.1);
     }
   }
