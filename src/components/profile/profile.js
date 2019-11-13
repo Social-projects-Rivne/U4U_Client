@@ -5,10 +5,22 @@ import AddPlace from "./add-place";
 import "./profile.scss";
 
 export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+ 
+    if(!props.user) {
+      
+    }
+
+    this.state = {
+      user: null
+    };
+  }
+  
   render() {
     return (
       <div className="profile">
-        <UserInfoSection />
+        <UserInfoSection user={this.props.user} />
         <AddPlace />
       </div>
     );

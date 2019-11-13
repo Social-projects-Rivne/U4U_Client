@@ -8,7 +8,7 @@ export default class AvatarSection extends Component {
       <div className="avatar-section">
         <img
           className="avatar"
-          src="https://oc2.ocstatic.com/images/logo_small.png"
+          src="https://news.artnet.com/app/news-upload/2015/06/duane_hanson_tourists_2-e1435570367600.jpg"
           alt="avatar"
         />
       </div>

@@ -81,10 +81,13 @@ export default class App extends Component {
                   component={SinglePlace} />
                 <Route path="/myplans/:id"
                   component={MyPlans} />
-                  <Route path="/profile"  component={Profile} /> 
+                  <Route path="/profile"
+                    render={(props) => <Profile user={this.state.user} /> }
+                   />
 
-                <Route path="/my-profile"
-                  component={Profile} />
+                {/* <Route path="/my-profile"
+                  user={this.state.user}   
+                  component={Profile} /> */}
 
                 <Route path="/search"
                   component={Search} />
