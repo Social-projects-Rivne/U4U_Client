@@ -26,10 +26,15 @@ class Api {
         } catch (error) {
             throw new Error(error.message)
         }
-             
-           
-
     
+    }
+    async postNewPlace(newPlaceInfo) {
+        try {
+            return await Request.post(PLACES_URL, newPlaceInfo)
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 }
 
