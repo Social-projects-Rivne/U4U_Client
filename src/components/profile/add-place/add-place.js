@@ -12,7 +12,8 @@ export default class AddPlace extends Component {
       title: '',
       description: '',
       isModerated: false,
-      regionId: ''
+      regionId: '',
+      selectedPhotos:[]
     }
   }
 
@@ -33,31 +34,37 @@ export default class AddPlace extends Component {
     this.setState({ [name]: event.target.value });
   }
 
-  addPlace = (placeInfo) => {
-    const newPlaceInfo = {
-      isModerated: false,
-      title: placeInfo.title,
-      description: placeInfo.description,
-      regionId: (() => {
-        let region;
-        placeInfo.regionsList.find(city => {
-          if (city.name.trim() === placeInfo.region.trim()) {
-            return region = city
-          }
-        }
-        )
-        return region._id
-      })()
-    }
-    Api.postNewPlace(newPlaceInfo)
+  addPlace = () => {
+    const {title,region, isModerated, description, selectedPhotos,regionsList} = this.state;
+    const data = new FormData();
+      for (let photo of selectedPhotos){
+        data.append("photo", photo);
+      }
+     data.append("title",title)
+     data.append("region",region)
+     data.append("isModerated",isModerated)
+     data.append("description",description)
+     let city = regionsList.find(city => {
+      return  city.name.trim() === region.trim()
+     }
+     )
+     data.append("regionId", city._id)
+    Api.postNewPlace(data)
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.addPlace(this.state)
+    this.addPlace()
     this.setState({
       title: '',
-      description: ''
+      description: '',
+      selectedPhotos: null
+    })
+  }
+
+  fileSelectedHandler = event => {
+    this.setState({
+      selectedPhotos: event.target.files
     })
   }
 
@@ -97,10 +104,14 @@ export default class AddPlace extends Component {
             rows="10"
           ></textarea>
           <div className="add-place-file-submit">
-            <input className="add-place-file" type="file" />
-            <input className="add-place-submit" type='submit' value='send' />
+            <input className="add-place-file" 
+                   type="file"
+                   multiple
+                   onChange = {this.fileSelectedHandler} />
+            <input className="add-place-submit" 
+            type='submit' value='send'
+            />
           </div>
-
         </form>
       </div>
     );

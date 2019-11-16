@@ -28,9 +28,9 @@ class Api {
         }
     
     }
-    async postNewPlace(newPlaceInfo) {
+    async postNewPlace(data) {
         try {
-            return await Request.post(PLACES_URL, newPlaceInfo)
+            return await Request.formDataPost(PLACES_URL, data)
         }
         catch (error) {
             console.log(error)
