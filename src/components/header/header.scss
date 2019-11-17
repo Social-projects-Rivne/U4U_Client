@@ -37,7 +37,6 @@
     height: 100%;
   }
 
-  &__navbar,
   &__fields {
     display: flex;
     flex-direction: row;
@@ -46,52 +45,43 @@
 
     & a {
       color: #fff;
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10rem;
+      height: 100%;
       font-size: 2rem;
       line-height: 2rem;
       text-decoration: none;
-      padding: 0.5rem 0;
-
-      &:not(:last-child) {
-        margin-right: 2rem;
-      }
 
       &:hover,
       &.header__profile ~ a:hover {
-        color: white;
         font-weight:bold;
-        position: relative;
-        transform: scale(1.05);
       }
     }
   }
 
   &__search {
-    display: block;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    padding: 1rem;
-    margin-left: 2rem;
+    display: flex;
+    width: 5rem;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
 
     & a {
       font-size: inherit;
       line-height: normal;
       padding: 0;
       color: white;
-    }
-
-    & a {
-      height: 1.8rem;
-      width: 1.8rem;
-      & img {
-        height: 1.8rem;
-        width: 1.8rem;
-      }
+      height: 100%;
+      width: 100%;
     }
 
     &:hover,
-    &:hover a {
+    &:hover a > img {
       transform: scale(1.1);
     }
   }
