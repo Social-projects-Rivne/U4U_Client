@@ -10,13 +10,13 @@ import MyPlans from '../my-plans/my-plans';
 import Header from '../header';
 import Container from '../container';
 import Footer from '../footer';
-import UMap from '../uMap';
 import SinglePlace from '../single-place';
 import PlacesList from '../pages/places-list';
 import Error404 from '../error404';
 import Search from '../search';
 import Profile from '../profile';
 import UserService from "../../services/user-service";
+import MainPage from "./../pages/main";
 
 export default class App extends Component {
   constructor(props) {
@@ -65,7 +65,7 @@ export default class App extends Component {
                   Component={() => <h1>Secret Page</h1>} />
 
                 <Route path='/'
-                  exact component={UMap} />
+                  exact component={MainPage} />
 
                 <Route path='/login'
                   render={() => {
@@ -84,10 +84,6 @@ export default class App extends Component {
                   <Route path="/profile"
                     render={(props) => <Profile user={this.state.user} /> }
                    />
-
-                {/* <Route path="/my-profile"
-                  user={this.state.user}   
-                  component={Profile} /> */}
 
                 <Route path="/search"
                   component={Search} />

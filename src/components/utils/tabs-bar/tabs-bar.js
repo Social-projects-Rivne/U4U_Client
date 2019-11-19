@@ -18,27 +18,33 @@ class TabsBar extends Component {
 
       this.tabsElements = [];
       this.tabs = this.props.tabs;
-      this.setTabsStyles();
     }
 
     componentDidMount() {
       this.props.history.listen((location) => {
         const path = location.pathname;
   
-        if (this.tabs.length) {
-          for (let i = 0; i < this.tabs.length; i++) {
-            const tab = this.tabs[i];
-      
-            if (tab.url === path) {
-              this.setActiveTab(i);
-              break;
-            } else {
-              this.clearActiveTabs();
-              this.setTabsStyles();
-            }
+        this.setTabsDidMount(path);
+      });
+
+      const path = window.location.pathname;
+      this.setTabsDidMount(path);
+    }
+
+    setTabsDidMount(path) {
+      if (this.tabs.length) {
+        for (let i = 0; i < this.tabs.length; i++) {
+          const tab = this.tabs[i];
+    
+          if (tab.url === path) {
+            this.setActiveTab(i);
+            break;
+          } else {
+            this.clearActiveTabs();
+            this.setTabsStyles();
           }
         }
-      });
+      }
     }
 
     onActive = (tabId) => {
