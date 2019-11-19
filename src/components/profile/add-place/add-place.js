@@ -108,6 +108,7 @@ export default class AddPlace extends Component {
             <input className="add-place-file" 
                    type="file"
                    multiple
+                   required
                    onChange = {this.fileSelectedHandler} />
             <input className="add-place-submit" 
             type='submit' value='send'
