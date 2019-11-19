@@ -85,6 +85,7 @@ export default class AddPlace extends Component {
             required
             value={this.state.region}
             onChange={this.handleChange}>
+            <option selected>Choose a region</option>
             {elements}
           </select>
           <input className="add-place-title"
