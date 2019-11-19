@@ -103,7 +103,7 @@ export default class App extends Component {
                   path="/places-list/filter/region=:regionId"
                   component={PlacesList}
                 />
-                {/* <Route path="/places-list/" component={PlacesList} /> */}
+                <Route path="/places-list/" component={PlacesList} />
 
                 <Route component={Error404} />
               </Switch>

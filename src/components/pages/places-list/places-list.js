@@ -33,6 +33,7 @@ export default class PlacesList extends Component {
 
   async componentDidMount() {
     const {regionId} = this.props.match.params;
+    
     try {
       if(regionId) {
         const places = await Api.getRegionPlaces(regionId);
