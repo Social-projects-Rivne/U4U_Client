@@ -32,12 +32,22 @@ export default class PlacesList extends Component {
 
 
   async componentDidMount() {
+    const {regionId} = this.props.match.params;
+    
     try {
-      const places = await Api.getAllPlaces()
-      const filteredPlaces = places.filter((place) => {
-        return place.isModerated === true
-      })
-      this.setState({ places: filteredPlaces });
+      if(regionId) {
+        const places = await Api.getRegionPlaces(regionId);
+        const filteredPlaces = places.filter((place) => {
+          return place.isModerated === true
+        })
+        this.setState({places: filteredPlaces});
+      } else {
+        const places = await Api.getAllPlaces();
+        const filteredPlaces = places.filter((place) => {
+          return place.isModerated === true
+        })
+        this.setState({places: filteredPlaces});
+      }
     } catch (error) {
       console.log("Handle loading all places error: ", error);
     }
@@ -107,10 +117,10 @@ export default class PlacesList extends Component {
               />
             </div>
           </div>
-
+          {}
           <div className='places-list-container-content'>
-            {
-              this.state.places &&
+          {
+            (this.state.places &&
               this.state.places.map(place => {
                 return (
                   <PlaceCard
@@ -121,7 +131,8 @@ export default class PlacesList extends Component {
                   />
                 )
               })
-            }
+            )
+          }
           </div>
 
           <div className='places-list-container-load-more'>
