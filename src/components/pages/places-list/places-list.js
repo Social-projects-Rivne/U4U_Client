@@ -32,9 +32,16 @@ export default class PlacesList extends Component {
 
 
   async componentDidMount() {
+    const {regionId} = this.props.match.params;
+    
     try {
-      const places = await Api.getAllPlaces();
-      this.setState({places: places});
+      if(regionId) {
+        const places = await Api.getRegionPlaces(regionId);
+        this.setState({places: places});
+      } else {
+        const places = await Api.getAllPlaces();
+        this.setState({places: places});
+      }
     } catch (error) {
       console.log("Handle loading all places error: ", error);
     }
@@ -57,7 +64,7 @@ export default class PlacesList extends Component {
 
     const spinerModifier = (this.state.places) ? '' : ' places-list-spinner-show'
     const contentModifier = (this.state.places) ? ' places-list-container-show' : ''
-      
+
     return (
       <div className='places-list' style={changeHeight}>
         <div className={`places-list-spiner ${spinerModifier}`}>
@@ -104,10 +111,10 @@ export default class PlacesList extends Component {
                 />
               </div>
           </div>
-
+          {}
           <div className='places-list-container-content'>
           {
-            this.state.places &&
+            (this.state.places &&
               this.state.places.map(place => {
                 return (
                   <PlaceCard 
@@ -118,6 +125,7 @@ export default class PlacesList extends Component {
                   />
                 )
               })
+            )
           }
           </div>
 

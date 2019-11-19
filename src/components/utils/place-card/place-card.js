@@ -30,7 +30,7 @@ export default class PlaceCard extends Component {
                     <Spiner />
                 </div>
 
-                <Link to={`singleplace/${this.props.id}`} style={{ textDecoration: 'none' }}>
+                <Link to={`/singleplace/${this.props.id}`} style={{ textDecoration: 'none' }}>
                     <div className ={`place-card ${cardModifier}`}>
                         <img 
                             src={this.props.photo} 
