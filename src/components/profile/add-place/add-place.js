@@ -13,7 +13,8 @@ export default class AddPlace extends Component {
       description: '',
       isModerated: false,
       regionId: '',
-      selectedPhotos:[]
+      selectedPhotos: [],
+      filesValue: ''
     }
   }
 
@@ -35,20 +36,20 @@ export default class AddPlace extends Component {
   }
 
   addPlace = () => {
-    const {title,region, isModerated, description, selectedPhotos,regionsList} = this.state;
+    const { title, region, isModerated, description, selectedPhotos, regionsList } = this.state;
     const data = new FormData();
-      for (let photo of selectedPhotos){
-        data.append("photo", photo);
-      }
-     data.append("title",title)
-     data.append("region",region)
-     data.append("isModerated",isModerated)
-     data.append("description",description)
-     let city = regionsList.find(city => {
-      return  city.name.trim() === region.trim()
-     }
-     )
-     data.append("regionId", city._id)
+    for (let photo of selectedPhotos) {
+      data.append("photo", photo);
+    }
+    data.append("title", title)
+    data.append("region", region)
+    data.append("isModerated", isModerated)
+    data.append("description", description)
+    let city = regionsList.find(city => {
+      return city.name.trim() === region.trim()
+    }
+    )
+    data.append("regionId", city._id)
     Api.postNewPlace(data)
   }
 
@@ -58,13 +59,15 @@ export default class AddPlace extends Component {
     this.setState({
       title: '',
       description: '',
-      selectedPhotos: null
+      selectedPhotos: [],
+      filesValue: ''
     })
   }
 
   fileSelectedHandler = event => {
     this.setState({
-      selectedPhotos: event.target.files
+      selectedPhotos: event.target.files,
+      filesValue: event.target.value
     })
   }
 
@@ -85,7 +88,7 @@ export default class AddPlace extends Component {
             required
             value={this.state.region}
             onChange={this.handleChange}>
-            <option selected>Choose a region</option>
+            <option selected value="">Choose a region</option>
             {elements}
           </select>
           <input className="add-place-title"
@@ -105,13 +108,14 @@ export default class AddPlace extends Component {
             rows="10"
           ></textarea>
           <div className="add-place-file-submit">
-            <input className="add-place-file" 
-                   type="file"
-                   multiple
-                   required
-                   onChange = {this.fileSelectedHandler} />
-            <input className="add-place-submit" 
-            type='submit' value='send'
+            <input className="add-place-file"
+              type="file"
+              value={this.state.filesValue}
+              multiple
+              required
+              onChange={this.fileSelectedHandler} />
+            <input className="add-place-submit"
+              type='submit' value='send'
             />
           </div>
         </form>
