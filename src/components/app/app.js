@@ -100,10 +100,10 @@ export default class App extends Component {
                 <Route path="/search" component={Search} />
 
                 <Route
-                  path="/places-list/region/:regionId"
+                  path="/places-list/filter/region=:regionId"
                   component={PlacesList}
                 />
-                <Route path="/places-list/" component={PlacesList} />
+                {/* <Route path="/places-list/" component={PlacesList} /> */}
 
                 <Route component={Error404} />
               </Switch>
