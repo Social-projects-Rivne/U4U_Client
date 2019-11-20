@@ -12,6 +12,12 @@ class Request {
         body: JSON.stringify(body),
     }).then(this._responseHandler(url, 'post', body));
 
+    formDataPost = (url, body) => fetch(`${this._baseUrl}/${url}`, {
+        method: 'POST',
+        headers: this._formDataHeaders(),
+        body: body,
+    }).then(this._responseHandler(url, 'post', body));
+
     put = (url, body) => fetch(`${this._baseUrl}/${url}`, {
         method: 'PUT',
         headers: this._getHeaders(),
@@ -23,7 +29,10 @@ class Request {
         headers: this._getHeaders(),
     }).then(this._responseHandler(url, 'remove'));
 
-
+    _formDataHeaders = () => ({
+        'Accept-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
     _getHeaders = () => ({
         'Content-Type': 'application/json',
         'Accept-Type': 'application/json',

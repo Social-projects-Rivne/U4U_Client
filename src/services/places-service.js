@@ -34,6 +34,15 @@ class Api {
       throw new Error(error.message);
     }
   };
+
+  async postNewPlace(data) {
+    try {
+        return await Request.formDataPost(PLACES_URL, data)
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
 }
 
 export default new Api();
