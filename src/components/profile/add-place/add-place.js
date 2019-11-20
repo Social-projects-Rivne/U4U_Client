@@ -93,6 +93,7 @@ export default class AddPlace extends Component {
           </select>
           <input className="add-place-title"
             required
+            placeholder = 'Place name'
             type="text"
             name="title"
             value={this.state.title}
@@ -100,6 +101,7 @@ export default class AddPlace extends Component {
           />
           <textarea
             required
+            placeholder = 'Place description'
             class="add-place-description"
             name="description"
             value={this.state.description}
