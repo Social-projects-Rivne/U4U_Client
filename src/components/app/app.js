@@ -22,6 +22,7 @@ import Error404 from "../error404";
 import Search from "../search";
 import Profile from "../profile";
 import UserService from "../../services/user-service";
+import Register from "../register/register";
 
 export default class App extends Component {
   constructor(props) {
@@ -98,6 +99,7 @@ export default class App extends Component {
                   component={Profile} /> */}
 
                 <Route path="/search" component={Search} />
+                <Route path='/register' render={() => <Register onAuth={this.onAuth} />} />
 
                 <Route
                   path="/places-list/filter/region=:regionId"
