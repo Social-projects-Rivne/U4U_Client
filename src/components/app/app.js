@@ -94,10 +94,6 @@ export default class App extends Component {
                   render={props => <Profile user={this.state.user} />}
                 />
 
-                {/* <Route path="/my-profile"
-                  user={this.state.user}   
-                  component={Profile} /> */}
-
                 <Route path="/search" component={Search} />
                 <Route path='/register' render={() => <Register onAuth={this.onAuth} />} />
 
