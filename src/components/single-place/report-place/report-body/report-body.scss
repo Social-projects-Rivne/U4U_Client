@@ -1,0 +1,77 @@
+.report-body {
+  text-align: left;
+  margin: 0px 35px;
+  & .report-sharing {
+    font-size: 16px;
+    color: white;
+    padding-bottom: 15px;
+  }
+  & form {
+    text-align: left;
+    margin: 25px 0px;
+  }
+  .report {
+    height: 120px;
+    width: 100%;
+    resize: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+  }
+  & #report-button {
+    margin: 0 auto;
+    display: inline-block;
+    cursor: pointer;
+    width: 15%;
+    color: white;
+    font-size: 14px;
+    margin: 10px 0px 0px;
+    padding: 15px;
+    background-color: rgb(244, 3, 3);
+    border-radius: 3px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+    border: none;
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.5s;
+      font-size: 18px;
+      background-color: rgb(218, 60, 32);
+      margin-left: 8px;
+    }
+  }
+  .message {
+    font-size: 3rem;
+    color: red;
+    text-align: center;
+    width: 100%;
+    height: 15px;
+  }
+  .success {
+    font-size: 3rem;
+    color: green;
+    text-align: center;
+    width: 100%;
+    height: 15px;
+  }
+
+  .d-none {
+    display: none;
+  }
+  .thanks_message {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0px;
+    width: 40%;
+    .message_thanks {
+      font-size: 18px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+    .revert {
+      cursor: pointer;
+      color: goldenrod;
+    }
+  }
+}

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import AsideSection from './aside-section/aside-section';
 import MainSection from './main-section/main-section';
+import ReportPlace from './report-place/report-place';
 import CommentSection from './comment-section/comment-section';
 import CommentViewSection from './comment-view-section/comment-view-section';
 import Api from './../../services/places-service';
 import Spinner from './../../components/utils/spinner';
 import './single-place.scss';
 import reviewService from '../../services/review-service';
+import reportService from '../../services/report-service';
 
 export default class SinglePlace extends Component {
   state = {
@@ -19,7 +21,7 @@ export default class SinglePlace extends Component {
         match: { params }
       } = this.props;
       const placeId = params.id;
-
+      console.log(reportService.getAllReports());
       const placett = await Api.getPlace(placeId);
       this.setState({ place: placett });
     } catch (error) {
@@ -45,6 +47,7 @@ export default class SinglePlace extends Component {
           ) : (
             <Spinner />
           )}
+          <ReportPlace placeId={placeId} />
           <CommentSection placeId={placeId} />
           <CommentViewSection placeId={placeId} />
         </div>
