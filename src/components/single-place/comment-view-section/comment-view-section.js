@@ -24,7 +24,7 @@ export default class CommentViewSection extends Component {
     return (
       <div className="comment-view-section">
         <div>
-          <CommentViewList commentList={this.state.CommentViewList} />>
+          <CommentViewList commentList={this.state.CommentViewList} />
         </div>
       </div>
     );
