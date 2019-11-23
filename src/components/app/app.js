@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
-import './app.scss';
+import React, { Component } from "react";
+import "./app.scss";
 
 import Login from "../pages/login";
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import { AuthProvider } from "../contexts";
 
 import PrivateRoute from "../private-route";
@@ -20,31 +25,31 @@ import MainPage from "./../pages/main";
 
 export default class App extends Component {
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = {
-        isAuth: false,
-        user: null,
-        startAuth: false
-      }
+    this.state = {
+      isAuth: false,
+      user: null,
+      startAuth: false
+    };
   }
 
   async componentDidMount() {
     await this.getUserData();
-  };
-
-  getUserData = async () => {
-      try {
-        this.setState({ startAuth: true });
-        const user = await UserService.getUserData();
-
-        this.setState({ isAuth: true, startAuth: false, user: user });
-      } catch (error) {
-        this.setState({ isAuth: false, startAuth: false, user: null });
-      }
   }
 
-  onAuth = async (status) => {
+  getUserData = async () => {
+    try {
+      this.setState({ startAuth: true });
+      const user = await UserService.getUserData();
+
+      this.setState({ isAuth: true, startAuth: false, user: user });
+    } catch (error) {
+      this.setState({ isAuth: false, startAuth: false, user: null });
+    }
+  };
+
+  onAuth = async status => {
     await this.getUserData();
   };
 
@@ -53,43 +58,50 @@ export default class App extends Component {
       <div className="wrapper">
         <AuthProvider value={this.state.isAuth}>
           <Router>
-            <Header 
-              startAuth={this.state.startAuth} 
-              user={this.state.user} 
-              onAuth={this.onAuth} />
+            <Header
+              startAuth={this.state.startAuth}
+              user={this.state.user}
+              onAuth={this.onAuth}
+            />
             <Container>
               <Switch>
-                <PrivateRoute path='/secret'
+                <PrivateRoute
+                  path="/secret"
                   onAuth={this.onAuth}
                   auth={this.state.isAuth}
-                  Component={() => <h1>Secret Page</h1>} />
+                  Component={() => <h1>Secret Page</h1>}
+                />
 
                 <Route path='/'
                   exact component={MainPage} />
 
-                <Route path='/login'
+                <Route
+                  path="/login"
                   render={() => {
-                    if (this.state.isAuth === null) return 'loading';
+                    if (this.state.isAuth === null) return "loading";
                     if (this.state.isAuth) {
-                      return <Redirect to='/' />;
+                      return <Redirect to="/" />;
                     }
 
-                    return <Login onAuth={this.onAuth} />
-                  }} />
+                    return <Login onAuth={this.onAuth} />;
+                  }}
+                />
 
-                <Route path="/singleplace/:id"
-                  component={SinglePlace} />
-                <Route path="/myplans/:id"
-                  component={MyPlans} />
-                  <Route path="/profile"
-                    render={(props) => <Profile user={this.state.user} /> }
-                   />
+                <Route path="/singleplace/:id" component={SinglePlace} />
+                <Route path="/myplans/:id" component={MyPlans} />
+                <Route
+                  path="/profile"
+                  render={props => <Profile user={this.state.user} />}
+                />
 
                 <Route path="/search"
                   component={Search} />
 
-                <Route path="/places-list/"
-                  component={PlacesList} />
+                <Route
+                  path="/places-list/filter/region=:regionId"
+                  component={PlacesList}
+                />
+                <Route path="/places-list/" component={PlacesList} />
 
                 <Route component={Error404} />
               </Switch>
@@ -98,6 +110,6 @@ export default class App extends Component {
           </Router>
         </AuthProvider>
       </div>
-    )
-  };
-};
+    );
+  }
+}
