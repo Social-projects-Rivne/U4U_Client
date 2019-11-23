@@ -4,6 +4,8 @@
 .map {
   height: 100%;
   width: 100%;
+  transition: height 0.4s ease;
+  backface-visibility:hidden;
 
   &__slogan {
     font-size: 3rem;

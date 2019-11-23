@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import './filter.scss';
 
 export default class Filter extends Component {
@@ -99,6 +99,10 @@ export default class Filter extends Component {
           </div>
             
           <ul className='filter-dropdown-list'>
+            <li 
+              className='filter-dropdown-item'
+              key="-1"
+              ></li> 
           {
             this.props.data &&
               this.props.data.map(data => {

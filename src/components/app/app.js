@@ -94,7 +94,7 @@ export default class App extends Component {
                 <Route component={Error404} />
               </Switch>
             </Container>
-            <Footer />
+            {/* <Footer /> */}
           </Router>
         </AuthProvider>
       </div>

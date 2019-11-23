@@ -24,6 +24,7 @@ export default class Search extends Component {
       this.searchService.getRandomPlace(),
     ])
       .then(([star, random]) => {
+        console.log(star)
         this.setState({
           popularData: star,
           randomId: random[0].id,

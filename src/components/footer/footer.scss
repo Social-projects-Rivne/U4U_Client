@@ -2,14 +2,15 @@
 
 /* footer style */
 .footer {
-  box-shadow: -2px -1px 7px 5px rgba(0,0,0,0.75);
-  background-color: $primary-color;
+  background-color: #424242;
   position: relative;
   height: 4rem;
   width: 100%;
-  z-index: 9;
+  z-index: 100;
 
-  & .container {
+  &-container {
+    height: 100%;
+    padding: 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;

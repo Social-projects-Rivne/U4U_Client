@@ -34,8 +34,11 @@
     align-items: center;
     justify-content: space-between;
     flex-grow: 1;
-    padding-left: 5rem;
     height: 100%;
+  }
+
+  &__navbar {
+    margin-left: 25rem;
   }
 
   &__fields {
@@ -43,6 +46,7 @@
     flex-direction: row;
     align-items: center;
     height: 100%;
+    margin-right: 10rem;
 
     & a {
       color: #fff;

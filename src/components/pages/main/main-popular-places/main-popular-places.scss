@@ -1,6 +1,18 @@
 .main-popular-places {
+    box-shadow: -2px -1px 7px 5px rgba(0,0,0,0.75);
     display: flex;
+    justify-content: center;
     width: 100%;
-    height: 300rem;
-    background: purple;
+    background: #d0dbc1; //f2eee1
+
+    &-container {
+        max-width: 120rem;
+    }
+
+    &-title {
+        font-weight: bold;
+        font-size: 2rem;
+        padding-top: 2rem;
+        padding-left: 2rem;
+    }
 }

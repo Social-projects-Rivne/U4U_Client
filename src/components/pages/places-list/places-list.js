@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Api from '../../../services/places-service';
 import FIlter from './filter/filter';
 import PlacesGrid from './../../utils/places-grid/';
 import ButtonLoadingMore from './../../utils/button-loading-more';
 import RegionsNames from  './../../../global/regions-names';
-import Spiner from './../../utils/spinner';
+import PlacesApi from './../../../services/places-service';
 import './places-list.scss';
+import Spinner from './../../utils/spinner';
 
 export default class PlacesList extends Component {
   state = {
@@ -23,10 +23,20 @@ export default class PlacesList extends Component {
         title: "Count reviews" 
       }
     ],
+    places: null,
     title: "All Ukrainian places",
     ratingFilterValue: null,
     regionsFIlterValue: null
   };
+
+  async componentDidMount() {
+    try {
+      const places = await PlacesApi.getAllPlaces();
+      this.setState({places: places});
+    } catch (error) {
+      console.log("Handle loading all places error: ", error);
+    }
+  }
 
   getFilterValue = (data) => {
     if(data) {
@@ -87,7 +97,9 @@ export default class PlacesList extends Component {
               </div>
           </div>
 
-          <PlacesGrid places={this.state.places} />
+          {
+            this.state.places ?  <PlacesGrid places={this.state.places} /> : <Spinner />
+          }
 
           <div className='places-list-container-load-more'>
             <ButtonLoadingMore/>

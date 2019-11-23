@@ -1,27 +1,69 @@
+@import '../../../global/global.scss';
+
 .place-card-container {
     position: relative;
     display: block;
     width: 100%;
-    height: 22rem;
+    height: 25rem;
 
     .place-card {
         border-radius: 1rem;
-        padding: 2rem;
-        background-color: rgba(255, 255, 255, .5);
+        background-color: #fafaff;
+        border: 1px solid #dadce0;
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
         cursor: pointer;
         height: 100%;
         animation: cardAnimation 3s;
         display: none;
+
+        &:hover {
+            transition: box-shadow .3s ease-out,background-size .3s ease-out;
+            border: 1px solid #bdbdbd;
+            box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+            background: white;
+        }
         
         & img{
-            border: 1px solid rgba(0, 0, 0, 0.4);
-            border-radius: 1rem;
+            border-radius: 1rem 1rem 0 0;
             width: 100%;
-            height: 13.5rem;
-        }  
+            height: 15rem;
+            vertical-align: top;
+        }
+        
+        &-info {
+            padding: 1rem;
+            background: $primary-color;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &-location {
+                svg {
+                    font-size: 1.8rem;
+                }
+                span {
+                    margin-left: 1rem;
+                    font-size: 1.6rem;
+                }
+            }
+
+            &-rating {
+                svg {
+                    color: $map-hover-color;
+                    font-size: 1.8rem;
+                }
+                span {
+                    margin-left: 1rem;
+                    font-size: 1.6rem;
+                }
+            }
+            
+        }
+
         & h2{
             height: 5rem;
-            font-size: 1.8rem;
+            font-size: 2rem;
             text-align: center;
             padding: 2rem;
             white-space: nowrap;
