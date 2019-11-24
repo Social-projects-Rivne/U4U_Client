@@ -34,7 +34,7 @@ export default class MapSvg extends Component {
   render() {
     const { toPlacesList, regionId } = this.state;
     if (toPlacesList) {
-      return <Redirect to={`/places-list/filter/${regionId}`} />;
+      return <Redirect to={`/places-list/filter/region=${regionId}`} />;
     }
 
     return (
