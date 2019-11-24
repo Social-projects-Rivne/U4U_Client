@@ -2,7 +2,7 @@ import request from './request';
 
 class reviewServise {
   async comment({ userJwt, comment, placeId, rating }) {
-    const res = await request.post('reviews', {
+  return request.post('reviews', {
       userJwt,
       comment,
       placeId,
