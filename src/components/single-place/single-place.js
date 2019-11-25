@@ -6,11 +6,12 @@ import CommentViewSection from './comment-view-section/comment-view-section';
 import Api from './../../services/places-service';
 import Spinner from './../../components/utils/spinner';
 import './single-place.scss';
-import reviewService from '../../services/review-service';
+// import reviewService from '../../services/review-service';
 
 export default class SinglePlace extends Component {
   state = {
-    place: null
+    place: null,
+    commentQuantity: 0
   };
 
   async componentDidMount() {
@@ -27,6 +28,10 @@ export default class SinglePlace extends Component {
     }
   }
 
+  commentQuantity = (value) => {
+    this.setState({ commentQuantity: value });
+  }
+
   render() {
     const loading = !this.state.place ? false : true;
 
@@ -40,13 +45,13 @@ export default class SinglePlace extends Component {
         <div className="main-comment-sections">
           {loading ? (
             <div>
-              <MainSection place={this.state.place} />
+              <MainSection place={this.state.place} commentQuantity={this.state.commentQuantity} />
             </div>
           ) : (
             <Spinner />
           )}
           <CommentSection placeId={placeId} />
-          <CommentViewSection placeId={placeId} />
+          <CommentViewSection placeId={placeId} commentQuantity={this.commentQuantity} />
         </div>
         <AsideSection />
       </div>
