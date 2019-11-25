@@ -7,7 +7,7 @@ const Guest = () => {
     <div className="header__guest">
       <Link to="/login">Sign In</Link>
 
-      <Link to="/sign-up">Sign Up</Link>
+      <Link to="/register">Sign Up</Link>
     </div>
   )
 }

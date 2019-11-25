@@ -5,6 +5,7 @@ import api from '../../services/tourist-service';
 import {Redirect} from "react-router-dom";
 import Input from '../forms/input';
 import Button from "../forms/buttons/button";
+import './register.scss';
 
 const RegisterSchema = Yup.object().shape({
     name: Yup.string()
@@ -54,23 +55,25 @@ const RegisterSchema = Yup.object().shape({
             }),
 });
 
-const Register = () => {
+const Register = ({ onAuth }) => {
 
     const [redirect, setRedirect] = useState(false);
+    const [err, setErr] = useState(false);
 
     const submit = async (values) => {
         try{
             await api.register(values);
-            setRedirect(true);
+            onAuth();
+            setTimeout(() => setRedirect(true), 1000);
         } catch (e) {
+            setErr(e);
         }
     };
 
     if(redirect) return <Redirect to='/' />;
 
     return (
-        <div className="form sign-up">
-            <h2>Time to feel like home,</h2>
+        <div className="form register">
 
             <div className="form-group">
                 <Formik
@@ -89,6 +92,7 @@ const Register = () => {
                         <Form>
                             {Input(params)}
 
+                            { err ? 'Server error please try to register later' : null}
                             <Button type='submit' className="submit"> Sign In </Button>
                         </Form>
                     )}
@@ -97,7 +101,6 @@ const Register = () => {
             </div>
 
 
-            <button type="button" className="fb-btn">Join with <span>facebook</span></button>
         </div>
     )
 };
