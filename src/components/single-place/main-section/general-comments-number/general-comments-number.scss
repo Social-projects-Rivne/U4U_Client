@@ -1,3 +1,22 @@
-.comment-number-icon{
-  color:rgb(235, 232, 232);
+.comment-number-icon {
+  width: 30%;
+
+  & a {
+    color: rgb(235, 232, 232);
+    display: inline-flex;
+    align-items: flex-end;
+    text-decoration: none;
+  }
+
+  & span {
+    color: #ffffff;
+    font-size: 3rem;
+    line-height: 3rem;
+    margin-right: 1rem;
+  }
+
+  & svg.svg-inline--fa.fa-w-16 {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
 }

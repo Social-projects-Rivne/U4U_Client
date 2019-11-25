@@ -1,5 +1,65 @@
-.add-to-wish-list-bttn{
-    margin-right: 20px;
-    color:rgb(235, 232, 232);
-    
+.add-to-wish-list-bttn {
+  color: #ebe8e8;
+  text-align: right;
+  width: 30%;
+  height: 3rem;
+
+  .wish-checkbox {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2.5rem;
+    padding-right: 4rem;
+    position: relative;
+    user-select: none;
+    height: 100%;
+  }
+
+  .wish-checkbox input {
+    opacity: 0;
+    position: absolute;
+    height: 0;
+    width: 0;
+  }
+
+  .wish-checkmark {
+    background-color: #ebe8e8;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .wish-checkbox:hover input ~ .wish-checkmark {
+    background-color: #bbb;
+  }
+
+  .wish-checkbox input:checked ~ .wish-checkmark {
+    background-color: #2196f3;
+  }
+
+  .wish-checkmark:after {
+    content: "";
+    display: none;
+    position: absolute;
+  }
+
+  .wish-checkbox input:checked ~ .wish-checkmark:after {
+    display: block;
+  }
+
+  .wish-checkbox .wish-checkmark:after {
+    left: 1rem;
+    top: 0.3rem;
+    width: 1rem;
+    height: 2rem;
+    border: solid white;
+    border-width: 0 0.5rem 0.5rem 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
 }
