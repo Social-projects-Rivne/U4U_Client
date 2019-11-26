@@ -3,13 +3,12 @@ import './comment-body.scss';
 import api from '../../../../services/review-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-// import Rating from '../../../utils/rating-stars';
 import commentContext from '../../comment-context';
 
 export default class CommentBody extends Component {
 
   state = {
-    comment: null,
+    comment: '',
     commentError: false,
     mark: null,
     selected: false,
@@ -38,7 +37,6 @@ export default class CommentBody extends Component {
       const { mark } = this.state;
 
       api.comment({ userJwt: jwt, comment: comment, placeId: placeId, rating: mark })
-        // .then(() => {
         .then((res) => {
           addComment(res.data);
           this.setState({
@@ -83,6 +81,7 @@ export default class CommentBody extends Component {
           onClick={() => this.mark(i)}
           onMouseEnter={()=>this.starEnter(i)}
           onMouseLeave={()=>this.starLeave()}
+          key={i}
         />
       )
     }
@@ -92,7 +91,6 @@ export default class CommentBody extends Component {
   render() {
     const { commentError, selected, mark, comment } = this.state;
     const stars = this.stars()
-
     const rating = selected ? 'd-none' : 'rating-container';
     const message = selected ? 'thanks_message' : 'd-none';
 
