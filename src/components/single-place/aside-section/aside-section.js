@@ -1,16 +1,45 @@
 import React, { Component } from 'react';
-import AsideHeading from './aside-heading/aside-heading';
-import AsidePlaceInfo from './aside-place-info/aside-place-info';
-import AsidePlacePhotos from './aside-place-photos/aside-place-photos';
+import PlaceCard from './../../utils/place-card';
+import Spinner from './../../utils/spinner';
+import PlacesApi from './../../../services/places-service';
 import './aside-section.scss';
 
 export default class AsideSection extends Component {
+    constructor (props) {
+        super (props);
+
+        this.state = {
+            places: null
+        }
+    }
+
+    async componentDidMount() {
+        try {
+            const places = await PlacesApi.getAllPlaces();
+            const placesNear = places.slice(0, 4);
+            this.setState({places: placesNear});
+        } catch (error) {
+            console.log("Handle loading all places error: ", error);
+        }
+    }
+
     render() {
         return (
             <div className='aside-section'>
-                <AsideHeading />
-                <AsidePlaceInfo />
-                <AsidePlacePhotos />
+                <span>Places Near By</span>
+                {
+                    this.state.places &&
+                        this.state.places.map(place => {
+                            return (
+                                <PlaceCard 
+                                    key={place._id}
+                                    id={place._id}
+                                    photo={place.photos[0]} //TODO: resolve, now hardcoded first one
+                                    title={place.name} 
+                                />
+                            )
+                        })
+                }
             </div>
         )
     }

@@ -22,20 +22,27 @@ import Search from '../search';
 import Profile from '../profile';
 import UserService from "../../services/user-service";
 import MainPage from "./../pages/main";
+import { withRouter } from 'react-router-dom';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isAuth: false,
       user: null,
-      startAuth: false
+      startAuth: false,
+      path: window.location.pathname
     };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     await this.getUserData();
+
+    this.props.history.listen((location) => {
+      console.log(location)
+      this.setState({path: location.pathname});
+    });
   }
 
   getUserData = async () => {
@@ -106,10 +113,15 @@ export default class App extends Component {
                 <Route component={Error404} />
               </Switch>
             </Container>
-            {/* <Footer /> */}
+            {
+              this.state.path !== "/" 
+              ? <Footer /> : ""
+            }
           </Router>
         </AuthProvider>
       </div>
     );
   }
 }
+
+export default withRouter(App);

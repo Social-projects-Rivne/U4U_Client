@@ -37,18 +37,22 @@ export default class SinglePlace extends Component {
 
     return (
       <div className="single-place">
-        <div className="main-comment-sections">
-          {loading ? (
-            <div>
-              <MainSection place={this.state.place} />
+        <div className="single-place-wrapper">
+          <div className="single-place-content">
+            {loading ? (
+                <div>
+                  <MainSection place={this.state.place} />
+                </div>
+              ) : (
+                <Spinner />
+            )}
+            <div className="main-comment-sections">
+              <CommentSection placeId={placeId} />
+              <CommentViewSection placeId={placeId} />
             </div>
-          ) : (
-            <Spinner />
-          )}
-          <CommentSection placeId={placeId} />
-          <CommentViewSection placeId={placeId} />
+          </div>
+          <AsideSection />
         </div>
-        <AsideSection />
       </div>
     );
   }

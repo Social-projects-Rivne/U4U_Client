@@ -1,9 +1,11 @@
+@import './../../../../global-data/global.scss';
+
 .main-popular-places {
     box-shadow: -2px -1px 7px 5px rgba(0,0,0,0.75);
     display: flex;
     justify-content: center;
     width: 100%;
-    background: #d0dbc1; //f2eee1
+    background: $second-layout-color;
 
     &-container {
         max-width: 120rem;

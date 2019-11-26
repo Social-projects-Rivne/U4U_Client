@@ -4,7 +4,7 @@
 }
 
 .weather-icon {
-  color:rgb(235, 232, 232);
+  color: black;
   margin-right: 0.5rem;
   & svg {
     height: 8rem;
@@ -15,7 +15,7 @@
 .weather-temp {
   display: flex;
   align-items: center;
-  color:rgb(235, 232, 232);
+  color:black;
 }
 
 #weather-temp-icon {
