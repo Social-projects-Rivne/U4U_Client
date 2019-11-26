@@ -8,6 +8,7 @@ import "./user-info-section.scss";
 export default class UserInfoSection extends Component {
 
   state = {
+    user: null,
     editState: false
   };
 
@@ -21,16 +22,25 @@ export default class UserInfoSection extends Component {
     });
   };
 
+  newDataHandler = (user) => {
+    this.setState({
+      user
+    });
+  };
+
   render() {
-    const { editState } = this.state;
+    const { user, editState } = this.state;
 
     return (
       <div className="user-info__section">
         <AvatarSection />
         {editState === false ? (
-          <UserInfo user={this.props.user} editProfile={this.editProfile} />
+          <UserInfo user={user || this.props.user} editProfile={this.editProfile} />
         ) : (
-          <UserInfoForm user={this.props.user} editProfile={this.editProfile} />
+          <UserInfoForm
+              user={user || this.props.user}
+              editProfile={this.editProfile}
+              newDataHandler={this.newDataHandler}  />
         )}
       </div>
     );

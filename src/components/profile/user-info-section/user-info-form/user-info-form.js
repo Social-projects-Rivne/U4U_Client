@@ -22,12 +22,8 @@ export default class UserInfoForm extends Component {
 
   editUserData = (body) => {
     UserService.editUserData(body).then(user => {
-      this.setState({
-        name: user.name,
-        surname: user.surname,
-        nickname: user.nickname,
-        email: user.email
-      })
+      this.setState(user);
+      this.props.newDataHandler(user)
     }).catch(console.error)
   };
 
