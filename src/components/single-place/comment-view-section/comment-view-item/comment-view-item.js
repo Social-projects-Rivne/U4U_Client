@@ -7,10 +7,10 @@ import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 export default class CommentViewItem extends Component {
   dateConvert = (date) => {
     let now = new Date()
-    let d = new Date(date);
+    let commentDate = new Date(date)
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    let today = (d.getDate() === now.getDate())
-    let yesterday = (d.getDate() === now.getDate() - 1)
+    let today = (commentDate.getDate() === now.getDate())
+    let yesterday = (commentDate.getDate() === now.getDate() - 1)
     let day
 
     if (today) {
@@ -18,10 +18,10 @@ export default class CommentViewItem extends Component {
     } else if (yesterday) {
       day = "Yesterday"
     } else {
-      day = (`${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`)
+      day = (`${commentDate.getDate()} ${months[commentDate.getMonth()]} ${commentDate.getFullYear()}`)
     }
 
-    return (`${day} at ${d.getHours()}:${d.getMinutes()}`)
+    return (`${day} at ${commentDate.getHours()}:${commentDate.getMinutes()}`)
   }
 
   userAvatar = (ava) => {
