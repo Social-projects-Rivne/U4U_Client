@@ -64,14 +64,17 @@ export default class MyPlans extends Component {
         try {
             const jwt = TokenService.getToken();
             return (
-                <div className="my-plans" >
-                    <div className='my-plans-adding-header-section'>
-                        <MyPlansHeader />
-                        <SearchPanel onButtonAddClick={this.addItem} />
-                    </div>
-                    <MyPlansList
-                        planLists={this.state.myPlansList}
-                        onDeleted={this.deleteItem} />
+                <div className="my-plans">
+                    <div className="my-plans-content">
+                        <div className='my-plans-content-adding-header-section'>
+                            <MyPlansHeader />
+                            <SearchPanel onButtonAddClick={this.addItem} />
+                        </div>
+                        <MyPlansList
+                            planLists={this.state.myPlansList}
+                            onDeleted={this.deleteItem} />
+
+                    </div>               
                 </div>
             )
         }

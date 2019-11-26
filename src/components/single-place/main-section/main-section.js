@@ -28,7 +28,7 @@ export default class MainSection extends React.Component {
 
     return (
 
-      <div className='main-section'>
+      <div className='main-section white-layout'>
         <div className='placename-weather'>
           <PlaceName placeName={name} />
           {

@@ -8,21 +8,15 @@
     & li {
       cursor: pointer;
       position: relative;
-      padding: 12px 8px 12px 40px;
-      background: rgba(119, 116, 109, 0.4);
+      padding: 2rem;
       font-size: 18px;
       transition: 0.2s;
-
-      &:nth-child(odd) {
-        background: rgba(230, 170, 43, 0.4);
-      }
-      &:hover {
-        background-color: orange;
-      }
+      margin-bottom: 2.5rem;
     }
   }
 }
-#empty-list-message{
+#empty-list-message {
+  font-size: 2rem;
   text-align: center;
-  color: orange;
+  color: black;
 }

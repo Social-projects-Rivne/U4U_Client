@@ -51,24 +51,54 @@ export default class SearchPanel extends Component {
         }}>
         {place.name}
       </li>
-    ))
+    ));
+
+    const searchFormStyle = {
+      boxShadow: options.length ? " 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2)" : ""
+    }
+
+    const searchInputStyle = {
+      borderRadius: options.length ? "1rem 0 0 0" : "",
+    };
+
+    const searchButtonStyle = {
+      borderRadius: options.length ? "0 1rem 0 0" : ""
+    };
+
     return (
       <div className='search-bar'>
-        <form className='search-panel'
-          onSubmit={this.onSubmit}>
-          <input type="text"
-            className=" search-input"
-            maxLength='50'
-            placeholder="Search name of the place and add it to your wish list"
-            onChange={this.onCommentChange}
-            required
-            pattern="[A-Za-z\s]+"
-            value={this.state.inputValue}
-          />
-          <button type='submit' id='add-item-button'>Add</button>
-        </form>
-        <div id='search-autocomplete-items-style'>
-          <ul>{options}</ul>
+        <div className='search-panel'>
+          <form 
+            className='search-panel-form'
+            onSubmit={this.onSubmit}
+            style={searchFormStyle}>
+
+            <input 
+              type="text"
+              className=" search-input"
+              maxLength='50'
+              placeholder="Search name of the place and add it to your wish list"
+              onChange={this.onCommentChange}
+              required
+              pattern="[A-Za-z\s]+"
+              value={this.state.inputValue}
+              style={searchInputStyle}
+            />
+
+            <button 
+              type='submit' 
+              id='add-item-button'
+              style={searchButtonStyle}
+            >
+              Add
+            </button>
+
+          </form>
+          <div id='search-autocomplete-items-style'>
+            <ul>
+              {options}
+            </ul>
+          </div>
         </div>
       </div>
     );

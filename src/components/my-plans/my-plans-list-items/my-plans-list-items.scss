@@ -1,7 +1,10 @@
+@import './../../../global-data/global.scss';
+
 .my-plans-icon{
-    margin-right: 15px;
+    margin-left: 1.2rem;
+    color: $primary-color;
   &:hover{
-    color: rgb(173, 173, 228);
+    color: $primary-color-hover;
   } 
 }
 #list-item-style{

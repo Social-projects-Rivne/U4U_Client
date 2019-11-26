@@ -1,16 +1,19 @@
 $layout-color: #e0e0e0; //#53b19f //#1b624f; $primary-color: #53b19f;
 $second-layout-color: #d0dbc1;
 $primary-color: #1b624f;//#e5a3ff;//#1b624f;
+$primary-color-hover: #003727;
 $secondary-color: #ffeab4;//#ffd1f3;//#ffeab4;//#f9ffcf;//#a1ff95;//#a8ffae; //#fded82;
 $map-hover-color: #fded82;
+
+.white-layout {
+  color: black;
+  background: white;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
+  border-radius: 1rem;
+}
 
 body {
   & .header__logo {
     display: none;
-  }
-
-  & .header__navbar a:first-child {
-    // font-weight:bold;
-    // border-bottom: 2px solid white;
   }
 }
