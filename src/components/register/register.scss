@@ -1,0 +1,29 @@
+.register {
+  background: #fff;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+.register {
+  .group {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+  }
+  padding: 5rem 0;
+
+  from {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+  .submit {
+    width: 40%;
+    margin-left: 40%;
+    max-width: 220px;
+  }
+}

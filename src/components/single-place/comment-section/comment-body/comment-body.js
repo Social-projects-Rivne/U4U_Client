@@ -3,6 +3,8 @@ import './comment-body.scss';
 import api from '../../../../services/review-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+// import Rating from '../../../utils/rating-stars';
+import commentContext from '../../comment-context';
 
 export default class CommentBody extends Component {
 
@@ -22,7 +24,7 @@ export default class CommentBody extends Component {
     this.setState({ selected: false, mark: null })
   }
 
-  onSubmit = (e) => {
+  onSubmit = (e, addComment) => {
     e.preventDefault();
     const { comment, mark } = this.state;
     if (comment.length <= 2 || mark === null) {
@@ -36,8 +38,9 @@ export default class CommentBody extends Component {
       const { mark } = this.state;
 
       api.comment({ userJwt: jwt, comment: comment, placeId: placeId, rating: mark })
-        .then(() => {
-          console.log('Success');
+        // .then(() => {
+        .then((res) => {
+          addComment(res.data);
           this.setState({
             comment: '',
             commentError: false,
@@ -95,9 +98,10 @@ export default class CommentBody extends Component {
 
     const error = commentError ? 'Pleace enter comment and mark' : '';
     return (
-      <div className='comment-body'>
+      <commentContext.Consumer>
+      {({ addComment }) => (<div className='comment-body'>
         <p className='comment-sharing'>Share your advantures about this place...</p>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={(e) => { this.onSubmit(e, addComment) }}>
           <textarea required name='comment' value={comment} placeholder='Tell something about this place, please :)' className='comment' onChange={this.onComment}></textarea>
           <p className='message'>{error}</p>
           <div className={rating}>
@@ -108,7 +112,8 @@ export default class CommentBody extends Component {
           </div>
           <input type='submit' id='comment-button' value='Send'></input>
         </form>
-      </div>
+      </div>)}
+      </commentContext.Consumer>
     )
   }
 }

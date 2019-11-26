@@ -50,7 +50,7 @@ export default class MyPlans extends Component {
                 if (res.id) {
                     newComment._id = res.id;
                     this.setState(({ myPlansList }) => {
-                        const newPlansArray = [newComment, ...myPlansList]
+                        const newPlansArray = [...myPlansList, newComment]
                         return {
                             myPlansList: newPlansArray
                         }
