@@ -4,7 +4,9 @@
   align-items: center;
   margin-right: 2rem;
   height: 100%;
+
   & a {
-    padding: 1rem 0;
+    display: flex;
+    width: 9rem;
   }
 }

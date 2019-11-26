@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import './user.scss';
-import avatar from '../../../img/avatar.svg';
 import api from '../../../services/tourist-service';
 import TokenService from '../../../services/token-service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const User = ({ user, onAuth }) => {
 
@@ -23,18 +25,15 @@ const User = ({ user, onAuth }) => {
             });
     };
 
-    if(logOut) return <Redirect to='/' />;
-
   return (
     <div className="header__user">
-      <div className="header__user-avatar">
-        <img src={avatar} alt="user avatar" />
-			</div>
-
       <div className="header__user-data">
-        <h5>Welcome, {user ? user.nickname : ''}</h5>
-        <Link to="/profile" className="header__profile">Your profile</Link>
-        <span className='log-out-btn' onClick={handleLogOut}>Sign Out</span>
+        <Link to="/profile" className="header__user-data-profile">
+          <FontAwesomeIcon icon={faUser} />
+        </Link>
+        <Link to="/" className='header__user-data-log-out' onClick={handleLogOut}>
+          <FontAwesomeIcon icon={faSignOutAlt} />
+        </Link>
       </div>
     </div>
   )

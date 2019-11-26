@@ -47,7 +47,6 @@ export default class Header extends Component {
   render () {
     return (
       <header className="header">
-        {/* <div className="container"> */}
           <div className="header__logo">
             <Link to="/">
               <img src={logo} alt="Ukraine 4 you" />
@@ -75,7 +74,6 @@ export default class Header extends Component {
               </li>
             </div>
           </div>
-        {/* </div> */}
       </header>
     );
   }
