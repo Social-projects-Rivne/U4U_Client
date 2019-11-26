@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import './comment-body.scss';
 import api from '../../../../services/review-service';
-import Rating from '../../../utils/rating-stars';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import commentContext from '../../comment-context';
 
 export default class CommentBody extends Component {
 
   state = {
-    comment: null,
+    comment: '',
     commentError: false,
     mark: null,
-    selected: false
+    selected: false,
+    hoverStars: null
   }
 
   mark = (value) => {
@@ -37,7 +39,6 @@ export default class CommentBody extends Component {
       api.comment({ userJwt: jwt, comment: comment, placeId: placeId, rating: mark })
         .then((res) => {
           addComment(res.data);
-          console.log('Success');
           this.setState({
             comment: '',
             commentError: false,
@@ -55,33 +56,61 @@ export default class CommentBody extends Component {
     this.setState({ comment: e.target.value });
   }
 
+  starEnter = (value) => {
+    this.setState({ hoverStars: value })
+  }
+
+  starLeave() {
+    this.setState({ hoverStars: null })
+  }
+
+  stars() {
+    const starsArr = []
+    const { hoverStars } = this.state
+    for (let i = 1; i <= 5; i++) {
+      let sClass = 'stars'
+
+      if (hoverStars >= i) {
+        sClass += ' hover'
+      }
+
+      starsArr.push(
+        <FontAwesomeIcon
+          icon={faStar}
+          className={sClass}
+          onClick={() => this.mark(i)}
+          onMouseEnter={()=>this.starEnter(i)}
+          onMouseLeave={()=>this.starLeave()}
+          key={i}
+        />
+      )
+    }
+    return starsArr
+  }
+
   render() {
     const { commentError, selected, mark, comment } = this.state;
-
+    const stars = this.stars()
     const rating = selected ? 'd-none' : 'rating-container';
     const message = selected ? 'thanks_message' : 'd-none';
 
     const error = commentError ? 'Pleace enter comment and mark' : '';
     return (
       <commentContext.Consumer>
-        {({ addComment }) => (<div className='comment-body'>
-          <p className='comment-sharing'>Share your advantures about this place...</p>
-          <form onSubmit={(e) => { this.onSubmit(e, addComment) }}>
-            <textarea required name='comment' value={comment} placeholder='Tell something about this place, please :)' className='comment' onChange={this.onComment}></textarea>
-            <p className='message'>{error}</p>
-            <div className={rating}>
-              <Rating value={1} onStar={this.mark} />
-              <Rating value={2} onStar={this.mark} />
-              <Rating value={3} onStar={this.mark} />
-              <Rating value={4} onStar={this.mark} />
-              <Rating value={5} onStar={this.mark} />
-            </div>
-            <div className={message}>
-              <p className='message_thanks'>Thanks for your mark " {mark} " <i onClick={this.onChange} className='revert'>&#8634;</i></p>
-            </div>
-            <input type='submit' id='comment-button' value='Send'></input>
-          </form>
-        </div>)}
+      {({ addComment }) => (<div className='comment-body'>
+        <p className='comment-sharing'>Share your advantures about this place...</p>
+        <form onSubmit={(e) => { this.onSubmit(e, addComment) }}>
+          <textarea required name='comment' value={comment} placeholder='Tell something about this place, please :)' className='comment' onChange={this.onComment}></textarea>
+          <p className='message'>{error}</p>
+          <div className={rating}>
+            {stars}
+          </div>
+          <div className={message}>
+            <p className='message_thanks'>Thanks for your mark " {mark} " <i onClick={this.onChange} className='revert'>&#8634;</i></p>
+          </div>
+          <input type='submit' id='comment-button' value='Send'></input>
+        </form>
+      </div>)}
       </commentContext.Consumer>
     )
   }
