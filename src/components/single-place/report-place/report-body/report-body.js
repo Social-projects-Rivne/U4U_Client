@@ -6,40 +6,36 @@ export default class reportBody extends Component {
   state = {
     report: null,
     reportError: false,
-    selected: false
-  };
-  mark = value => {
-    this.setState({ mark: value, selected: true, reportError: false });
+    selected: false,
+    show: false
   };
 
   onChange = () => {
-    this.setState({ selected: false, mark: null });
+    this.setState({ selected: false });
   };
 
   onSubmit = e => {
     e.preventDefault();
-    const { report, mark } = this.state;
-    if (report.length <= 2 || mark === null) {
+    const { report } = this.state;
+    if (report.length <= 2) {
       this.setState({ reportError: true });
     } else {
       this.setState({ reportError: false });
 
       const jwt = localStorage.getItem('token');
       const { placeId } = this.props;
-      const { mark } = this.state;
 
       api
         .report({
           userJwt: jwt,
           report: report,
-          placeId: placeId,
+          placeId: placeId
         })
         .then(() => {
           console.log('Success');
           this.setState({
             report: '',
             reportError: false,
-            mark: null,
             selected: false
           });
         })
@@ -53,18 +49,45 @@ export default class reportBody extends Component {
     this.setState({ report: e.target.value });
   };
 
+  showModal = () => {
+    this.setState({
+      ...this.state,
+      show: !this.state.show
+    });
+  };
+
+  onClose = e => {
+    this.props.onClose && this.props.onClose(e);
+  };
+
   render() {
-    const { reportError, selected, mark, report } = this.state;
+    const { reportError, selected, report } = this.state;
 
     const message = selected ? 'thanks_message' : 'd-none';
 
-    const error = reportError ? 'Please enter report and mark' : '';
+    const error = reportError ? 'Please write your report message' : '';
+
+    if (!this.props.show) {
+      return null;
+    }
+
     return (
-      <div className="report-body">
-        
+      <div
+        className="report-body"
+        onClose={this.showModal}
+        show={this.state.show}
+      >
+        <input type="button" onClick={this.showModal} value="Report" />
+        <div>
+          <button
+            onClick={e => {
+              this.onClose(e);
+            }}
+          >
+            Close
+          </button>
+        </div>
         <form onSubmit={this.onSubmit}>
-          
-          
           <textarea
             required
             name="report"
@@ -74,12 +97,8 @@ export default class reportBody extends Component {
             onChange={this.onReport}
           ></textarea>
           <p className="message">{error}</p>
-          <div className={message}>
-              <i onClick={this.onChange} className="revert">
-                &#8634;
-              </i>
-          </div>
-          <input type="submit" id="report-button" value="Report"></input>
+          <div className={message}></div>
+          <input type="submit" id="#report-button" value="Report"></input>
         </form>
       </div>
     );
