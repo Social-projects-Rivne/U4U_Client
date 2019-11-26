@@ -8,7 +8,7 @@ export default class CommentViewSection extends Component {
     return (
       <div className="comment-view-section">
         <div>
-          <CommentViewList commentList={commentList} />>
+          <CommentViewList commentList={commentList} />
         </div>
       </div>
     );
