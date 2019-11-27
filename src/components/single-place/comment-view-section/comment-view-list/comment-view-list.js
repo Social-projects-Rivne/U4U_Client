@@ -6,15 +6,15 @@ export default class CommentViewList extends Component {
   render() {
     const { commentList } = this.props;
     const elements = commentList.map(item => {
-      const { ...itemProps } = item;
-      return (
-        <li>
-          <CommentViewItem {...itemProps} />
-        </li>
+      const { _id, ...itemProps } = item;
+      
+      return ( 
+        <CommentViewItem {...itemProps} key={_id}/>
       );
     });
+
     if (commentList.length === 0) {
-      return <p>No comments</p>;
+      return <p className="comment-view-nocomment">We are sorry, but there are no comments, you can be the first.</p>;
     } else {
       return <ul>{elements}</ul>;
     }

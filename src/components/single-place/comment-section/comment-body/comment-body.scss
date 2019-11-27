@@ -59,18 +59,19 @@
     }
     .rating-container{
         display: flex;
+        align-items: center;
         justify-content: flex-start;
-        margin: 10px 0px;
-        width: 25%;
+        height: 4rem;
     }
     .d-none{
         display: none;
     }
     .thanks_message{
         display: flex;
+        align-items: center;
         justify-content: flex-start;
-        margin: 10px 0px;
-        width: 40%;
+        height: 4rem;
+        
         .message_thanks{
             font-size: 18px;
             color: #ffffff;
@@ -83,3 +84,22 @@
     }
 }
 
+.svg-inline--fa.fa-w-18.stars {
+  color: #fff;
+  cursor: pointer;
+  height: 3.5rem;
+  width: 3.5rem;
+
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  & path {
+    stroke-width: 3rem;
+    stroke: #ff4500;
+  }
+
+  &.hover {
+    color: #ffff00;
+  }
+}
