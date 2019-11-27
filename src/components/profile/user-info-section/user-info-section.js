@@ -26,6 +26,7 @@ export default class UserInfoSection extends Component {
     this.setState({
       user
     });
+    this.editProfile();
   };
 
   render() {
