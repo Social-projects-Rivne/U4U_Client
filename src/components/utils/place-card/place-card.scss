@@ -52,6 +52,11 @@
                 svg {
                     color: $map-hover-color;
                     font-size: 1.8rem;
+
+                    & path {
+                        stroke-width: 2rem;
+                        stroke: #ff4500;
+                    }
                 }
                 span {
                     margin-left: 1rem;

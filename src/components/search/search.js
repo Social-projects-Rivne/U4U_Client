@@ -81,7 +81,7 @@ export default class Search extends Component {
         return (
           <li key={p.id}>
             <Link to={`singleplace/${p.id}`}>
-              - {p.name}<span>{p.rating} <FontAwesomeIcon icon={faStar} /></span>
+              - {p.name}<span><FontAwesomeIcon icon={faStar} /> <span className="search-popular-places-rating">{p.rating.toFixed(1)}</span></span>
             </Link>
           </li>
         )
@@ -102,41 +102,49 @@ export default class Search extends Component {
     const places = this.renderPlaces(searchData);
     const popular = this.renderPopular(popularData);
 
+    const inputStyle = {
+      boxShadow: results 
+                ? "0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2)" 
+                : "0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12)"
+    }
+
     return (
-      <div className="search" >
-        <div className="search__wrapper">
-          <div className={`search__fields${results}`}>
-            <div className="search__find">
-              <input type="text"
-                placeholder="Find your favorite place"
-                onChange={this.searchHandler} />
+      <div className="search-container">
+        <div className="search">
+          <div className="search__wrapper" style={inputStyle}>
+            <div className={`search__fields${results}`}>
+              <div className="search__find">
+                <input type="text"
+                  placeholder="Find your favorite place"
+                  onChange={this.searchHandler} />
+              </div>
+
+              <div className="search__results">
+                <ul>
+                  {places}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="search__more">
+            <div className="search__random">
+              <Link to={`/singleplace/${randomId}`}>
+                <FontAwesomeIcon icon={faRandom} />
+                Press and see an interesting random place
+              </Link>
             </div>
 
-            <div className="search__results">
+            <div className="search__popular">
+              <h2>
+                <FontAwesomeIcon icon={faMedal} />
+                Popular places:
+              </h2>
+
               <ul>
-                {places}
+                {popular}
               </ul>
             </div>
-          </div>
-        </div>
-
-        <div className="search__more">
-          <div className="search__random">
-            <Link to={`/singleplace/${randomId}`}>
-              <FontAwesomeIcon icon={faRandom} />
-              Press and see an interesting random place
-            </Link>
-          </div>
-
-          <div className="search__popular">
-            <h2>
-              <FontAwesomeIcon icon={faMedal} />
-              Popular places:
-            </h2>
-
-            <ul>
-              {popular}
-            </ul>
           </div>
         </div>
       </div>
