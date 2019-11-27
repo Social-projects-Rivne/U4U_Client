@@ -29,7 +29,6 @@ export default class UserInfoForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
 
     const profileData = [
       { id: "name", value: this.state.newUserName },
@@ -44,7 +43,6 @@ export default class UserInfoForm extends Component {
         body[field.id] = field.value
       }
     }
-    console.log(body);
     this.editUserData(body);
   };
 
