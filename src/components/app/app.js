@@ -36,14 +36,14 @@ class App extends Component {
     };
   }
 
-  async componentWillMount() {
-    await this.getUserData();
+  // async componentWillMount() {
+  //   await this.getUserData();
 
-    this.props.history.listen((location) => {
-      console.log(location)
-      this.setState({path: location.pathname});
-    });
-  }
+  //   this.props.history.listen((location) => {
+  //     console.log(location)
+  //     this.setState({path: location.pathname});
+  //   });
+  // }
 
   getUserData = async () => {
     try {

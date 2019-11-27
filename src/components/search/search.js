@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './search.scss';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRandom } from '@fortawesome/free-solid-svg-icons';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
@@ -23,13 +23,12 @@ export default class Search extends Component {
       this.searchService.getSearchStar(),
       this.searchService.getRandomPlace(),
     ])
-      .then(([star, random]) => {
-        console.log(star)
-        this.setState({
-          popularData: star,
-          randomId: random[0].id,
-        })
+    .then(([star, random]) => {
+      this.setState({
+        popularData: star,
+        randomId: random[0].id,
       })
+    })
   }
 
   searchHandler = (e) => {
@@ -98,10 +97,10 @@ export default class Search extends Component {
   }
 
   render() {
-    const { searchStatus, searchData, popularData, randomId } = this.state
-    const results = (searchStatus) ? ' results' : ''
-    const places = this.renderPlaces(searchData)
-    const popular = this.renderPopular(popularData)
+    const { searchStatus, searchData, popularData, randomId } = this.state;
+    const results = (searchStatus) ? ' results' : '';
+    const places = this.renderPlaces(searchData);
+    const popular = this.renderPopular(popularData);
 
     return (
       <div className="search" >
