@@ -5,7 +5,8 @@ import './search-panel.scss';
 export default class SearchPanel extends Component {
   state = {
     query: [],
-    inputValue: ''
+    inputValue: '',
+    placeId: null
   }
   onCommentChange = (e) => {
     const inputValue = e.target.value;
@@ -33,8 +34,10 @@ export default class SearchPanel extends Component {
   };
 
   onSubmit = (event) => {
+    const { inputValue, placeId } = this.state
+
     event.preventDefault();
-    this.props.onButtonAddClick(this.state.inputValue)
+    this.props.onButtonAddClick(inputValue, placeId)
     this.setState({
       inputValue: ''
     })
@@ -46,6 +49,7 @@ export default class SearchPanel extends Component {
         onClick={() => {
           this.setState({
             inputValue: place.name,
+            placeId: place._id,
             query: []
           })
         }}>
