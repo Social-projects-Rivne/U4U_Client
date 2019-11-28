@@ -31,19 +31,13 @@ class App extends Component {
     this.state = {
       isAuth: false,
       user: null,
-      startAuth: false,
-      path: window.location.pathname
+      startAuth: false
     };
   }
 
-  // async componentWillMount() {
-  //   await this.getUserData();
-
-  //   this.props.history.listen((location) => {
-  //     console.log(location)
-  //     this.setState({path: location.pathname});
-  //   });
-  // }
+  async componentDidMount() {
+    await this.getUserData();
+  }
 
   getUserData = async () => {
     try {
@@ -113,10 +107,9 @@ class App extends Component {
                 <Route component={Error404} />
               </Switch>
             </Container>
-            {
-              this.state.path !== "/" 
-              ? <Footer /> : ""
-            }
+            <Route path="/" render={props => 
+              props.location.pathname !== "/" ? <Footer /> : ""
+            } />
           </Router>
         </AuthProvider>
       </div>
