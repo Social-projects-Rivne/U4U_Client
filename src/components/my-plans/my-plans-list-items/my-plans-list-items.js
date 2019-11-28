@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
@@ -10,10 +11,11 @@ export default class MyPlansListItems extends Component {
   constructor(props) {
     super(props);
     this.service = new PlansListService();
-    const { done, inProgress, _id, comment, onDeleted } = this.props;
+    const { done, inProgress, _id, placeId, placeName, onDeleted } = this.props;
     this.state = {
       done,
-      comment,
+      placeId,
+      placeName,
       onDeleted,
       important: inProgress,
       id: _id
@@ -36,7 +38,7 @@ export default class MyPlansListItems extends Component {
     )
   };
   render() {
-    const { comment, done, onDeleted, important } = this.state;
+    const { placeId, placeName, done, onDeleted, important } = this.state;
     let classNames = 'plans-list-item';
     if (done) {
       classNames += ' done';
@@ -47,7 +49,9 @@ export default class MyPlansListItems extends Component {
     return (
       <span id='list-item-style' className={classNames}>
         <span className="plans-list-item">
-          {comment}
+          <Link to={`/singleplace/${placeId}`}>
+            {placeName}
+          </Link>
         </span>
         <div className='icons'>
           <FontAwesomeIcon icon={faCheckSquare}

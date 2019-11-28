@@ -14,7 +14,18 @@ class UserService {
         } catch (error) {
             throw new Error(error.message);
         }
-    };
+    }
+
+    async editUserData(body) {
+        try {
+            const token = TokenService.getToken();
+            if (!token) throw new Error("illegal or missing token");
+
+            return await Request.post('user/edit', body);
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
 }
 
 export default new UserService();

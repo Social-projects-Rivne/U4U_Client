@@ -43,10 +43,12 @@ export default class UserInfo extends Component {
               <label>Places traveled</label>
               <span className="">123</span>
             </div>
+            {this.props.user.birth_date ? 
             <div className="user-info_center-group">
               <label>Birth date</label>
-              <span className="">{this.props.user.birth_date ? this.props.user.birth_date : "No birth date"}</span>
+              <span className="">{this.props.user.birth_date}</span>
             </div>
+            : ''}
             <div className="user-info_center-group">
               <label>Business Account</label>
               <span className="">{this.props.user.is_business ? "No" : "Yes"}</span>
