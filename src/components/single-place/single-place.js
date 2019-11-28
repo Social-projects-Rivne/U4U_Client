@@ -32,7 +32,7 @@ export default class SinglePlace extends Component {
       const placeId = params.id;
       const placett = await Api.getPlace(placeId);
       const comments = await reviewService.getAllComments(placeId);
-      this.setState({ place: placett, CommentList: comments });
+      this.setState({ place: placett, CommentList: comments, commentQuantity: comments.length });
     } catch (error) {
       console.log('Handle get single plase error:', error);
     }
