@@ -22,8 +22,22 @@ class TouristService {
         return await request.post('log-out', { token })
     }
 
-    register(name, email, password) {
-        // return
+    async register({ nickName: nickname, ...other }) {
+          try {
+              const res = await request.post('register', {nickname, ...other});
+              localStorage.setItem('token', res.accessToken);
+              localStorage.setItem('refreshToken', res.refreshToken);
+          } catch (e) {
+              
+          }
+    }
+
+    async getNickName(nickname) {
+        return await request.get(`nickname/${nickname}`);
+    }
+
+    async getEmail(email) {
+        return await request.get(`email/${email}`);
     }
 };
 

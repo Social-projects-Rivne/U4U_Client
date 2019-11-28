@@ -23,6 +23,7 @@ import Profile from '../profile';
 import UserService from "../../services/user-service";
 import MainPage from "./../pages/main";
 import { withRouter } from 'react-router-dom';
+import Register from "../register/register";
 
 class App extends Component {
   constructor(props) {
@@ -95,8 +96,8 @@ class App extends Component {
                   render={props => <Profile user={this.state.user} />}
                 />
 
-                <Route path="/search"
-                  component={Search} />
+                <Route path="/search" component={Search} />
+                <Route path='/register' render={() => <Register onAuth={this.onAuth} />} />
 
                 <Route
                   path="/places-list/filter/region=:regionId"

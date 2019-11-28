@@ -37,13 +37,13 @@ export default class PlacesList extends Component {
       if(regionId) {
         const places = await PlacesApi.getRegionPlaces(regionId);
         const filteredPlaces = places.filter((place) => {
-          return place.isModerated === true
+          return place.isModerated === true &&  place.approved === true
         })
         this.setState({places: filteredPlaces});
       } else {
         const places = await PlacesApi.getAllPlaces();
         const filteredPlaces = places.filter((place) => {
-          return place.isModerated === true
+          return place.isModerated === true &&  place.approved === true
         })
         this.setState({places: filteredPlaces});
       }
