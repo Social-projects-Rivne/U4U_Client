@@ -15,7 +15,7 @@ export default class UserInfoForm extends Component {
     if (this.props.user) {
       return (
         <form className="user-info-form" action="">
-          <div className="user-info-center">
+          <div className="user-info-left">
             <div className="user-info_center-group">
               <span>Name</span>
               <input className="user-info-name" type="text" name="name" value={this.props.user.name}/>

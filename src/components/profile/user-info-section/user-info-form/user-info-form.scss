@@ -1,3 +1,5 @@
+@import './../../../../global-data/global.scss';
+
 .user-info-form{
   animation: userInfoForm 1s;
   display: flex;
@@ -43,9 +45,7 @@
 }
 .user-info_center-group{
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  // height: calc(100% / 4);
+  border-bottom: 1px solid $grey-color;
 }
 .user-info_center-group.buttons{
   flex-direction: row;

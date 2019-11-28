@@ -19,9 +19,11 @@ export default class Profile extends Component {
   
   render() {
     return (
-      <div className="profile">
-        <UserInfoSection user={this.props.user} />
-        <AddPlace />
+      <div className="profile-container">
+         <div className="profile">
+          <UserInfoSection user={this.props.user} />
+          <AddPlace />
+        </div>
       </div>
     );
   }

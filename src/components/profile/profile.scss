@@ -1,5 +1,13 @@
-.profile{
-  background-color: rgba(0, 0, 0, 0.4);
+.profile-container {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.profile {
+  width: 100%;
+  max-width: 120rem;
+  color: black;
 }
 .profile input:not(.add-place-file),
 .profile select,
