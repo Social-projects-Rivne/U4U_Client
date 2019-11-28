@@ -11,14 +11,6 @@ import './main-section.scss';
 
 
 export default class MainSection extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     place: props.place
-  //   };
-  // }
-
   state = {
     place: this.props.place
   }
@@ -49,7 +41,7 @@ export default class MainSection extends React.Component {
         <div className='user-activity-info'>
           <GeneralCommentsNumber commentQuantity={this.props.commentQuantity} />
           <GeneralRating ratingAvg={ratingAvg} />
-          <AddToWishListBttn />
+          <AddToWishListBttn isAuth={this.props.isAuth} />
         </div>
         <PlaceDescription placeInfo={description} />
       </div>

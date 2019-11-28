@@ -45,7 +45,7 @@ export default class SinglePlace extends Component {
         <div className="main-comment-sections">
           {loading ? (
             <div>
-              <MainSection place={this.state.place} commentQuantity={this.state.commentQuantity} />
+              <MainSection place={this.state.place} commentQuantity={this.state.commentQuantity} isAuth={this.props.isAuth}/>
             </div>
           ) : (
             <Spinner />
