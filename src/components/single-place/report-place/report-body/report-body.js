@@ -49,43 +49,16 @@ export default class reportBody extends Component {
     this.setState({ report: e.target.value });
   };
 
-  showModal = () => {
-    this.setState({
-      ...this.state,
-      show: !this.state.show
-    });
-  };
-
-  onClose = e => {
-    this.props.onClose && this.props.onClose(e);
-  };
-
   render() {
     const { reportError, selected, report } = this.state;
 
     const message = selected ? 'thanks_message' : 'd-none';
 
     const error = reportError ? 'Please write your report message' : '';
-
-    if (!this.props.show) {
-      return null;
-    }
-
     return (
-      <div
-        className="report-body"
-        onClose={this.showModal}
-        show={this.state.show}
-      >
-        <input type="button" onClick={this.showModal} value="Report" />
+      <div className="report-body">
         <div>
-          <button
-            onClick={e => {
-              this.onClose(e);
-            }}
-          >
-            Close
-          </button>
+        <input type="button" className="report-button " value="Report"/>
         </div>
         <form onSubmit={this.onSubmit}>
           <textarea
@@ -98,7 +71,7 @@ export default class reportBody extends Component {
           ></textarea>
           <p className="message">{error}</p>
           <div className={message}></div>
-          <input type="submit" id="#report-button" value="Report"></input>
+          <input type="submit" className="report-submit" value="Submit"></input>
         </form>
       </div>
     );
