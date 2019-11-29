@@ -81,7 +81,7 @@ const Register = ({ onAuth }) => {
                         initialValues={{
                             name: '',
                             surname: '',
-                            nickname: '',
+                            nickName: '',
                             password: '',
                             email: '',
                         }}

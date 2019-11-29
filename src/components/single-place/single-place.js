@@ -49,9 +49,7 @@ export default class SinglePlace extends Component {
         <div className="single-place-wrapper">
           <div className="single-place-content">
             {loading ? (
-                <div>
-                  <MainSection place={this.state.place} />
-                </div>
+                <MainSection place={this.state.place} />
               ) : (
                 <Spinner />
             )}

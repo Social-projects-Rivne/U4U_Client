@@ -1,4 +1,7 @@
+@import './../../../global-data/global.scss';
+
 .main-section {
+  width: 100%;
   position: relative;
 }
 
@@ -6,19 +9,21 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-right: 35px;
   color: black;
 }  
 .user-activity-info{
   display: flex;
+  align-items: center;
   justify-content: space-around;
-  margin-top:20px;
+  padding: 1.5rem;
+  background: $primary-color;
 }
 
 
 .sub-heading, .article p{
+  text-indent: 2rem;
+  padding: 2rem;
   text-align: justify;
-  padding: 20px 35px;
   font-size: 2rem;
   font-weight: 100;
   word-spacing: 2px;

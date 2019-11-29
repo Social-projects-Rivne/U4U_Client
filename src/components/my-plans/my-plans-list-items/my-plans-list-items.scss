@@ -1,5 +1,16 @@
 @import './../../../global-data/global.scss';
 
+.plans-list-item {
+  & a {
+    color: black;
+    text-decoration: none;
+  }
+
+  & a:hover {
+    color: $primary-color;
+  }
+}
+
 .my-plans-icon{
     margin-left: 1.2rem;
     color: $primary-color;

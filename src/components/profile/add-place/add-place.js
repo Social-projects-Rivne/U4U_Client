@@ -106,7 +106,7 @@ export default class AddPlace extends Component {
           <textarea
             required
             placeholder = 'Place description'
-            className="add-place-description global-input-textarea"
+            className="add-place-description global-textarea"
             name="description"
             value={this.state.description}
             onChange={this.handleChange}

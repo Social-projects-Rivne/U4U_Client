@@ -1,11 +1,21 @@
 import React, {Component} from 'react';
+import PlaceName from './../place-name/place-name';
+import Weather from './../weather/weather';
+import SubHeading from './../sub-heading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './place-photos.scss';
 
 export default class PlacePhotos extends Component {
+    constructor(props) {
+        super(props);
 
-    state={
-        currentSlide: 0,
-        animation: false,
+        this.state = {
+            currentSlide: 0,
+            animation: false,
+            place: props.place
+        };
     }
 
     prev = () => {
@@ -76,18 +86,40 @@ export default class PlacePhotos extends Component {
     render(){
         const {photos} = this.props;
         const {currentSlide, animation} = this.state;
+        const {name, coordinates} = this.state.place;
 
         const animationClass = animation ? 'sliderAnimation' : 'sliderAppend';
         return(
             <div className ='place-photo'>
-                <div className="prev" onClick={this.prev}>
-                    &laquo;
-                </div>
                 <div className='place-photo-container'>
+                    <div className="place-photo-container-place-info">
+                        <div className="place-photo-container-place-info-header">
+                            <PlaceName placeName={name} />
+                            <div>
+                                {coordinates
+                                    ?
+                                        <Weather 
+                                            latitude={coordinates.latitude} 
+                                            longitude={coordinates.longitude} /> //TODO: change this workaround when all places will have coodinates
+                                    : null
+                                }
+                            </div>
+                        </div>
+                        <div className="place-photo-container-place-info-subhead">
+                            <SubHeading />
+                        </div>
+                    </div>
+
+                    <div className="prev" onClick={this.prev}>
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    </div>
+
                     <img src = {photos[currentSlide]} alt ='' className={animationClass}/>
-                </div>
-                <div className="next" onClick={this.next}>
-                    &raquo;
+
+                    <div className="next" onClick={this.next}>
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    </div>
+
                 </div>
             </div>
         );

@@ -4,19 +4,20 @@
   display: flex;
   justify-content: center;
   
-  
-  &-content {
+  &-wrapper{
     display: flex;
-    flex-wrap: wrap;
+    width: 100%;
     max-width: 120rem;
     margin: 5rem 0 5rem 0;
   }
 
-  &-wrapper{
+  &-content {
     display: flex;
-    max-width: 120rem;
-    flex: 72%;
+    flex-wrap: wrap;
+    width: 72%;
   }
+
+  
 
   & .main-comment-sections{
     width: 100%;

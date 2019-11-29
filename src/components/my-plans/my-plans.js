@@ -67,13 +67,14 @@ export default class MyPlans extends Component {
       return (
         <div className="my-plans" >
           <div className="my-plans-content">
-            <div className='my-plans-content-adding-header-section'></div>
-            <MyPlansHeader />
-            <SearchPanel onButtonAddClick={this.addItem} />
+            <div className='my-plans-content-adding-header-section'>
+              <MyPlansHeader />
+              <SearchPanel onButtonAddClick={this.addItem} />
+            </div>
+            <MyPlansList
+              planLists={this.state.myPlansList}
+              onDeleted={this.deleteItem} />
           </div>
-          <MyPlansList
-            planLists={this.state.myPlansList}
-            onDeleted={this.deleteItem} />
         </div>
       )
     }
