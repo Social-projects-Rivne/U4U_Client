@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AsideSection from './aside-section/aside-section';
 import MainSection from './main-section/main-section';
-import ReportPlace from './report-place/report-place';
+import ReportSection from './report-section/report-section';
 import CommentSection from './comment-section/comment-section';
 import CommentViewSection from './comment-view-section/comment-view-section';
 import Api from './../../services/places-service';
@@ -56,7 +56,7 @@ export default class SinglePlace extends Component {
           ) : (
             <Spinner />
           )}
-          <ReportPlace placeId={placeId} />
+          <ReportSection placeId={placeId} />
           <commentContext.Provider value={this.commentContext} >
           <CommentSection placeId={placeId} />
           <CommentViewSection  commentList = {this.state.CommentList}/>

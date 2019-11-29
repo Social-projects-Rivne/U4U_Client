@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import './report-body.scss';
+import './report-modal.scss';
 import api from '../../../../services/report-service';
 
-export default class reportBody extends Component {
+export default class ReportModal extends Component {
   state = {
     report: null,
     reportError: false,
-    selected: false,
-    show: false
+    selected: false
   };
 
   onChange = () => {
     this.setState({ selected: false });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const { report } = this.state;
     if (report.length <= 2) {
@@ -51,28 +50,29 @@ export default class reportBody extends Component {
 
   render() {
     const { reportError, selected, report } = this.state;
-
     const message = selected ? 'thanks_message' : 'd-none';
-
     const error = reportError ? 'Please write your report message' : '';
+
     return (
-      <div className="report-body">
-        <div>
-        <input type="button" className="report-button " value="Report"/>
+      <div>
+        <div className="report-modal">
+          <div className="report-modal-main">
+          <p className="report-modal-header">Create Report</p>
+            <form onSubmit={this.onSubmit}>
+              <textarea
+                required
+                name="report"
+                value={report}
+                placeholder="Write your report message here..."
+                className="report"
+                onChange={this.onReport}></textarea>
+              <p className="message">{error}</p>
+              <div className={message}></div>
+              <button type="button" className="report-cancel" onClick="">Close</button>
+              <button type="submit" className="report-submit">Submit</button>
+            </form>
+          </div>
         </div>
-        <form onSubmit={this.onSubmit}>
-          <textarea
-            required
-            name="report"
-            value={report}
-            placeholder="Write your report message here..."
-            className="report"
-            onChange={this.onReport}
-          ></textarea>
-          <p className="message">{error}</p>
-          <div className={message}></div>
-          <input type="submit" className="report-submit" value="Submit"></input>
-        </form>
       </div>
     );
   }
