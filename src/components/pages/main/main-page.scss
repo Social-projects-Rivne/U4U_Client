@@ -39,7 +39,7 @@
 
     &-map {
       margin-top: -6rem;
-      background-color: $layout-color;
+      background-color: $grey-color-1;
       width: 100%;
       position: fixed;
       height: 100vh;
@@ -78,7 +78,7 @@
     }
 
     &-popular {
-      background: $second-layout-color;
+      background: $green-layout-color;
       position: relative;
       top: 100vh;
       font-family: 'Raleway', sans-serif;

@@ -86,7 +86,7 @@ export default class AddPlace extends Component {
     })
 
     return (
-      <div className="add-place white-layout">
+      <div className="add-place global-white-layout">
         <form className="add-place-form"
           onSubmit={this.handleSubmit}>
           <h1 className="add-place-header">Add your place</h1>

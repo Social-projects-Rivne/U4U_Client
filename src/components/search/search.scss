@@ -57,7 +57,7 @@
       max-height: 50vh;
 
       & .search__find {
-        border-bottom: 1px solid $layout-color;
+        border-bottom: 1px solid $grey-color-1;
 
         & input {
           border-radius: 1rem 1rem 0 0;
@@ -128,7 +128,7 @@
         padding: 1rem 2rem;
 
         &:not(:last-child) {
-          border-bottom: 0.1rem solid $layout-color;
+          border-bottom: 0.1rem solid $grey-color-1;
         }
 
         & a {
@@ -166,7 +166,7 @@
   }
 
   &__random {
-    border-bottom: 1px solid $layout-color;
+    border-bottom: 1px solid $grey-color-1;
 
     & a {
       color: rgba(0, 0, 0, 0.9);
@@ -226,7 +226,7 @@
             
             & svg {
               display: flex;
-              color: $map-hover-color;
+              color: $yellow-color-2;
               width: 10rem;
 
               & path {

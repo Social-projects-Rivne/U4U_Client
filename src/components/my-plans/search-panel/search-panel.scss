@@ -59,7 +59,7 @@
         text-decoration: none;
         font-size: 16px;
         cursor: pointer;
-        background-color: $map-hover-color;
+        background-color: $yellow-color-2;
         border-radius: 0 1rem 1rem 0;
         z-index: 3;
 
@@ -95,7 +95,7 @@
                 padding: 1.8rem;
                 font-size: 14px;
                 transition: 0.2s;
-                border-top: 1px solid $layout-color;
+                border-top: 1px solid $grey-color-1;
                 
                 
                 &:hover {

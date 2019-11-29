@@ -7,7 +7,7 @@ export default class MyPlansList extends Component {
         const { planLists, onDeleted } = this.props;
         const elements = planLists.map((item) => {
             return (
-                <li className='white-layout' key={item._id}>
+                <li className='global-white-layout' key={item._id}>
                     <MyPlansListItems
                         {...item}
                         onDeleted={() => { onDeleted(item._id) }} />

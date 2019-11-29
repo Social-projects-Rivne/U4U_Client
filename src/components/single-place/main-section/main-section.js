@@ -25,7 +25,7 @@ export default class MainSection extends React.Component {
 
     return (
 
-      <div className='main-section white-layout'>
+      <div className='main-section global-white-layout'>
         <PlacePhotos place={this.state.place} photos={photos} />
         <div className='user-activity-info'>
           <GeneralCommentsNumber />

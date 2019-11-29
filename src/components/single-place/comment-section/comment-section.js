@@ -6,7 +6,7 @@ export default class CommentSection extends Component {
   render() {
     const { placeId } = this.props;
     return (
-      <div className = 'comment-section white-layout'>
+      <div className = 'comment-section global-white-layout'>
         <CommentBody placeId={ placeId } />
       </div>
     )

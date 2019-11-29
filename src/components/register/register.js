@@ -74,7 +74,7 @@ const Register = ({ onAuth }) => {
 
     return (
         <div className="register-wrapper">
-            <div className="register white-layout">
+            <div className="register global-white-layout">
                 <h1 className='register-title'>Registration</h1>
                 <div className="form-group">
                     <Formik

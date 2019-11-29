@@ -44,7 +44,7 @@ export default class UserInfoSection extends Component {
 
   render() {
     return (
-      <div className="white-layout user-info__section">
+      <div className="global-white-layout user-info__section">
         <AvatarSection />
         <div className="user-info-wrapper">
           <div className="user-info-wrapper-actions">

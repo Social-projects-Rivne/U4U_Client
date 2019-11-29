@@ -47,7 +47,7 @@ const Login = ({ onAuth }) => {
 
         return (
                 <div className="login-wrapper">
-                        <div className="login white-layout">
+                        <div className="login global-white-layout">
                             <h1 className='login-title'>Sign In</h1>
                             {state.wrongData ? <p className='login-error'>Wrong email or password!</p> : null }
                             {state.err ? <p className='login-error'>Server error please try later!</p> : null }
