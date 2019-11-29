@@ -53,42 +53,27 @@ export default class SearchPanel extends Component {
       </li>
     ));
 
-    const searchFormStyle = {
-      boxShadow: options.length ? " 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2)" : ""
-    };
-
-    const searchInputStyle = {
-      borderRadius: options.length ? "1rem 0 0 0" : "",
-    };
-
-    const searchButtonStyle = {
-      borderRadius: options.length ? "0 1rem 0 0" : ""
-    };
-
     return (
       <div className='search-bar'>
         <div className='search-panel'>
           <form 
-            className='search-panel-form'
-            onSubmit={this.onSubmit}
-            style={searchFormStyle}>
+            className={'search-panel-form ' + (options.length ? "search-panel-form_shadow" : "")}
+            onSubmit={this.onSubmit}>
 
             <input 
               type="text"
-              className=" search-input"
+              className={"search-input " + (options.length ? "search-input_border" : "")}
               maxLength='50'
               placeholder="Search name of the place and add it to your wish list"
               onChange={this.onCommentChange}
               required
               pattern="[A-Za-z\s]+"
               value={this.state.inputValue}
-              style={searchInputStyle}
             />
 
-            <button 
-              type='submit' 
-              id='add-item-button'
-              style={searchButtonStyle}
+            <button
+              className={"search-input-add-item-button " + (options.length ? "search-input-add-item-button_border" : "")} 
+              type='submit'
             >
               Add
             </button>

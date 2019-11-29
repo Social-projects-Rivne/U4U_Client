@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import FIlter from './filter/filter';
+import SelectDropdown from '../../utils/select-dropdown/select-dropdown';
 import PlacesGrid from './../../utils/places-grid/';
 import ButtonLoadingMore from './../../utils/button-loading-more';
 import PlacesApi from './../../../services/places-service';
 import RegionsNames from './../../../global-data/regions-names';
-import Spiner from './../../utils/spinner';
 import './places-list.scss';
 import Spinner from './../../utils/spinner';
 
@@ -98,15 +97,15 @@ export default class PlacesList extends Component {
               </div>
             </div>
             <div className='places-list-container-header-filtres'>
-              <FIlter
+              <SelectDropdown
                 name='rating'
                 data={this.state.fIlteRatingData}
-                getFilterValue={this.getFilterValue}
+                getSelectValue={this.getFilterValue}
               />
-              <FIlter
+              <SelectDropdown
                 name='regions'
                 data={RegionsNames}
-                getFilterValue={this.getFilterValue}
+                getSelectValue={this.getFilterValue}
               />
             </div>
           </div>

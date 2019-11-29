@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RegionsService from '../../../services/regions-service';
 import Api from '../../../services/places-service';
+import SelectDropdown from '../../utils/select-dropdown/select-dropdown';
 import "./add-place.scss";
 
 export default class AddPlace extends Component {
@@ -33,6 +34,10 @@ export default class AddPlace extends Component {
   handleChange = (event) => {
     const name = event.target.name;
     this.setState({ [name]: event.target.value });
+  }
+
+  handleSelectRegion = (data) => {
+    this.setState({ region: data.value });
   }
 
   addPlace = () => {
@@ -73,25 +78,24 @@ export default class AddPlace extends Component {
 
   render() {
     const { regionsList } = this.state;
-    const elements = regionsList.map((item) => {
-      return (<option key={item._id}>
-        {item.name}
-      </option>)
+    const regions = regionsList.map((region) => {
+      return {
+        id: region._id,
+        title: region.name
+      }
     })
+
     return (
-      <div className="add-place">
+      <div className="add-place white-layout">
         <form className="add-place-form"
           onSubmit={this.handleSubmit}>
           <h1 className="add-place-header">Add your place</h1>
-          <select className="district-selector"
-            name="region"
-            required
-            value={this.state.region}
-            onChange={this.handleChange}>
-            <option selected value="">Choose a region</option>
-            {elements}
-          </select>
-          <input className="add-place-title"
+          <SelectDropdown
+            name='Choose a region'
+            data={regions}
+            getSelectValue={this.handleSelectRegion}
+          />
+          <input className="add-place-title global-input-text"
             required
             placeholder = 'Place name'
             type="text"
@@ -102,7 +106,7 @@ export default class AddPlace extends Component {
           <textarea
             required
             placeholder = 'Place description'
-            class="add-place-description"
+            className="add-place-description global-input-textarea"
             name="description"
             value={this.state.description}
             onChange={this.handleChange}
@@ -116,8 +120,8 @@ export default class AddPlace extends Component {
               multiple
               required
               onChange={this.fileSelectedHandler} />
-            <input className="add-place-submit"
-              type='submit' value='send'
+            <input className="add-place-submit global-raised-button"
+              type='submit' value='Add new place'
             />
           </div>
         </form>

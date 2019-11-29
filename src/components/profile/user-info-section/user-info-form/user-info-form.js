@@ -4,146 +4,155 @@ import UserService from "../../../../services/user-service"
 import "./user-info-form.scss";
 
 export default class UserInfoForm extends Component {
-  user = {};
-
   constructor(props) {
     super(props);
 
     this.state = {
-      name: this.props.user.name,
-      surname: this.props.user.surname,
-      nickname: this.props.user.nickname,
-      email: this.props.user.email
+      fields: {
+        name:       this.props.user ? this.props.user.name        : "",
+        surname:    this.props.user ? this.props.user.surname     : "",
+        nickname:   this.props.user ? this.props.user.nickname    : "",
+        email:      this.props.user ? this.props.user.email       : "",
+        birthDate:  this.props.user ? this.props.user.birth_date  : "",
+      }
     };
-    if (!props.user) {
-      console.log(props.user);
-    }
   }
 
   editUserData = (body) => {
     UserService.editUserData(body).then(user => {
-      this.setState(user);
       this.props.newDataHandler(user)
     }).catch(console.error)
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  handleSubmit = () => {
+    const newUserData = {};
 
-    const profileData = [
-      { id: "name", value: this.state.newUserName },
-      { id: "surname", value: this.state.newSurName },
-      { id: "nickname", value: this.state.newNickName },
-      { id: "email", value: this.state.newEmail }
-    ];
-
-    const body = new Object()
-    for (const field of profileData) {
-      if (!!field.value) {
-        body[field.id] = field.value
-      }
+    for (let [key, value] of Object.entries(this.state.fields)) {
+      newUserData[key] = value;
     }
-    this.editUserData(body);
+    
+    this.editUserData(newUserData);
   };
 
-  handleUserName = (event) => {
-    this.setState({
-      newUserName: event.target.value
-    })
+  handleUserName = (value) => {
+    if (value) {
+      this.setState(prevState => ({
+        fields: {
+            ...prevState.fields,
+            name: value
+        }
+      }));
+    }
   };
 
-  handleSurName = (event) => {
-    this.setState({
-      newSurName: event.target.value
-    })
+  handleSurName = (value) => {
+    if (value) {
+      this.setState(prevState => ({
+        fields: {
+            ...prevState.fields,
+            surname: value
+        }
+      }));
+    }
   };
 
-  handleNickName = (event) => {
-    this.setState({
-      newNickName: event.target.value
-    })
+  handleNickName = (value) => {
+    if (value) {
+      this.setState(prevState => ({
+        fields: {
+            ...prevState.fields,
+            nickname: value
+        }
+      }));
+    }
   };
 
-  handleEmail = (event) => {
-    this.setState({
-      newEmail: event.target.value
-    })
+  handleEmail = (value) => {
+    if (value) {
+      this.setState(prevState => ({
+        fields: {
+            ...prevState.fields,
+            email: value
+        }
+      }));
+    }
+  };
+
+  handleBirthDate = (value) => {
+    if (value) {
+      this.setState(prevState => ({
+        fields: {
+            ...prevState.fields,
+            birthDate: Date(value)
+        }
+      }));
+    }
   };
 
   render() {
-    if (this.props.user) {
-      return (
-        <form className="user-info-form" onSubmit={this.handleSubmit}>
-          <div className="user-info-center">
+    return (
+      this.props.user
+      ?
+        <form className="user-info-form">
+          <div className="user-info-left">
             <div className="user-info_center-group">
-              <span>Name</span>
+              <label>Name:</label>
               <input
-                className="user-info-name"
+                className="user-info-name global-input-text"
                 type="text"
                 name="name"
-                onChange={this.handleUserName}
-                defaultValue={this.state.name} />
+                onInput={(e) => this.handleUserName(e.target.value)}
+                defaultValue={this.state.fields.name} />
             </div>
             <div className="user-info_center-group">
-              <span>Surname</span>
+              <label>Surname:</label>
               <input
-                  className="user-info-surname"
+                  className="user-info-surname global-input-text"
                   type="text"
                   name="surname"
-                  onChange={this.handleSurName}
-                  defaultValue={this.state.surname} />
+                  onInput={(e) => this.handleSurName(e.target.value)}
+                  defaultValue={this.state.fields.surname} />
             </div>
             <div className="user-info_center-group">
-              <span>Nickname</span>
+              <label>Nickname:</label>
               <input
-                className="user-info-nickname"
+                className="user-info-nickname global-input-text"
                 type="text"
                 name="nickname"
-                onChange={this.handleNickName}
-                defaultValue={this.state.nickname} />
+                onInput={(e) => this.handleNickName(e.target.value)}
+                defaultValue={this.state.fields.nickname} />
             </div>
             <div className="user-info_center-group">
-              <span>Email</span>
+              <label>Email:</label>
               <input
-                  className="user-info-email"
-                  type="text"
+                  className="user-info-email global-input-text"
+                  type="email"
                   name="email"
-                  onChange={this.handleEmail}
-                  defaultValue={this.state.email} />
+                  onInput={(e) => this.handleEmail(e.target.value)}
+                  defaultValue={this.state.fields.email} />
             </div>
           </div>
           <div className="user-info-right">
             <div className="user-info_center-group">
-              <span>Birth date</span>
-              <input type="password" name="name" value={this.props.user.birth_date}/>
+              <label>Birth date:</label>
+              <input 
+                type="date" 
+                name="birthDate"
+                className="global-input-text"
+                onInput={(e) => this.handleBirthDate(e.target.value)}
+                defaultValue={this.state.fields.birthDate} />
             </div>
             <div className="user-info_center-group">
-              <span>New password</span>
-              <input type="password" name="name" />
+              <label>New password:</label>
+              <input type="password" className="global-input-text" name="name" />
             </div>
             <div className="user-info_center-group">
-              <span>Repeat password</span>
-              <input type="password" name="name" />
-            </div>
-            <div className="user-info_center-group buttons">
-              <div className="user-info-submit">
-                <input className="user-info-button" type="submit" />
-              </div>
-              <div className="user-info-view">
-                <button
-                  className="user-info-button"
-                  onClick={this.props.editProfile}
-                >
-                  View profile
-                </button>
-              </div>
+              <label>Repeat password:</label>
+              <input type="password" className="global-input-text" name="name" />
             </div>
           </div>
         </form>
-      );
-    } else {
-      return <div></div>;
-      //show spinner here return (<Spinner>);
-    }
+      : ""
+    );
   }
 }

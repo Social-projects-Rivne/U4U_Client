@@ -13,9 +13,14 @@
   width: 100%;
 
   &__wrapper {
+    box-shadow: $box-shadow-small;
     border-radius: 1rem;
     margin-bottom: 5rem;
     overflow: hidden;
+
+    &_shadow {
+      box-shadow: $box-shadow-big;
+    }
 
     &.results {
       & .search__find {
@@ -156,7 +161,7 @@
     border: none;
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: $box-shadow-small;
     margin-bottom: 2rem;
   }
 

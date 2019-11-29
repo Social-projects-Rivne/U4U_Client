@@ -103,15 +103,15 @@ export default class Search extends Component {
     const popular = this.renderPopular(popularData);
 
     const inputStyle = {
-      boxShadow: results 
-                ? "0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2)" 
-                : "0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12)"
+      // boxShadow: results 
+      //           ? "0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2)" 
+      //           : "0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12)"
     }
 
     return (
       <div className="search-container">
         <div className="search">
-          <div className="search__wrapper" style={inputStyle}>
+          <div className={"search__wrapper " + (results ? "search__wrapper_shadow" : "")}>
             <div className={`search__fields${results}`}>
               <div className="search__find">
                 <input type="text"

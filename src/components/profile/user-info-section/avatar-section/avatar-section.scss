@@ -1,13 +1,26 @@
-.avatar-section{
-  animation: userInfoForm 1s;
-  width: 30%;
+@import './../../../../global-data/global.scss';
+
+.avatar-section {
+  animation: userInfoForm 0.3s;
+  width: 40%;
+  height: 60%;
 }
-.avatar{
-  width: 100%;
+
+.avatar {
+  max-width: 100%;
+  max-height: 100%;
   height: auto;
   border: none;
-  border-radius: 0.7rem;
+  border-radius: 1rem;
+  box-shadow: $box-shadow-medium;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.avatar:hover {
+  cursor: pointer;
+  box-shadow: $box-shadow-big;
+}
+
 @keyframes userInfoForm {
   from {
     opacity: 0;
