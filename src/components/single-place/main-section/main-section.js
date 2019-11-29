@@ -20,7 +20,7 @@ export default class MainSection extends React.Component {
       return <h1>Not found</h1>
     }
 
-    const { name, photos, description, ratingAvg } = this.state.place;
+    const { _id, name, photos, description, ratingAvg } = this.state.place;
 
     return (
       <div className='main-section'>
@@ -41,7 +41,10 @@ export default class MainSection extends React.Component {
         <div className='user-activity-info'>
           <GeneralCommentsNumber commentQuantity={this.props.commentQuantity} />
           <GeneralRating ratingAvg={ratingAvg} />
-          <AddToWishListBttn isAuth={this.props.isAuth} />
+          <AddToWishListBttn
+            isAuth={this.props.isAuth}
+            currentPlaceId={_id} 
+            loggedInUserId={this.props.loggedInUserId}/>
         </div>
         <PlaceDescription placeInfo={description} />
       </div>
