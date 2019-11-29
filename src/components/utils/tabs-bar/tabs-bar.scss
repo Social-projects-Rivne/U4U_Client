@@ -1,20 +1,17 @@
-.Tabs {
+.tabs {
     position: relative;
-    width: 40rem;
-    height: 6rem;
     display: flex;
     align-items: center;
     font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
     
     &:after {
       content: ' ';
       display: table;
       clear: both;
     }
-    
-    margin: 0;
-    padding: 0;
-    list-style: none;
     
     &__presentation-slider {
       position: absolute;

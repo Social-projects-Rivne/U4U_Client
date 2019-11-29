@@ -32,7 +32,7 @@ export default class Tab extends Component {
         return(
             <Link 
                 to={this.state.url}
-                className={`Tab ${this.state.isActive ? "active" : ""}`}
+                className={`tab ${this.state.isActive ? "active" : ""}`}
                 onClick={() => { this.setActive() }}
                 ref={tab => {this.props.setTabElement(tab, this.state.id, this.state.isActive)}}>
                 {this.state.title}

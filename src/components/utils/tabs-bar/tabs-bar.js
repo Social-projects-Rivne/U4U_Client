@@ -111,7 +111,7 @@ class TabsBar extends Component {
 
     render () {
         return (
-            <ul className="Tabs">
+            <ul className="tabs">
               {
                 this.tabs.map(tab => {
                   return (
@@ -128,7 +128,7 @@ class TabsBar extends Component {
                 })
               }
 
-              <li className="Tabs__presentation-slider" style={{display: this.state.sliderVisibility, left: this.state.sliderPosition}}></li>
+              <li className="tabs__presentation-slider" style={{display: this.state.sliderVisibility, left: this.state.sliderPosition}}></li>
             </ul>
         );
     }

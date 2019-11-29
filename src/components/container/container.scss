@@ -1,12 +1,14 @@
+@import './../../global-data/global.scss';
+
 .content {
   position: relative;
-  min-height: calc(100vh - 5vh);
+  min-height: $page-height;
   width: 100%;
 }
 
 .container {
-  padding-top: 6rem;
+  padding-top: $header-height;
   margin: 0 auto;
-  height: 100%;
+  min-height: $page-height;
   max-height: 100%;
 }

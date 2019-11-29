@@ -11,6 +11,11 @@ $box-shadow-medium: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0,
 $box-shadow-big: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
 $box-shadow-large: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
 
+$header-height: 6vh;
+$footer-height: 5vh;
+$page-height: calc(100vh - 5vh);
+$page-container-height: calc(100vh - 6vh - 5vh);
+
 .global-input-text {
   display: flex;
   padding: 1rem;
@@ -45,12 +50,14 @@ $box-shadow-large: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.1
   color: white;
   border: none;
   display: flex;
+  justify-content: center;
+  align-content: center;
   border-radius: 1rem;
   padding: 1rem;
   box-shadow: $box-shadow-medium;
-  font-weight: 500;
+  font-weight: bold;
   text-transform: capitalize;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 
 .global-raised-button:hover {
