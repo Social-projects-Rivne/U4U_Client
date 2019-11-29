@@ -43,7 +43,8 @@ export default class MainSection extends React.Component {
           <GeneralRating ratingAvg={ratingAvg} />
           <AddToWishListBttn
             isAuth={this.props.isAuth}
-            currentPlaceId={_id} 
+            currentPlaceId={_id}
+            currentPlaceName={name}
             loggedInUserId={this.props.loggedInUserId}/>
         </div>
         <PlaceDescription placeInfo={description} />
