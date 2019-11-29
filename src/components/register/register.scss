@@ -1,29 +1,52 @@
-.register {
-  background: #fff;
-  margin: 0 auto;
-  margin-top: 5%;
+@import './../../global-data/global.scss';
+
+.register-wrapper {
+  min-height: $page-container-height;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .register {
-  .group {
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 4rem;
-  }
-  padding: 5rem 0;
+  max-width: 120rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: 28%;
 
-  from {
+  &-title {
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  &-submit {
+    margin-top: 4rem;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-  }
-
-
-
-  .submit {
-    width: 40%;
-    margin-left: 40%;
-    max-width: 220px;
   }
 }
+
+// .register {
+//   .group {
+//     width: 80%;
+//     margin: 0 auto;
+//     margin-bottom: 4rem;
+//   }
+//   padding: 5rem 0;
+
+//   from {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//   }
+
+
+
+//   .submit {
+//     width: 40%;
+//     margin-left: 40%;
+//     max-width: 220px;
+//   }
+// }
