@@ -6,7 +6,7 @@ import { faRandom } from '@fortawesome/free-solid-svg-icons';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-import SearchService from '../../services/search-services'
+import SearchService from '../../services/search-services';
 
 export default class Search extends Component {
   searchService = new SearchService()
@@ -25,8 +25,8 @@ export default class Search extends Component {
     ])
     .then(([star, random]) => {
       this.setState({
-        popularData: star,
-        randomId: random[0].id,
+        popularData: star.splice(0, 4),
+        randomId: random[0]._id,
       })
     })
   }
@@ -79,9 +79,9 @@ export default class Search extends Component {
     return arr
       .map((p) => {
         return (
-          <li key={p.id}>
-            <Link to={`singleplace/${p.id}`}>
-              - {p.name}<span><FontAwesomeIcon icon={faStar} /> <span className="search-popular-places-rating">{p.rating.toFixed(1)}</span></span>
+          <li key={p._id}>
+            <Link to={`singleplace/${p._id}`}>
+              - {p.name}<span><FontAwesomeIcon icon={faStar} /> <span className="search-popular-places-rating">{p.ratingAvg.toFixed(1)}</span></span>
             </Link>
           </li>
         )

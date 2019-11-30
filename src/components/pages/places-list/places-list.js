@@ -38,14 +38,17 @@ export default class PlacesList extends Component {
         const filteredPlaces = places.filter((place) => {
           return place.isModerated === true &&  place.approved === true
         })
+
         this.setState({places: filteredPlaces});
       } else {
         const places = await PlacesApi.getAllPlaces();
         const filteredPlaces = places.filter((place) => {
           return place.isModerated === true &&  place.approved === true
         })
+
         this.setState({places: filteredPlaces});
       }
+      
     } catch (error) {
       console.log("Handle loading all places error: ", error);
     }

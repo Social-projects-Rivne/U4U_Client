@@ -10,11 +10,12 @@ export default class PlaceCard extends Component {
     constructor(props) {
         super(props);
      
-        if(!props.photo || !props.title || !props.id) {
-          throw Error("This component cant exist without next props:\n title,\n photo,\n id \n")
+        if(!props.place) {
+          throw Error("This component cant exist without next props:\n place\n")
         }
     
         this.state = {
+            place: props.place,
             photoLoadState: false
         };
       }
@@ -26,6 +27,7 @@ export default class PlaceCard extends Component {
     render() {
         const spinerModifier = (this.state.photoLoadState) ? '' : ' place-card-spinner-show';
         const cardModifier = (this.state.photoLoadState) ? ' place-card-show' : '';
+        const { _id, photos, name, location, ratingAvg } = this.state.place;
 
         return (
             <div className='place-card-container'>
@@ -33,24 +35,31 @@ export default class PlaceCard extends Component {
                     <Spiner />
                 </div>
 
-                <Link to={`/singleplace/${this.props.id}`} style={{ textDecoration: 'none' }}>
+                <Link to={`/singleplace/${_id}`} style={{ textDecoration: 'none' }}>
                     <div className ={`place-card ${cardModifier}`}>
                         <img 
-                            src={this.props.photo} 
-                            alt={this.props.title} 
+                            src={photos[0]} 
+                            alt={name.trim()} 
                             onLoad={() => { this.onImageLoaded()} }
                         />
                         <div className="place-card-info">
                             <div className="place-card-info-location">
                                 <FontAwesomeIcon icon={faMapMarkerAlt}/>
-                                <span>Rivne, Piv Zavod</span>
+                                <div className="place-card-info-location-title">
+                                    <div>
+                                        {location.region.trim()}
+                                    </div>
+                                    <div>
+                                        {location.district.trim()}
+                                    </div>
+                                </div>
                             </div>
                             <div className="place-card-info-rating">
                                 <FontAwesomeIcon icon={faStar}/>
-                                <span>4</span>
+                                <span>{ratingAvg}</span>
                             </div>
                         </div>
-                        <h2>{this.props.title}</h2>
+                        <h2>{name.trim()}</h2>
                     </div>
                 </Link>
             </div>

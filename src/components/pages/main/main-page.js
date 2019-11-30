@@ -24,15 +24,15 @@ export default class MainPage extends Component {
 
   render() {
       return (
-        <div className="MainPage">
+        <div className={"MainPage " + (this.state.showWelcome ? "MainPage-welcome_overflow" : "")}>
           <div className={"MainPage-section-map " + (this.state.showWelcome ? "MainPage-section-map_welcome" : "")}>
             {
               this.state.showWelcome
               ? <div className="MainPage-welcome">
-                  <span>
+                  <span className="MainPage-welcome-title">
                     Welcome, new user <span role="img" aria-label="firework">&#127881;</span>! Glad to see you on our site <span role="img" aria-label="hand">&#128400;</span><br/>
                     You can interact with a pretty and powerful map to find new interesting places.<br/>
-                    Hope you enjoy <span role="img" aria-label="smile">&#128536;</span>
+                    Hope you enjoy! <span role="img" aria-label="smile">&#128536;</span>
                   </span>
                   <FontAwesomeIcon icon={faMapMarkerAlt} />
                   <div className="MainPage-welcome-close" onClick={() => {this.hideWelcome()}}>
@@ -43,7 +43,12 @@ export default class MainPage extends Component {
             }
             
             <div 
-              className={"MainPage-section-map-container " + (this.state.showWelcome ? "MainPage-section-map-container_welcome" : "") }
+              className={"MainPage-section-map-container " + (
+                this.state.showWelcome 
+                ? 
+                  "MainPage-section-map-container_welcome" 
+                  : 
+                "") }
               onClick={() => {this.hideWelcome()}}>
               <UMap onClick={() => {this.hideWelcome()}}/>
             </div>

@@ -33,7 +33,7 @@ $page-container-height: calc(100vh - 6vh - 5vh);
 
 .global-textarea {
   display: flex;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 1rem;
   font-size: 1.7rem;
   background-color: $green-layout-color;
@@ -41,6 +41,7 @@ $page-container-height: calc(100vh - 6vh - 5vh);
   border: 1px solid $primary-color;
   font-family: Arial, Helvetica, sans-serif;
 
+  
   &:focus{
     outline: none;
   }
@@ -61,6 +62,12 @@ $page-container-height: calc(100vh - 6vh - 5vh);
   font-size: 1.8rem;
 }
 
+.global-raised-button button {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
 .global-raised-button:hover {
   cursor: pointer;
   transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -76,10 +83,4 @@ $page-container-height: calc(100vh - 6vh - 5vh);
   background: white;
   box-shadow: $box-shadow-small;
   border-radius: 1rem;
-}
-
-body {
-  & .header__logo {
-    display: none;
-  }
 }

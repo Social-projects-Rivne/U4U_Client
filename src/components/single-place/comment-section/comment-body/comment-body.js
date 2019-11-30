@@ -98,8 +98,8 @@ export default class CommentBody extends Component {
     return (
       <commentContext.Consumer>
       {({ addComment }) => (<div className='comment-body'>
-        <p className='comment-sharing'>Share your advantures about this place...</p>
-        <p className='message'>{error}</p>
+        <p className='comment-sharing'>Share your impressions about this place...</p>
+        {error ? <p className='message'>{error}</p> : null}
         <form onSubmit={(e) => { this.onSubmit(e, addComment) }}>
           <textarea required name='comment' value={comment} placeholder='Tell something about this place, please :)' className='comment global-textarea ' onChange={this.onComment}></textarea>
           <div className="comment-body-bottom">

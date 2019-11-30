@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PlacesGrig from './../../../utils/places-grid';
-import PlacesApi from './../../../../services/places-service';
 import Spinner from './../../../utils/spinner';
+import SearchService from './../../../../services/search-services';
 import './main-popular-places.scss';
 
 
@@ -10,16 +10,18 @@ export default class MainPopularPlaces extends Component {
     super (props);
 
     this.state = {
-      places: null
+      places: null,
+      searchService: new SearchService()
     }
   }
 
   async componentDidMount() {
     try {
-      const places = await PlacesApi.getAllPlaces();
-      this.setState({places: places});
+      const popularPlaces = await this.state.searchService.getSearchStar();
+     
+      this.setState({places: popularPlaces});
     } catch (error) {
-      console.log("Handle loading all places error: ", error);
+      console.log("Handle loading popular places error: ", error);
     }
   }
 

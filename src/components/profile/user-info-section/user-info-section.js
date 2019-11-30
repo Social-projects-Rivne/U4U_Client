@@ -85,9 +85,6 @@ export default class UserInfoSection extends Component {
             {this.state.editState === false ? (
               <UserInfo user={this.state.user || this.props.user} />
             ) : (
-              // <div className="">
-
-              //   </div>
               <UserInfoForm
                   ref={this.userInfoForm}
                   user={this.state.user || this.props.user}

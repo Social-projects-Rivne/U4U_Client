@@ -47,14 +47,17 @@ export default class Header extends Component {
   render () {
     return (
       <header className="header">
-          <div className="header__logo">
-            <Link to="/">
-              <img src={logo} alt="Ukraine 4 you" />
-            </Link>
-          </div>
-  
           <div className="header__nav">
             <nav className="header__navbar">
+              <div className="header__logo">
+                <Link to="/">
+                  <span role="img" aria-label="firework">🇺🇦</span>
+                  <span role="img" aria-label="firework">&#128073;</span>
+                  <span role="img" aria-label="firework">&#129300;</span>
+                  {/* <img src={logo} alt="Ukraine 4 you" /> */}
+                </Link>
+              </div>
+
               <TabsBar tabs={this.state.navbarTabs}/>
             </nav>
   

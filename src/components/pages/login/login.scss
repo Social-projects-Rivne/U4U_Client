@@ -36,6 +36,9 @@
     &__button {
       width: 10rem;
       height: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 

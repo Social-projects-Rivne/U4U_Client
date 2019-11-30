@@ -26,9 +26,7 @@ export default class PlacesGrid extends Component {
                   place._id && place.photos.length && place.name
                   ? <PlaceCard 
                         key={place._id}
-                        id={place._id}
-                        photo={place.photos[0]} //TODO: resolve, now hardcoded first one
-                        title={place.name} 
+                        place={place}
                     />
                   : ""
                 )

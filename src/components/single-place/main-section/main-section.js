@@ -8,25 +8,17 @@ import './main-section.scss';
 
 
 export default class MainSection extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      place: props.place
-    };
-  }
-
   render() {
-    if (this.state.place === null) {
+    if (this.props.place === null) {
       return <h1>Not found</h1>
     }
 
-    const { photos, description } = this.state.place;
+    const { photos, description } = this.props.place;
 
     return (
 
       <div className='main-section global-white-layout'>
-        <PlacePhotos place={this.state.place} photos={photos} />
+        <PlacePhotos place={this.props.place} photos={photos} />
         <div className='user-activity-info'>
           <GeneralCommentsNumber />
           <GeneralRating />

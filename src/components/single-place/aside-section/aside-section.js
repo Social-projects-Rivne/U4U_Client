@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PlaceCard from './../../utils/place-card';
-import Spinner from './../../utils/spinner';
 import PlacesApi from './../../../services/places-service';
 import './aside-section.scss';
 
@@ -26,16 +25,14 @@ export default class AsideSection extends Component {
     render() {
         return (
             <div className='aside-section'>
-                <span>Places Near By</span>
+                <span>Places Nearby</span>
                 {
                     this.state.places &&
                         this.state.places.map(place => {
                             return (
                                 <PlaceCard 
                                     key={place._id}
-                                    id={place._id}
-                                    photo={place.photos[0]} //TODO: resolve, now hardcoded first one
-                                    title={place.name} 
+                                    place={place}
                                 />
                             )
                         })

@@ -17,10 +17,20 @@
   }
 
   &__logo {
-    height: 5rem;
+    height: 100%;
+    width: 20rem;
+    cursor: pointer;
+    display:flex;
+    align-items: center;
 
     & a {
+      text-decoration: none;
       display: block;
+
+      & span {
+        font-size: 4rem;
+        margin-left: 1rem;
+      }
       
       & img {
         height: 5rem;
@@ -38,12 +48,15 @@
   }
 
   &__navbar {
-    margin-left: 25rem;
+    margin-left: 17rem;
+    height: 100%;
+    display: flex;
   }
 
   &__navbar .tabs {
     width: 40rem;
     height: 6vh;
+    margin-left: 7rem;
   }
 
   &__fields {
