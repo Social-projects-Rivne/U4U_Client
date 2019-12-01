@@ -1,6 +1,8 @@
+$tab-width: 12rem;
+
 .tab {
     height: 100%;
-    min-width: 12rem;
+    min-width: $tab-width;
     display: flex;
     align-items: center;
     justify-content: center;

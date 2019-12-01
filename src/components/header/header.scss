@@ -22,18 +22,55 @@
     cursor: pointer;
     display:flex;
     align-items: center;
+    color: white;
 
-    & a {
+    &__link {
+      color: white;
       text-decoration: none;
       display: block;
 
-      & span {
-        font-size: 4rem;
-        margin-left: 1rem;
+      &-abbreviation {
+        display: flex;
+        flex-direction: row;
+
+        & div {
+          width: 2.7rem;
+          height: 2.7rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: white;
+          border-radius: 0.5rem;
+          
+          & span {
+            margin-top: 0.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $primary-color;
+            font-size: 2rem;
+            font-weight: 1000;
+          }
+        }
+
+        & div:not(:first-child) {
+          margin-left: 1rem;
+        }
+
+        & div:last-child span {
+          margin-top: 0rem;
+          font-size: 1.7rem;
+        }
+
+        & div:nth-child(2) span {
+          margin-top: 0.1rem;
+          margin-right: 0.2rem;
+        }
       }
-      
-      & img {
-        height: 5rem;
+
+      &-title {
+        margin-top: 1rem;
+        font-size: 1.6rem;
       }
     }
   }
@@ -54,9 +91,18 @@
   }
 
   &__navbar .tabs {
-    width: 40rem;
-    height: 6vh;
+    width: 42rem;
+    height: 100%;
     margin-left: 7rem;
+    font-size: 2.2rem;
+  }
+
+  &__navbar .tabs > .tab {
+    width: 14rem;
+  }
+
+  &__navbar .tabs__presentation-slider  {
+    width: 14rem;
   }
 
   &__fields {
@@ -64,6 +110,7 @@
     flex-direction: row;
     align-items: center;
     height: 100%;
+    font-size: 2.2rem;
     margin-right: 10rem;
 
     & a {
@@ -72,8 +119,6 @@
       justify-content: center;
       align-items: center;
       height: 100%;
-      font-size: 2rem;
-      line-height: 2rem;
       text-decoration: none;
 
       &:hover,

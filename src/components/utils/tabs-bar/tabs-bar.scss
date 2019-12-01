@@ -1,3 +1,5 @@
+@import './../../../components/utils/tabs-bar/tab/tab.scss';
+
 .tabs {
     position: relative;
     display: flex;
@@ -17,7 +19,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      min-width: 12rem;
+      min-width: $tab-width;
       height: 3px;
       background-color: white;
       transition: left .25s;

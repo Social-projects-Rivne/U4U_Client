@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logo from './../../img/logo.svg';
 import Guest from './guest';
 import User from './user';
 import UserAvatarSmallSkeleton from '../utils/user-avatar-small-skeleton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import TabsBar from '../utils/tabs-bar';
 import './header.scss';
 
@@ -50,11 +50,24 @@ export default class Header extends Component {
           <div className="header__nav">
             <nav className="header__navbar">
               <div className="header__logo">
-                <Link to="/">
-                  <span role="img" aria-label="firework">🇺🇦</span>
-                  <span role="img" aria-label="firework">&#128073;</span>
-                  <span role="img" aria-label="firework">&#129300;</span>
-                  {/* <img src={logo} alt="Ukraine 4 you" /> */}
+                <Link to="/" className="header__logo__link">
+                  <div className="header__logo__link-abbreviation">
+                    <div>
+                      <span>U</span>
+                    </div>
+                    <div>
+                      <span>4</span>
+                    </div>
+                    <div>
+                      <span>U</span>
+                    </div>
+                    <div>
+                      <span>
+                        <FontAwesomeIcon icon={faMapMarkerAlt} />
+                      </span>
+                    </div>
+                  </div>
+                  <div className="header__logo__link-title">#Ukraine4You</div>
                 </Link>
               </div>
 
@@ -72,7 +85,7 @@ export default class Header extends Component {
   
               <li className="header__search">
                 <Link to="/search">
-                  <FontAwesomeIcon icon={faSearch} size='2x'/>
+                  <FontAwesomeIcon icon={faSearch} />
                 </Link>
               </li>
             </div>
