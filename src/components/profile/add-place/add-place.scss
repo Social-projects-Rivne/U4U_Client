@@ -13,7 +13,7 @@
   width: 100%;
 
   & .select-dropdown {
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 18rem;
     height: 4rem;
   }
@@ -21,6 +21,11 @@
   & .select-dropdown > .select-dropdown-info {
     background: $green-layout-color;
     border: 1px solid $primary-color;
+  }
+
+  & .input-upload-images {
+    width: 17rem;
+    height: 100%;
   }
 }
 
@@ -34,8 +39,12 @@
 .add-place-description, 
 .add-place-file{
   display: flex;
-  margin: 2rem 0rem;
+  margin-top: 1.50rem;
   font-size: 2rem;
+}
+
+.add-place-preview-images {
+  margin-top: 1.50rem;
 }
 
 .add-place-title{
@@ -44,16 +53,14 @@
 
 .add-place-description{
   width: 100%;
-  height: 20rem;
+  height: 17rem;
   padding: 1.5rem;
 }
 
 .add-place-file-submit{
+  margin-top: 1.50rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
-}
-
-.add-place-submit{
-  margin-top: 2rem;
+  height: 4.5rem;
 }

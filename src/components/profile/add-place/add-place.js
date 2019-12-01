@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import RegionsService from '../../../services/regions-service';
 import Api from '../../../services/places-service';
 import SelectDropdown from '../../utils/select-dropdown/select-dropdown';
+import InputUploadUmages from './../../utils/input-upload-images';
+import PreviewUploadImages from './../../utils/preview-upload-images';
 import "./add-place.scss";
 
 export default class AddPlace extends Component {
@@ -15,8 +17,10 @@ export default class AddPlace extends Component {
       isModerated: false,
       regionId: '',
       selectedPhotos: [],
-      filesValue: ''
     }
+
+    this.InputUploadUmages = React.createRef();
+    this.PreviewUploadImages = React.createRef();
   }
 
   componentDidMount() {
@@ -39,12 +43,14 @@ export default class AddPlace extends Component {
   handleSelectRegion = (data) => {
     this.setState({ region: data.value });
   }
+  
 
   addPlace = () => {
     const { title, region, isModerated, description, selectedPhotos, regionsList } = this.state;
+  
     const data = new FormData();
     for (let photo of selectedPhotos) {
-      data.append("photo", photo);
+      data.append("photo", new File([photo.src], (+new Date())+ ".jpg"));
     }
     data.append("title", title)
     data.append("region", region)
@@ -56,24 +62,40 @@ export default class AddPlace extends Component {
     )
     data.append("regionId", city._id)
     Api.postNewPlace(data)
+    console.log(data.getAll("photo"))
+
+    this.setState({
+      title: '',
+      description: '',
+      selectedPhotos: [],
+    })
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.addPlace()
-    this.setState({
-      title: '',
-      description: '',
-      selectedPhotos: [],
-      filesValue: ''
-    })
   }
 
-  fileSelectedHandler = event => {
-    this.setState({
-      selectedPhotos: event.target.files,
-      filesValue: event.target.value
-    })
+  changePreviwImages = (index) => {
+    // this.setState(prevState => ({
+    //   selectedPhotos: {
+    //       ...prevState.fields,
+    //       selectedPhotos: delete prevState.selectedPhotos[index]
+    //   }
+    // }));
+    this.setState(state => {
+      const selectedPhotos = state.selectedPhotos;
+      delete selectedPhotos[index];
+      console.log(selectedPhotos)
+     
+      return {
+        selectedPhotos,
+      };
+    });
+  }
+
+  inputGetPhotos = (data) => {
+    this.setState({ selectedPhotos: data })
   }
 
   render() {
@@ -113,13 +135,16 @@ export default class AddPlace extends Component {
             cols="30"
             rows="10"
           ></textarea>
+          <div className="">
+            <PreviewUploadImages 
+              ref={this.PreviewUploadImages}
+              changePreviwImages={this.changePreviwImages}/>
+          </div>
           <div className="add-place-file-submit">
-            <input className="add-place-file"
-              type="file"
-              value={this.state.filesValue}
-              multiple
-              required
-              onChange={this.fileSelectedHandler} />
+            <InputUploadUmages 
+              ref={this.InputUploadUmages} 
+              preview={this.PreviewUploadImages}
+              inputGetPhotos={this.inputGetPhotos}/>
             <input className="add-place-submit global-raised-button"
               type='submit' value='Add new place'
             />
