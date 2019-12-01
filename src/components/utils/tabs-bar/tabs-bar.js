@@ -48,6 +48,7 @@ class TabsBar extends Component {
     }
 
     onActive = (tabId) => {
+      this.props.getActiveTab(this.tabs[tabId]);
       this.setActiveTab(tabId);
     }
 

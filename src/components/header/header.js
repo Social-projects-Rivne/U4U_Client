@@ -44,6 +44,12 @@ export default class Header extends Component {
     };
   }
 
+  getActiveTab = (tab) => {
+    if (tab.title === "Map") {
+      document.documentElement.scrollTop = 0;
+    }
+  }
+
   render () {
     return (
       <header className="header">
@@ -71,7 +77,7 @@ export default class Header extends Component {
                 </Link>
               </div>
 
-              <TabsBar tabs={this.state.navbarTabs}/>
+              <TabsBar tabs={this.state.navbarTabs} getActiveTab={this.getActiveTab}/>
             </nav>
   
             <div className="header__fields">
