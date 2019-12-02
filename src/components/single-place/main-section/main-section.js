@@ -54,9 +54,3 @@ export default class MainSection extends React.Component {
     )
   }
 }
-
-
-
-
-
-

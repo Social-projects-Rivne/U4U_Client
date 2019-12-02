@@ -46,7 +46,6 @@
     position: relative;
 
     &-map {
-      margin-top: -6rem;
       background-color: $grey-color-1;
       width: 100%;
       position: fixed;
@@ -83,6 +82,7 @@
         position: fixed;
         height: 101vh;
         background: rgba(0, 0, 0, 0.7);
+        top: 0;
 
         @at-root & > .content {
           overflow: auto;

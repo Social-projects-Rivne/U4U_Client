@@ -15,7 +15,15 @@ export default class AsideSection extends Component {
     async componentDidMount() {
         try {
             const places = await PlacesApi.getAllPlaces();
-            const placesNear = places.slice(0, 4);
+            const filteredPlaces = places.filter((place) => {
+                return place.isModerated === true &&  place.approved === true
+            });
+              
+            let placesNear = filteredPlaces
+            if (placesNear.length > 4) {
+                placesNear = placesNear.slice(0, 4);
+            }
+            
             this.setState({places: placesNear});
         } catch (error) {
             console.log("Handle loading all places error: ", error);
