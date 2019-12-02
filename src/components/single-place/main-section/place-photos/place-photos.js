@@ -13,8 +13,7 @@ export default class PlacePhotos extends Component {
 
         this.state = {
             currentSlide: 0,
-            animation: false,
-            place: props.place
+            animation: false
         };
     }
 
@@ -86,7 +85,7 @@ export default class PlacePhotos extends Component {
     render(){
         const {photos} = this.props;
         const {currentSlide, animation} = this.state;
-        const {name, coordinates, location} = this.state.place;
+        const {name, coordinates, location} = this.props.place;
 
         const animationClass = animation ? 'sliderAnimation' : 'sliderAppend';
         return(

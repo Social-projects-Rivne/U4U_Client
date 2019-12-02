@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import error404 from '../../img/error404.mp4';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import './error404.scss';
@@ -27,7 +26,10 @@ const Error404 = () => {
             </div>
           </div>
           <div className="error404-content-title">
-            Sorry, page not found! <span role="img" aria-label="Man-Shrugging">🤷‍♂️</span>
+            <span>
+              Sorry, page not found! <span role="img" aria-label="Man-Shrugging">🤷‍♂️</span>
+            </span>
+            <Link to="/">Go to home page</Link>
           </div>
         </div>
       </div>

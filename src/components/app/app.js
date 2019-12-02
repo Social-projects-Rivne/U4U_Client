@@ -90,7 +90,11 @@ class App extends Component {
                 />
 
                 <Route path="/singleplace/:id" component={SinglePlace} />
-                <Route path="/myplans/:id" component={MyPlans} />
+                <Route
+                  path="/myplans/:id"
+                  render={props => <MyPlans user={this.state.user} />}
+                />
+
                 <Route
                   path="/profile"
                   render={props => <Profile user={this.state.user} />}

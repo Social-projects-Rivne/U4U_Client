@@ -22,19 +22,17 @@
 
   .description {
     background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px #eee;
-    color: #21669e;
+    border-radius: 0.5rem;
+    box-shadow: $box-shadow-large;
+    color: $primary-color;
     display: none;
     align-items: center;
     font-size: 2rem;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 1rem;
     pointer-events: none;
     position: absolute;
     text-align: center;
-    height: 5rem;
-    max-width: 30rem;
     z-index: 999;
 
     &.activeTop {
@@ -122,12 +120,13 @@
 
 .map path {
   cursor: pointer;
+  transition: all 0.25s ease-out;
 
   &.blur {
-    fill: $yellow-color-1;
+    opacity: 0.25;
   }
 
   &.visited {
-    fill: $yellow-color-1;
+    opacity: 0.25;
   }
 }

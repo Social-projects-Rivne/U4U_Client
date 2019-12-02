@@ -28,7 +28,7 @@ export default class MainPage extends Component {
           <div className={"MainPage-section-map " + (this.state.showWelcome ? "MainPage-section-map_welcome" : "")}>
             {
               this.state.showWelcome
-              ? <div className="MainPage-welcome">
+              ? <div className="MainPage-welcome" onClick={() => {this.hideWelcome()}}>
                   <span className="MainPage-welcome-title">
                     Welcome, new user <span role="img" aria-label="firework">&#127881;</span>! Glad to see you on our site <span role="img" aria-label="hand">&#128400;</span><br/>
                     You can interact with a pretty and powerful map to find new interesting places.<br/>
@@ -44,12 +44,10 @@ export default class MainPage extends Component {
             
             <div 
               className={"MainPage-section-map-container " + (
-                this.state.showWelcome 
-                ? 
-                  "MainPage-section-map-container_welcome" 
-                  : 
-                "") }
+                  this.state.showWelcome ? "MainPage-section-map-container_welcome" : ""
+                )}
               onClick={() => {this.hideWelcome()}}>
+
               <UMap onClick={() => {this.hideWelcome()}}/>
             </div>
           </div>

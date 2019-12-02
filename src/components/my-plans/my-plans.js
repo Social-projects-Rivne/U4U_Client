@@ -3,8 +3,7 @@ import MyPlansHeader from './my-plans-header/my-plans-header';
 import MyPlansList from './my-plans-list/my-plans-list';
 import SearchPanel from './search-panel/search-panel';
 import PlansListService from '../../services/plans-list-service';
-import Redirect from 'react-router-dom/es/Redirect';
-import TokenService from './../../services/token-service';
+import { Redirect } from 'react-router-dom';
 import './my-plans.scss';
 
 export default class MyPlans extends Component {
@@ -16,16 +15,16 @@ export default class MyPlans extends Component {
     }
   }
   componentDidMount() {
-    this.getPlansList();
+    if (this.props.user) {
+      this.service.getPlansList()
+        .then((plansList) => {
+          this.setState({ myPlansList: plansList })
+        }).catch((error) => {
+          console.log(error)
+        })
+    }
   }
-  getPlansList = () => {
-    this.service.getPlansList()
-      .then((plansList) => {
-        this.setState({ myPlansList: plansList })
-      }).catch((error) => {
-        console.log(error)
-      })
-  }
+
   deleteItem = (id) => {
     this.service.deleteWish(id).then((res) => {
       this.setState(({ myPlansList }) => {
@@ -62,8 +61,8 @@ export default class MyPlans extends Component {
     else return;
   }
   render() {
-    try {
-      const jwt = TokenService.getToken();
+    if (this.props.user) {
+
       return (
         <div className="my-plans" >
           <div className="my-plans-content">
@@ -77,8 +76,8 @@ export default class MyPlans extends Component {
           </div>
         </div>
       )
-    }
-    catch (e) {
+
+    } else {
       return <Redirect to='/login' />
     }
   };

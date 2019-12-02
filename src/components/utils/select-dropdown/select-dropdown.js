@@ -36,11 +36,7 @@ export default class SelectDropdown extends Component {
     this.setState({isActive: false})
   }
 
-  componentWillMount() {
-    document.addEventListener('mousedown', this.handleClick, false);
-  }
-
-  componentWillUnmount() {
+  componentDidMount() {
     document.addEventListener('mousedown', this.handleClick, false);
   }
 
