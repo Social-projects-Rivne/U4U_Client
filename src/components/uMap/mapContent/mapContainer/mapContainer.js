@@ -24,36 +24,35 @@ import uzhgorod from "./../../../../img/uzhgorod-region.jpg";
 import vinnytsya from "./../../../../img/vinnytsya-region.jpg";
 import zaporizhzhya from "./../../../../img/zaporizhzhya-region.jpg";
 import zhytomyr from "./../../../../img/zhytomyr-region.jpg";
+import Regions from "./../regions.json";
+import classNames from "classnames";
+import "./../../uMap.scss";
 
 export default class MapContainer extends Component {
   constructor (props) {
     super (props);
 
     this.state = {
-      svg: null,
-      loaded: false,
-      count: 0
+      hover: null,
     }
   }
 
-  componentDidUpdate() {
-    if (this.state.count === 59 && !this.state.loaded) {
-      this.setState({loaded: true});
-      this.props.onImagesLoaded(true);
-    }
+  mouseEnter = (e) => {
+    this.setState({
+      hover: e.target.id
+    });
   }
 
-  componentDidMount() {
-    if (!this.state.svg) this.loadSvg();
+  mouseLeave = (e) => {
+    this.setState({
+      hover: null
+    });
   }
 
-  setCount() {
-    this.setState({ count: this.state.count + 1 });
-  };
+  render() {
 
-  loadSvg = () => {
-    setTimeout(() => {
-      this.setState({svg: <svg version="1.1" id="svgMap" loading="lazy" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    return (
+      <svg version="1.1" id="svgMap" loading="lazy" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
           viewBox="0 0 1200 800" style={{ enableBackground: 'new 0 0 1200 800' }} xmlSpace="preserve">
           <linearGradient id="gradient" x2="0" y2="1">
             <stop offset="0%" stopColor="blue" />
@@ -88,7 +87,7 @@ export default class MapContainer extends Component {
             {`.st25{fill:url(#zaporizhzhya-region);stroke:#000000;stroke-width:2;stroke-miterlimit:10;}`}
             {`.st26{fill:url(#zhytomyr-region);stroke:#000000;stroke-width:2;stroke-miterlimit:10;}`}
           </style>
-          <pattern y="800" width="718" height="600" patternUnits="userSpaceOnUse" id="cherkasy-region" viewBox="218 -600 718 600" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="718" height="600" patternUnits="userSpaceOnUse" id="cherkasy-region" viewBox="218 -600 718 600" style={{ overflow: 'visible', fill: "purple" }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="218" y="-600" className="st0" width="718" height="600" />
     
@@ -100,7 +99,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="660" height="439" patternUnits="userSpaceOnUse" id="chernihiv-region" viewBox="351 -819 660 439" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="660" height="439" patternUnits="userSpaceOnUse" id="chernihiv-region" viewBox="351 -819 660 439" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="351" y="-819" className="st0" width="660" height="439" />
     
@@ -118,7 +117,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="502.5" height="337.5" patternUnits="userSpaceOnUse" id="chernivtsi-region" viewBox="0 -369.9 502.5 337.5" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="502.5" height="337.5" patternUnits="userSpaceOnUse" id="chernivtsi-region" viewBox="0 -369.9 502.5 337.5" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-369.9" className="st0" width="502.5" height="337.5" />
     
@@ -130,7 +129,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="810" height="456" patternUnits="userSpaceOnUse" id="crimea-region" viewBox="206 -456 810 456" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="810" height="456" patternUnits="userSpaceOnUse" id="crimea-region" viewBox="206 -456 810 456" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="206" y="-456" className="st0" width="810" height="456" />
     
@@ -142,7 +141,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="800" height="581" patternUnits="userSpaceOnUse" id="dnipro-region" viewBox="142 -581 800 581" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="800" height="581" patternUnits="userSpaceOnUse" id="dnipro-region" viewBox="142 -581 800 581" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="142" y="-581" className="st0" width="800" height="581" />
     
@@ -154,7 +153,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="900" height="675" patternUnits="userSpaceOnUse" id="donetsk-region" viewBox="100 -675 900 675" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="900" height="675" patternUnits="userSpaceOnUse" id="donetsk-region" viewBox="100 -675 900 675" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="100" y="-675" className="st0" width="900" height="675" />
     
@@ -166,7 +165,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="760" height="486" patternUnits="userSpaceOnUse" id="ivano-frankivsk-region" viewBox="28 -675 760 486" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="760" height="486" patternUnits="userSpaceOnUse" id="ivano-frankivsk-region" viewBox="28 -675 760 486" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="28" y="-675" className="st0" width="760" height="486" />
     
@@ -184,7 +183,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="1200" height="803" patternUnits="userSpaceOnUse" id="kharkiv-region" viewBox="0 -803 1200 803" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="1200" height="803" patternUnits="userSpaceOnUse" id="kharkiv-region" viewBox="0 -803 1200 803" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-803" className="st0" width="1200" height="803" />
     
@@ -193,7 +192,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="800" height="533" patternUnits="userSpaceOnUse" id="kherson-region" viewBox="230 -533 800 533" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="800" height="533" patternUnits="userSpaceOnUse" id="kherson-region" viewBox="230 -533 800 533" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="230" y="-533" className="st0" width="800" height="533" />
     
@@ -205,7 +204,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="800" height="600" patternUnits="userSpaceOnUse" id="khmelnytsky-region" viewBox="0 -810 800 600" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="800" height="600" patternUnits="userSpaceOnUse" id="khmelnytsky-region" viewBox="0 -810 800 600" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-810" className="st0" width="800" height="600" />
     
@@ -217,7 +216,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="1275.8" height="851" patternUnits="userSpaceOnUse" id="kropyvnytskyi-region" viewBox="0 -851 1275.8 851" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="1275.8" height="851" patternUnits="userSpaceOnUse" id="kropyvnytskyi-region" viewBox="0 -851 1275.8 851" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-851" className="st0" width="1275.8" height="851" />
     
@@ -226,7 +225,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="600" height="446.3" patternUnits="userSpaceOnUse" id="kyiv-region" viewBox="237 -478.9 600 446.3" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="600" height="446.3" patternUnits="userSpaceOnUse" id="kyiv-region" viewBox="237 -478.9 600 446.3" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="237" y="-478.9" className="st0" width="600" height="446.3" />
     
@@ -244,7 +243,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="480" height="640" patternUnits="userSpaceOnUse" id="luhansk-region" viewBox="0 -640 480 640" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="480" height="640" patternUnits="userSpaceOnUse" id="luhansk-region" viewBox="0 -640 480 640" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-640" className="st0" width="480" height="640" />
     
@@ -253,7 +252,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="400" height="266" patternUnits="userSpaceOnUse" id="lutsk-region" viewBox="0 -266 400 266" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="400" height="266" patternUnits="userSpaceOnUse" id="lutsk-region" viewBox="0 -266 400 266" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-266" className="st0" width="400" height="266" />
     
@@ -262,7 +261,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="555" height="512.3" patternUnits="userSpaceOnUse" id="lviv-region" viewBox="28.5 -646 555 512.3" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="555" height="512.3" patternUnits="userSpaceOnUse" id="lviv-region" viewBox="28.5 -646 555 512.3" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="28.5" y="-646" className="st0" width="555" height="512.3" />
     
@@ -280,7 +279,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="1140" height="870" patternUnits="userSpaceOnUse" id="mykolayiv-region" viewBox="0 -870 1140 870" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="1140" height="870" patternUnits="userSpaceOnUse" id="mykolayiv-region" viewBox="0 -870 1140 870" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-870" className="st0" width="1140" height="870" />
     
@@ -289,7 +288,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="900" height="802" patternUnits="userSpaceOnUse" id="odesa-region" viewBox="0 -802 900 802" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="900" height="802" patternUnits="userSpaceOnUse" id="odesa-region" viewBox="0 -802 900 802" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-802" className="st0" width="900" height="802" />
     
@@ -301,7 +300,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="768" height="576" patternUnits="userSpaceOnUse" id="poltava-region" viewBox="196 -794 768 576" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="768" height="576" patternUnits="userSpaceOnUse" id="poltava-region" viewBox="196 -794 768 576" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="196" y="-794" className="st0" width="768" height="576" />
     
@@ -319,7 +318,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="329.1" height="247.1" patternUnits="userSpaceOnUse" id="rivne-region" viewBox="209 -422.6 329.1 247.1" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="329.1" height="247.1" patternUnits="userSpaceOnUse" id="rivne-region" viewBox="209 -422.6 329.1 247.1" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="209" y="-422.6" className="st0" width="329.1" height="247.1" />
     
@@ -337,7 +336,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="640" height="479" patternUnits="userSpaceOnUse" id="sumy-region" viewBox="49 -479 640 479" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="640" height="479" patternUnits="userSpaceOnUse" id="sumy-region" viewBox="49 -479 640 479" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="49" y="-479" className="st0" width="640" height="479" />
     
@@ -349,7 +348,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="620" height="403" patternUnits="userSpaceOnUse" id="ternopil-region" viewBox="0 -419 620 403" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="620" height="403" patternUnits="userSpaceOnUse" id="ternopil-region" viewBox="0 -419 620 403" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-419" className="st0" width="620" height="403" />
     
@@ -361,7 +360,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="700" height="441" patternUnits="userSpaceOnUse" id="uzhgorod-region" viewBox="80 -549.5 700 441" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="700" height="441" patternUnits="userSpaceOnUse" id="uzhgorod-region" viewBox="80 -549.5 700 441" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="80" y="-549.5" className="st0" width="700" height="441" />
     
@@ -379,7 +378,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="600" height="450" patternUnits="userSpaceOnUse" id="vinnytsya-region" viewBox="0 -578.5 600 450" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="600" height="450" patternUnits="userSpaceOnUse" id="vinnytsya-region" viewBox="0 -578.5 600 450" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-578.5" className="st0" width="600" height="450" />
     
@@ -391,7 +390,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="468.8" height="351.8" patternUnits="userSpaceOnUse" id="zaporizhzhya-region" viewBox="214.8 -351.8 468.8 351.8" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="468.8" height="351.8" patternUnits="userSpaceOnUse" id="zaporizhzhya-region" viewBox="214.8 -351.8 468.8 351.8" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect x="214.8" y="-351.8" className="st0" width="468.8" height="351.8" />
     
@@ -403,7 +402,7 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          <pattern y="800" width="800" height="543" patternUnits="userSpaceOnUse" id="zhytomyr-region" viewBox="0 -610.3 800 543" style={{ overflow: 'visible' }} onLoad={() => this.setCount()}>
+          <pattern y="800" width="800" height="543" patternUnits="userSpaceOnUse" id="zhytomyr-region" viewBox="0 -610.3 800 543" style={{ overflow: 'visible' }} onLoad={() => this.props.setCount()}>
             <g>
               <rect y="-610.3" className="st0" width="800" height="543" />
     
@@ -415,7 +414,24 @@ export default class MapContainer extends Component {
             </g>
           </pattern>
     
-          {this.props.children}
+          {Regions.map(region => {
+            const hover = classNames({
+              " blur": this.state.hover !== null && this.state.hover !== region.id
+            });
+
+            return (
+              <path
+                {...region}
+                key={region.id}
+                onClick={() => this.props.handleOnClick(region._id)}
+                onMouseEnter={this.mouseEnter}
+                onMouseLeave={this.mouseLeave}
+                className={region.className + hover}
+                onMouseMove={this.props.mouseMove}
+                onMouseOut={this.props.mouseOut}
+              />
+            );
+          })}
     
           <image style={{ display: 'none', overflow: 'visible' }} width="800" height="532" id="lutsk" xlinkHref={lutsk} loading="lazy" transform="matrix(1 0 0 1 180.3 108.1)">
           </image>
@@ -468,15 +484,6 @@ export default class MapContainer extends Component {
           <image style={{ display: 'none', overflow: 'visible' }} width="1200" height="803" xlinkHref={kharkiv} loading="lazy" transform="matrix(1 0 0 1 -27 9)">
           </image>
         </svg>
-
-      });
-    }, 400)
-  };
-
-  render() {
-
-    return (
-      this.state.svg ? this.state.svg : ""
     );
   }
 }

@@ -1,27 +1,48 @@
 import React, { Component } from "react";
-import classNames from "classnames";
 import MapContainer from "../mapContainer";
-import Regions from "./../regions.json";
 import { Redirect } from 'react-router-dom'
 
 
 export default class MapSvg extends Component {
-  state = {
-    hover: null,
-    toPlacesList: false,
-    regionId: null
+  constructor (props) {
+    super (props);
+
+    this.state = {
+      hover: null,
+      toPlacesList: false,
+      regionId: null,
+  
+      count: 0,
+      svg: null,
+      loaded: false,
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.state.count === 59 && !this.state.loaded) {
+      this.setState({loaded: true});
+      this.props.onImagesLoaded(true);
+    }
+  }
+
+  componentDidMount() {
+    if (!this.state.svg) this.loadSvg();
+  }
+
+  setCount = () => {
+    this.setState({ count: this.state.count + 1 });
   };
 
-  mouseEnter = e => {
-    this.setState({
-      hover: e.target.id
-    });
-  };
-
-  mouseLeave = e => {
-    this.setState({
-      hover: null
-    });
+  loadSvg = () => {
+    setTimeout(() => {
+      this.setState({svg: 
+        <MapContainer 
+          setCount={this.setCount} 
+          mouseMove={this.props.mouseMove}
+          mouseOut={this.props.mouseOut}
+          handleOnClick={this.handleOnClick} />
+      });
+    }, 400)
   };
 
   handleOnClick = id => {
@@ -38,26 +59,7 @@ export default class MapSvg extends Component {
     }
 
     return (
-      <MapContainer onImagesLoaded={this.props.onImagesLoaded}>
-        {Regions.map(region => {
-          const hover = classNames({
-            " blur": this.state.hover !== null && this.state.hover !== region.id
-          });
-
-          return (
-            <path
-              {...region}
-              key={region.id}
-              onClick={() => this.handleOnClick(region._id)}
-              onMouseEnter={this.mouseEnter}
-              onMouseLeave={this.mouseLeave}
-              className={region.className + hover}
-              onMouseMove={this.props.mouseMove}
-              onMouseOut={this.props.mouseOut}
-            />
-          );
-        })}
-      </MapContainer>
+     this.state.svg ? this.state.svg : null
     );
   }
 }
