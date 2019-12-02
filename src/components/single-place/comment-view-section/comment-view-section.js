@@ -6,7 +6,7 @@ export default class CommentViewSection extends Component {
   render() {
     const { commentList } = this.props;
     return (
-      <div className="comment-view-section">
+      <div className="comment-view-section" id="comments">
         <div>
           <CommentViewList commentList={commentList} />
         </div>

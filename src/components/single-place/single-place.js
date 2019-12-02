@@ -14,18 +14,19 @@ import reportService from '../../services/report-service';
 export default class SinglePlace extends Component {
   state = {
     place: null,
-    CommentList:[]
+    commentQuantity: 0,
+    CommentList: []
   };
-  addComment=(newComment) =>{
-    this.setState({CommentList : [...this.state.CommentList, newComment]})
-    
+  addComment = (newComment) => {
+    this.setState({ CommentList: [...this.state.CommentList, newComment] })
+
   }
-  commentContext = {  
+  commentContext = {
     comments: this.state.CommentList,
-    addComment:this.addComment
+    addComment: this.addComment
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     try {
       const {
         match: { params }
@@ -33,10 +34,14 @@ export default class SinglePlace extends Component {
       const placeId = params.id;
       const placett = await Api.getPlace(placeId);
       const comments = await reviewService.getAllComments(placeId);
-      this.setState({ place: placett, CommentList:comments});
+      this.setState({ place: placett, CommentList: comments, commentQuantity: comments.length });
     } catch (error) {
       console.log('Handle get single plase error:', error);
     }
+  }
+
+  commentQuantity = (value) => {
+    this.setState({ commentQuantity: value });
   }
 
   render() {
@@ -51,15 +56,22 @@ export default class SinglePlace extends Component {
         <div className="main-comment-sections">
           {loading ? (
             <div>
-              <MainSection place={this.state.place} />
+              <MainSection 
+              place={this.state.place} 
+              commentQuantity={this.state.commentQuantity} 
+              isAuth={this.props.isAuth}
+              loggedInUserId={this.props.loggedInUserId} />
             </div>
           ) : (
             <Spinner />
           )}
           <ReportSection placeId={placeId} />
           <commentContext.Provider value={this.commentContext} >
-          <CommentSection placeId={placeId} />
-          <CommentViewSection  commentList = {this.state.CommentList}/>
+            <CommentSection placeId={placeId} />
+            <CommentViewSection
+              commentList={this.state.CommentList}
+              placeId={placeId}
+              commentQuantity={this.commentQuantity} />
           </commentContext.Provider>
         </div>
         <AsideSection />

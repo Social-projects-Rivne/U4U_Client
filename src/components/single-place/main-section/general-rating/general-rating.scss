@@ -1,10 +1,25 @@
-.all-stars-container{
+.all-stars-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: flex-end;
+  justify-content: center;
+  width: 40%;
 
-& .star-container{
- color: white;
- padding-right: 5px;
-}
+  & span {
+    color: #ffffff;
+    font-size: 3rem;
+    line-height: 2.5rem;
+    margin-right: 1rem;
+  }
+
+  & svg.svg-inline--fa.fa-w-18 {
+    color: #ffff00;
+    height: 3rem;
+    width: 3rem;
+
+    & path {
+      stroke-width: 2rem;
+      stroke: #ff4500;
+    }
+  }
 }

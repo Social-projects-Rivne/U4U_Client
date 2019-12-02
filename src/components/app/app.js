@@ -87,7 +87,12 @@ export default class App extends Component {
                   }}
                 />
 
-                <Route path="/singleplace/:id" component={SinglePlace} />
+                <Route
+                  path="/singleplace/:id"
+                  render={(props) => <SinglePlace {...props} 
+                    isAuth={this.state.isAuth}
+                    loggedInUserId={this.state.user && this.state.user.id} />} />
+
                 <Route path="/myplans/:id" component={MyPlans} />
                 <Route
                   path="/profile"
