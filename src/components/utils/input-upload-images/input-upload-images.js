@@ -8,13 +8,13 @@ export default class InputUploadImages extends Component {
      
         this.state = {};
 
-        this.images = [];
         this.PreviewUploadImages = props.preview;
         this.inputRef = React.createRef();
     }
 
     getInputData = () => {
         const files = this.inputRef.current.files;
+        this.props.inputGetPhotos(files);
 
         if (files.length) {
             const imagesPromises = [];
@@ -42,8 +42,7 @@ export default class InputUploadImages extends Component {
 
             Promise.all(imagesPromises)
                 .then((images) => {
-                    this.props.inputGetPhotos(images);
-                    //this.PreviewUploadImages.current.setImages(images);
+                    this.PreviewUploadImages.current.setImages(images);
                 })
                 .catch((error) => {
                     console.log("Handle readUploadedImages exeption: ", error);
