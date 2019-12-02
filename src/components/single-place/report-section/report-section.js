@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import ReportModal from './report-modal/report-modal';
 import './report-section.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFlag } from '@fortawesome/free-solid-svg-icons';
+import { faFlag } from '@fortawesome/free-regular-svg-icons';
 
 export default class ReportSection extends Component {
-  state = { show: false };
+  constructor(props) {
+    super(props)
+    this.hideModal = this.hideModal.bind(this)
+  }
 
-  showModal = () => {
-    this.setState({ show: true });
-  };
+  state = { show: false };
 
   hideModal = () => {
     this.setState({ show: false });
+  }
+
+  showModal = () => {
+    this.setState({ show: true });
   };
 
   render() {
@@ -20,8 +25,8 @@ export default class ReportSection extends Component {
 
     return (
       <div className="report-section">
-        <button type="button" className="report-button" onClick={this.showModal}>Report <FontAwesomeIcon icon={faFlag} /></button>
-        {this.state.show ? (<ReportModal placeId={placeId} show={this.state.show}/>) : null}
+        <button type="button" className="report-button" onClick={this.showModal}><FontAwesomeIcon icon={faFlag} /></button>
+        {this.state.show ? (<ReportModal placeId={placeId} show={this.state.show} hideModal = {this.hideModal}/>) : null}
       </div>
     );
   }
