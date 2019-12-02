@@ -13,7 +13,7 @@ export default class PlansListService {
     }
 
     async getPlansList() {
-        return await this.getResource(this.plansList);
+        return await request.get(this.plansList);
 
     }
 
