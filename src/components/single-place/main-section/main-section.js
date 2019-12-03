@@ -8,23 +8,31 @@ import './main-section.scss';
 
 
 export default class MainSection extends React.Component {
+  state = {
+    place: this.props.place
+  }
+
   render() {
     if (this.props.place === null) {
       return <h1>Not found</h1>
     }
 
-    const { photos, description } = this.props.place;
+    const { photos, description, ratingAvg, _id, name } = this.props.place;
 
     return (
 
       <div className='main-section global-white-layout'>
         <PlacePhotos place={this.props.place} photos={photos} />
         <div className='user-activity-info'>
-          <GeneralCommentsNumber />
-          <GeneralRating />
-          <AddToWishListBttn />
+          <GeneralCommentsNumber commentQuantity={this.props.commentQuantity} />
+          <GeneralRating ratingAvg={ratingAvg} />
+          <AddToWishListBttn
+            isAuth={this.props.isAuth}
+            currentPlaceId={_id}
+            currentPlaceName={name}
+            loggedInUserId={this.props.loggedInUserId}/>
         </div>
-          <PlaceDescription placeInfo={description} />
+        <PlaceDescription placeInfo={description} />
       </div>
     )
   }

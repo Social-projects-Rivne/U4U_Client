@@ -1,20 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import './general-comments-number.scss';
 
-const GeneralCommentsNumber = () => {
-   return (
+export default class GeneralCommentsNumber extends Component {
+  render() {
+    return (
       <div className='comment-number-icon'>
-         <FontAwesomeIcon icon={faComment}
-         size="3x"
-         title='Show all comments'
-         />
+        <a href="#comments">
+          <FontAwesomeIcon icon={faComment} />
+          <span>{this.props.commentQuantity}</span>
+        </a>
       </div>
-   )
+    )
+  }  
 }
-export default GeneralCommentsNumber; 
-   
-  
-
- 
