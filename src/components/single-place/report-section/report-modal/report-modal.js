@@ -34,7 +34,7 @@ export default class ReportModal extends Component {
           this.setState({
             report: '',
             reportError: false,
-            selected: false
+            selected: true
           });
         })
         .catch();
@@ -47,7 +47,7 @@ export default class ReportModal extends Component {
 
   render() {
     const { reportError, selected, report } = this.state;
-    const message = selected ? 'thanks_message' : 'd-none';
+    const message = selected ? 'report-confirm' : 'd-none';
     const error = reportError ? 'Please write your report message' : '';
 
     return (
@@ -64,7 +64,7 @@ export default class ReportModal extends Component {
                 className="report"
                 onChange={this.onReport}></textarea>
               <p className="message">{error}</p>
-              <div className={message}></div>
+              <div className={message}>Thank you for your report</div>
               <button type="submit" className="report-submit">Submit</button>
               <button type="button" className="report-cancel" onClick = {this.props.hideModal}>Close</button>
             </form>

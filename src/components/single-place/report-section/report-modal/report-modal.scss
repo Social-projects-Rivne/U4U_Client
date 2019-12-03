@@ -93,3 +93,14 @@
   border: none;
   outline: none;
 }
+
+.d-none{
+  display: none;
+}
+.report-confirm{
+  display: flex;
+  color: black;
+  justify-content: flex-start;
+  height: 3rem;
+  font-size: 2rem;
+}
