@@ -5,11 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag } from '@fortawesome/free-regular-svg-icons';
 
 export default class ReportSection extends Component {
-  constructor(props) {
-    super(props)
-    this.hideModal = this.hideModal.bind(this)
-  }
-
   state = { show: false };
 
   hideModal = () => {
