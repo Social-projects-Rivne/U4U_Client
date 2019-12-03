@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import AsideSection from './aside-section/aside-section';
 import MainSection from './main-section/main-section';
-import ReportSection from './report-section/report-section';
 import CommentSection from './comment-section/comment-section';
 import CommentViewSection from './comment-view-section/comment-view-section';
 import Api from './../../services/places-service';
 import Spinner from './../../components/utils/spinner';
 import commentContext from './comment-context';
 import reviewService from '../../services/review-service';
-import reportService from '../../services/report-service';
 import { withRouter } from 'react-router-dom';
 import './single-place.scss';
 
@@ -85,7 +83,6 @@ class SinglePlace extends Component {
                 isAuth={this.props.isAuth}
                 loggedInUserId={this.props.loggedInUserId}
                 />
-                <ReportSection placeId={placeId} />
               <div className="main-comment-sections">
                 <commentContext.Provider value={this.commentContext} >
                   <CommentSection placeId={this.state.place._id} />

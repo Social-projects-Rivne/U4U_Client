@@ -4,6 +4,7 @@ import PlaceDescription from './place-description/place-description';
 import GeneralCommentsNumber from './general-comments-number/general-comments-number';
 import GeneralRating from './general-rating/general-rating';
 import PlacePhotos from './place-photos/place-photos';
+import ReportSection from '../report-section';
 import './main-section.scss';
 
 
@@ -31,6 +32,7 @@ export default class MainSection extends React.Component {
             currentPlaceId={_id}
             currentPlaceName={name}
             loggedInUserId={this.props.loggedInUserId}/>
+          <ReportSection placeId={this.state.place._id} />
         </div>
         <PlaceDescription placeInfo={description} />
       </div>

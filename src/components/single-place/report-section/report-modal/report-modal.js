@@ -57,7 +57,7 @@ export default class ReportModal extends Component {
       <div>
         <div className="report-modal">
           <div className="report-modal-main">
-          <p className="report-modal-header">Create Report</p>
+          <p className="report-modal-header">Report this place</p>
             <form onSubmit={this.onSubmit}>
               <textarea
                 required
