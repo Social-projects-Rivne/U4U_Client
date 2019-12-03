@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import api from "../../services/tourist-service";
-import Route from "react-router-dom/es/Route";
-import Redirect from "react-router-dom/es/Redirect";
+import { Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class PrivateRoute extends Component {
     state = {

@@ -1,15 +1,17 @@
+@import './../../../../global-data/global.scss';
+
 .add-to-wish-list-bttn {
   text-align: right;
   width: 30%;
   height: 3rem;
 
   .wish-checkbox {
-    color: #ebe8e8;
+    color: white;
     cursor: pointer;
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     padding-right: 4rem;
     position: relative;
     user-select: none;
@@ -22,7 +24,7 @@
     }
 
     &:hover input ~ .wish-checkmark {
-      background-color: #bbb;
+      background-color: white;
     }
 
     & input {
@@ -32,7 +34,7 @@
       width: 0;
 
       &:checked ~ .wish-checkmark {
-        background-color: #2196f3;
+        background-color: white;
       }
 
       &:checked ~ .wish-checkmark:after {
@@ -41,7 +43,7 @@
     }
 
     & .wish-checkmark {
-      background-color: #ebe8e8;
+      background-color: white;
       border-radius: 0.5rem;
       position: absolute;
       top: 0;
@@ -57,7 +59,7 @@
         top: 0.3rem;
         width: 1rem;
         height: 2rem;
-        border: solid white;
+        border: solid $primary-color;
         border-width: 0 0.5rem 0.5rem 0;
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
@@ -65,4 +67,8 @@
       }
     }
   }
+}
+
+.add-to-wish-list-bttn > label {
+  font-size: 1rem;
 }

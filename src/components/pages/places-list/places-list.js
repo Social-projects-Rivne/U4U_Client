@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import Api from '../../../services/places-service';
-import FIlter from './filter/filter';
-import PlaceCard from './../../utils/place-card';
+import SelectDropdown from '../../utils/select-dropdown/select-dropdown';
+import PlacesGrid from './../../utils/places-grid/';
 import ButtonLoadingMore from './../../utils/button-loading-more';
+import PlacesApi from './../../../services/places-service';
 import RegionsNames from './../../../global-data/regions-names';
-import Spiner from './../../utils/spinner';
 import './places-list.scss';
+import Spinner from './../../utils/spinner';
 
 export default class PlacesList extends Component {
   state = {
-    places: null,
     fIlteRatingData: [
       {
         id: 1,
@@ -24,30 +23,32 @@ export default class PlacesList extends Component {
         title: "Count reviews"
       }
     ],
+    places: null,
     title: "All Ukrainian places",
     ratingFilterValue: null,
     regionsFIlterValue: null
   };
-
-
 
   async componentDidMount() {
     const {regionId} = this.props.match.params;
     
     try {
       if(regionId) {
-        const places = await Api.getRegionPlaces(regionId);
+        const places = await PlacesApi.getRegionPlaces(regionId);
         const filteredPlaces = places.filter((place) => {
           return place.isModerated === true &&  place.approved === true
         })
+
         this.setState({places: filteredPlaces});
       } else {
-        const places = await Api.getAllPlaces();
+        const places = await PlacesApi.getAllPlaces();
         const filteredPlaces = places.filter((place) => {
           return place.isModerated === true &&  place.approved === true
         })
+
         this.setState({places: filteredPlaces});
       }
+      
     } catch (error) {
       console.log("Handle loading all places error: ", error);
     }
@@ -67,17 +68,11 @@ export default class PlacesList extends Component {
     const changeHeight = {
       height: (this.state.places) ? 'auto' : '100%'
     };
-
-    const spinerModifier = (this.state.places) ? '' : ' places-list-spinner-show'
-    const contentModifier = (this.state.places) ? ' places-list-container-show' : ''
-
+      
     return (
       <div className='places-list' style={changeHeight}>
-        <div className={`places-list-spiner ${spinerModifier}`}>
-          <Spiner />
-        </div>
 
-        <div className={`places-list-container ${contentModifier}`}>
+        <div className='places-list-container'>
           <div className='places-list-container-header'>
             <div className='places-list-container-header-title'>
               <div className='places-list-container-header-title-wp'>
@@ -105,35 +100,22 @@ export default class PlacesList extends Component {
               </div>
             </div>
             <div className='places-list-container-header-filtres'>
-              <FIlter
+              <SelectDropdown
                 name='rating'
                 data={this.state.fIlteRatingData}
-                getFilterValue={this.getFilterValue}
+                getSelectValue={this.getFilterValue}
               />
-              <FIlter
+              <SelectDropdown
                 name='regions'
                 data={RegionsNames}
-                getFilterValue={this.getFilterValue}
+                getSelectValue={this.getFilterValue}
               />
             </div>
           </div>
-          {}
-          <div className='places-list-container-content'>
+
           {
-            (this.state.places &&
-              this.state.places.map(place => {
-                return (
-                  <PlaceCard
-                    key={place._id}
-                    id={place._id}
-                    photo={place.photos[0]} //TODO: resolve, now hardcoded first one
-                    title={place.name}
-                  />
-                )
-              })
-            )
+            this.state.places ?  <PlacesGrid places={this.state.places} /> : <Spinner />
           }
-          </div>
 
           <div className='places-list-container-load-more'>
             <ButtonLoadingMore />

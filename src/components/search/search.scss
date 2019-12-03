@@ -1,15 +1,26 @@
-.search {
-  background-color: rgba(0, 0, 0, 0.4);
+@import './../../global-data/global.scss';
+
+.search-container {
   overflow: auto;
-  padding: 3rem 6rem;
   min-height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.search {
+  margin-top: 5rem;
+  max-width: 120rem;
   width: 100%;
 
   &__wrapper {
+    box-shadow: $box-shadow-small;
     border-radius: 1rem;
-    box-shadow: 0 0 1rem #f2f2f2;
     margin-bottom: 5rem;
     overflow: hidden;
+
+    &_shadow {
+      box-shadow: $box-shadow-big;
+    }
 
     &.results {
       & .search__find {
@@ -46,7 +57,7 @@
       max-height: 50vh;
 
       & .search__find {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+        border-bottom: 1px solid $grey-color-1;
 
         & input {
           border-radius: 1rem 1rem 0 0;
@@ -65,7 +76,7 @@
     z-index: 9;
 
     & input {
-      background-color: #f2f2f2;
+      background-color: white;
       border: none;
       border-radius: 1rem;
       font-size: 2rem;
@@ -86,7 +97,7 @@
   }
 
   &__results {
-    background-color: #f2f2f2;
+    background-color: white;
     border: none;
     border-top: 0;
     display: none;
@@ -105,7 +116,6 @@
       padding: 1rem 2rem;
 
       &:hover {
-        background-color: #0087d6;
         color: #ffffff;
       }
     }
@@ -118,7 +128,7 @@
         padding: 1rem 2rem;
 
         &:not(:last-child) {
-          border-bottom: 0.1rem solid rgba(0, 0, 0, 0.7);
+          border-bottom: 0.1rem solid $grey-color-1;
         }
 
         & a {
@@ -136,11 +146,10 @@
         }
 
         &:hover {
-          background-color: #0087d6;
 
           & a,
           & span {
-            color: #ffffff;
+            color: $primary-color;
           }
         }
       }
@@ -148,16 +157,16 @@
   }
 
   &__more {
-    background-color: #f2f2f2;
+    background-color: white;
     border: none;
     border-radius: 1rem;
-    box-shadow: 0 0 1rem #f2f2f2;
     overflow: hidden;
+    box-shadow: $box-shadow-small;
+    margin-bottom: 2rem;
   }
 
   &__random {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 1rem;
+    border-bottom: 1px solid $grey-color-1;
 
     & a {
       color: rgba(0, 0, 0, 0.9);
@@ -167,12 +176,11 @@
       text-decoration: none;
 
       &:hover {
-        background-color: #0087d6;
-        color: #ffffff;
+        color: $primary-color;
       }
 
       & svg {
-        color: #ff4500;
+        color: $primary-color;
         font-size: 2.5rem;
         margin-right: 1rem;
       }
@@ -182,10 +190,10 @@
   &__popular {
     & h2 {
       font-size: 2.5rem;
-      padding: 1rem 2rem;
+      padding: 2rem;
 
       & svg {
-        color: #ff4500;
+        color: $primary-color;
         font-size: 2.5rem;
         margin-right: 1rem;
       }
@@ -196,9 +204,8 @@
 
       & li {
         &:hover {
-          background-color: #0087d6;
           & a {
-            color: #ffffff;
+            color: $primary-color;
           }
         }
 
@@ -207,22 +214,29 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 1rem 2rem 1rem 7rem;
+          padding: 0 2rem 2rem 6rem;
           text-decoration: none;
           height: 100%;
 
           & span {
+            display: flex;
+            flex-direction: row;
             text-align: right;
-            width: 8rem;
-
+            width: 6.5rem;
+            
             & svg {
-              color: #ffff00;
-              width: 2rem;
+              display: flex;
+              color: $yellow-color-2;
+              width: 10rem;
 
               & path {
                 stroke-width: 2rem;
                 stroke: #ff4500;
               }
+            }
+
+            & span {
+              margin-left: 1.2rem;
             }
           }
         }

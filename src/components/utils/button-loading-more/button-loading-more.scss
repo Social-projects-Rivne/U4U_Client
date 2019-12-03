@@ -1,13 +1,17 @@
+@import './../../../global-data/global.scss';
+
 .button-loading-more {
     width: 20rem;
     height: 4.5rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: white;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: $box-shadow-small;
+    border-radius: 1rem;
 
     &-container {
         display: flex;
@@ -15,20 +19,21 @@
         align-items: center;
 
         &-icon {
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             margin-right: 1rem;
+            color: $primary-color;
         }
 
         &-title {
+            font-weight: bold;
             margin-left: 1rem;
             display: flex;
             justify-content: center;
             align-items: center;
             color: black;
             font-size: 1.6rem;
-            font-weight: 500;
         }
     }
 }

@@ -1,51 +1,102 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './header.scss';
-import logo from './../../img/logo.svg';
-import search from './../../img/search.svg';
 import Guest from './guest';
 import User from './user';
 import UserAvatarSmallSkeleton from '../utils/user-avatar-small-skeleton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import TabsBar from '../utils/tabs-bar';
+import './header.scss';
 
-const Header = ({ startAuth, user, onAuth }) => {
-  return (
-    <header className="header">
-      <div className="container">
-        <div className="header__logo">
-          <Link to="/">
-            <img src={logo} alt="Ukraine 4 you" />
-          </Link>
-        </div>
 
-        <div className="header__nav">
-          <nav className="header__navbar">
-            <Link to="/myplans/:id">
-              MyPlans
-            </Link>
+export default class Header extends Component {
+  constructor (props) {
+    super (props);
 
-            <Link to="/places-list">
-              Places List
-            </Link>
-          </nav>
+    if (typeof props.startAuth === "undefined"
+        || typeof props.user === "undefined" 
+        || typeof props.onAuth === "undefined") {
+      throw Error("This component cant exist without next props:\n startAuth,\n user,\n onAuth()\n")
+    }
 
-          <div className="header__fields">
-            {
-              startAuth 
-                ? <UserAvatarSmallSkeleton /> 
-                : user 
-                  ? <User user={user} onAuth={onAuth}  /> 
-                  : <Guest /> 
-            }
+    this.state = {
+      navbarTabs: [
+        {
+          id: 0,
+          title: "Map", 
+          url: "/",
+          isActive: false
+        },
+        {
+          id: 1,
+          title: "My Plans", 
+          url: "/myplans/:id",
+          isActive: false,
+        },
+        {
+          id: 2,
+          title: "Places List",
+          url: "/places-list",
+          isActive: false 
+        }
+      ]
+    };
+  }
 
-            <li className="header__search">
-              <Link to="/search">
-                <img src={search} alt="search" />
-              </Link>
-            </li>
+  getActiveTab = (tab) => {
+    if (tab.title === "Map") {
+      document.documentElement.scrollTop = 0;
+    }
+  }
+
+  render () {
+    return (
+      <header className="header">
+          <div className="header__nav">
+            <nav className="header__navbar">
+              <div className="header__logo">
+                <Link to="/" className="header__logo__link">
+                  <div className="header__logo__link-abbreviation">
+                    <div>
+                      <span>U</span>
+                    </div>
+                    <div>
+                      <span>4</span>
+                    </div>
+                    <div>
+                      <span>U</span>
+                    </div>
+                    <div>
+                      <span>
+                        <FontAwesomeIcon icon={faMapMarkerAlt} />
+                      </span>
+                    </div>
+                  </div>
+                  <div className="header__logo__link-title">#Ukraine4You</div>
+                </Link>
+              </div>
+
+              <TabsBar tabs={this.state.navbarTabs} getActiveTab={this.getActiveTab}/>
+            </nav>
+  
+            <div className="header__fields">
+              {
+                this.props.startAuth 
+                  ? <UserAvatarSmallSkeleton /> 
+                  : this.props.user 
+                    ? <User user={this.props.user} onAuth={this.props.onAuth}  /> 
+                    : <Guest /> 
+              }
+  
+              <li className="header__search">
+                <Link to="/search">
+                  <FontAwesomeIcon icon={faSearch} />
+                </Link>
+              </li>
+            </div>
           </div>
-        </div>
-      </div>
-    </header>)
-};
-
-export default Header;
+      </header>
+    );
+  }
+}

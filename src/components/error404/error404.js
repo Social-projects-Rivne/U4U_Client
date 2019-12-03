@@ -1,29 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import error404 from '../../img/error404.mp4';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import './error404.scss';
 
 const Error404 = () => {
   return (
-    <div className="error404">
-      <div className="error404__title">
-        <div className="error404__subtitle">
-          <span className="error404__subtitle-404">404</span>
-
-          <h1>
-            Oops, <span>banana</span> not found
-          </h1>
+    <div className="error404-container">
+      <div className="error404 global-white-layout">
+        <div className="error404-content">
+          <div className="error404-content-digits">
+            <div>
+              <span>4</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>4</span>
+            </div>
+            <div>
+              <span>
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
+              </span>
+            </div>
+          </div>
+          <div className="error404-content-title">
+            <span>
+              Sorry, page not found! <span role="img" aria-label="Man-Shrugging">🤷‍♂️</span>
+            </span>
+            <Link to="/">Go to home page</Link>
+          </div>
         </div>
-
-        <h2>
-          go <Link to="/">Home</Link> and try to find it
-        </h2>
-      </div>
-
-      <div className="error404__video">
-        <video src={error404} autoPlay muted loop>
-          <source src={error404} type="video/mp4"></source>
-        </video>
       </div>
     </div>
   )

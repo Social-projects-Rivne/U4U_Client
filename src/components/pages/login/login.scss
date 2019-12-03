@@ -1,41 +1,56 @@
-.login {
-  background: #fff;
-  margin: 0 auto;
-  margin-top: 10%;
-  padding: 4rem;
-  width: 50%;
-}
+@import './../../../global-data/global.scss';
 
-.title {
-  font-size: 3rem;
-  font-family: sans-serif;
-}
-
-.register-link {
-  text-align: center;
-  font-size: 2rem;
-  color: darkgoldenrod;
-  display: block;
-  margin-bottom: 2rem;
-}
-
-.submit-wrapper {
+.login-wrapper {
+  min-height: $page-container-height;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.submit {
-  padding: 2rem 8rem;
-  border-radius: 2rem;
-  background: darkgoldenrod;
-  font-size: 2rem;
-  color: antiquewhite;
-  cursor: pointer;
-}
+.login {
+  max-width: 120rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: 28%;
 
-.text-wrong {
-  text-align: center;
-  font-size: 2rem;
-  padding: 1rem;
-  color: crimson;
+  &-title {
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  &-error {
+    text-align: center;
+    font-size: 1.8rem;
+    padding-top: 2rem;
+    padding-bottom: 0.5rem;
+    color: red;
+  }
+
+  &-submit {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+
+    &__button {
+      width: 10rem;
+      height: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &-register-link {
+    text-align: center;
+    font-size: 1.7rem;
+    color: black;
+    display: block;
+    margin-top: 2rem;
+  }
+
+  &-register-link:hover {
+    color: $primary-color;
+  }
 }

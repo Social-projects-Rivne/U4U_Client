@@ -19,12 +19,12 @@ const Login = ({ onAuth }) => {
 
         const LoginSchema = Yup.object().shape({
         password: Yup.string()
-            .min(4, 'Password is too Short!')
-            .max(50, 'Password is too Long!')
-            .required('Password is a required filed'),
+            .min(4, 'Password is too short!')
+            .max(50, 'Password is too long!')
+            .required('Password is a required filed!'),
         email: Yup.string()
-            .email('Invalid email')
-            .required('E-mail is a required field'),
+            .email('Invalid email!')
+            .required('Email is a required field!'),
     });
 
         const submit = async (values) => {
@@ -46,33 +46,36 @@ const Login = ({ onAuth }) => {
         if (state.redirect) return <Redirect to={prevPath}/>;
 
         return (
-                <div className="login">
-                    <h1 className='title'>Login</h1>
-                            <Formik
-                                initialValues={{
-                                    email: '',
-                                    password: ''
-                                }}
-                                validationSchema={LoginSchema}
-                                onSubmit={submit}
-                            >
+                <div className="login-wrapper">
+                        <div className="login global-white-layout">
+                            <h1 className='login-title'>Sign In</h1>
+                            {state.wrongData ? <p className='login-error'>Wrong email or password!</p> : null }
+                            {state.err ? <p className='login-error'>Server error please try later!</p> : null }
 
-                                {(params) => (
-                                    <Form>
-                                        {Input(params, setState)}
+                                    <Formik
+                                        initialValues={{
+                                            email: '',
+                                            password: ''
+                                        }}
+                                        validationSchema={LoginSchema}
+                                        onSubmit={submit}
+                                    >
 
-                                        {state.wrongData ? <p className='text-wrong'>Wrong email or password</p> : null }
-                                        {state.err ? <p className='text-wrong'>Server error please try later</p> : null }
-                                        <Link to='/register' className='register-link'>not a member ?</Link>
+                                        {(params) => (
+                                            <Form className="login-form">
+                                                {Input(params, setState)}
+                                                
+                                                <div className='login-submit'>
+                                                    <Button type="submit" className="login-submit__button global-raised-button">Sign In</Button>
+                                                </div>
 
-                                        <div className='submit-wrapper'>
-                                            <Button type="submit" className="submit"> Login </Button>
-                                        </div>
-                                    </Form>
-                                )}
+                                                <Link to='/register' className='login-register-link'>Registration</Link>
+                                            </Form>
+                                        )}
 
-                            </Formik>
+                                    </Formik>
                         </div>
+                </div>
         )
 
 };

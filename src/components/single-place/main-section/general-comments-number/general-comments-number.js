@@ -8,8 +8,8 @@ export default class GeneralCommentsNumber extends Component {
     return (
       <div className='comment-number-icon'>
         <a href="#comments">
-          <span>{this.props.commentQuantity}</span>
           <FontAwesomeIcon icon={faComment} />
+          <span>{this.props.commentQuantity}</span>
         </a>
       </div>
     )

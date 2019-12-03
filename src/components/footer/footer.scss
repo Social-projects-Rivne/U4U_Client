@@ -1,13 +1,16 @@
+@import './../../global-data/global.scss';
+
 /* footer style */
 .footer {
-  background-color: rgba(0, 0, 0, 0.4);
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: $grey-color-2;
   position: relative;
-  height: 4rem;
   width: 100%;
-  z-index: 9;
+  height: $footer-height;
+  z-index: 100;
 
-  & .container {
+  &-container {
+    height: 100%;
+    padding: 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;

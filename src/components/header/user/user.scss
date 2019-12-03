@@ -1,50 +1,31 @@
 .header__user {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  height: 100%;
+  width: 10rem;
   margin-right: 2rem;
 
-  &-avatar {
-    margin-right: 0;
-    height: 5rem;
-    width: 5rem;
-
-    & img {
-      margin-bottom: 0.5rem;
-      height: 4.5rem;
-      width: 4.5rem;
-    }
-  }
-
   &-data {
-    & h5 {
-      color: #fff;
-      font-size: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    &-profile {
+      width: 5rem;
+      height: 100%;
     }
 
-    & a, .log-out-btn {
-      display: inline-block;
-
-      &.header__profile {
-        color: rgba(0, 255, 255, 0.7);
-        margin-right: 1rem;
-
-        & ~ a, .log-out-btn {
-          color: rgba(255, 0, 0, 0.7);
-        }
-      }
+    &-profile:hover {
+      transform: scale(1.1);
     }
-  }
 
-  .log-out-btn {
-    color: rgba(255, 0, 0, 0.7);
-    font-size: 2rem;
-      &:hover {
-        cursor: pointer;
-      }
-  }
+    &-log-out {
+      width: 5rem;
+      height: 100%;
+      color: white;
+    }
 
-  & li:last-child {
-    text-align: right;
+    &-log-out:hover {
+      transform: scale(1.1);
+    }
   }
 }

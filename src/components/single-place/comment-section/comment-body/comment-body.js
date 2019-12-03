@@ -94,21 +94,25 @@ export default class CommentBody extends Component {
     const rating = selected ? 'd-none' : 'rating-container';
     const message = selected ? 'thanks_message' : 'd-none';
 
-    const error = commentError ? 'Pleace enter comment and mark' : '';
+    const error = commentError ? 'Pleace enter comment and mark!' : '';
     return (
       <commentContext.Consumer>
       {({ addComment }) => (<div className='comment-body'>
-        <p className='comment-sharing'>Share your advantures about this place...</p>
+        <p className='comment-sharing'>Share your impressions about this place...</p>
+        {error ? <p className='message'>{error}</p> : null}
         <form onSubmit={(e) => { this.onSubmit(e, addComment) }}>
-          <textarea required name='comment' value={comment} placeholder='Tell something about this place, please :)' className='comment' onChange={this.onComment}></textarea>
-          <p className='message'>{error}</p>
-          <div className={rating}>
-            {stars}
+          <textarea required name='comment' value={comment} placeholder='Tell something about this place, please :)' className='comment global-textarea ' onChange={this.onComment}></textarea>
+          <div className="comment-body-bottom">
+            <div>
+              <div className={rating}>
+                {stars}
+              </div>
+              <div className={message}>
+                <p className='message_thanks'>Thanks for your mark " {mark} " <i onClick={this.onChange} className='revert'>&#8634;</i></p>
+              </div>
+            </div>
+            <input type='submit' id='comment-button' className="global-raised-button" value='Send'></input>
           </div>
-          <div className={message}>
-            <p className='message_thanks'>Thanks for your mark " {mark} " <i onClick={this.onChange} className='revert'>&#8634;</i></p>
-          </div>
-          <input type='submit' id='comment-button' value='Send'></input>
         </form>
       </div>)}
       </commentContext.Consumer>

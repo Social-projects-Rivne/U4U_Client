@@ -19,12 +19,11 @@ const Input = ({initialValues: values, errors: errs, touched, isValidating, setS
         const inputClass = errs[e] && touched[e] ? 'input err-input' : 'input';
         const barClass = errs[e] && touched[e] ? 'bar err-bar' : 'bar';
 
-        const filed = <div className='group'>
-                <Field className={inputClass} type={type} name={e} required />
+        const filed = <div key={e} className='login-fields-group'>
+                {errs[e] && touched[e] ? <span className='login-fields-group-text-err'>{errs[e]}</span> : <label className="label">{label}:</label>}
+                <Field className={"global-input-text " + inputClass} placeholder={label} type={type} name={e} required />
                 <span className="highlight"></span>
                 <span className={barClass}></span>
-                <label className="label">{label}</label>
-            {errs[e] && touched[e] ? <div className='text-err'>{errs[e]}</div> : null}
         </div>;
 
         fields.push(filed)

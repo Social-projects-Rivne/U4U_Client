@@ -11,20 +11,21 @@ import {
 import { AuthProvider } from "../contexts";
 
 import PrivateRoute from "../private-route";
-import MyPlans from "../my-plans/my-plans";
-import Header from "../header";
-import Container from "../container";
-import Footer from "../footer";
-import UMap from "../uMap";
-import SinglePlace from "../single-place";
-import PlacesList from "../pages/places-list";
-import Error404 from "../error404";
-import Search from "../search";
-import Profile from "../profile";
+import MyPlans from '../my-plans/my-plans';
+import Header from '../header';
+import Container from '../container';
+import Footer from '../footer';
+import SinglePlace from '../single-place';
+import PlacesList from '../pages/places-list';
+import Error404 from '../error404';
+import Search from '../search';
+import Profile from '../profile';
 import UserService from "../../services/user-service";
+import MainPage from "./../pages/main";
+import { withRouter } from 'react-router-dom';
 import Register from "../register/register";
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -73,7 +74,8 @@ export default class App extends Component {
                   Component={() => <h1>Secret Page</h1>}
                 />
 
-                <Route path="/" exact component={UMap} />
+                <Route path='/'
+                  exact component={MainPage} />
 
                 <Route
                   path="/login"
@@ -90,10 +92,14 @@ export default class App extends Component {
                 <Route
                   path="/singleplace/:id"
                   render={(props) => <SinglePlace {...props} 
-                    isAuth={this.state.isAuth}
-                    loggedInUserId={this.state.user && this.state.user.id} />} />
+                  isAuth={this.state.isAuth}
+                  loggedInUserId={this.state.user && this.state.user.id} />} />
 
-                <Route path="/myplans/:id" component={MyPlans} />
+                <Route
+                  path="/myplans/:id"
+                  render={props => <MyPlans user={this.state.user} />}
+                />
+
                 <Route
                   path="/profile"
                   render={props => <Profile user={this.state.user} />}
@@ -111,10 +117,14 @@ export default class App extends Component {
                 <Route component={Error404} />
               </Switch>
             </Container>
-            <Footer />
+            <Route path="/" render={props => 
+              props.location.pathname !== "/" ? <Footer /> : ""
+            } />
           </Router>
         </AuthProvider>
       </div>
     );
   }
 }
+
+export default withRouter(App);
