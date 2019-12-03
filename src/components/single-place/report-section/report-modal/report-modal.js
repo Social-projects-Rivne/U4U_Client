@@ -31,16 +31,13 @@ export default class ReportModal extends Component {
           placeId: placeId
         })
         .then(() => {
-          console.log('Success');
           this.setState({
             report: '',
             reportError: false,
             selected: false
           });
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch();
     }
   };
 
