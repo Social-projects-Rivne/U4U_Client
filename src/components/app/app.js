@@ -107,7 +107,6 @@ class App extends Component {
 
                 <Route path="/search" component={Search} />
                 <Route path='/register' render={() => <Register onAuth={this.onAuth} />} />
-
                 <Route
                   path="/places-list/filter/region=:regionId"
                   component={PlacesList}
