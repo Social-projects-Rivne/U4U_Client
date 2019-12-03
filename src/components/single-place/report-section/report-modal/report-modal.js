@@ -68,8 +68,8 @@ export default class ReportModal extends Component {
                 onChange={this.onReport}></textarea>
               <p className="message">{error}</p>
               <div className={message}></div>
-              <button type="button" className="report-cancel" onClick = {this.props.hideModal}>Close</button>
               <button type="submit" className="report-submit">Submit</button>
+              <button type="button" className="report-cancel" onClick = {this.props.hideModal}>Close</button>
             </form>
           </div>
         </div>
