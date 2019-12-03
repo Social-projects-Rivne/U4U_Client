@@ -63,16 +63,16 @@ export default class AddToWishListBttn extends Component {
 
     return (
       <div className='add-to-wish-list-bttn'>
-        <label class={`wish-checkbox ${disabled}`}>
+        <label className={`wish-checkbox ${disabled}`}>
           Wish to visit
           <input
             type="checkbox"
             checked={wishState ? 'checked' : ''}
-            onClick={() => this.toWish(
+            onChange={() => this.toWish(
               this.state.wishId,
               this.props.currentPlaceId,
               this.props.currentPlaceName)} />
-          <span class="wish-checkmark"></span>
+          <span className="wish-checkmark"></span>
         </label>
       </div>
     )

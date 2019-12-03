@@ -9,16 +9,16 @@ import './register.scss';
 
 const RegisterSchema = Yup.object().shape({
     name: Yup.string()
-        .min(2, 'Name is too Short!')
-        .max(50, 'Name is too Long!')
+        .min(2, 'Name is too short!')
+        .max(50, 'Name is too long!')
         .required('Name is a required filed'),
     surname: Yup.string()
-        .min(2, 'Name is too Short!')
-        .max(50, 'Name is too Long!')
+        .min(2, 'Name is too short!')
+        .max(50, 'Name is too long!')
         .required('Surname is a required filed'),
     nickName: Yup.string()
-        .min(2, 'Name is too Short!')
-        .max(50, 'Name is too Long!')
+        .min(2, 'Name is too short!')
+        .max(50, 'Name is too long!')
         .required('Name is a required filed')
         .test('is-42',
             "Sorry, that nickname's taken. Try another? ",
@@ -34,12 +34,12 @@ const RegisterSchema = Yup.object().shape({
                 }
             }),
     password: Yup.string()
-        .min(4, 'Password is too Short!')
-        .max(50, 'Password is too Long!')
+        .min(4, 'Password is too short!')
+        .max(50, 'Password is too long!')
         .required('Password is a required filed'),
     email: Yup.string()
         .email('Invalid email')
-        .required('E-mail is a required field')
+        .required('Email is a required field')
         .test('is-42',
             "Sorry, that email's taken. Try another? ",
             async (value) => {
@@ -73,34 +73,36 @@ const Register = ({ onAuth }) => {
     if(redirect) return <Redirect to='/' />;
 
     return (
-        <div className="form register">
+        <div className="register-wrapper">
+            <div className="register global-white-layout">
+                <h1 className='register-title'>Registration</h1>
+                <div className="form-group">
+                    <Formik
+                        initialValues={{
+                            name: '',
+                            surname: '',
+                            nickName: '',
+                            password: '',
+                            email: '',
+                        }}
+                        validationSchema={RegisterSchema}
+                        onSubmit={submit}
+                    >
 
-            <div className="form-group">
-                <Formik
-                    initialValues={{
-                        name: '',
-                        surname: '',
-                        nickName: '',
-                        password: '',
-                        email: '',
-                    }}
-                    validationSchema={RegisterSchema}
-                    onSubmit={submit}
-                >
+                        {(params) => (
+                            <Form>
+                                {Input(params)}
 
-                    {(params) => (
-                        <Form>
-                            {Input(params)}
+                                { err ? 'Server error please try to register later' : null}
+                                <div className="register-submit">
+                                    <Button type='submit' className="register-submit__button global-raised-button">Create Account</Button>
+                                </div>
+                            </Form>
+                        )}
 
-                            { err ? 'Server error please try to register later' : null}
-                            <Button type='submit' className="submit"> Sign In </Button>
-                        </Form>
-                    )}
-
-                </Formik>
+                    </Formik>
+                </div>
             </div>
-
-
         </div>
     )
 };

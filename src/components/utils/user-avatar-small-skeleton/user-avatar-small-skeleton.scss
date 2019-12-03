@@ -1,13 +1,16 @@
+@import './../../../global-data/global.scss';
+
 .user-avatar-small-skeleton {
     display: block;
     border: none;
     border-radius: 0.5rem;
     height: 3.8rem;
-    width: 3.8rem;
+    width: 10rem;
     animation: loading 2.5s infinite linear;
-    background: #dedfe1;
-    background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 50%, #dedfe1 100%);
+    background: $primary-color-hover;
+    background-image: linear-gradient(to right, $primary-color-hover 0%, #3c7957 70%, $primary-color-hover 50%, $primary-color-hover 100%);
     background-repeat: no-repeat;
+    margin-right: 2rem;
 
     @keyframes loading {
         0% { background-position  : -100px; }

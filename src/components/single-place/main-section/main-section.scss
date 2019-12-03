@@ -1,27 +1,33 @@
-.placename-weather {
+@import './../../../global-data/global.scss';
+
+.main-section {
+  width: 100%;
+  position: relative;
+}
+
+.placename-weather{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-right: 35px;
-  margin-top: 10px;
-}
-
-.user-activity-info {
+  color: black;
+}  
+.user-activity-info{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 0 auto;
-  height: 7rem;
-  width: 70%;
+  justify-content: space-around;
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  background: $primary-color;
+
 }
 
 .sub-heading,
 .article p {
+  text-indent: 2rem;
+  padding: 2rem;
   text-align: justify;
-  padding: 20px 35px;
   font-size: 2rem;
   font-weight: 100;
   word-spacing: 2px;
   line-height: 25px;
-  color: white;
+  color: black;
 }

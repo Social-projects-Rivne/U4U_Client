@@ -1,11 +1,27 @@
-.single-place{
+@import './../../global-data/global.scss';
+
+.single-place {
+  display: flex;
+  justify-content: center;
+  
+  &-wrapper{
+    display: flex;
+    width: 100%;
+    max-width: 120rem;
+    margin: 5rem 0 5rem 0;
+  }
+
+  &-content {
     display: flex;
     flex-wrap: wrap;
+    width: 72%;
+  }
 
-& .main-comment-sections{
-flex: 80%;
-background-color: rgba(0, 0, 0, 0.4);
-}
+  
+
+  & .main-comment-sections{
+    width: 100%;
+  }
 }
  
 @media screen and (max-width: 700px) {

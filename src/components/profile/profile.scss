@@ -1,8 +1,11 @@
-.profile{
-  background-color: rgba(0, 0, 0, 0.4);
+.profile-container {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
 }
-.profile input:not(.add-place-file),
-.profile select,
-.profile textarea{
-  background-color: rgb(241, 239, 239);
+
+.profile {
+  width: 100%;
+  max-width: 120rem;
+  color: black;
 }

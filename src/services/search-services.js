@@ -38,9 +38,13 @@ export default class SearchService {
   };
   _transformSearchStar = star => {
     return {
-      id: star._id,
-      rating: star.ratingAvg,
-      name: star.name
+      _id: star._id,
+      ratingAvg: star.ratingAvg,
+      name: star.name,
+      photos: star.photos,
+      location: star.location,
+      isModerated: star.isModerated,
+      approved: star.approved
     };
   };
 }

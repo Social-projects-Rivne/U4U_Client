@@ -1,0 +1,18 @@
+$tab-width: 12rem;
+
+.tab {
+    height: 100%;
+    min-width: $tab-width;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+
+    &.active {
+        font-weight:bold;
+    }
+    &:hover {
+        font-weight:bold;
+    }
+}

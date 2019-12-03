@@ -36,7 +36,7 @@ export default class CommentViewItem extends Component {
     const { rating, createdAt, comment, userNickname, userAvatar } = this.props;
 
     return (
-      <li className="comment-view-element">
+      <li className="comment-view-element global-white-layout">
         <div className="comment-view-header">
           <div className="comment-view-left">
             <div className="comment-view-avatar">

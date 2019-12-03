@@ -55,24 +55,39 @@ export default class SearchPanel extends Component {
         }}>
         {place.name}
       </li>
-    ))
+    ));
+
     return (
       <div className='search-bar'>
-        <form className='search-panel'
-          onSubmit={this.onSubmit}>
-          <input type="text"
-            className=" search-input"
-            maxLength='50'
-            placeholder="Search name of the place and add it to your wish list"
-            onChange={this.onCommentChange}
-            required
-            pattern="[A-Za-z\s]+"
-            value={this.state.inputValue}
-          />
-          <button type='submit' id='add-item-button'>Add</button>
-        </form>
-        <div id='search-autocomplete-items-style'>
-          <ul>{options}</ul>
+        <div className='search-panel'>
+          <form 
+            className={'search-panel-form ' + (options.length ? "search-panel-form_shadow" : "")}
+            onSubmit={this.onSubmit}>
+
+            <input 
+              type="text"
+              className={"search-input " + (options.length ? "search-input_border" : "")}
+              maxLength='50'
+              placeholder="Search name of the place and add it to your wish list"
+              onChange={this.onCommentChange}
+              required
+              pattern="[A-Za-z\s]+"
+              value={this.state.inputValue}
+            />
+
+            <button
+              className={"search-input-add-item-button " + (options.length ? "search-input-add-item-button_border" : "")} 
+              type='submit'
+            >
+              Add
+            </button>
+
+          </form>
+          <div id='search-autocomplete-items-style'>
+            <ul>
+              {options}
+            </ul>
+          </div>
         </div>
       </div>
     );

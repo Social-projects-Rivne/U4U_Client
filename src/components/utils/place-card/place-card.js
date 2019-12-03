@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Spiner from '../spinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Link  } from 'react-router-dom';
 import './place-card.scss';
 
@@ -7,11 +10,12 @@ export default class PlaceCard extends Component {
     constructor(props) {
         super(props);
      
-        if(!props.photo || !props.title || !props.id) {
-          throw Error("This component cant exist without next props:\n title,\n photo,\n id \n")
+        if(!props.place) {
+          throw Error("This component cant exist without next props:\n place\n")
         }
     
         this.state = {
+            place: props.place,
             photoLoadState: false
         };
       }
@@ -21,8 +25,9 @@ export default class PlaceCard extends Component {
     }
 
     render() {
-        const spinerModifier = (this.state.photoLoadState) ? '' : ' place-card-spinner-show'
-        const cardModifier = (this.state.photoLoadState) ? ' place-card-show' : ''
+        const spinerModifier = (this.state.photoLoadState) ? '' : ' place-card-spinner-show';
+        const cardModifier = (this.state.photoLoadState) ? ' place-card-show' : '';
+        const { _id, photos, name, location, ratingAvg } = this.state.place;
 
         return (
             <div className='place-card-container'>
@@ -30,14 +35,31 @@ export default class PlaceCard extends Component {
                     <Spiner />
                 </div>
 
-                <Link to={`/singleplace/${this.props.id}`} style={{ textDecoration: 'none' }}>
+                <Link to={`/singleplace/${_id}`} style={{ textDecoration: 'none' }}>
                     <div className ={`place-card ${cardModifier}`}>
                         <img 
-                            src={this.props.photo} 
-                            alt={this.props.title} 
+                            src={photos[0]} 
+                            alt={name.trim()} 
                             onLoad={() => { this.onImageLoaded()} }
                         />
-                        <h2>{this.props.title}</h2>
+                        <div className="place-card-info">
+                            <div className="place-card-info-location">
+                                <FontAwesomeIcon icon={faMapMarkerAlt}/>
+                                <div className="place-card-info-location-title">
+                                    <div>
+                                        {location.region.trim()}
+                                    </div>
+                                    <div>
+                                        {location.district.trim()}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="place-card-info-rating">
+                                <FontAwesomeIcon icon={faStar}/>
+                                <span>{ratingAvg}</span>
+                            </div>
+                        </div>
+                        <h2>{name.trim()}</h2>
                     </div>
                 </Link>
             </div>

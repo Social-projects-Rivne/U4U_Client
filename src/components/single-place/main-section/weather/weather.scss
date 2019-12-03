@@ -1,31 +1,46 @@
 
 .weather-info {
   display: flex;
+  width: 18rem;
+  height: 100%;
 }
 
 .weather-icon {
-  color:rgb(235, 232, 232);
   margin-right: 0.5rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   & svg {
-    height: 8rem;
-    width: 8rem;
+    height: 100%;
+    width: 100%;
   }
 }
 
 .weather-temp {
   display: flex;
   align-items: center;
-  color:rgb(235, 232, 232);
+  color:black;
 }
 
 #weather-temp-icon {
+  color: white;
   margin-right: 1.1rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   & svg {
-    height: 8rem;
-    width: 4rem;
+    height: 80%;
+    width: 80%;
   }
 }
 
 #weather-temp-value {
+  color: white;
   font-size: 4rem;
 }

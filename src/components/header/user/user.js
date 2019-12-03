@@ -1,43 +1,49 @@
-import React, { useState } from "react";
-import { Link, Redirect } from 'react-router-dom';
-import './user.scss';
-import avatar from '../../../img/avatar.svg';
+import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import api from '../../../services/tourist-service';
 import TokenService from '../../../services/token-service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import './user.scss';
 
-const User = ({ user, onAuth }) => {
+export default class User extends Component {
+  constructor(props) {
+    super(props);
 
-    const [logOut, setLogOut] = useState(null);
+    this.state = {
+      setLogOut: false
+    }
+  }
 
-    const handleLogOut = () => {
-        api.logOut()
-            .then(res => {
-                TokenService.removeToken();
-                TokenService.removeRefreshToken();
-                setLogOut(true);
-                onAuth('');
-            })
-            .catch(err => {
-                setLogOut('');
-                alert('Cannot log out');
-            });
-    };
+  handleLogOut = () => {
+    api.logOut()
+      .then(res => {
+        TokenService.removeToken();
+        TokenService.removeRefreshToken();
 
-    if(logOut) return <Redirect to='/' />;
+        this.setState({ setLogOut: true })
+        this.props.onAuth();
+      })
+      .catch(err => {
+        this.setState({ setLogOut: false })
+        alert('Cannot log out');
+      });
+  }
 
-  return (
-    <div className="header__user">
-      <div className="header__user-avatar">
-        <img src={avatar} alt="user avatar" />
-			</div>
-
-      <div className="header__user-data">
-        <h5>Welcome, {user ? user.nickname : ''}</h5>
-        <Link to="/profile" className="header__profile">Your profile</Link>
-        <span className='log-out-btn' onClick={handleLogOut}>Sign Out</span>
+  render() {
+  
+    return (
+      <div className="header__user">
+        <div className="header__user-data">
+          <Link to="/profile" className="header__user-data-profile">
+            <FontAwesomeIcon icon={faUser} />
+          </Link>
+          <Link to="/" className='header__user-data-log-out' onClick={this.handleLogOut}>
+            <FontAwesomeIcon icon={faSignOutAlt} />
+          </Link>
+        </div>
       </div>
-    </div>
-  )
+    );
+  }
 }
-
-export default User

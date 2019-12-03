@@ -8,8 +8,8 @@ export default class GeneralRating extends Component {
     const { ratingAvg } = this.props
     return (
       <div className='all-stars-container' >
-        <span>{ratingAvg}</span>
         <FontAwesomeIcon icon={faStar} />
+        <span>{ratingAvg}</span>
       </div>
     )
   }
