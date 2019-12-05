@@ -7,16 +7,21 @@ import PlacePhotos from './place-photos/place-photos';
 import PlaceName from './place-name';
 import Weather from './weather';
 import SubHeading from './sub-heading';
+import ReportSection from '../report-section';
 import './main-section.scss';
 
 
 export default class MainSection extends React.Component {
+  state = {
+    place: this.props.place
+  }
+
   render() {
     if (this.props.place === null) {
       return <h1>Not found</h1>
     }
 
-    const { photos, description, location, name, coordinates } = this.props.place;
+    const { photos, description, location, name, coordinates, ratingAvg, _id } = this.props.place;
 
     return (
 
@@ -45,11 +50,16 @@ export default class MainSection extends React.Component {
           <PlacePhotos place={this.props.place} photos={photos} />
         </div>
         <div className='user-activity-info'>
-          <GeneralCommentsNumber />
-          <GeneralRating />
-          <AddToWishListBttn />
+          <GeneralCommentsNumber commentQuantity={this.props.commentQuantity} />
+          <GeneralRating ratingAvg={ratingAvg} />
+          <AddToWishListBttn
+            isAuth={this.props.isAuth}
+            currentPlaceId={_id}
+            currentPlaceName={name}
+            loggedInUserId={this.props.loggedInUserId}/>
+          <ReportSection placeId={this.state.place._id} />
         </div>
-          <PlaceDescription placeInfo={description} />
+        <PlaceDescription placeInfo={description} />
       </div>
     )
   }

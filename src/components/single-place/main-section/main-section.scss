@@ -95,12 +95,13 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 1.5rem;
+  padding: 1.5rem 2rem 1.5rem 2rem;
   background: $primary-color;
+
 }
 
-
-.sub-heading, .article p{
+.sub-heading,
+.article p{
   line-height: 3.3rem;
   text-indent: 2rem;
   padding: 2rem;

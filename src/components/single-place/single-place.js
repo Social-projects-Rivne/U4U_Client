@@ -13,25 +13,29 @@ import './single-place.scss';
 class SinglePlace extends Component {
   state = {
     place: null,
-    CommentList:[]
+    commentQuantity: 0,
+    CommentList: []
   };
 
   addComment=(newComment) =>{
-    this.setState({CommentList : [...this.state.CommentList, newComment]})
+    this.setState({ CommentList : [...this.state.CommentList, newComment] })
     
   }
 
   commentContext = {  
     comments: this.state.CommentList,
-    addComment:this.addComment
+    addComment: this.addComment
   }
 
   async getPlaceData(placeId) {
-    
-    const place = await Api.getPlace(placeId);
-    const comments = await reviewService.getAllComments(placeId);
+    try {
+      const place = await Api.getPlace(placeId);
+      const comments = await reviewService.getAllComments(placeId);
 
-    this.setState({ place: place, CommentList:comments});
+      this.setState({ place: place, CommentList:comments, commentQuantity: comments.length });
+    } catch (error) {
+      console.log("Handle get place or comments error: ", error);
+    } 
   }
 
   async componentDidUpdate() {
@@ -61,6 +65,10 @@ class SinglePlace extends Component {
     }
   }
 
+  commentQuantity = (value) => {
+    this.setState({ commentQuantity: value });
+  }
+
   render() {
     const loading = !this.state.place ? false : true;
 
@@ -69,11 +77,20 @@ class SinglePlace extends Component {
         {loading ? (
           <div className="single-place-wrapper">
             <div className="single-place-content">
-              <MainSection place={this.state.place} />
+              <MainSection 
+                place={this.state.place}
+                commentQuantity={this.state.commentQuantity}
+                isAuth={this.props.isAuth}
+                loggedInUserId={this.props.loggedInUserId}
+                />
               <div className="main-comment-sections">
                 <commentContext.Provider value={this.commentContext} >
                   <CommentSection placeId={this.state.place._id} />
-                  <CommentViewSection  commentList = {this.state.CommentList}/>
+                  <CommentViewSection
+                    commentList = {this.state.CommentList}
+                    placeId={this.state.place._id}
+                    commentQuantity={this.commentQuantity}
+                    />
                 </commentContext.Provider>
               </div>
             </div>
