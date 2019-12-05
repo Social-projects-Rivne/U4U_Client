@@ -38,7 +38,7 @@ export default class PlacesList extends Component {
 
       this.setState({ places: filteredPlaces });
     } catch (error) {
-      console.log("Handle loading all places error: ", error);
+      console.error("Handle loading all places error: ", error);
     }
   }
 
@@ -51,7 +51,7 @@ export default class PlacesList extends Component {
 
       this.setState({ places: filteredPlaces });
     } catch (error) {
-      console.log("Handle loading all places error: ", error);
+      console.error("Handle loading all places error: ", error);
     }
   }
 
