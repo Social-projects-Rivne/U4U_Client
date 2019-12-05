@@ -39,6 +39,7 @@ export default class AddToWishListBttn extends Component {
       }
       this.service.postWish(newPlace).then((res) => {
         this.setState({
+          wishId: res.id,
           wishState: true
         })
       })
