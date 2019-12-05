@@ -10,18 +10,15 @@ export default class PlacesGrid extends Component {
     if (!props.places) {
       throw Error("This component cant exist without next props:\n places\n")
     }
-
-    this.state = {
-      places: props.places
-    }
   }
 
   render() {
+    const {places} = this.props
       return (
         <div className="PlacesGrid">
         {
-          this.state.places &&
-            this.state.places.map(place => {
+          places &&
+            places.map(place => {
                 return (
                   place._id && place.photos.length && place.name
                   ? <PlaceCard 
