@@ -33,6 +33,8 @@ export default class AddToWishListBttn extends Component {
   }
 
   toWish = (wishId, placeId, placeName) => {
+    if(!this.props.isAuth) return
+    
     this.setState({ isDisabled: true })
     if (!this.state.wishState) {
       const newPlace = {
