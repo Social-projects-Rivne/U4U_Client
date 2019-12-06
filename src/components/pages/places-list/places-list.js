@@ -26,7 +26,9 @@ export default class PlacesList extends Component {
     places: null,
     title: "All Ukrainian places",
     ratingFilterValue: null,
-    regionsFIlterValue: null
+    regionsFIlterValue: null,
+    regionDbId: null,
+    regionsNames: [RegionsNames.title, RegionsNames.regionDbId],
   };
 
   async getAllRegionPlaces(regionId) {
@@ -79,10 +81,17 @@ export default class PlacesList extends Component {
       if (data.from === "rating") {
         this.setState({ ratingFilterValue: data.value });
       } else if (data.from === "regions") {
-        this.setState({ regionsFIlterValue: data.value });
+        this.setState({ regionsFIlterValue: data.value, regionDbId: data.regionDbId });
       }
     }
   };
+
+  regionsNames() {
+    const regionNamesArr = RegionsNames.filter(e => {
+      return e.regionDbId
+    })
+    return regionNamesArr
+  }
 
   render() {
     const changeHeight = {
@@ -121,7 +130,7 @@ export default class PlacesList extends Component {
               />
               <SelectDropdown
                 name="regions"
-                data={RegionsNames}
+                data={this.regionsNames()}
                 getSelectValue={this.getFilterValue}
               />
             </div>
