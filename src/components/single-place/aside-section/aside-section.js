@@ -34,7 +34,6 @@ export default class AsideSection extends Component {
     return (
       <div className="aside-section">
         <span>Recomended places</span>
-        {console.log(this.state.places)}
         {this.state.places &&
           this.state.places
             .filter(place => {
