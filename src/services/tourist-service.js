@@ -3,8 +3,9 @@ import request from "./request";
 class TouristService {
     async login({email, password}) {
            const res = await request.post('login', { email, password });
-           localStorage.setItem('token', res.accessToken);
-           localStorage.setItem('refreshToken', res.refreshToken);
+           const userStatus = res[1];
+           localStorage.setItem('token', res[0].accessToken);
+           localStorage.setItem('refreshToken', res[0].refreshToken);
     };
 
     async checkAuth() {
