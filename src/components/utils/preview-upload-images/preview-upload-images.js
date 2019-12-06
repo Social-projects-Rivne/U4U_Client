@@ -9,34 +9,53 @@ export default class PreviewUploadImages extends Component {
         super(props);
      
         this.state = {
-            images: [],
+            blobs: [],
             show: false,
             showPhotoPreview: false,
             showPhotoPreviewAt: 0,
         };
     }
 
-    setImages = (images) => {
-        this.setState({ images: images, show: true });
+    setImages = (files) => {
+        if (files.length) {
+            let blobs = [];
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const url = window.URL || window.webkitURL;
+                const src = url.createObjectURL(file);
+
+                const img = new Image();
+                      img.src = src;
+
+                blobs.push(img.src);
+            }
+            
+            this.setState({ blobs: blobs, show: true });
+        }
     }
 
     removeImage = (index) => {
         this.setState(state => {
             const _URL = window.URL || window.webkitURL;
-            const images = state.images;
+            let blobs = state.blobs;
             let show = state.show;
             
-            _URL.revokeObjectURL(images[index]);
-            this.props.changePreviwImages(index);
-            images.splice(index, 1);
+            _URL.revokeObjectURL(blobs[index]);
+            blobs.splice(index, 1);
+            this.props.removePreviwImage(index);
 
-            if (!images.length) show = false;
+            if (!blobs.length) show = false;
 
             return {
-              images,
-              show
+                blobs,
+                show
             };
         });
+    }
+
+    reset = () => {
+        this.setState({ blobs: [], show: false });
     }
 
     showPreview = (index) => {
@@ -48,7 +67,7 @@ export default class PreviewUploadImages extends Component {
     }
 
     render() {
-        const { images, show, showPhotoPreview, showPhotoPreviewAt } = this.state;
+        const { blobs, show, showPhotoPreview, showPhotoPreviewAt } = this.state;
 
         return (
             show
@@ -58,7 +77,7 @@ export default class PreviewUploadImages extends Component {
                         showPhotoPreview
                         ?   
                             <div className='preview-upload-images-modal'>
-                                <PhotoSLider photos={images} startAt={showPhotoPreviewAt}/>
+                                <PhotoSLider photos={blobs} startAt={showPhotoPreviewAt}/>
                                 <div className='preview-upload-images-modal_close' onClick={() => this.closePreview()}>
                                     <FontAwesomeIcon icon={faTimes} />
                                 </div>
@@ -66,31 +85,32 @@ export default class PreviewUploadImages extends Component {
                         : null
                     }
                     <div className='preview-upload-images-title'>
-                        Images ({images.length}):
+                        Images ({blobs.length}):
                     </div>
                     <div className='preview-upload-images-content'>
                     {
-                        images.length
+                        blobs.length
                         ?   
-                            images.map((image, i) => {
+                            blobs.map((blob, i) => {
                                 return <div 
-                                            key={i} 
-                                            className="preview-upload-images-content-image"
-                                            >
-                                            
-                                            <img 
-                                                key={image} 
-                                                src={image} 
-                                                alt=""
-                                                onClick={(e) => this.showPreview(i)}/>
+                                        key={i} 
+                                        className="preview-upload-images-content-image"
+                                        >
+                                        
+                                        <img 
+                                            key={blob} 
+                                            src={blob} 
+                                            alt=""
+                                            loading="lazy"
+                                            onClick={(e) => this.showPreview(i)}/>
 
-                                            <div 
-                                                className="preview-upload-images-content-image_remove" 
-                                                onClick={(e) => this.removeImage(i)}>
-                                                <FontAwesomeIcon icon={faTimes} />
+                                        <div 
+                                            className="preview-upload-images-content-image_remove" 
+                                            onClick={(e) => this.removeImage(i)}>
+                                            <FontAwesomeIcon icon={faTimes} />
 
-                                            </div>
                                         </div>
+                                    </div>
                             })
                         : null
                     }
