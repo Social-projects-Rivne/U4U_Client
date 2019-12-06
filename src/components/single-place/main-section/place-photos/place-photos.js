@@ -85,7 +85,7 @@ export default class PlacePhotos extends Component {
     render(){
         const {photos} = this.props;
         const {currentSlide, animation} = this.state;
-        const {name, coordinates, location} = this.props.place;
+        const {name, coordinates, location, description} = this.props.place;
 
         const animationClass = animation ? 'sliderAnimation' : 'sliderAppend';
         return(
@@ -108,7 +108,7 @@ export default class PlacePhotos extends Component {
                             </div>
                         </div>
                         <div className="place-photo-container-place-info-subhead">
-                            <SubHeading />
+                            <SubHeading placeDescription={description}/>
                         </div>
                     </div>
 
