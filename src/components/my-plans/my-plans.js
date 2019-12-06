@@ -3,6 +3,7 @@ import MyPlansHeader from './my-plans-header/my-plans-header';
 import MyPlansList from './my-plans-list/my-plans-list';
 import SearchPanel from './search-panel/search-panel';
 import PlansListService from '../../services/plans-list-service';
+import TokenService from '../../services/token-service';
 import { Redirect } from 'react-router-dom';
 import './my-plans.scss';
 
@@ -61,7 +62,8 @@ export default class MyPlans extends Component {
     else return;
   }
   render() {
-    if (this.props.user) {
+    try {
+      TokenService.getToken();
 
       return (
         <div className="my-plans" >
@@ -75,9 +77,8 @@ export default class MyPlans extends Component {
               onDeleted={this.deleteItem} />
           </div>
         </div>
-      )
-
-    } else {
+      );
+    } catch (err) {
       return <Redirect to='/login' />
     }
   };
