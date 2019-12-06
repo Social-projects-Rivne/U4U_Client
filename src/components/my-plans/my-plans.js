@@ -39,7 +39,15 @@ export default class MyPlans extends Component {
   }
 
   addItem = (placeName, placeId) => {
-    if ((placeName) && (placeName.trim() !== '') && placeName !== 'There is no such a place') {
+    let checkPlace = this.state.myPlansList.find((place) => {
+      return place.placeId == placeId
+    })
+    if (placeName &&
+      !checkPlace &&
+      placeId &&
+      (placeName.trim() !== '') &&
+      placeName !== 'There is no such a place') {
+
       const newPlace = {
         placeId,
         placeName,
