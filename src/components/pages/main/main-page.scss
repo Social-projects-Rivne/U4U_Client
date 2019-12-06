@@ -22,15 +22,26 @@
       text-align: center;
       width: 38%;
       font-size: 1.8rem;
+
+      & svg {
+        width: 3rem;
+        height: 3rem;
+        margin: 0.5rem 0.5rem -0.5rem 0.5rem;
+
+        & image {
+          width: 3rem;
+          height: 3rem;
+        }
+      }
+
+      &-down {
+        margin-top: 2.5rem;
+        font-size: 4rem;
+      }
     }
 
     &-title span {
       font-size: 2.5rem;
-    }
-
-    & svg {
-      margin-top: 2.5rem;
-      font-size: 4rem;
     }
   }
 
@@ -81,7 +92,7 @@
         z-index: 102;
         position: fixed;
         height: 101vh;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.8);
         top: 0;
 
         @at-root & > .content {
