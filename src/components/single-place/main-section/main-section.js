@@ -44,7 +44,7 @@ export default class MainSection extends React.Component {
                     </div>
                 </div>
                 <div className="main-section-header-place-info-subhead">
-                    <SubHeading />
+                    <SubHeading placeDescription={description}/>
                 </div>
             </div>
           <PlacePhotos place={this.props.place} photos={photos} />
