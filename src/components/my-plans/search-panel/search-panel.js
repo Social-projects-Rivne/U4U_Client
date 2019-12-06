@@ -71,7 +71,6 @@ export default class SearchPanel extends Component {
               placeholder="Search name of the place and add it to your wish list"
               onChange={this.onCommentChange}
               required
-              pattern="[A-Za-z\s]+"
               value={this.state.inputValue}
             />
 
