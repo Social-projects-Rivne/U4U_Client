@@ -119,7 +119,8 @@ export default class AddPlace extends Component {
               value={this.state.filesValue}
               multiple
               required
-              onChange={this.fileSelectedHandler} />
+              onChange={this.fileSelectedHandler}
+              accept=".png, .jpeg, .jpg" />
             <input className="add-place-submit global-raised-button"
               type='submit' value='Add new place'
             />
