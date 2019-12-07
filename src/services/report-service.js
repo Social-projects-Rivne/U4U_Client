@@ -2,7 +2,7 @@ import request from './request';
 
 class reportService {
   async report({ userJwt, report, placeId, rating }) {
-    const res = await request.post('reports', {
+    await request.post('reports', {
       userJwt,
       report,
       placeId,
