@@ -37,6 +37,14 @@ export default class SelectDropdown extends Component {
   }
 
   componentDidMount() {
+    if (this.props.regionDataFromMap) {
+      if (this.props.name !== 'rating' && this.props.name === 'regions') {        
+        const { title, id, regionDbId } = this.props.regionDataFromMap[0]
+        this.props.getSelectValue({ from: 'regions', value: title, id: id, regionDbId: regionDbId });
+        this.setState({ selectedItem: title });
+      }
+    }
+
     document.addEventListener('mousedown', this.handleClick, false);
   }
 
@@ -53,7 +61,7 @@ export default class SelectDropdown extends Component {
   }
 
   removeSelectedItem = () => {
-    this.props.getSelectValue({ from: this.props.name, value: null });
+    this.props.getSelectValue({ from: this.props.name, value: null, regionDbId: null });
     this.setState({ selectedItem: null });
   }
 

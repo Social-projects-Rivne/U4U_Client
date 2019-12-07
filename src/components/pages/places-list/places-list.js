@@ -16,11 +16,7 @@ export default class PlacesList extends Component {
       },
       {
         id: 2,
-        title: "Best reviews"
-      },
-      {
-        id: 3,
-        title: "Count reviews"
+        title: "Date added"
       }
     ],
     places: null,
@@ -57,10 +53,42 @@ export default class PlacesList extends Component {
     }
   }
 
+  async filters() {
+    try {
+      const places = await PlacesApi.getAllPlaces();
+
+      const filteredPlaces = places.filter(place => {
+        return (
+          this.state.regionDbId !== null
+            ? (place.isModerated === true && place.approved === true && place.regionId === this.state.regionDbId)
+            : (place.isModerated === true && place.approved === true)
+        )
+      });
+
+      if (this.state.ratingFilterValue) {
+        const { ratingFilterValue } = this.state
+
+        if (ratingFilterValue === "Top places") {
+          const sortTop = filteredPlaces.sort((a, b) => a.ratingAvg - b.ratingAvg).reverse()
+          this.setState({ places: sortTop });
+        } else if (ratingFilterValue === "Date added") {
+          const sortTop = filteredPlaces.sort((a, b) => a.createdAt - b.createdAt).reverse()
+          this.setState({ places: sortTop });
+        }
+      } else {
+        this.setState({ places: filteredPlaces });
+      }
+    } catch (error) {
+      console.error("Handle loading all places error: ", error);
+    }
+  }
+
   isRegionId() {
-    const { regionId } = this.props.match.params;
-    if (regionId) {
-      this.getAllRegionPlaces(regionId);
+    if (this.props.location.state) {
+      const { regionId } = this.props.location.state;
+      if (regionId) {
+        this.getAllRegionPlaces(regionId);
+      }
     } else {
       this.getPlaces();
     }
@@ -70,9 +98,16 @@ export default class PlacesList extends Component {
     this.isRegionId();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.regionId !== this.props.match.params.regionId) {
       this.isRegionId();
+    }
+    if (prevState.regionDbId !== this.state.regionDbId || prevState.ratingFilterValue !== this.state.ratingFilterValue) {
+      if (!this.state.regionDbId && this.state.regionDbId !== null) {
+        this.getPlaces()
+      } else {
+        this.filters()
+      }
     }
   }
 
@@ -87,10 +122,20 @@ export default class PlacesList extends Component {
   };
 
   regionsNames() {
-    const regionNamesArr = RegionsNames.filter(e => {
+    return RegionsNames.filter(e => {
       return e.regionDbId
     })
-    return regionNamesArr
+  }
+
+  regionDataFromMap() {
+    if (this.props.location.state) {
+      const { regionId } = this.props.location.state
+      if (regionId) {
+        return RegionsNames.filter(e => {
+          return e.regionDbId === regionId
+        })
+      }
+    }
   }
 
   render() {
@@ -115,11 +160,11 @@ export default class PlacesList extends Component {
                   </div>
                 ) : null}
                 {!this.state.ratingFilterValue &&
-                !this.state.regionsFIlterValue ? (
-                  <div className="places-list-container-header-title-wp-item">
-                    {this.state.title}
-                  </div>
-                ) : null}
+                  !this.state.regionsFIlterValue ? (
+                    <div className="places-list-container-header-title-wp-item">
+                      {this.state.title}
+                    </div>
+                  ) : null}
               </div>
             </div>
             <div className="places-list-container-header-filtres">
@@ -132,19 +177,22 @@ export default class PlacesList extends Component {
                 name="regions"
                 data={this.regionsNames()}
                 getSelectValue={this.getFilterValue}
+                regionDataFromMap={this.regionDataFromMap()}
               />
             </div>
           </div>
-
-          {this.state.places ? (
-            <PlacesGrid places={this.state.places} />
-          ) : (
-            <Spinner />
-          )}
-
-          <div className="places-list-container-load-more">
-            <ButtonLoadingMore />
-          </div>
+          {
+            this.state.places
+              ? <div>
+                <PlacesGrid places={this.state.places} />
+                <div className="places-list-container-load-more">
+                  <ButtonLoadingMore />
+                </div>
+              </div>
+              : !this.props.location.state || this.props.location.state.regionId
+                ? <Spinner />
+                : <h2 className="no-places">Unfortunately, there are no places. Select another region.</h2>
+          }
         </div>
       </div>
     );
