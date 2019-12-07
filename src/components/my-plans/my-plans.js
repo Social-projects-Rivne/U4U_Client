@@ -8,20 +8,24 @@ import { Redirect } from 'react-router-dom';
 import './my-plans.scss';
 
 export default class MyPlans extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.service = new PlansListService();
     this.state = {
+      user: this.props.user,
       myPlansList: []
     }
   }
+
   componentDidMount() {
-    if (this.props.user) {
+    const accessToken = TokenService.getToken();
+
+    if (accessToken) {
       this.service.getPlansList()
         .then((plansList) => {
           this.setState({ myPlansList: plansList })
         }).catch((error) => {
-          console.log(error)
+          console.log("Handle get plans list error: ", error)
         })
     }
   }
@@ -41,7 +45,7 @@ export default class MyPlans extends Component {
 
   addItem = (placeName, placeId) => {
     let checkPlace = this.state.myPlansList.find((place) => {
-      return place.placeId == placeId
+      return place.placeId === placeId
     })
     if (placeName &&
       !checkPlace &&
@@ -70,9 +74,9 @@ export default class MyPlans extends Component {
     else return;
   }
   render() {
-    try {
-      TokenService.getToken();
+    const accessToken = TokenService.getToken();
 
+    if (accessToken) {
       return (
         <div className="my-plans" >
           <div className="my-plans-content">
@@ -86,7 +90,7 @@ export default class MyPlans extends Component {
           </div>
         </div>
       );
-    } catch (err) {
+    } else {
       return <Redirect to='/login' />
     }
   };

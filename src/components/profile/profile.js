@@ -14,9 +14,9 @@ export default class Profile extends Component {
   }
   
   render() {
-    try {
-      TokenService.getToken();
+    const accessToken = TokenService.getToken();
 
+    if (accessToken) {
       return (
         <div className="profile-container">
             <div className="profile">
@@ -25,7 +25,7 @@ export default class Profile extends Component {
           </div>
         </div>
       );
-    } catch (err) {
+    } else {
       return <Redirect to='/login' />
     }
   }
