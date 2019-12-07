@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './login.scss';
 
 import Input from "../../forms/input";
 import Button from '../../forms/buttons/button';
 import api from '../../../services/tourist-service';
+import  authContext from "../../contexts/auth-context";
 import { Redirect, Link } from "react-router-dom";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -16,6 +17,7 @@ const Login = ({ onAuth }) => {
         wrongData: false,
         err: false,
     });
+    const loginContext = useContext(authContext);
 
         const LoginSchema = Yup.object().shape({
         password: Yup.string()
@@ -29,7 +31,8 @@ const Login = ({ onAuth }) => {
 
         const submit = async (values) => {
             try {
-                await api.login(values);
+               const authRes =  await api.login(values);
+               loginContext.changeUserStatus(authRes);
                 setState({ redirect: true });
                 onAuth(true);
             } catch (res) {
@@ -42,7 +45,6 @@ const Login = ({ onAuth }) => {
         };
 
         const prevPath = localStorage.getItem('prevPath') ? localStorage.getItem('prevPath') : '/';
-
         if (state.redirect) return <Redirect to={prevPath}/>;
 
         return (
@@ -51,16 +53,13 @@ const Login = ({ onAuth }) => {
                             <h1 className='login-title'>Sign In</h1>
                             {state.wrongData ? <p className='login-error'>Wrong email or password!</p> : null }
                             {state.err ? <p className='login-error'>Server error please try later!</p> : null }
-
-                                    <Formik
+                                        <Formik 
                                         initialValues={{
                                             email: '',
                                             password: ''
                                         }}
                                         validationSchema={LoginSchema}
-                                        onSubmit={submit}
-                                    >
-
+                                        onSubmit={submit}>
                                         {(params) => (
                                             <Form className="login-form">
                                                 {Input(params, setState)}
@@ -72,8 +71,7 @@ const Login = ({ onAuth }) => {
                                                 <Link to='/register' className='login-register-link'>Registration</Link>
                                             </Form>
                                         )}
-
-                                    </Formik>
+                                        </Formik>
                         </div>
                 </div>
         )

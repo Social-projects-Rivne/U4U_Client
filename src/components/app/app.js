@@ -32,7 +32,8 @@ class App extends Component {
     this.state = {
       isAuth: false,
       user: null,
-      startAuth: false
+      startAuth: false,
+      userStatus:false
     };
   }
 
@@ -54,11 +55,20 @@ class App extends Component {
   onAuth = async status => {
     await this.getUserData();
   };
-
+  changeUserStatus = (userStatus) =>{
+    debugger
+   this.setState({
+     userStatus: userStatus
+   })
+  }
   render() {
     return (
       <div className="wrapper">
-        <AuthProvider value={this.state.isAuth}>
+        <AuthProvider value={{
+          auth:this.state.isAuth,
+          userStatus:this.state.userStatus,
+          changeUserStatus:this.changeUserStatus
+        }}>
           <Router>
             <Header
               startAuth={this.state.startAuth}
