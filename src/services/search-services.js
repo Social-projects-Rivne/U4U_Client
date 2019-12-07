@@ -3,7 +3,7 @@ import Request from "./request";
 export default class SearchService {
   getSearchData = async data => {
     try {
-      const res = await Request.get(`/search?q=${data}`);
+      const res = await Request.get(`search?q=${data}`);
       return res.map(this._transformSearchData);
     } catch (error) {
       throw new Error(error.message);
@@ -12,7 +12,7 @@ export default class SearchService {
 
   getSearchStar = async () => {
     try {
-      const res = await Request.get("/search/stars/");
+      const res = await Request.get("search/stars/");
       return res.map(this._transformSearchStar);
     } catch (error) {
       throw new Error(error.message);
@@ -21,7 +21,7 @@ export default class SearchService {
 
   getRandomPlace = async () => {
     try {
-      const res = await Request.get("/search/random/");
+      const res = await Request.get("search/random/");
       return res;
     } catch (error) {
       throw new Error(error.message);

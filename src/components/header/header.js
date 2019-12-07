@@ -31,7 +31,7 @@ export default class Header extends Component {
         {
           id: 1,
           title: "My Plans", 
-          url: "/myplans/:id",
+          url: "/myplans",
           isActive: false,
         },
         {
