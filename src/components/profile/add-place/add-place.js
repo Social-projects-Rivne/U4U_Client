@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import RegionsService from '../../../services/regions-service';
 import Api from '../../../services/places-service';
 import SelectDropdown from '../../utils/select-dropdown/select-dropdown';
+import InputFile from './../../utils/input-file';
+import PreviewUploadImages from './../../utils/preview-upload-images';
 import "./add-place.scss";
 
 export default class AddPlace extends Component {
@@ -15,8 +17,11 @@ export default class AddPlace extends Component {
       isModerated: false,
       regionId: '',
       selectedPhotos: [],
-      filesValue: ''
+      filesError: null 
     }
+
+    this.InputFile = React.createRef();
+    this.PreviewUploadImages = React.createRef();
   }
 
   componentDidMount() {
@@ -39,9 +44,18 @@ export default class AddPlace extends Component {
   handleSelectRegion = (data) => {
     this.setState({ region: data.value });
   }
+  
 
   addPlace = () => {
-    const { title, region, isModerated, description, selectedPhotos, regionsList } = this.state;
+    const { title, region, isModerated, description, selectedPhotos, regionsList, filesError } = this.state;
+  
+    if (!selectedPhotos.length) {
+      this.setState({ filesError: "Pleace select several place photos" });
+      return;
+    }
+
+    if (filesError) return;
+
     const data = new FormData();
     for (let photo of selectedPhotos) {
       data.append("photo", photo);
@@ -56,28 +70,41 @@ export default class AddPlace extends Component {
     )
     data.append("regionId", city._id)
     Api.postNewPlace(data)
+    
+    this.PreviewUploadImages.current.reset();
+    this.setState({
+      title: '',
+      description: '',
+      selectedPhotos: [],
+    })
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.addPlace()
-    this.setState({
-      title: '',
-      description: '',
-      selectedPhotos: [],
-      filesValue: ''
-    })
   }
 
-  fileSelectedHandler = event => {
-    this.setState({
-      selectedPhotos: event.target.files,
-      filesValue: event.target.value
-    })
+  removePreviwImage = (index) => {
+    this.setState(state => {
+      let selectedPhotos = state.selectedPhotos;
+      selectedPhotos.splice(index, 1);
+     
+      return {
+        selectedPhotos,
+      };
+    });
+  }
+
+  inputGetPhotos = (data) => {
+    this.setState({ selectedPhotos: data, filesError: null })
+  }
+
+  inputGetError = (error) => {
+    this.setState({ filesError: error })
   }
 
   render() {
-    const { regionsList } = this.state;
+    const { regionsList, filesError } = this.state;
     const regions = regionsList.map((region) => {
       return {
         id: region._id,
@@ -113,14 +140,20 @@ export default class AddPlace extends Component {
             cols="30"
             rows="10"
           ></textarea>
+          <PreviewUploadImages 
+                ref={this.PreviewUploadImages}
+                removePreviwImage={this.removePreviwImage}/>
+          {filesError ? <div className="add-place-file-error">{filesError}</div> : null}
           <div className="add-place-file-submit">
-            <input className="add-place-file"
-              type="file"
-              value={this.state.filesValue}
+            <InputFile 
+              ref={this.InputFile} 
+              preview={this.PreviewUploadImages.current? this.PreviewUploadImages.current.setImages : ""}
+              inputGetPhotos={this.inputGetPhotos}
               multiple
-              required
-              onChange={this.fileSelectedHandler}
-              accept=".png, .jpeg, .jpg" />
+              accept="image/png,image/jpg,image/jpeg"
+              getError={this.inputGetError}
+              maxFiles="10"
+              maxSize="5"/>
             <input className="add-place-submit global-raised-button"
               type='submit' value='Add new place'
             />
