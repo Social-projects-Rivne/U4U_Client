@@ -17,6 +17,14 @@ export default class PlacesList extends Component {
       {
         id: 2,
         title: "Date added"
+      },
+      {
+        id: 3,
+        title: "Name A-Z"
+      },
+      {
+        id: 4,
+        title: "Name Z-A"
       }
     ],
     places: null,
@@ -65,6 +73,15 @@ export default class PlacesList extends Component {
         )
       });
 
+      const alphabetSort = filteredPlaces.sort((a, b) => {
+        let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase()
+        if (nameA < nameB)
+          return -1
+        if (nameA > nameB)
+          return 1
+        return 0
+      })
+
       if (this.state.ratingFilterValue) {
         const { ratingFilterValue } = this.state
 
@@ -74,6 +91,10 @@ export default class PlacesList extends Component {
         } else if (ratingFilterValue === "Date added") {
           const sortTop = filteredPlaces.sort((a, b) => a.createdAt - b.createdAt).reverse()
           this.setState({ places: sortTop });
+        } else if (ratingFilterValue === "Name A-Z") {
+          this.setState({ places: alphabetSort });
+        } else if (ratingFilterValue === "Name Z-A") {
+          this.setState({ places: alphabetSort.reverse() });
         }
       } else {
         this.setState({ places: filteredPlaces });
@@ -102,12 +123,18 @@ export default class PlacesList extends Component {
     if (prevProps.match.params.regionId !== this.props.match.params.regionId) {
       this.isRegionId();
     }
+
     if (prevState.regionDbId !== this.state.regionDbId || prevState.ratingFilterValue !== this.state.ratingFilterValue) {
       if (!this.state.regionDbId && this.state.regionDbId !== null) {
         this.getPlaces()
       } else {
         this.filters()
+        this.props.history.replace({ pathname: '/places-list', state: null })
       }
+    }
+
+    if (prevProps.location.state !== this.props.location.state) {
+      this.filters()
     }
   }
 
@@ -142,7 +169,6 @@ export default class PlacesList extends Component {
     const changeHeight = {
       height: this.state.places ? "auto" : "100%"
     };
-
     return (
       <div className="places-list" style={changeHeight}>
         <div className="places-list-container">
@@ -168,11 +194,14 @@ export default class PlacesList extends Component {
               </div>
             </div>
             <div className="places-list-container-header-filtres">
-              <SelectDropdown
-                name="rating"
-                data={this.state.fIlteRatingData}
-                getSelectValue={this.getFilterValue}
-              />
+              {
+                this.state.places
+                  ? <SelectDropdown
+                    name="rating"
+                    data={this.state.fIlteRatingData}
+                    getSelectValue={this.getFilterValue}
+                  /> : null
+              }
               <SelectDropdown
                 name="regions"
                 data={this.regionsNames()}
