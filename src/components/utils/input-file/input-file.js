@@ -10,54 +10,115 @@ export default class InputFile extends Component {
         this.inputRef = React.createRef();
     }
 
-    checkFileAndAcceptExtensions = (base64Extension) => {
-        const acceptExtensions = this.props.accept.split(',');
-        const compareFileExtensions = acceptExtensions.some((accept) => {
-            const acceptExtension = accept.split('/')[1];
+    validateFileSize = (fileSize) => {
+        if (fileSize > (1024 * 1024 * Number(this.props.maxSize))) {
+            return false;
+        }
 
-            return base64Extension === acceptExtension;
-        })
-
-        return compareFileExtensions;
+        return true;
     }
 
-    getInputData = () => {
-        const files = this.inputRef.current.files;
+    validateFilesCount = (filesCount) => {
+        if (filesCount > (Number(this.props.maxFiles) - 1)) {
+            return false;
+        }
 
+        return true;
+    }
+
+    mimeType = (headerString) => {
+        let type = null;
+
+        switch (headerString) {
+            case "89504e47":
+                type = "image/png";
+                break;
+            case "ffd8ffe0":
+            case "ffd8ffe1":
+            case "ffd8ffe2":
+                type = "image/jpeg";
+                break;
+            default:
+                type = "unknown";
+                break;
+        };
+
+        return type;
+    }
+
+    validateFilesData = (files) => {
+        if (files.length) {
+            const imagesPromises = [];
+
+            if (this.props.maxFiles && !this.validateFilesCount(files.length)) {
+                this.props.getError("Max count files " + this.props.maxFiles);
+                return;
+            }
+
+            for (let i = 0; i < files.length; i++) {
+                imagesPromises.push(new Promise((resolve, reject) => {
+                    const file = files[i];
+
+                    if (this.props.maxSize && !this.validateFileSize(file.size)) {
+                        reject("File size bigger than " + this.props.maxSize + "mb");
+                    }
+                   
+                    if (this.props.accept) {
+                        const accept = this.props.accept.split(',');
+                        const reader = new FileReader();
+                    
+                        reader.onload = ((e) => {
+                            let realType = null;
+                            let header = "";
+                            const fileBytesArr = (new Uint8Array(e.target.result)).subarray(0, 4);
+                    
+                            for (let i = 0; i < fileBytesArr.length; i++) {
+                                header += fileBytesArr[i].toString(16);
+                            }
+    
+                            realType = this.mimeType(header);
+                            if (accept.includes(realType)) {
+                                resolve(file);
+                            } else {
+                                reject("Error! Wrong file type");
+                            }
+                        });
+    
+                        reader.onerror = ((error) => {
+                            reject(error);
+                        });
+    
+                        reader.readAsArrayBuffer(file);
+                    } else {
+                        resolve(files);
+                    }
+                }));
+            }
+
+            Promise.all(imagesPromises)
+                .then((files) => {
+                    this.readFIlesData(files);
+                })
+                .catch((error) => {
+                    if (this.props.getError) {
+                        this.props.getError(error);
+                    }
+                })
+        }
+    }
+
+    readFIlesData = (files) => {
         if (files.length) {
             const imagesPromises = [];
 
             for (let i = 0; i < files.length; i++) {
                 imagesPromises.push(new Promise((resolve, reject) => {
                     const file = files[i];
-                    const size = file.size;
-
-                    if (this.props.maxFiles) {
-                        if (i > (Number(this.props.maxFiles) - 1)) {
-                            reject("Max count files " + this.props.maxFiles);
-                        }
-                    }
-
-                    if (this.props.maxSize) {
-                        if (size > (1024 * 1024 * Number(this.props.maxSize))) {
-                            reject("File size bigger than " + this.props.maxSize + "mb");
-                        }
-                    }
                    
                     const reader = new FileReader();
                     
-                    reader.onload = (() => {
-                        const base64Extension = reader.result.split(';')[0].split('/')[1];
-
-                        if (this.props.accept) {
-                            if (this.checkFileAndAcceptExtensions(base64Extension)) {
-                                resolve(file);
-                            } else {
-                                reject("Error! Wrong image extension");
-                            }
-                        } else {
-                            resolve(file);
-                        }
+                    reader.onload = ((e) => {
+                        resolve(file);
                     });
 
                     reader.onerror = ((error) => {
@@ -82,6 +143,11 @@ export default class InputFile extends Component {
                     }
                 })
         }
+    }
+
+    getInputData = () => {
+        const files = this.inputRef.current.files;
+        this.validateFilesData(files);
     }
 
     render() {
