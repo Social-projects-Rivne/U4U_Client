@@ -55,7 +55,7 @@ class App extends Component {
   };
   changeUserStatus = (userStatus) => {
     this.setState({
-      userStatus: userStatus
+      userStatus
     })
   }
   render() {

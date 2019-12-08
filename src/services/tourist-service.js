@@ -5,8 +5,8 @@ class TouristService {
            const res = await request.post('login', { email, password });
            localStorage.setItem('token', res[0].accessToken);
            localStorage.setItem('refreshToken', res[0].refreshToken);
-           const userStatus = res[1];
-           return userStatus;
+           return res[1];
+           
 
     };
 
