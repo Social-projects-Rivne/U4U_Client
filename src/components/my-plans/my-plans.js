@@ -62,7 +62,6 @@ export default class MyPlans extends Component {
   }
   render() {
     if (this.props.user) {
-
       return (
         <div className="my-plans" >
           <div className="my-plans-content">
@@ -76,7 +75,6 @@ export default class MyPlans extends Component {
           </div>
         </div>
       )
-
     } else {
       return <Redirect to='/login' />
     }
