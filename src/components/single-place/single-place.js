@@ -94,7 +94,7 @@ class SinglePlace extends Component {
                 </commentContext.Provider>
               </div>
             </div>
-            <AsideSection />
+            <AsideSection placeId={this.state.place._id}/>
           </div>
         ) : (
           <Spinner />

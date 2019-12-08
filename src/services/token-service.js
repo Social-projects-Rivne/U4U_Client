@@ -3,18 +3,7 @@ const REFRESH_TOKEN_KEY = 'refreshToken'
 
 class TokenService {
     getToken = () => {
-        const accessToken = localStorage.getItem(TOKEN_KEY);
-        
-        if(accessToken)
-            return localStorage.getItem(TOKEN_KEY);
-        else
-        {
-            const errorsObj = {
-                errors : [{ mgs: "Can`t find access token" }]
-            };
-
-            throw new Error(JSON.stringify(errorsObj));
-        }
+        return localStorage.getItem(TOKEN_KEY);
     };
 
     saveToken = (accessToken) => {
@@ -27,18 +16,7 @@ class TokenService {
 
 
     getRefreshToken = () => {
-        const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
-
-        if(refreshToken)
-            return localStorage.getItem(REFRESH_TOKEN_KEY);
-        else
-        {
-            const errorsObj = {
-                errors : [{ mgs: "Can`t find refresh token" }]
-            };
-
-            throw new Error(JSON.stringify(errorsObj));
-        }
+        return localStorage.getItem(REFRESH_TOKEN_KEY);
     };
 
     saveRefreshToken = (refreshToken) => {

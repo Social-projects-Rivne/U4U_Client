@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import PlaceName from './../place-name/place-name';
-import Weather from './../weather/weather';
-import SubHeading from './../sub-heading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -12,8 +9,8 @@ export default class PlacePhotos extends Component {
         super(props);
 
         this.state = {
-            currentSlide: 0,
-            animation: false
+            currentSlide: props.startAt ? props.startAt : 0,
+            animation: false,
         };
     }
 
@@ -84,34 +81,12 @@ export default class PlacePhotos extends Component {
     
     render(){
         const {photos} = this.props;
-        const {currentSlide, animation} = this.state;
-        const {name, coordinates, location, description} = this.props.place;
+        const {currentSlide, animation,} = this.state;
 
         const animationClass = animation ? 'sliderAnimation' : 'sliderAppend';
         return(
             <div className ='place-photo'>
                 <div className='place-photo-container'>
-                    <div className="place-photo-container-place-info">
-                        <div className="place-photo-container-place-info-header">
-                            <div className="place-photo-container-place-info-header-title">
-                                <PlaceName placeName={name} />
-                                <div>{location.region.trim()}, {location.district.trim()}</div>
-                            </div>
-                            <div>
-                                {coordinates
-                                    ?
-                                        <Weather 
-                                            latitude={coordinates.latitude} 
-                                            longitude={coordinates.longitude} /> //TODO: change this workaround when all places will have coodinates
-                                    : null
-                                }
-                            </div>
-                        </div>
-                        <div className="place-photo-container-place-info-subhead">
-                            <SubHeading placeDescription={description}/>
-                        </div>
-                    </div>
-
                     <div className="prev" onClick={this.prev}>
                         <FontAwesomeIcon icon={faArrowLeft} />
                     </div>
