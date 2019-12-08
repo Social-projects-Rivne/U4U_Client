@@ -2,15 +2,7 @@ import request from "./request";
 
 export default class PlansListService {
     baseUrl = `${process.env.REACT_APP_URL}api`;
-    plansList = '/wishList';
-
-    async getResource(url) {
-        const res = await fetch(`${this.baseUrl}${url}`);
-        if (!res.ok) {
-            throw new Error(`Cound not fetch ${url} received ${res.status}`);
-        }
-        return await res.json();
-    }
+    plansList = 'wishList';
 
     async getPlansList() {
         return await request.get(this.plansList);

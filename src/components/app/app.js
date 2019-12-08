@@ -98,7 +98,7 @@ class App extends Component {
                     isAuth={this.state.isAuth}
                     loggedInUserId={this.state.user && this.state.user.id} />} />
                 <Route
-                  path="/myplans/:id"
+                  path="/myplans"
                   render={props => <MyPlans user={this.state.user} />}
                 />
                 <Route

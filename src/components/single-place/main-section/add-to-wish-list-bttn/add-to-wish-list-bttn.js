@@ -9,27 +9,33 @@ export default class AddToWishListBttn extends Component {
     myPlansList: [],
     wishId: null,
     wishState: false,
+    isDisabled: false,
   }
 
-  componentDidMount() {
-    this.service.getPlansList()
+  componentDidMount() {    
+    if(this.props.isAuth) {
+      this.service.getPlansList()
       .then((plansList) => {
-        const find = plansList.find(place => {
+        const findChosenPlace = plansList.find(place => {
           return place.placeId === this.props.currentPlaceId
         })
-        if (find) {
+        if (findChosenPlace) {
           this.setState({
             myPlansList: plansList,
             wishState: true,
-            wishId: find._id
+            wishId: findChosenPlace._id,
           })
         }
       }).catch((error) => {
         console.log(error)
       })
+    }
   }
 
   toWish = (wishId, placeId, placeName) => {
+    if(!this.props.isAuth) return
+    
+    this.setState({ isDisabled: true })
     if (!this.state.wishState) {
       const newPlace = {
         placeId,
@@ -37,20 +43,25 @@ export default class AddToWishListBttn extends Component {
         done: false,
         inProgress: false
       }
-      this.service.postWish(newPlace).then((res) => {
-        this.setState({
-          wishState: true
+      this.service.postWish(newPlace)
+        .then((res) => {
+          this.setState({
+            wishId: res.id,
+            wishState: true,
+            isDisabled: false
+          })
         })
-      })
         .catch((error) => {
           console.log(error)
         })
     } else {
-      this.service.deleteWish(wishId).then((res) => {
-        this.setState({
-          wishState: false
+      this.service.deleteWish(wishId)
+        .then((res) => {
+          this.setState({
+            wishState: false,
+            isDisabled: false
+          })
         })
-      })
         .catch((error) => {
           console.log(error)
         })
@@ -59,7 +70,7 @@ export default class AddToWishListBttn extends Component {
 
   render() {
     const { wishState } = this.state
-    const disabled = !this.props.isAuth ? ' disabled' : ''
+    const disabled = this.state.isDisabled || !this.props.isAuth ? 'disabled' : ''
 
     return (
       <div className='add-to-wish-list-bttn'>

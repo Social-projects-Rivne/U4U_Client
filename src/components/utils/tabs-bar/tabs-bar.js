@@ -16,7 +16,6 @@ class TabsBar extends Component {
         sliderVisibility: "none"
       };
 
-      this.tabsElements = [];
       this.tabs = this.props.tabs;
     }
 
