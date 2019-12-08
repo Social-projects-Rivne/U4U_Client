@@ -1,6 +1,7 @@
 export default class RegionsService {
     baseUrl = `${process.env.REACT_APP_URL}api`;
-    regionsList = '/regions'
+    regionsList = '/regions';
+    districtsList = '/regions/districts';
 
     async getResource(url) {
         const res = await fetch(`${this.baseUrl}${url}`);
@@ -18,6 +19,16 @@ export default class RegionsService {
         catch (error) {
             console.log(error);
         }
+    }
+
+    async getDistrictsList() {
+        try{
+            return await this.getResource(this.districtsList)
+        }
+        catch(err){
+            console.log(err)
+        }
+
     }
 
     

@@ -26,10 +26,10 @@ export default class SelectDropdown extends Component {
     }
   }
 
-  closeDropDown = (data) => {
+  closeDropDown = (data,prop) => {
     if(data) {
-      const { value, id } = data;
-      this.props.getSelectValue({ from: this.props.name, value: value, id: id });
+      const { value, id, regionId } = data;
+      this.props.getSelectValue({ from: this.props.name, value: value, id: id, regionId: regionId });
       this.setState({ selectedItem: value });
     }
 
@@ -106,7 +106,7 @@ export default class SelectDropdown extends Component {
                 <li 
                   className='select-dropdown-item'
                   key={data.id} 
-                  onClick={() => {this.closeDropDown({ value: data.title.trim(), id: data.id })}}
+                  onClick={() => {this.closeDropDown({ value: data.title.trim(), id: data.id, regionId: data.regionId})}}
                 >
                   {data.title}
                 </li>

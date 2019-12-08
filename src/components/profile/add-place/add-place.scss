@@ -23,6 +23,11 @@
     background: $green-layout-color;
     border: 1px solid $primary-color;
   }
+  & #select-list{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 78rem;
+  }
 }
 
 .add-place-header{
@@ -57,4 +62,9 @@
 
 .add-place-submit{
   margin-top: 2rem;
+}
+.add-place-region-district-error{
+  color:red;
+  margin-top: 2rem;
+  font-size: 1.5rem;
 }

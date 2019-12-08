@@ -10,22 +10,34 @@ export default class AddPlace extends Component {
     this.regionsService = new RegionsService();
     this.state = {
       regionsList: [],
+      districtsList:[],
+      selectedDistricts:[],
       title: '',
       description: '',
       isModerated: false,
       regionId: '',
       selectedPhotos: [],
-      filesValue: ''
+      filesValue: '',
+      regionsError:''
     }
   }
 
   componentDidMount() {
     this.getRegionsList();
+    this.getDistrictsList();
   }
 
   getRegionsList = () => {
     this.regionsService.getRegionsList().then((regions) => {
       this.setState({ regionsList: regions })
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
+  getDistrictsList = () => {
+    this.regionsService.getDistrictsList().then((districts) => {
+      this.setState({ districtsList : districts})
     }).catch((error) => {
       console.log(error)
     })
@@ -37,24 +49,39 @@ export default class AddPlace extends Component {
   }
 
   handleSelectRegion = (data) => {
-    this.setState({ region: data.value });
+    this.setState({ region: data.value, regionsError:''});
   }
-
+  handleSelectDistrict = (data) => {
+    this.setState({district: data.value, regionsError:''})
+  }
   addPlace = () => {
-    const { title, region, isModerated, description, selectedPhotos, regionsList } = this.state;
+    const { title, region, district, isModerated,
+            description, selectedPhotos, regionsList, districtsList, regionsError} = this.state;
+    if (!region||!district) {
+      this.setState({ regionsError: "Pleace select items from the lists above" });
+  
+    }
+    if (regionsError) return;
     const data = new FormData();
     for (let photo of selectedPhotos) {
       data.append("photo", photo);
     }
-    data.append("title", title)
-    data.append("region", region)
-    data.append("isModerated", isModerated)
-    data.append("description", description)
+    data.append("title", title);
+    data.append("region", region);
+    data.append("district", district);
+    data.append("isModerated", isModerated);
+    data.append("description", description);
     let city = regionsList.find(city => {
       return city.name.trim() === region.trim()
     }
     )
-    data.append("regionId", city._id)
+    let district_id = districtsList.find(dist => {
+      return dist.name.trim() === district.trim()
+    }
+    )
+    data.append("regionId", city._id);
+    data.append("districtId", district_id._id);
+    data.append("districtRegionId", district_id.regionId)
     Api.postNewPlace(data)
   }
 
@@ -77,11 +104,18 @@ export default class AddPlace extends Component {
   }
 
   render() {
-    const { regionsList } = this.state;
+    const { regionsList, districtsList , regionsError} = this.state;
     const regions = regionsList.map((region) => {
       return {
         id: region._id,
         title: region.name
+      }
+    })
+    const districts = districtsList.map((district) => {
+      return {
+        title: district.name,
+        id: district._id,
+        regionId: district.regionId
       }
     })
 
@@ -90,11 +124,19 @@ export default class AddPlace extends Component {
         <form className="add-place-form"
           onSubmit={this.handleSubmit}>
           <h1 className="add-place-header">Add your place</h1>
+          <div id = 'select-list'>
           <SelectDropdown
             name='Choose a region'
             data={regions}
             getSelectValue={this.handleSelectRegion}
           />
+          <SelectDropdown
+            name='Choose a district'
+            data={districts}
+            getSelectValue={this.handleSelectDistrict}
+          />
+          </div>
+          {regionsError ? <div className="add-place-region-district-error">{regionsError}</div> : null}
           <input className="add-place-title global-input-text"
             required
             placeholder = 'Place name'
