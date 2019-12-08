@@ -33,7 +33,7 @@ const Login = ({ onAuth }) => {
             try {
                const authRes =  await api.login(values);
                localStorage.setItem('status',authRes);
-               //loginContext.changeUserStatus(authRes);
+               loginContext.changeUserStatus(authRes);
                 setState({ redirect: true });
                 onAuth(true);
             } catch (res) {
