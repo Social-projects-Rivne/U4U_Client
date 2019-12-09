@@ -28,11 +28,11 @@ import Register from "../register/register";
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isAuth: false,
       user: null,
-      startAuth: false
+      startAuth: false,
+      userStatus: false
     };
   }
 
@@ -44,7 +44,6 @@ class App extends Component {
     try {
       this.setState({ startAuth: true });
       const user = await UserService.getUserData();
-
       this.setState({ isAuth: true, startAuth: false, user: user });
     } catch (error) {
       this.setState({ isAuth: false, startAuth: false, user: null });
@@ -54,11 +53,19 @@ class App extends Component {
   onAuth = async status => {
     await this.getUserData();
   };
-
+  changeUserStatus = (userStatus) => {
+    this.setState({
+      userStatus
+    })
+  }
   render() {
     return (
       <div className="wrapper">
-        <AuthProvider value={this.state.isAuth}>
+        <AuthProvider value={{
+          auth: this.state.isAuth,
+          userStatus: this.state.userStatus,
+          changeUserStatus: this.changeUserStatus
+        }}>
           <Router>
             <Header
               startAuth={this.state.startAuth}
@@ -73,10 +80,8 @@ class App extends Component {
                   auth={this.state.isAuth}
                   Component={() => <h1>Secret Page</h1>}
                 />
-
                 <Route path='/'
                   exact component={MainPage} />
-
                 <Route
                   path="/login"
                   render={() => {
@@ -84,27 +89,22 @@ class App extends Component {
                     if (this.state.isAuth) {
                       return <Redirect to="/" />;
                     }
-
                     return <Login onAuth={this.onAuth} />;
                   }}
                 />
-
                 <Route
                   path="/singleplace/:id"
-                  render={(props) => <SinglePlace {...props} 
-                  isAuth={this.state.isAuth}
-                  loggedInUserId={this.state.user && this.state.user.id} />} />
-
+                  render={(props) => <SinglePlace {...props}
+                    isAuth={this.state.isAuth}
+                    loggedInUserId={this.state.user && this.state.user.id} />} />
                 <Route
                   path="/myplans"
                   render={props => <MyPlans user={this.state.user} />}
                 />
-
                 <Route
                   path="/profile"
                   render={props => <Profile user={this.state.user} />}
                 />
-
                 <Route path="/search" component={Search} />
                 <Route path='/register' render={() => <Register onAuth={this.onAuth} />} />
                 <Route
@@ -112,11 +112,10 @@ class App extends Component {
                   component={PlacesList}
                 />
                 <Route path="/places-list/" component={PlacesList} />
-
                 <Route component={Error404} />
               </Switch>
             </Container>
-            <Route path="/" render={props => 
+            <Route path="/" render={props =>
               props.location.pathname !== "/" ? <Footer /> : ""
             } />
           </Router>

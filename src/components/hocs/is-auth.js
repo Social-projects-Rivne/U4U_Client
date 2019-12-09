@@ -5,7 +5,7 @@ const isAuth = (Wrapped) => (props) => (
     <AuthConsumer>
         {
             (isAuth)  => {
-                return <Wrapped {...props} isAuth={isAuth} />
+                return <Wrapped {...props} isAuth={isAuth.auth} />
             }
         }
     </AuthConsumer>
