@@ -12,6 +12,13 @@
         width: 100%;
         display: block;
         max-width: 120rem;
+      
+        & .no-places {
+          font-size: 4rem;
+          line-height: 5rem;
+          padding: 5rem 0 1rem;
+          text-align: center;
+        }
 
         &-header {
             width: 100%;
