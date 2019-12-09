@@ -94,13 +94,13 @@ export default class AddPlace extends Component {
     data.append("districtId", district_id._id);
     data.append("districtRegionId", district_id.regionId)
     Api.postNewPlace(data)
-
+    const approveMessage = 'Thanks for adding places. It is sent on moderation.';
     this.PreviewUploadImages.current.reset();
     this.setState({
       title: '',
       description: '',
       selectedPhotos: [],
-      addedPlaceMessage:'Thanks for adding places. It is sent on moderation.'
+      addedPlaceMessage: approveMessage,
     })
   }
 
