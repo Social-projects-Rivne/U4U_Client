@@ -26,7 +26,7 @@ export default class SelectDropdown extends Component {
     }
   }
 
-  closeDropDown = (data,prop) => {
+  closeDropDown = (data) => {
     if(data) {
       const { value, id, regionId } = data;
       this.props.getSelectValue({ from: this.props.name, value: value, id: id, regionId: regionId });

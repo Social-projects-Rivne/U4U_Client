@@ -12,15 +12,16 @@ export default class AddPlace extends Component {
     this.regionsService = new RegionsService();
     this.state = {
       regionsList: [],
-      districtsList:[],
-      selectedDistricts:[],
+      districtsList: [],
+      selectedDistricts: [],
       title: '',
       description: '',
       isModerated: false,
       regionId: '',
       selectedPhotos: [],
       filesValue: null,
-      regionsError:''
+      regionsError: '',
+      addedPlaceMessage:''
     }
 
     this.InputFile = React.createRef();
@@ -42,7 +43,7 @@ export default class AddPlace extends Component {
 
   getDistrictsList = () => {
     this.regionsService.getDistrictsList().then((districts) => {
-      this.setState({ districtsList : districts})
+      this.setState({ districtsList: districts })
     }).catch((error) => {
       console.log(error)
     })
@@ -54,24 +55,22 @@ export default class AddPlace extends Component {
   }
 
   handleSelectRegion = (data) => {
-    this.setState({ region: data.value, regionsError:''});
+    this.setState({ region: data.value, regionsError: '' });
   }
   handleSelectDistrict = (data) => {
-    this.setState({district: data.value, regionsError:''})
+    this.setState({ district: data.value, regionsError: '' })
   }
   addPlace = () => {
     const { title, region, district, isModerated,
-            description, selectedPhotos, regionsList, districtsList, regionsError, filesError} = this.state;
-            if (!selectedPhotos.length) {
-              this.setState({ filesError: "Pleace select several place photos" });
-              return;
-            }
-        
-            if (filesError) return;
-            
-            if (!region||!district) {
+      description, selectedPhotos, regionsList, districtsList, regionsError, filesError } = this.state;
+    if (!selectedPhotos.length) {
+      this.setState({ filesError: "Pleace select several place photos" });
+      return;
+    }
+    if (filesError) return;
+    if (!region || !district) {
       this.setState({ regionsError: "Pleace select items from the lists above" });
-  
+      return;
     }
     if (regionsError) return;
     const data = new FormData();
@@ -95,12 +94,13 @@ export default class AddPlace extends Component {
     data.append("districtId", district_id._id);
     data.append("districtRegionId", district_id.regionId)
     Api.postNewPlace(data)
-    
+
     this.PreviewUploadImages.current.reset();
     this.setState({
       title: '',
       description: '',
       selectedPhotos: [],
+      addedPlaceMessage:'Thanks for adding places. It is sent on moderation.'
     })
   }
 
@@ -113,7 +113,7 @@ export default class AddPlace extends Component {
     this.setState(state => {
       let selectedPhotos = state.selectedPhotos;
       selectedPhotos.splice(index, 1);
-     
+
       return {
         selectedPhotos,
       };
@@ -129,7 +129,7 @@ export default class AddPlace extends Component {
   }
 
   render() {
-    const { regionsList, filesError, districtsList , regionsError} = this.state;
+    const { regionsList, filesError, districtsList, regionsError, addedPlaceMessage } = this.state;
     const regions = regionsList.map((region) => {
       return {
         id: region._id,
@@ -149,22 +149,22 @@ export default class AddPlace extends Component {
         <form className="add-place-form"
           onSubmit={this.handleSubmit}>
           <h1 className="add-place-header">Add your place</h1>
-          <div id = 'select-list'>
-          <SelectDropdown
-            name='Choose a region'
-            data={regions}
-            getSelectValue={this.handleSelectRegion}
-          />
-          <SelectDropdown
-            name='Choose a district'
-            data={districts}
-            getSelectValue={this.handleSelectDistrict}
-          />
+          <div id='select-list'>
+            <SelectDropdown
+              name='Choose a region'
+              data={regions}
+              getSelectValue={this.handleSelectRegion}
+            />
+            <SelectDropdown
+              name='Choose a district'
+              data={districts}
+              getSelectValue={this.handleSelectDistrict}
+            />
           </div>
-          {regionsError ? <div className="add-place-region-district-error">{regionsError}</div> : null}
+          {regionsError ? <div className="add-place-file-error">{regionsError}</div> : null}
           <input className="add-place-title global-input-text"
             required
-            placeholder = 'Place name'
+            placeholder='Place name'
             type="text"
             name="title"
             value={this.state.title}
@@ -172,7 +172,7 @@ export default class AddPlace extends Component {
           />
           <textarea
             required
-            placeholder = 'Place description'
+            placeholder='Place description'
             className="add-place-description global-textarea"
             name="description"
             value={this.state.description}
@@ -180,20 +180,21 @@ export default class AddPlace extends Component {
             cols="30"
             rows="10"
           ></textarea>
-          <PreviewUploadImages 
-                ref={this.PreviewUploadImages}
-                removePreviwImage={this.removePreviwImage}/>
+          <PreviewUploadImages
+            ref={this.PreviewUploadImages}
+            removePreviwImage={this.removePreviwImage} />
           {filesError ? <div className="add-place-file-error">{filesError}</div> : null}
+          {addedPlaceMessage ? <div className="add-place-approve-message">{addedPlaceMessage}</div> : null}
           <div className="add-place-file-submit">
-            <InputFile 
-              ref={this.InputFile} 
-              preview={this.PreviewUploadImages.current? this.PreviewUploadImages.current.setImages : ""}
+            <InputFile
+              ref={this.InputFile}
+              preview={this.PreviewUploadImages.current ? this.PreviewUploadImages.current.setImages : ""}
               inputGetPhotos={this.inputGetPhotos}
               multiple
               accept="image/png,image/jpg,image/jpeg"
               getError={this.inputGetError}
               maxFiles="10"
-              maxSize="5"/>
+              maxSize="5" />
             <input className="add-place-submit global-raised-button"
               type='submit' value='Add new place'
             />
