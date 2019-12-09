@@ -17,7 +17,11 @@ export default class SelectDropdown extends Component {
       selectedItem: null
     };
   }
-
+  resetSelectedItem = () =>{
+    this.setState({
+      selectedItem:null
+    })
+  }
   toggleDropDown = () => {
     if (!this.state.isActive) {
       this.setState({ isActive: true });
@@ -27,9 +31,16 @@ export default class SelectDropdown extends Component {
   }
 
   closeDropDown = (data) => {
-    if(data) {
+    if (data) {
       const { value, id, regionId, regionDbId } = data;
-      this.props.getSelectValue({ from: this.props.name, value: value, id: id, regionId: regionId, regionDbId: regionDbId });
+      this.props.getSelectValue({
+        from: this.props.name,
+        value: value,
+        id: id,
+        regionDbId: regionDbId,
+        regionId: regionId,
+        resetSelectedItem:this.resetSelectedItem     
+      });
       this.setState({ selectedItem: value });
     }
 
@@ -38,7 +49,7 @@ export default class SelectDropdown extends Component {
 
   componentDidMount() {
     if (this.props.regionDataFromMap) {
-      if (this.props.name !== 'rating' && this.props.name === 'regions') {        
+      if (this.props.name !== 'rating' && this.props.name === 'regions') {
         const { title, id, regionDbId } = this.props.regionDataFromMap[0]
         this.props.getSelectValue({ from: 'regions', value: title, id: id, regionDbId: regionDbId });
         this.setState({ selectedItem: title });
@@ -113,8 +124,8 @@ export default class SelectDropdown extends Component {
               return (
                 <li
                   className='select-dropdown-item'
-                  key={data.id} 
-                  onClick={() => {this.closeDropDown({ value: data.title.trim(), id: data.id, regionId: data.regionId, regionDbId: data.regionDbId })}}
+                  key={data.id}
+                  onClick={() => { this.closeDropDown({ value: data.title.trim(), id: data.id, regionId: data.regionId, regionDbId: data.regionDbId }) }}
                 >
                   {data.title}
                 </li>

@@ -23,7 +23,7 @@ export default class AddPlace extends Component {
       regionsError: '',
       addedPlaceMessage:''
     }
-
+    this.resetDropdown = [];
     this.InputFile = React.createRef();
     this.PreviewUploadImages = React.createRef();
   }
@@ -55,11 +55,15 @@ export default class AddPlace extends Component {
   }
 
   handleSelectRegion = (data) => {
-    this.setState({ region: data.value, regionsError: '' });
+    this.resetDropdown.push(data.resetSelectedItem);
+    this.setState({ region: data.value, regionsError: ''});
   }
+
   handleSelectDistrict = (data) => {
+    this.resetDropdown.push(data.resetSelectedItem);
     this.setState({ district: data.value, regionsError: '' })
   }
+
   addPlace = () => {
     const { title, region, district, isModerated,
       description, selectedPhotos, regionsList, districtsList, regionsError, filesError } = this.state;
@@ -82,26 +86,33 @@ export default class AddPlace extends Component {
     data.append("district", district);
     data.append("isModerated", isModerated);
     data.append("description", description);
-    let city = regionsList.find(city => {
+
+    const city = regionsList.find(city => {
       return city.name.trim() === region.trim()
-    }
-    )
-    let district_id = districtsList.find(dist => {
+    });
+    const district_id = districtsList.find(dist => {
       return dist.name.trim() === district.trim()
-    }
-    )
+    });
+
     data.append("regionId", city._id);
     data.append("districtId", district_id._id);
-    data.append("districtRegionId", district_id.regionId)
-    Api.postNewPlace(data)
-    const approveMessage = 'Thanks for adding places. It is sent on moderation.';
-    this.PreviewUploadImages.current.reset();
-    this.setState({
-      title: '',
-      description: '',
-      selectedPhotos: [],
-      addedPlaceMessage: approveMessage,
-    })
+    data.append("districtRegionId", district_id.regionId);
+
+    Api.postNewPlace(data).then((response) => {
+      this.resetDropdown.forEach((resetDropdown)=>{
+        resetDropdown();
+      })
+      this.resetDropdown = [];
+      const approveMessage = 'Thanks for adding places. It is sent on moderation.';
+      this.PreviewUploadImages.current.reset();
+      this.setState({
+        title: '',
+        description: '',
+        selectedPhotos: [],
+        addedPlaceMessage: approveMessage,
+        region: null
+      })
+    });   
   }
 
   handleSubmit = (event) => {
