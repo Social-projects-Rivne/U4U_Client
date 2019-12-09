@@ -109,8 +109,7 @@ export default class AddPlace extends Component {
         title: '',
         description: '',
         selectedPhotos: [],
-        addedPlaceMessage: approveMessage,
-        region: null
+        addedPlaceMessage: approveMessage
       })
     });   
   }
