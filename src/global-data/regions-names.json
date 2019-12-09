@@ -2,7 +2,8 @@
   {
     "id": "Rivne",
     "title": "Rivne",
-    "regionName": "Rivne Region"
+    "regionName": "Rivne Region",
+    "regionDbId": "5d8a27cdfb4417205498e609"
   },
   {
     "id": "Zhytomyr",
@@ -97,7 +98,8 @@
   {
     "id": "Ivano-Frankivsk",
     "title": "Ivano-Frankivsk",
-    "regionName": "Ivano-Frankivsk Region"
+    "regionName": "Ivano-Frankivsk Region",
+    "regionDbId": "5dca86171c9d440000f6e341"
   },
   {
     "id": "Donetsk",

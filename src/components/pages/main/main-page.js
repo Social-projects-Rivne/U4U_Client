@@ -4,6 +4,9 @@ import MainPopularPlaces from './main-popular-places/main-popular-places';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import PartyPopper  from './../../../img/1f389.png';
+import HandWithFingersSplayed  from './../../../img/1f590.png';
+import FaceBlowingAKiss  from './../../../img/1f618.png';
 import Footer from './../../footer';
 import './main-page.scss';
 
@@ -30,11 +33,22 @@ export default class MainPage extends Component {
               this.state.showWelcome
               ? <div className="MainPage-welcome" onClick={() => {this.hideWelcome()}}>
                   <span className="MainPage-welcome-title">
-                    Welcome, new user <span role="img" aria-label="firework">&#127881;</span>! Glad to see you on our site <span role="img" aria-label="hand">&#128400;</span><br/>
+                    Welcome, new user 
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">       
+                       <image xlinkHref={PartyPopper}/>
+                    </svg>
+                    ! Glad to see you on our site
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">       
+                       <image xlinkHref={HandWithFingersSplayed}/>
+                    </svg>
+                    <br/>
                     You can interact with a pretty and powerful map to find new interesting places.<br/>
-                    Hope you enjoy! <span role="img" aria-label="smile">&#128536;</span>
+                    Hope you enjoy!
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">       
+                       <image xlinkHref={FaceBlowingAKiss}/>
+                    </svg>
                   </span>
-                  <FontAwesomeIcon icon={faMapMarkerAlt} />
+                  <FontAwesomeIcon className="MainPage-welcome-title-down" icon={faMapMarkerAlt} />
                   <div className="MainPage-welcome-close" onClick={() => {this.hideWelcome()}}>
                     <FontAwesomeIcon icon={faTimes} size="5x"/>
                   </div>

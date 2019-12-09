@@ -7,8 +7,8 @@ import './select-dropdown.scss';
 export default class SelectDropdown extends Component {
   constructor(props) {
     super(props);
- 
-    if(!props.data || !props.getSelectValue || !props.name) {
+
+    if (!props.data || !props.getSelectValue || !props.name) {
       throw Error("This component cant exist without next props:\n data,\n name,\n getSelectValue()\n")
     }
 
@@ -19,8 +19,8 @@ export default class SelectDropdown extends Component {
   }
 
   toggleDropDown = () => {
-    if(!this.state.isActive) {
-      this.setState({isActive: true});
+    if (!this.state.isActive) {
+      this.setState({ isActive: true });
     } else {
       this.closeDropDown()
     }
@@ -28,24 +28,32 @@ export default class SelectDropdown extends Component {
 
   closeDropDown = (data) => {
     if(data) {
-      const { value, id, regionId } = data;
-      this.props.getSelectValue({ from: this.props.name, value: value, id: id, regionId: regionId });
+      const { value, id, regionId, regionDbId } = data;
+      this.props.getSelectValue({ from: this.props.name, value: value, id: id, regionId: regionId, regionDbId: regionDbId });
       this.setState({ selectedItem: value });
     }
 
-    this.setState({isActive: false})
+    this.setState({ isActive: false })
   }
 
   componentDidMount() {
+    if (this.props.regionDataFromMap) {
+      if (this.props.name !== 'rating' && this.props.name === 'regions') {        
+        const { title, id, regionDbId } = this.props.regionDataFromMap[0]
+        this.props.getSelectValue({ from: 'regions', value: title, id: id, regionDbId: regionDbId });
+        this.setState({ selectedItem: title });
+      }
+    }
+
     document.addEventListener('mousedown', this.handleClick, false);
   }
 
   handleClick = (e) => {
-    if(!this.node) {
+    if (!this.node) {
       return;
     }
-    
-    if(this.node.contains(e.target)) {
+
+    if (this.node.contains(e.target)) {
       return;
     }
 
@@ -53,8 +61,8 @@ export default class SelectDropdown extends Component {
   }
 
   removeSelectedItem = () => {
-    this.props.getSelectValue({from: this.props.name, value: null});
-    this.setState({selectedItem: null});
+    this.props.getSelectValue({ from: this.props.name, value: null, regionDbId: null });
+    this.setState({ selectedItem: null });
   }
 
   render() {
@@ -65,54 +73,54 @@ export default class SelectDropdown extends Component {
     return (
       <ul ref={node => this.node = node} className={'select-dropdown ' + (this.state.isActive ? 'select-dropdown-active' : null)}>
         <div className='select-dropdown-info'>
-          <div 
-            className='select-dropdown-info-click' 
-            onClick={() => {this.toggleDropDown()}} 
+          <div
+            className='select-dropdown-info-click'
+            onClick={() => { this.toggleDropDown() }}
             style={labelWidth}
           >
             <label>
               {this.state.selectedItem ? this.state.selectedItem : this.props.name}
             </label>
             <div className={
-              'select-dropdown-info-click-arrow ' + 
+              'select-dropdown-info-click-arrow ' +
               (
                 this.state.isActive && !this.state.selectedItem
-                ? 'select-dropdown-info-click-arrow-toggle' 
-                : this.state.selectedItem
-                  ? 'select-dropdown-info-click-arrow-hide' 
-                  : null
+                  ? 'select-dropdown-info-click-arrow-toggle'
+                  : this.state.selectedItem
+                    ? 'select-dropdown-info-click-arrow-hide'
+                    : null
               )
             }>
-              <FontAwesomeIcon icon={faCaretDown} size='2x'/>
+              <FontAwesomeIcon icon={faCaretDown} size='2x' />
             </div>
           </div>
-          <div 
+          <div
             className={'select-dropdown-info-icon ' + (this.state.selectedItem ? 'select-dropdown-info-icon-show' : null)}
-            onClick={() => {this.removeSelectedItem()}}
+            onClick={() => { this.removeSelectedItem() }}
           >
-            <FontAwesomeIcon icon={faTimes} size='2x'/>
+            <FontAwesomeIcon icon={faTimes} size='2x' />
           </div>
         </div>
-          
+
         <ul className='select-dropdown-list'>
-          <li 
+          <li
             className='select-dropdown-item'
             key="-1"
-            ></li> 
-        {
-          this.props.data &&
+          ></li>
+          {
+            this.props.data &&
             this.props.data.map(data => {
               return (
-                <li 
+                <li
                   className='select-dropdown-item'
                   key={data.id} 
-                  onClick={() => {this.closeDropDown({ value: data.title.trim(), id: data.id, regionId: data.regionId})}}
+                  onClick={() => {this.closeDropDown({ value: data.title.trim(), id: data.id, regionId: data.regionId, regionDbId: data.regionDbId })}}
                 >
                   {data.title}
                 </li>
               )
             })
-        }
+          }
         </ul>
       </ul>
     );

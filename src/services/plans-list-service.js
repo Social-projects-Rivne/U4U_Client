@@ -20,7 +20,6 @@ export default class PlansListService {
     }
 
     async deleteWish(_id) {
-
         try {
             return await request.delete(`${this.plansList}/${_id}`);
         }
