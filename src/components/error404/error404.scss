@@ -64,8 +64,15 @@
       & span {
         font-size: 3rem;
 
-        & span {
-          font-size: 4rem;
+        & svg {
+          width: 5.5rem;
+          height: 5.5rem;
+          margin: 1rem 1rem -1rem 1rem;
+
+          & image {
+            width: 5.5rem;
+            height: 5.5rem;
+          }
         }
       }
 

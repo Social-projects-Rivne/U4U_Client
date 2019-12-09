@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import ManShrugging from './../../img/1f937-2642.png';
 import './error404.scss';
 
 const Error404 = () => {
@@ -27,7 +28,10 @@ const Error404 = () => {
           </div>
           <div className="error404-content-title">
             <span>
-              Sorry, page not found! <span role="img" aria-label="Man-Shrugging">🤷‍♂️</span>
+              Sorry, page not found!
+              <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">       
+                <image xlinkHref={ManShrugging}/>
+              </svg>
             </span>
             <Link to="/">Go to home page</Link>
           </div>
