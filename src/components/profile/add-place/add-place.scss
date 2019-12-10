@@ -23,6 +23,10 @@
     background: $green-layout-color;
     border: 1px solid $primary-color;
   }
+  & #select-list{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 65rem;
 
   & .input-upload-images {
     width: 17rem;
@@ -64,10 +68,21 @@
   font-size: 2rem;
 }
 
+.add-place-approve-message{
+  padding-top: 1.5rem;
+  font-size: 2rem;
+}
+
 .add-place-file-submit{
   margin-top: 1.50rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 4.5rem;
+}
+.add-place-region-district-error{
+  color:red;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
 }

@@ -12,25 +12,38 @@ export default class AddPlace extends Component {
     this.regionsService = new RegionsService();
     this.state = {
       regionsList: [],
+      districtsList: [],
+      selectedDistricts: [],
       title: '',
       description: '',
       isModerated: false,
       regionId: '',
       selectedPhotos: [],
-      filesError: null 
+      filesValue: null,
+      regionsError: '',
+      addedPlaceMessage:''
     }
-
+    this.resetDropdown = [];
     this.InputFile = React.createRef();
     this.PreviewUploadImages = React.createRef();
   }
 
   componentDidMount() {
     this.getRegionsList();
+    this.getDistrictsList();
   }
 
   getRegionsList = () => {
     this.regionsService.getRegionsList().then((regions) => {
       this.setState({ regionsList: regions })
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
+  getDistrictsList = () => {
+    this.regionsService.getDistrictsList().then((districts) => {
+      this.setState({ districtsList: districts })
     }).catch((error) => {
       console.log(error)
     })
@@ -42,41 +55,63 @@ export default class AddPlace extends Component {
   }
 
   handleSelectRegion = (data) => {
-    this.setState({ region: data.value });
+    this.resetDropdown.push(data.resetSelectedItem);
+    this.setState({ region: data.value, regionsError: ''});
   }
-  
+
+  handleSelectDistrict = (data) => {
+    this.resetDropdown.push(data.resetSelectedItem);
+    this.setState({ district: data.value, regionsError: '' })
+  }
 
   addPlace = () => {
-    const { title, region, isModerated, description, selectedPhotos, regionsList, filesError } = this.state;
-  
+    const { title, region, district, isModerated,
+      description, selectedPhotos, regionsList, districtsList, regionsError, filesError } = this.state;
     if (!selectedPhotos.length) {
       this.setState({ filesError: "Pleace select several place photos" });
       return;
     }
-
     if (filesError) return;
-
+    if (!region || !district) {
+      this.setState({ regionsError: "Pleace select items from the lists above" });
+      return;
+    }
+    if (regionsError) return;
     const data = new FormData();
     for (let photo of selectedPhotos) {
       data.append("photo", photo);
     }
-    data.append("title", title)
-    data.append("region", region)
-    data.append("isModerated", isModerated)
-    data.append("description", description)
-    let city = regionsList.find(city => {
+    data.append("title", title);
+    data.append("region", region);
+    data.append("district", district);
+    data.append("isModerated", isModerated);
+    data.append("description", description);
+
+    const city = regionsList.find(city => {
       return city.name.trim() === region.trim()
-    }
-    )
-    data.append("regionId", city._id)
-    Api.postNewPlace(data)
-    
-    this.PreviewUploadImages.current.reset();
-    this.setState({
-      title: '',
-      description: '',
-      selectedPhotos: [],
-    })
+    });
+    const district_id = districtsList.find(dist => {
+      return dist.name.trim() === district.trim()
+    });
+
+    data.append("regionId", city._id);
+    data.append("districtId", district_id._id);
+    data.append("districtRegionId", district_id.regionId);
+
+    Api.postNewPlace(data).then((response) => {
+      this.resetDropdown.forEach((resetDropdown)=>{
+        resetDropdown();
+      })
+      this.resetDropdown = [];
+      const approveMessage = 'Thanks for adding places. It is sent on moderation.';
+      this.PreviewUploadImages.current.reset();
+      this.setState({
+        title: '',
+        description: '',
+        selectedPhotos: [],
+        addedPlaceMessage: approveMessage
+      })
+    });   
   }
 
   handleSubmit = (event) => {
@@ -88,7 +123,7 @@ export default class AddPlace extends Component {
     this.setState(state => {
       let selectedPhotos = state.selectedPhotos;
       selectedPhotos.splice(index, 1);
-     
+
       return {
         selectedPhotos,
       };
@@ -104,11 +139,18 @@ export default class AddPlace extends Component {
   }
 
   render() {
-    const { regionsList, filesError } = this.state;
+    const { regionsList, filesError, districtsList, regionsError, addedPlaceMessage } = this.state;
     const regions = regionsList.map((region) => {
       return {
         id: region._id,
         title: region.name
+      }
+    })
+    const districts = districtsList.map((district) => {
+      return {
+        title: district.name,
+        id: district._id,
+        regionId: district.regionId
       }
     })
 
@@ -117,14 +159,22 @@ export default class AddPlace extends Component {
         <form className="add-place-form"
           onSubmit={this.handleSubmit}>
           <h1 className="add-place-header">Add your place</h1>
-          <SelectDropdown
-            name='Choose a region'
-            data={regions}
-            getSelectValue={this.handleSelectRegion}
-          />
+          <div id='select-list'>
+            <SelectDropdown
+              name='Choose a region'
+              data={regions}
+              getSelectValue={this.handleSelectRegion}
+            />
+            <SelectDropdown
+              name='Choose a district'
+              data={districts}
+              getSelectValue={this.handleSelectDistrict}
+            />
+          </div>
+          {regionsError ? <div className="add-place-file-error">{regionsError}</div> : null}
           <input className="add-place-title global-input-text"
             required
-            placeholder = 'Place name'
+            placeholder='Place name'
             type="text"
             name="title"
             value={this.state.title}
@@ -132,7 +182,7 @@ export default class AddPlace extends Component {
           />
           <textarea
             required
-            placeholder = 'Place description'
+            placeholder='Place description'
             className="add-place-description global-textarea"
             name="description"
             value={this.state.description}
@@ -140,20 +190,21 @@ export default class AddPlace extends Component {
             cols="30"
             rows="10"
           ></textarea>
-          <PreviewUploadImages 
-                ref={this.PreviewUploadImages}
-                removePreviwImage={this.removePreviwImage}/>
+          <PreviewUploadImages
+            ref={this.PreviewUploadImages}
+            removePreviwImage={this.removePreviwImage} />
           {filesError ? <div className="add-place-file-error">{filesError}</div> : null}
+          {addedPlaceMessage ? <div className="add-place-approve-message">{addedPlaceMessage}</div> : null}
           <div className="add-place-file-submit">
-            <InputFile 
-              ref={this.InputFile} 
-              preview={this.PreviewUploadImages.current? this.PreviewUploadImages.current.setImages : ""}
+            <InputFile
+              ref={this.InputFile}
+              preview={this.PreviewUploadImages.current ? this.PreviewUploadImages.current.setImages : ""}
               inputGetPhotos={this.inputGetPhotos}
               multiple
               accept="image/png,image/jpg,image/jpeg"
               getError={this.inputGetError}
               maxFiles="10"
-              maxSize="5"/>
+              maxSize="5" />
             <input className="add-place-submit global-raised-button"
               type='submit' value='Add new place'
             />
